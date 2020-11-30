@@ -2,10 +2,11 @@ package Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import Enums.*;
 
-public class DriveEventMessage {
+public class DriveEventMessage implements Serializable {
     public final String fileId;
     public final MessageEvent event;
 

@@ -5,12 +5,14 @@ import Enums.DriveField;
 import Models.DeleteRequest;
 import Models.DriveEventMessage;
 import Models.DriveRequest;
+import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -21,26 +23,29 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
-    public static Producer producer = new Producer();
     @RabbitListener(queues = Config.EVENTS_QUEUE_NAME)
     public void receiveMessage(final DriveEventMessage message) {
         try{
-            System.out.println(message);
-            DeleteRequest deleteRequest = new DeleteRequest("123456",true);
-            DriveRequest driveRequestMessage = new DriveRequest("123456",
-                    new DriveField[]{DriveField.DOWNLOAD, DriveField.METADATA});
-
-            producer.sendDelete(deleteRequest);
-            producer.sendDriveRequest(driveRequestMessage);
+            Manager.processMessage(message);
         }
         catch (Exception e){
+            String fileId = message.getFileId();
+            if(fileId != null){
+                try{
+                    Manager.sendError(fileId);
+                }
+                catch(Exception exception){
+                    exception.printStackTrace();
+                }
+
+            }
 
         }
     }
 
     @Bean
     public TopicExchange tipsExchange() {
-        return new TopicExchange(Config.EVENTS_QUEUE_NAME);
+        return new TopicExchange(Config.EXCHANGE_NAME);
     }
 
     @Bean
@@ -48,9 +53,13 @@ public class Consumer {
         return new Queue(Config.EVENTS_QUEUE_NAME);
     }
 
+    public String defaultRoutingKey(){
+        return Config.EVENTS_ROUTING_KEY;
+    }
+
     @Bean
     public Binding queueToExchangeBinding() {
-        return BindingBuilder.bind(defaultParsingQueue()).to(tipsExchange()).with(Config.EVENTS_ROUTING_KEY);
+        return BindingBuilder.bind(defaultParsingQueue()).to(tipsExchange()).with(defaultRoutingKey());
     }
 
     @Bean
@@ -60,8 +69,8 @@ public class Consumer {
     }
 
     @Bean
-    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory){
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+    public RabbitTemplate rabbitTemplate(){
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(new CachingConnectionFactory(Config.RABBIT_URL));
         rabbitTemplate.setMessageConverter(messageConverter());
         return rabbitTemplate;
     }

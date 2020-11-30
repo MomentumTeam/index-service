@@ -1,6 +1,12 @@
 package Config;
 
+import Enums.MessageEvent;
+
+import java.util.HashSet;
+
 public class Config {
+
+    public static final String RABBIT_URL = "localhost";
     public static final String EXCHANGE_NAME = "indexService";
 
 
@@ -12,4 +18,12 @@ public class Config {
 
     public static final String DRIVE_SERVICE_QUEUE_NAME = "driveService";
     public static final String  DRIVE_SERVICE_ROUTING_KEY = "driveServiceKey";
+
+    public static final String ERROR_QUEUE_NAME = "error";
+    public static final String  ERROR_ROUTING_KEY = "errorKey";
+
+    public static final HashSet<MessageEvent> DELETE_EVENTS = new HashSet<MessageEvent>() {{
+        add(MessageEvent.CONTENT_CHANGE);
+        add(MessageEvent.DELETE);
+    }};
 }

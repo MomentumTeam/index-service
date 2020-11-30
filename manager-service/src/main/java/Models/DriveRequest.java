@@ -2,8 +2,11 @@ package Models;
 
 import Enums.DriveField;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.Gson;
 
-public class DriveRequest {
+import java.io.Serializable;
+
+public class DriveRequest implements Serializable {
     public String fileId;
     public DriveField[] driveFields;
 
