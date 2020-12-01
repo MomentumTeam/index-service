@@ -2,7 +2,6 @@ package Models;
 
 import Enums.DriveField;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.Gson;
 
 import java.io.Serializable;
 

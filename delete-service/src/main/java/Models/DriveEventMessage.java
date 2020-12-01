@@ -1,10 +1,10 @@
 package Models;
 
+import Enums.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import Enums.*;
 
 public class DriveEventMessage implements Serializable {
     public final String fileId;
@@ -24,7 +24,7 @@ public class DriveEventMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "DriveEventMessage{" +
+        return "Message{" +
                 "fileId='" + fileId + '\'' +
                 ", event=" + event +
                 '}';
