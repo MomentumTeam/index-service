@@ -38,6 +38,7 @@ public class DeleteRequest implements Serializable{
     public String toString(){
         return "DeleteRequest{" +
                 "fileId='" + fileId + '\'' +
+                ", createAfter="+createAfter+
                 '}';
     }
 

@@ -1,6 +1,7 @@
 package Rabbit;
 
 import Config.Config;
+import Enums.ErrorOperation;
 import Models.DeleteRequest;
 import Services.DeleteManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,7 +30,7 @@ public class Consumer {
             String fileId = message.getFileId();
             if(fileId != null){
                 try{
-                    DeleteManager.sendError(fileId);
+                    DeleteManager.sendError(fileId , ErrorOperation.DELETE);
                 }
                 catch(Exception exception){
                     exception.printStackTrace();

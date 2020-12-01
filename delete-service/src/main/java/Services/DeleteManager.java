@@ -1,10 +1,10 @@
 package Services;
 
-import Config.Config;
+import Enums.ErrorOperation;
 import Enums.MessageEvent;
 import Models.DeleteRequest;
 import Models.DriveEventMessage;
-import Models.RabbitErrorMassage;
+import Models.ErrorMessage;
 import Rabbit.Producer;
 
 public class DeleteManager {
@@ -34,9 +34,9 @@ public class DeleteManager {
         }
     }
 
-    public static void sendError(String fileId) throws Exception {
+    public static void sendError(String fileId , ErrorOperation operation) throws Exception {
         try{
-            producer.sendError(new RabbitErrorMassage(fileId));
+            producer.sendError(new ErrorMessage(fileId , operation));
         }
         catch(Exception exception){
             throw exception;

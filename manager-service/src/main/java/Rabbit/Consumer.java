@@ -2,9 +2,12 @@ package Rabbit;
 
 import Config.Config;
 import Enums.DriveField;
+import Enums.ErrorOperation;
+import Exceptions.DeleteException;
 import Models.DeleteRequest;
 import Models.DriveEventMessage;
 import Models.DriveRequest;
+import Models.ErrorMessage;
 import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.Binding;
@@ -29,18 +32,20 @@ public class Consumer {
             System.out.println(message);
             Manager.processMessage(message);
         }
-        catch (Exception e){
+        catch (Exception exception){
             String fileId = message.getFileId();
             if(fileId != null){
                 try{
-                    Manager.sendError(fileId);
+                    ErrorOperation operation = ErrorOperation.REFRESH;
+                    if(exception instanceof DeleteException){
+                        operation = ErrorOperation.DELETE;
+                    }
+                    Manager.sendError(fileId,operation);
                 }
-                catch(Exception exception){
-                    exception.printStackTrace();
+                catch(Exception error){
+                    error.printStackTrace();
                 }
-
             }
-
         }
     }
 

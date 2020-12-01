@@ -3,7 +3,7 @@ package Rabbit;
 import Config.Config;
 import Models.DeleteRequest;
 import Models.DriveEventMessage;
-import Models.RabbitErrorMassage;
+import Models.ErrorMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.*;
@@ -64,7 +64,7 @@ public class Producer {
         }
     }
 
-    public void sendError(RabbitErrorMassage message) throws AmqpException {
+    public void sendError(ErrorMessage message) throws AmqpException {
         try{
             this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.ERROR_ROUTING_KEY,
                     message);
