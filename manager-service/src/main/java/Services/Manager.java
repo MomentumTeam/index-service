@@ -2,12 +2,13 @@ package Services;
 
 import Config.Config;
 import Enums.DriveField;
+import Enums.ElasticOperation;
 import Enums.ErrorOperation;
 import Enums.MessageEvent;
 import Exceptions.CreateUpdateException;
 import Exceptions.DeleteException;
 import Models.DeleteRequest;
-import Models.DriveEventMessage;
+import Models.EventFromDriveMessage;
 import Models.DriveRequest;
 import Models.ErrorMessage;
 import Rabbit.Producer;
@@ -24,7 +25,7 @@ public class Manager {
         }
     }
 
-    public static void processMessage (DriveEventMessage message) throws DeleteException,CreateUpdateException {
+    public static void processMessage (EventFromDriveMessage message) throws DeleteException,CreateUpdateException {
             MessageEvent event = message.getEvent();
             String fileId = message.getFileId();
             if (Config.DELETE_EVENTS.contains(event)) {
@@ -42,18 +43,22 @@ public class Manager {
             } else {
                 try {
                     DriveField[] fields;
+                    ElasticOperation elasticOperation;
                     switch (event) {
                         case CREATE:
                             fields = new DriveField[]{DriveField.PERMISSIONS, DriveField.DOWNLOAD, DriveField.METADATA};
+                            elasticOperation = ElasticOperation.CREATE;
                             break;
                         case METADATA_CHANGE:
                             fields = new DriveField[]{DriveField.METADATA};
+                            elasticOperation = ElasticOperation.UPDATE;
                             break;
                         default: //PERMISSION_CHANGE
                             fields = new DriveField[]{DriveField.PERMISSIONS};
+                            elasticOperation = ElasticOperation.UPDATE;
                             break;
                     }
-                    DriveRequest driveRequest = new DriveRequest(fileId, fields);
+                    DriveRequest driveRequest = new DriveRequest(fileId, fields,elasticOperation);
                     producer.sendDriveRequest(driveRequest);
                 } catch (Exception exception) {
                     throw new CreateUpdateException(exception.getMessage());

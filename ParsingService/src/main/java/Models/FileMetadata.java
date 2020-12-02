@@ -1,15 +1,8 @@
 package Models;
 
-import DriveStubs.grpc.FileOuterClass;
-import Services.DataFromDrive;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
-import com.github.javafaker.File;
-import com.google.protobuf.ProtocolStringList;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class FileMetadata implements Serializable {
@@ -103,6 +96,19 @@ public class FileMetadata implements Serializable {
         return this.owner;
     }
 
+    public HashMap<String,Object> getHashMap(){
+        HashMap<String,Object> map = new HashMap<String,Object>();
+        map.put("fileId",fileId);
+        map.put("fileName",fileName);
+        map.put("type",type);
+        map.put("size",size);
+        map.put("owner",owner.getHashMap());
+        map.put("createdAt",createdAt);
+        map.put("updatedAt",updatedAt);
+        map.put("ancestors",ancestors);
+        return map;
+    }
+
     public static Folder[] getRandomAncestors(){
         Faker faker = new Faker();
         Folder[] ancestors = new Folder[faker.random().nextInt(5)+1];
@@ -122,39 +128,5 @@ public class FileMetadata implements Serializable {
         long updatedAt = createdAt + faker.random().nextLong();
         FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestors);
         return metadata;
-    }
-
-    public static FileMetadata getMetadata (String fileId) {
-        try{
-            FileOuterClass.File file = DataFromDrive.getFileById(fileId);
-            String fileName = file.getName();
-            String type = file.getType();
-            long size = file.getSize();
-            User owner = User.getUser(file.getOwnerID());
-            long createdAt = file.getCreatedAt();
-            long updatedAt = file.getUpdatedAt();
-            ProtocolStringList ancestors = DataFromDrive.getAncestors(fileId).getAncestorsList();
-            ArrayList <Folder> ancestorsArray = new ArrayList<Folder>();
-            for (String ancestor : ancestors)
-            {
-                ancestorsArray.add(Folder.getFolder(ancestor));
-            }
-            Folder[] ancestorsFolderArray = Arrays.stream(ancestorsArray.toArray()).toArray(Folder[]::new);
-            FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestorsFolderArray);
-            return metadata;
-        }
-        catch(Exception e){
-            throw e;
-        }
-    }
-
-    public static String getFileNameById(String fileId){
-        try{
-            FileOuterClass.File file = DataFromDrive.getFileById(fileId);
-            return file.getName();
-        }
-        catch(Exception e){
-            throw e;
-        }
     }
 }

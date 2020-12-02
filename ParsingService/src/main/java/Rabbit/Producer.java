@@ -22,9 +22,6 @@ public class Producer {
         try {
             ConnectionFactory connectionFactory = new CachingConnectionFactory(Config.RABBIT_URL);
 
-            Binding driveBinding = new Binding(Config.DRIVE_SERVICE_QUEUE_NAME, Binding.DestinationType.QUEUE,
-                    Config.EXCHANGE_NAME, Config.DRIVE_SERVICE_ROUTING_KEY, null);
-
             Binding parsingBinding = new Binding(Config.PARSING_SERVICE_QUEUE_NAME, Binding.DestinationType.QUEUE,
                     Config.EXCHANGE_NAME, Config.PARSING_SERVICE_ROUTING_KEY, null);
 
@@ -38,12 +35,10 @@ public class Producer {
 
 
             admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
-            admin.declareQueue(new Queue(Config.DRIVE_SERVICE_QUEUE_NAME));
             admin.declareQueue(new Queue(Config.PARSING_SERVICE_QUEUE_NAME));
             admin.declareQueue(new Queue(Config.ELASTIC_SERVICE_QUEUE_NAME));
             admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
 
-            admin.declareBinding(driveBinding);
             admin.declareBinding(parsingBinding);
             admin.declareBinding(elasticBinding);
             admin.declareBinding(errorBinding);
@@ -57,21 +52,12 @@ public class Producer {
         }
     }
 
+
     public Jackson2JsonMessageConverter producerMessageConverter() {
         ObjectMapper mapper = new ObjectMapper();
         return new Jackson2JsonMessageConverter(mapper);
     }
 
-
-    public void sendToParsingQueue(Document message) throws AmqpException {
-        try{
-            this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.PARSING_SERVICE_ROUTING_KEY,
-                    message);
-        }
-        catch(AmqpException exception){
-            throw exception;
-        }
-    }
 
     public void sendToElasticQueue(Document message) throws AmqpException {
         try{

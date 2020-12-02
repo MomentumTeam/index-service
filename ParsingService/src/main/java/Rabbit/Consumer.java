@@ -2,7 +2,7 @@ package Rabbit;
 
 import Config.Config;
 import Enums.ErrorOperation;
-import RabbitModels.DriveRequest;
+import Models.Document;
 import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.Binding;
@@ -20,11 +20,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
-    @RabbitListener(queues = Config.DRIVE_SERVICE_QUEUE_NAME)
-    public void receiveMessage(final DriveRequest message) {
+    @RabbitListener(queues = Config.PARSING_SERVICE_QUEUE_NAME)
+    public void receiveMessage(final Document message) {
         try{
             System.out.println(message);
-            Manager.processData(message);
+            Manager.processDocument(message);
         }
         catch (Exception exception){
             String fileId = message.getFileId();
@@ -47,11 +47,11 @@ public class Consumer {
 
     @Bean
     public Queue defaultParsingQueue() {
-        return new Queue(Config.EVENTS_QUEUE_NAME);
+        return new Queue(Config.PARSING_SERVICE_QUEUE_NAME);
     }
 
     public String defaultRoutingKey(){
-        return Config.EVENTS_ROUTING_KEY;
+        return Config.PARSING_SERVICE_ROUTING_KEY;
     }
 
     @Bean

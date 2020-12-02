@@ -16,12 +16,6 @@ public class Document implements Serializable {
     private Permission[] permissions;
     private String content;
 
-    public Document(@JsonProperty("fileId") String fileId ,
-                    @JsonProperty("elasticOperation") ElasticOperation elasticOperation){
-        this.fileId = fileId;
-        this.elasticOperation = elasticOperation;
-    }
-
     public Document(@JsonProperty("fileId") String fileId,
                     @JsonProperty("metadata") FileMetadata metadata,
                     @JsonProperty("permissions") Permission[] permissions,
@@ -54,6 +48,10 @@ public class Document implements Serializable {
         this.permissions = permissions;
     }
 
+    public ElasticOperation getElasticOperation() {
+        return elasticOperation;
+    }
+
     public String getFileId() {
         return fileId;
     }
@@ -66,12 +64,22 @@ public class Document implements Serializable {
         return content;
     }
 
-    public ElasticOperation getElasticOperation() {
-        return elasticOperation;
-    }
-
     public Permission[] getPermissions() {
         return permissions;
+    }
+
+    public HashMap<String,Object> getHashMap(){
+        HashMap<String,Object> map = new HashMap<String,Object>();
+        map.put("fileId",fileId);
+        map.put("metadata",metadata.getHashMap());
+
+        ArrayList<HashMap<String,Object>> permissionList = new ArrayList<HashMap<String,Object>>();
+        for (Permission permission: permissions) {
+            permissionList.add(permission.getHashMap());
+        }
+        map.put("permissions",permissionList.toArray());
+        map.put("content", content);
+        return map;
     }
 
     public static Document getRandom(FileMetadata metadata, Permission [] permissions){

@@ -1,7 +1,5 @@
 package Models;
 
-import DriveStubs.grpc.UsersOuterClass;
-import Services.DataFromDrive;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
 
@@ -44,6 +42,14 @@ public class User implements Serializable {
         return this.hierarchy;
     }
 
+    public HashMap<String,String> getHashMap(){
+        HashMap<String,String> map = new HashMap<String,String>();
+        map.put("userId",userId);
+        map.put("name",name);
+        map.put("hierarchy",hierarchy);
+        return map;
+    }
+
     public static User getRandom() {
         Faker faker = new Faker();
         String userId = faker.idNumber().valid();
@@ -51,13 +57,6 @@ public class User implements Serializable {
         String hierarchy = faker.name().username();
         User user = new User(userId, name, hierarchy);
         return user;
-    }
-
-    public static User getUser(String userId){
-        UsersOuterClass.User user = DataFromDrive.getUser(userId);
-        String name = user.getFullName();
-        String hierarchy = user.getHierarchyFlat();
-        return new User(userId, name, hierarchy);
     }
 }
 

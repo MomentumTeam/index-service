@@ -2,15 +2,14 @@ package Services;
 
 import Config.Config;
 import Enums.DriveField;
+import Enums.ElasticOperation;
 import Enums.ErrorOperation;
-import Enums.MessageEvent;
-import Exceptions.CreateUpdateException;
-import Exceptions.DeleteException;
-import Models.DeleteRequest;
-import Models.DriveEventMessage;
-import Models.DriveRequest;
-import Models.ErrorMessage;
+import Models.Document;
+import Models.FileMetadata;
+import Models.Permission;
 import Rabbit.Producer;
+import RabbitModels.DriveRequest;
+import RabbitModels.ErrorMessage;
 
 public class Manager {
 
@@ -21,6 +20,70 @@ public class Manager {
             producer = new Producer();
         } catch (Exception exception) {
             exception.printStackTrace();
+        }
+    }
+
+    public static void processData (DriveRequest message) throws Exception {
+        String fileId = message.getFileId();
+        DriveField[] driveFields = message.getDriveFields();
+        ElasticOperation operation = message.getElasticOperation();
+        FileMetadata metadata;
+        Permission [] permissions;
+        String path;
+
+        Document document = new Document(fileId , operation);
+        boolean sendToParsingService = false;
+        boolean error = false;
+
+        for (DriveField field: driveFields)
+        {
+            switch (field) {
+                case METADATA:
+                    try{
+                        metadata = FileMetadata.getMetadata(fileId);
+                        document.setMetadata(metadata);
+                    }
+                    catch(Exception e){
+                        error = true;
+                    }
+                    break;
+                case PERMISSIONS:
+                    try{
+                        permissions = Permission.getPermissions(fileId);
+                        document.setPermissions(permissions);
+                    }
+                    catch(Exception e){
+                        if(operation == ElasticOperation.CREATE){
+                            throw e;
+                        }
+                    }
+                    break;
+                case DOWNLOAD:
+                    try{
+                        path = DataFromDrive.download(fileId, Config.DOWNLOAD_FOLDER_PATH);
+                        document.setContent(path);
+                        sendToParsingService = true;
+                    }
+                    catch(Exception e){
+                        sendToParsingService = false;
+                    }
+                    break;
+            }
+        }
+
+        try {
+            if (sendToParsingService) {
+                producer.sendToParsingQueue(document);
+            } else {
+                producer.sendToElasticQueue(document);
+            }
+        }
+        catch(Exception e){
+            throw e;
+        }
+
+        if(error){
+            throw new Exception("error");
         }
     }
 

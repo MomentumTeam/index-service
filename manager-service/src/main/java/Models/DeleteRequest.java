@@ -1,11 +1,6 @@
 package Models;
 
-import Enums.MessageEvent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.Gson;
-
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 

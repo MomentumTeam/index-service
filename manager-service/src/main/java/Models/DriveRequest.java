@@ -1,6 +1,7 @@
 package Models;
 
 import Enums.DriveField;
+import Enums.ElasticOperation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
@@ -8,11 +9,15 @@ import java.io.Serializable;
 public class DriveRequest implements Serializable {
     public String fileId;
     public DriveField[] driveFields;
+    public ElasticOperation elasticOperation;
+
 
     public DriveRequest(@JsonProperty("fileId") final String fileId ,
-                        @JsonProperty("driveFields")final DriveField[] driveFields){
+                        @JsonProperty("driveFields")final DriveField[] driveFields,
+                        @JsonProperty("elasticOperation")final ElasticOperation elasticOperation){
         this.fileId = fileId;
         this.driveFields = driveFields;
+        this.elasticOperation = elasticOperation;
     }
 
     public String getFileId() {
@@ -29,5 +34,13 @@ public class DriveRequest implements Serializable {
 
     public void setDriveFields(DriveField[] driveFields) {
         this.driveFields = driveFields;
+    }
+
+    public ElasticOperation getElasticOperation() {
+        return elasticOperation;
+    }
+
+    public void setElasticOperation(ElasticOperation elasticOperation) {
+        this.elasticOperation = elasticOperation;
     }
 }

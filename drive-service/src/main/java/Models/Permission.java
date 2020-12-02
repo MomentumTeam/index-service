@@ -4,19 +4,23 @@ import DriveStubs.grpc.PermissionOuterClass;
 import Enums.ConvertRole;
 import Enums.Role;
 import Services.DataFromDrive;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.protobuf.ProtocolStringList;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Permission {
+public class Permission implements Serializable {
     private User user;
     private Role role;
 
-    public Permission(User user, Role role){
+    public Permission(@JsonProperty("user") User user,
+                      @JsonProperty("role") Role role){
         System.out.println(user.getName() + " " +user.getName());
         this.user = user;
         this.role = role;
     }
+
 
     public Role getRole() {
         return role;
@@ -26,19 +30,12 @@ public class Permission {
         return user;
     }
 
-    public void setRole(Role role) {
+    public void setRole(@JsonProperty("role") Role role) {
         this.role = role;
     }
 
-    public void setUser(User user) {
+    public void setUser(@JsonProperty("user") User user) {
         this.user = user;
-    }
-
-    public HashMap<String,Object> getHashMap(){
-        HashMap<String,Object> map = new HashMap<String,Object>();
-        map.put("user",user.getHashMap());
-        map.put("role",role);
-        return map;
     }
 
     public static Permission getRandom(){
@@ -88,11 +85,7 @@ public class Permission {
                 }
             }
         }
-        System.out.println(permissionList);
-        //get file ancesstors
-        // get ancesstors Permission
-        // hash map permissons uniqe
-        return null;
+        return Arrays.stream(permissionList.toArray()).toArray(Permission[]::new);
     }
 
 }

@@ -21,9 +21,4 @@ public class Folder implements Serializable {
         String id = faker.idNumber().valid();
         return new Folder(name, id);
     }
-
-    public static Folder getFolder(String id){
-        String name = FileMetadata.getFileNameById(id);
-        return new Folder(name, id);
-    }
 }

@@ -37,7 +37,4 @@ public class DeleteRequest implements Serializable{
                 ", createAfter="+createAfter+
                 '}';
     }
-
-
-
 }
