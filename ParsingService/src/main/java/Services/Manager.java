@@ -29,7 +29,7 @@ public class Manager {
             String path = document.getContent();
 
             String content = ParsingService.getContent(path);
-            FileService.deleteFile(path);
+//            FileService.deleteFile(path);
             String[] chunks = ChunkService.getChunks(content);
             for (String chunk : chunks) {
                 Document chunkDocument = new Document(fileId, metadata, permissions, chunk, operation);
