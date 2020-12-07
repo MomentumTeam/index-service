@@ -1,16 +1,14 @@
 package Models;
 
 import DriveStubs.grpc.FileOuterClass;
-import Services.DataFromDrive;
+import Services.DataService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
-import com.github.javafaker.File;
 import com.google.protobuf.ProtocolStringList;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class FileMetadata implements Serializable {
     private String fileId;
@@ -126,14 +124,14 @@ public class FileMetadata implements Serializable {
 
     public static FileMetadata getMetadata (String fileId) {
         try{
-            FileOuterClass.File file = DataFromDrive.getFileById(fileId);
+            FileOuterClass.File file = DataService.getFileById(fileId);
             String fileName = file.getName();
             String type = file.getType();
             long size = file.getSize();
             User owner = User.getUser(file.getOwnerID());
             long createdAt = file.getCreatedAt();
             long updatedAt = file.getUpdatedAt();
-            ProtocolStringList ancestors = DataFromDrive.getAncestors(fileId).getAncestorsList();
+            ProtocolStringList ancestors = DataService.getAncestors(fileId).getAncestorsList();
             ArrayList <Folder> ancestorsArray = new ArrayList<Folder>();
             for (String ancestor : ancestors)
             {
@@ -150,7 +148,7 @@ public class FileMetadata implements Serializable {
 
     public static String getFileNameById(String fileId){
         try{
-            FileOuterClass.File file = DataFromDrive.getFileById(fileId);
+            FileOuterClass.File file = DataService.getFileById(fileId);
             return file.getName();
         }
         catch(Exception e){

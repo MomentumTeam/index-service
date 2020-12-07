@@ -1,12 +1,11 @@
 package Models;
 
 import DriveStubs.grpc.UsersOuterClass;
-import Services.DataFromDrive;
+import Services.DataService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
 
 import java.io.Serializable;
-import java.util.HashMap;
 
 public class User implements Serializable {
     private String userId;
@@ -54,7 +53,7 @@ public class User implements Serializable {
     }
 
     public static User getUser(String userId){
-        UsersOuterClass.User user = DataFromDrive.getUser(userId);
+        UsersOuterClass.User user = DataService.getUser(userId);
         String name = user.getFullName();
         String hierarchy = user.getHierarchyFlat();
         return new User(userId, name, hierarchy);

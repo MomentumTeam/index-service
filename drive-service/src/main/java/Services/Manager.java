@@ -60,11 +60,12 @@ public class Manager {
                     break;
                 case DOWNLOAD:
                     try{
-                        path = DataFromDrive.download(fileId, Config.DOWNLOAD_FOLDER_PATH);
+                        path = DataService.download(fileId, Config.DOWNLOAD_FOLDER_PATH);
                         document.setContent(path);
                         sendToParsingService = true;
                     }
                     catch(Exception e){
+                        error = true;
                         sendToParsingService = false;
                     }
                     break;
@@ -79,7 +80,7 @@ public class Manager {
             }
         }
         catch(Exception e){
-            throw e;
+            error = true;
         }
 
         if(error){

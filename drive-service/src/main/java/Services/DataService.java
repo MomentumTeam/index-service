@@ -7,7 +7,7 @@ import io.grpc.ManagedChannelBuilder;
 
 import java.util.Iterator;
 
-public class DataFromDrive {
+public class DataService {
     public static FileOuterClass.File getFileById(String fileId){
         try{
             ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();

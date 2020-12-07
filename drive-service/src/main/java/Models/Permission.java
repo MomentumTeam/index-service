@@ -3,7 +3,7 @@ package Models;
 import DriveStubs.grpc.PermissionOuterClass;
 import Enums.ConvertRole;
 import Enums.Role;
-import Services.DataFromDrive;
+import Services.DataService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.protobuf.ProtocolStringList;
 
@@ -61,15 +61,15 @@ public class Permission implements Serializable {
 
     public static Permission [] getPermissions (String fileId) {
 
-        List<PermissionOuterClass.GetFilePermissionsResponse.UserRole> permissions = DataFromDrive.getPermissions(fileId).getPermissionsList();
+        List<PermissionOuterClass.GetFilePermissionsResponse.UserRole> permissions = DataService.getPermissions(fileId).getPermissionsList();
         ArrayList<Permission> permissionList = new ArrayList<Permission>();
         for (PermissionOuterClass.GetFilePermissionsResponse.UserRole permission : permissions){
             Permission p = new Permission(User.getUser(permission.getUserID()), ConvertRole.get(permission.getRole()));
             permissionList.add(p);
         }
-        ProtocolStringList ancestors = DataFromDrive.getAncestors(fileId).getAncestorsList();
+        ProtocolStringList ancestors = DataService.getAncestors(fileId).getAncestorsList();
         for (String ancestor : ancestors){
-            permissions = DataFromDrive.getPermissions(ancestor).getPermissionsList();
+            permissions = DataService.getPermissions(ancestor).getPermissionsList();
             for (PermissionOuterClass.GetFilePermissionsResponse.UserRole permission : permissions){
                 Permission p = new Permission(User.getUser(permission.getUserID()),ConvertRole.get(permission.getRole()));
                 Optional<Permission> optionalPermission = permissionList.stream().filter((Permission item) ->
