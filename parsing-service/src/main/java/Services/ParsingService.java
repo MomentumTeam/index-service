@@ -13,6 +13,16 @@ import java.io.InputStream;
 
 public class ParsingService {
 
+    public static String convertToUTF8(String s) {
+        String out = null;
+        try {
+            out = new String(s.getBytes("UTF-8"), "ISO-8859-1");
+        } catch (java.io.UnsupportedEncodingException e) {
+            return null;
+        }
+        return out;
+    }
+
     public static String getContent(String path) throws TikaException, SAXException, IOException {
         // return the file content using Tika
         AutoDetectParser parser = new AutoDetectParser();
@@ -31,7 +41,8 @@ public class ParsingService {
 
     public static String cleanContent(String content){
         String cleanContent = content.replaceAll("\\s+", " "); // Without spaces
-        cleanContent = cleanContent.replaceAll("[^A-Za-z0-9- ]",""); // Without signs
+        cleanContent = cleanContent.replaceAll("[^A-Za-z0-9-\\x{0590}-\\x{05FF}-\\x{0600}-\\x{06FF}-\n- ]",""); // Without special characters
+//        cleanContent = cleanContent.replaceAll("[^\\w\\s]","");; // Without special characters
         return cleanContent;
     }
 

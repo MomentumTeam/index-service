@@ -1,5 +1,6 @@
 import Rabbit.Consumer;
 import Services.BeeperControl;
+import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.Async;
@@ -15,9 +16,8 @@ public class Main {
 
     public static void main (String[] args){
 //        System.out.println("enter");
-
-
-
+        RabbitListenerEndpointRegistry registry = new RabbitListenerEndpointRegistry();
+        registry.stop();
 //        SpringApplication.run(Consumer.class,args);
 //        System.exit(SpringApplication
 //                .exit(SpringApplication.run(Consumer.class, args)));

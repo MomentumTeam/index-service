@@ -28,7 +28,7 @@ public class Config {
     public static int FILE_SERVICE_PORT = 8083;
     public static int USER_SERVICE_PORT = 8086;
     public static int PERMISSION_SERVICE_PORT = 8087;
-    public static String DOWNLOAD_FOLDER_PATH = "/home/sraya/IdeaProjects/IndexService/src/main/java/downloadFiles";
+    public static String DOWNLOAD_FOLDER_PATH = "/home/sraya/Desktop/index-service/drive-service/src/main/java/downloads";
 
 
 
