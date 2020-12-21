@@ -48,8 +48,7 @@ public class ElasticService {
             UpdateByQueryRequest request =
                     new UpdateByQueryRequest(index);
             request.setQuery(new MatchQueryBuilder("fileId", fileId));
-            HashMap<String, Object> params = new HashMap<String, Object>();
-            params.put("metadata", fileMetadata.getHashMap());
+            HashMap<String, Object> params = fileMetadata.getHashMap();
             request.setScript(
                     new Script(
                             ScriptType.INLINE, "painless",

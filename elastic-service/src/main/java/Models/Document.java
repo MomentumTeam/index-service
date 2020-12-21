@@ -72,7 +72,8 @@ public class Document implements Serializable {
     public HashMap<String,Object> getHashMap(){
         HashMap<String,Object> map = new HashMap<String,Object>();
         map.put("fileId",fileId);
-        map.put("metadata",metadata.getHashMap());
+//        map.put("metadata",metadata.getHashMap());
+        map.putAll(metadata.getHashMap());
         map.put("permissions",Permission.getHashMapsArray(permissions));
         map.put("content", content);
         return map;

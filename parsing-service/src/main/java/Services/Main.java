@@ -1,3 +1,5 @@
+package Services;
+
 import Rabbit.Consumer;
 import org.springframework.boot.SpringApplication;
 
