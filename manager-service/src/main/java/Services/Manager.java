@@ -8,7 +8,7 @@ import Enums.MessageEvent;
 import Exceptions.CreateUpdateException;
 import Exceptions.DeleteException;
 import Models.DeleteRequest;
-import Models.EventFromDriveMessage;
+import Models.DriveEventMessage;
 import Models.DriveRequest;
 import Models.ErrorMessage;
 import Rabbit.Producer;
@@ -25,7 +25,7 @@ public class Manager {
         }
     }
 
-    public static void processMessage (EventFromDriveMessage message) throws DeleteException,CreateUpdateException {
+    public static void processMessage (DriveEventMessage message) throws DeleteException,CreateUpdateException {
             MessageEvent event = message.getEvent();
             String fileId = message.getFileId();
             if (Config.DELETE_EVENTS.contains(event)) {

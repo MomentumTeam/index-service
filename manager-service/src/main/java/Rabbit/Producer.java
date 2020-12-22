@@ -70,9 +70,8 @@ public class Producer {
     @Transactional
     public void sendDelete(DeleteRequest message) throws AmqpException {
         try{
-//            this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.DELETE_ROUTING_KEY,
-//                    message);
-            this.rabbitTemplate.convertAndSend("11212",Config.DELETE_ROUTING_KEY, message);
+            this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.DELETE_ROUTING_KEY,
+                    message);
             LOGGER.info(String.format("Message %s sent to %s queue successfully",
                     message.toString(),Config.DELETE_QUEUE_NAME));
         }

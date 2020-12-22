@@ -27,4 +27,9 @@ public class ErrorMessage {
     public void setOperation(ErrorOperation operation) {
         this.operation = operation;
     }
+
+    public String toString(){
+        return "ErrorMessage{ fileId='" + fileId + "' , operation='" + operation + "'}";
+    }
+
 }

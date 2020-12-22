@@ -8,6 +8,7 @@ import com.github.javafaker.Faker;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Document implements Serializable {
@@ -124,5 +125,11 @@ public class Document implements Serializable {
         if(error){
             throw new Exception(errorMessage);
         }
+    }
+
+    public String toString(){
+        return String.format("Document { fileId='%s' , elasticOperation='%s', metadata='%s'" +
+                        ", permissions='%s', content='%s'",
+                fileId ,elasticOperation, metadata, Arrays.toString(permissions), content);
     }
 }

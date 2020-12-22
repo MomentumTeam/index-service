@@ -5,6 +5,8 @@ import Enums.ErrorOperation;
 import Models.DeleteRequest;
 import Services.DeleteManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -20,20 +22,23 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
+    private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
     @RabbitListener(queues = Config.DELETE_QUEUE_NAME)
     public void receiveMessage(final DeleteRequest message) {
         try{
-            System.out.println(message);
+            LOGGER.info(message);
             DeleteManager.processMessage(message);
         }
-        catch (Exception e){
+        catch (Exception exception){
+            LOGGER.error(String.format("Error while processing message, exception: %s",exception.getMessage()));
             String fileId = message.getFileId();
             if(fileId != null){
                 try{
                     DeleteManager.sendError(fileId , ErrorOperation.DELETE);
                 }
-                catch(Exception exception){
-                    exception.printStackTrace();
+                catch(Exception error){
+                    LOGGER.error(String.format("Tried unsuccessfully to push '%s' to the Error queue, " +
+                            "exception: %s",fileId,error.getMessage()));
                 }
 
             }

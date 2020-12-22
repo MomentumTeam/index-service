@@ -31,10 +31,9 @@ public class DeleteRequest implements Serializable{
         this.fileId = fileId;
     }
 
+    @Override
     public String toString(){
-        return "DeleteRequest{" +
-                "fileId='" + fileId + '\'' +
-                ", createAfter="+createAfter+
-                '}';
+        return "DeleteRequest{ fileId='" + fileId + "' , createAfter='" + createAfter + "'}";
     }
+
 }

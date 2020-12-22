@@ -27,4 +27,11 @@ public class ErrorMessage {
     public void setOperation(ErrorOperation operation) {
         this.operation = operation;
     }
+
+    @Override
+    public String toString(){
+        return "ErrorMessage{ fileId='" + fileId + "' , operation='" + operation + "'}";
+    }
+
+
 }

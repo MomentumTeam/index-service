@@ -7,13 +7,17 @@ import Enums.ErrorOperation;
 import Models.Document;
 import Models.FileMetadata;
 import Models.Permission;
+import Rabbit.Consumer;
 import Rabbit.Producer;
 import RabbitModels.DriveRequest;
 import RabbitModels.ErrorMessage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Manager {
 
     public static Producer producer;
+    private static final Logger LOGGER = LogManager.getLogger(Manager.class);
 
     static {
         try {
@@ -42,6 +46,7 @@ public class Manager {
                     try{
                         metadata = FileMetadata.getMetadata(fileId);
                         document.setMetadata(metadata);
+                        LOGGER.info(String.format("Metadata of '%s' added successfully to document",field));
                     }
                     catch(Exception e){
                         error = true;
@@ -51,6 +56,7 @@ public class Manager {
                     try{
                         permissions = Permission.getPermissions(fileId);
                         document.setPermissions(permissions);
+                        LOGGER.info(String.format("Permissions of '%s' added successfully to document",field));
                     }
                     catch(Exception e){
                         if(operation == ElasticOperation.CREATE){

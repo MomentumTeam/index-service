@@ -5,6 +5,8 @@ import Enums.ErrorOperation;
 import RabbitModels.DriveRequest;
 import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -20,13 +22,15 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
+    private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
     @RabbitListener(queues = Config.DRIVE_SERVICE_QUEUE_NAME)
     public void receiveMessage(final DriveRequest message) {
         try{
-            System.out.println(message);
+            LOGGER.info(message);
             Manager.processData(message);
         }
         catch (Exception exception){
+            LOGGER.error(String.format("Error while processing message, exception: %s",exception.getMessage()));
             String fileId = message.getFileId();
             if(fileId != null){
                 try{
@@ -35,6 +39,8 @@ public class Consumer {
                 }
                 catch(Exception error){
                     error.printStackTrace();
+                    LOGGER.error(String.format("Tried unsuccessfully to push '%s' to the Error queue, " +
+                            "exception: %s",fileId,error.getMessage()));
                 }
             }
         }

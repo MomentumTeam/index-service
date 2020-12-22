@@ -6,12 +6,12 @@ import java.io.Serializable;
 import java.text.ParseException;
 import Enums.*;
 
-public class EventFromDriveMessage implements Serializable {
+public class DriveEventMessage implements Serializable {
     public final String fileId;
     public final MessageEvent event;
 
-    public EventFromDriveMessage(@JsonProperty("fileId") final String fileId,
-                                 @JsonProperty("event")final MessageEvent event) throws ParseException {
+    public DriveEventMessage(@JsonProperty("fileId") final String fileId,
+                             @JsonProperty("event")final MessageEvent event) throws ParseException {
         this.fileId = fileId;
         this.event = event;
     }

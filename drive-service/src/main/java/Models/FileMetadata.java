@@ -122,7 +122,7 @@ public class FileMetadata implements Serializable {
         return metadata;
     }
 
-    public static FileMetadata getMetadata (String fileId) {
+    public static FileMetadata getMetadata (String fileId) throws Exception {
         try{
             FileOuterClass.File file = DataService.getFileById(fileId);
             String fileName = file.getName();
@@ -142,7 +142,7 @@ public class FileMetadata implements Serializable {
             return metadata;
         }
         catch(Exception e){
-            throw e;
+            throw new Exception(String.format("Problem while build metadata object of '%s' error: ", fileId, e.getMessage()));
         }
     }
 
@@ -154,5 +154,12 @@ public class FileMetadata implements Serializable {
         catch(Exception e){
             throw e;
         }
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Metadata { fileId='%s' , filename='%s', type='%s'" +
+                        ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'",
+                fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors));
     }
 }

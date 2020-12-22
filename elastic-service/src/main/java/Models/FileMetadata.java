@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class FileMetadata implements Serializable {
@@ -129,5 +130,11 @@ public class FileMetadata implements Serializable {
         long updatedAt = createdAt + faker.random().nextLong();
         FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestors);
         return metadata;
+    }
+
+    public String toString(){
+        return String.format("Metadata { fileId='%s' , filename='%s', type='%s'" +
+                        ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'",
+                fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors));
     }
 }

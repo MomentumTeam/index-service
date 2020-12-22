@@ -5,6 +5,8 @@ import Models.DeleteRequest;
 import Models.DriveEventMessage;
 import Models.ErrorMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -16,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Producer {
+    private static final Logger LOGGER = LogManager.getLogger(Producer.class);
     private AmqpTemplate rabbitTemplate;
 
     public Producer() throws Exception {
@@ -32,14 +35,18 @@ public class Producer {
 
 
             admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
+            LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
             admin.declareQueue(new Queue(Config.EVENTS_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.EVENTS_QUEUE_NAME));
             admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
 
             admin.declareBinding(eventBinding);
             admin.declareBinding(errorBinding);
 
             RabbitTemplate template = new RabbitTemplate(new CachingConnectionFactory(Config.RABBIT_URL));
             template.setMessageConverter(producerMessageConverter());
+            template.setChannelTransacted(true);
             this.rabbitTemplate = template;
         }
         catch(Exception exception){
@@ -54,20 +61,13 @@ public class Producer {
     }
 
 
-    public void sendDelete(DeleteRequest message) throws AmqpException {
-        try{
-            this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.DELETE_ROUTING_KEY,
-                    message);
-        }
-        catch(AmqpException exception){
-            throw exception;
-        }
-    }
 
     public void sendError(ErrorMessage message) throws AmqpException {
         try{
             this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.ERROR_ROUTING_KEY,
                     message);
+            LOGGER.info(String.format("Message %s sent to %s queue successfully",
+                    message.toString(),Config.ERROR_QUEUE_NAME));
         }
         catch(AmqpException exception){
             throw exception;
@@ -78,6 +78,8 @@ public class Producer {
     public void sendEventRequest(DriveEventMessage message) throws AmqpException {
         try{
             this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.EVENTS_ROUTING_KEY,message);
+            LOGGER.info(String.format("Message %s sent to %s queue successfully",
+                    message.toString(),Config.EVENTS_QUEUE_NAME));
         }
         catch (AmqpException exception){
             throw exception;

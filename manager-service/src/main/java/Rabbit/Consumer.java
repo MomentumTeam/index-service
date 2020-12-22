@@ -3,7 +3,7 @@ package Rabbit;
 import Config.Config;
 import Enums.ErrorOperation;
 import Exceptions.DeleteException;
-import Models.EventFromDriveMessage;
+import Models.DriveEventMessage;
 import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +25,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class.getName());
     @RabbitListener(queues = Config.EVENTS_QUEUE_NAME)
-    public void receiveMessage(final EventFromDriveMessage message) {
+    public void receiveMessage(final DriveEventMessage message) {
         try{
             LOGGER.info(message);
             Manager.processMessage(message);

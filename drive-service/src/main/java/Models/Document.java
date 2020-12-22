@@ -7,6 +7,7 @@ import com.github.javafaker.Faker;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Document implements Serializable {
@@ -78,5 +79,12 @@ public class Document implements Serializable {
         Faker faker = new Faker();
         String content = faker.rickAndMorty().quote();
         return new Document(metadata.getFileId(), metadata, permissions,content, ElasticOperation.CREATE);
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Document { fileId='%s' , elasticOperation='%s', metadata='%s'" +
+                        ", permissions='%s', content='%s'",
+                fileId ,elasticOperation, metadata, Arrays.toString(permissions), content);
     }
 }

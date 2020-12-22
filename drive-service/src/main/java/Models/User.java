@@ -58,5 +58,11 @@ public class User implements Serializable {
         String hierarchy = user.getHierarchyFlat();
         return new User(userId, name, hierarchy);
     }
+
+    @Override
+    public String toString(){
+        return String.format("User { userId='%s' , name='%s', hierarchy='%s'}",
+                userId, name, hierarchy);
+    }
 }
 

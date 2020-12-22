@@ -27,21 +27,21 @@ public class ElasticService {
 
     }
 
-    public static void delete(String fileId, String index) throws Exception {
-        try {
-            DeleteByQueryRequest request =
-                    new DeleteByQueryRequest(index);
-            request.setQuery(new MatchQueryBuilder("fileId", fileId));
-            BulkByScrollResponse bulkResponse =
-                    client.deleteByQuery(request, RequestOptions.DEFAULT);
-            long deletedDocs = bulkResponse.getDeleted();
-
-            System.out.println(deletedDocs);
-        }
-        catch(Exception e){
-            throw e;
-        }
-    }
+//    public static void delete(String fileId, String index) throws Exception {
+//        try {
+//            DeleteByQueryRequest request =
+//                    new DeleteByQueryRequest(index);
+//            request.setQuery(new MatchQueryBuilder("fileId", fileId));
+//            BulkByScrollResponse bulkResponse =
+//                    client.deleteByQuery(request, RequestOptions.DEFAULT);
+//            long deletedDocs = bulkResponse.getDeleted();
+//
+//            System.out.println(deletedDocs);
+//        }
+//        catch(Exception e){
+//            throw e;
+//        }
+//    }
 
     public static void updateMetadata(String fileId, FileMetadata fileMetadata, String index) throws Exception {
         try {

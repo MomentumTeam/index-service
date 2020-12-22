@@ -38,4 +38,10 @@ public class Folder implements Serializable {
         map.put("name",this.name);
         return map;
     }
+
+    @Override
+    public String toString(){
+        return String.format("Folder { name='%s' , id='%s'}",
+                name, id);
+    }
 }

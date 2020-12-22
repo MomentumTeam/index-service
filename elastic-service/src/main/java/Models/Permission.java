@@ -66,4 +66,10 @@ public class Permission implements Serializable {
         }
         return permissions;
     }
+
+    @Override
+    public String toString(){
+        return String.format("Permission { user='%s' , role='%s' }",
+                user, role);
+    }
 }

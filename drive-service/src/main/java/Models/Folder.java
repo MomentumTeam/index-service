@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Folder implements Serializable {
 
@@ -25,5 +26,11 @@ public class Folder implements Serializable {
     public static Folder getFolder(String id){
         String name = FileMetadata.getFileNameById(id);
         return new Folder(name, id);
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Folder { name='%s' , id='%s'}",
+               name, id);
     }
 }
