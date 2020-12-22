@@ -25,9 +25,6 @@ public class EventFromDriveMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "DriveEventMessage{" +
-                "fileId='" + fileId + '\'' +
-                ", event=" + event +
-                '}';
+        return "DriveEventMessage{ fileId='" + fileId + "' , event='" + event + "'}";
     }
 }

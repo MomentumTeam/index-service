@@ -6,6 +6,8 @@ import Exceptions.DeleteException;
 import Models.EventFromDriveMessage;
 import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -21,24 +23,27 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
+    private static final Logger LOGGER = LogManager.getLogger(Consumer.class.getName());
     @RabbitListener(queues = Config.EVENTS_QUEUE_NAME)
     public void receiveMessage(final EventFromDriveMessage message) {
         try{
-            System.out.println(message);
+            LOGGER.info(message);
             Manager.processMessage(message);
         }
         catch (Exception exception){
+            LOGGER.error(String.format("Error while processing message, exception: %s",exception.getMessage()));
             String fileId = message.getFileId();
             if(fileId != null){
                 try{
                     ErrorOperation operation = ErrorOperation.REFRESH;
-                    if(exception instanceof DeleteException){
+                    if(exception instanceof DeleteException) {
                         operation = ErrorOperation.DELETE;
                     }
                     Manager.sendError(fileId,operation);
                 }
                 catch(Exception error){
-                    error.printStackTrace();
+                    LOGGER.error(String.format("Tried unsuccessfully to push '%s' to the Error queue, " +
+                            "exception: %s",fileId,error.getMessage()));
                 }
             }
         }

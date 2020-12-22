@@ -5,6 +5,8 @@ import Models.DeleteRequest;
 import Models.DriveRequest;
 import Models.ErrorMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -13,9 +15,11 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
 public class Producer {
+    private static final Logger LOGGER = LogManager.getLogger(Producer.class);
     private AmqpTemplate rabbitTemplate;
 
     public Producer() throws Exception {
@@ -35,9 +39,13 @@ public class Producer {
 
 
             admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
+            LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
             admin.declareQueue(new Queue(Config.DELETE_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.DELETE_QUEUE_NAME));
             admin.declareQueue(new Queue(Config.DRIVE_SERVICE_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.DRIVE_SERVICE_QUEUE_NAME));
             admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
 
             admin.declareBinding(deleteBinding);
             admin.declareBinding(driveBinding);
@@ -45,6 +53,7 @@ public class Producer {
 
             RabbitTemplate template = new RabbitTemplate(new CachingConnectionFactory(Config.RABBIT_URL));
             template.setMessageConverter(producerMessageConverter());
+            template.setChannelTransacted(true);
             this.rabbitTemplate = template;
         }
         catch(Exception exception){
@@ -58,11 +67,14 @@ public class Producer {
         return new Jackson2JsonMessageConverter(mapper);
     }
 
-
+    @Transactional
     public void sendDelete(DeleteRequest message) throws AmqpException {
         try{
-            this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.DELETE_ROUTING_KEY,
-                    message);
+//            this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.DELETE_ROUTING_KEY,
+//                    message);
+            this.rabbitTemplate.convertAndSend("11212",Config.DELETE_ROUTING_KEY, message);
+            LOGGER.info(String.format("Message %s sent to %s queue successfully",
+                    message.toString(),Config.DELETE_QUEUE_NAME));
         }
         catch(AmqpException exception){
             throw exception;
@@ -73,6 +85,8 @@ public class Producer {
         try{
             this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.ERROR_ROUTING_KEY,
                     message);
+            LOGGER.info(String.format("Message %s sent to %s queue successfully",
+                    message.toString(),Config.ERROR_QUEUE_NAME));
         }
         catch(AmqpException exception){
             throw exception;
@@ -83,6 +97,8 @@ public class Producer {
     public void sendDriveRequest(DriveRequest message) throws AmqpException {
         try{
             this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.DRIVE_SERVICE_ROUTING_KEY,message);
+            LOGGER.info(String.format("Message %s sent to %s queue successfully",
+                    message.toString(),Config.DRIVE_SERVICE_QUEUE_NAME));
         }
         catch (AmqpException exception){
             throw exception;

@@ -5,6 +5,7 @@ import Enums.ElasticOperation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class DriveRequest implements Serializable {
     public String fileId;
@@ -43,4 +44,10 @@ public class DriveRequest implements Serializable {
     public void setElasticOperation(ElasticOperation elasticOperation) {
         this.elasticOperation = elasticOperation;
     }
+
+    public String toString(){
+        return String.format("DriveRequest{ fileId='%s' , driveFields='%s' , elasticOperation='%s'",
+                fileId,Arrays.toString(driveFields),elasticOperation);
+    }
+
 }
