@@ -1,8 +1,9 @@
 package Models;
 
+//import DriveStubs.grpc.FileOuterClass;
+//import Services.DataService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,6 +17,8 @@ public class FileMetadata implements Serializable {
     private long createdAt;
     private long updatedAt;
     private Folder[] ancestors;
+    private String key;
+    private String bucket;
 
     public FileMetadata(@JsonProperty("fileId") String fileId,
                         @JsonProperty("fileName") String fileName,
@@ -24,7 +27,9 @@ public class FileMetadata implements Serializable {
                         @JsonProperty("owner") User owner,
                         @JsonProperty("createdAt") long createdAt,
                         @JsonProperty("updatedAt") long updatedAt,
-                        @JsonProperty("ancestors") Folder[] ancestors){
+                        @JsonProperty("ancestors") Folder[] ancestors,
+                        @JsonProperty("key") String key,
+                        @JsonProperty("bucket") String bucket){
         this.fileId = fileId;
         this.fileName = fileName;
         this.type = type;
@@ -33,7 +38,13 @@ public class FileMetadata implements Serializable {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.ancestors = ancestors;
+        this.key = key;
+        this.bucket = bucket;
     }
+
+    public String getBucket() { return bucket; }
+
+    public String getKey() { return key; }
 
     public String getFileId() {
         return fileId;
@@ -62,6 +73,10 @@ public class FileMetadata implements Serializable {
     public Folder[] getAncestors() {
         return ancestors;
     }
+
+    public void setBucket(@JsonProperty("bucket") String bucket) { this.bucket = bucket; }
+
+    public void setKey(@JsonProperty("key") String key) { this.key = key; }
 
     public void setAncestors(@JsonProperty("ancestors") Folder[] ancestors) {
         this.ancestors = ancestors;
@@ -107,7 +122,7 @@ public class FileMetadata implements Serializable {
         map.put("owner",owner.getHashMap());
         map.put("createdAt",createdAt);
         map.put("updatedAt",updatedAt);
-        map.put("ancestors",Folder.getHashMapsArray(ancestors));
+        map.put("ancestors",ancestors);
         return map;
     }
 
@@ -120,21 +135,33 @@ public class FileMetadata implements Serializable {
         return ancestors;
     }
 
-    public static FileMetadata getRandom(String fileId , User owner , Folder[] ancestors){
-        Faker faker = new Faker();
-        String [] types = {"docx", "pptx", "pdf", "xlsx"};
-        String type = types[faker.random().nextInt(types.length)];
-        String fileName = faker.animal().name()+"."+type;
-        long size = faker.random().nextLong();
-        long createdAt = Math.abs(faker.random().nextLong());
-        long updatedAt = createdAt + faker.random().nextLong();
-        FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestors);
-        return metadata;
-    }
+//    public static FileMetadata getRandom(String fileId , User owner , Folder[] ancestors){
+//        Faker faker = new Faker();
+//        String [] types = {"docx", "pptx", "pdf", "xlsx"};
+//        String type = types[faker.random().nextInt(types.length)];
+//        String fileName = faker.animal().name()+"."+type;
+//        long size = faker.random().nextLong();
+//        long createdAt = Math.abs(faker.random().nextLong());
+//        long updatedAt = createdAt + faker.random().nextLong();
+//        FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestors);
+//        return metadata;
+//    }
 
+//    public static String getFileNameById(String fileId){
+//        try{
+//            FileOuterClass.File file = DataService.getFileById(fileId);
+//            return file.getName();
+//        }
+//        catch(Exception e){
+//            throw e;
+//        }
+//    }
+
+    @Override
     public String toString(){
         return String.format("Metadata { fileId='%s' , filename='%s', type='%s'" +
-                        ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'",
-                fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors));
+                        ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'" +
+                        ", key='%s', bucket='%s'",
+                fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors), key, bucket);
     }
 }

@@ -31,7 +31,7 @@ public class Manager {
         String fileId = message.getFileId();
         DriveField[] driveFields = message.getDriveFields();
         ElasticOperation operation = message.getElasticOperation();
-        FileMetadata metadata;
+        FileMetadata metadata = null;
         Permission [] permissions;
         String path;
 
@@ -66,9 +66,11 @@ public class Manager {
                     break;
                 case DOWNLOAD:
                     try{
-                        path = DataService.download(fileId, Config.DOWNLOAD_FOLDER_PATH);
-                        document.setContent(path);
-                        sendToParsingService = true;
+                        if (!error && metadata!=null){ //enough to check one of the condition
+                            String downloadInfo = String.format("%s@%s", metadata.getKey(), metadata.getBucket());
+                            document.setContent(downloadInfo);
+                            sendToParsingService = true;
+                        }
                     }
                     catch(Exception e){
                         error = true;

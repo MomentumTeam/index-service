@@ -34,12 +34,12 @@ public class Permission implements Serializable {
         this.user = user;
     }
 
-    public HashMap<String,Object> getHashMap(){
-        HashMap<String,Object> map = new HashMap<String,Object>();
-        map.put("user",user.getHashMap());
-        map.put("role",role);
-        return map;
-    }
+//    public HashMap<String,Object> getHashMap(){
+//        HashMap<String,Object> map = new HashMap<String,Object>();
+//        map.put("user",user.getHashMap());
+//        map.put("role",role);
+//        return map;
+//    }
 
     public static Permission getRandom(){
         Random rand = new Random();

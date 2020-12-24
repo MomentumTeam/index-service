@@ -68,19 +68,19 @@ public class Document implements Serializable {
         return permissions;
     }
 
-    public HashMap<String,Object> getHashMap(){
-        HashMap<String,Object> map = new HashMap<String,Object>();
-        map.put("fileId",fileId);
-        map.put("metadata",metadata.getHashMap());
-
-        ArrayList<HashMap<String,Object>> permissionList = new ArrayList<HashMap<String,Object>>();
-        for (Permission permission: permissions) {
-            permissionList.add(permission.getHashMap());
-        }
-        map.put("permissions",permissionList.toArray());
-        map.put("content", content);
-        return map;
-    }
+//    public HashMap<String,Object> getHashMap(){
+//        HashMap<String,Object> map = new HashMap<String,Object>();
+//        map.put("fileId",fileId);
+//        map.put("metadata",metadata.getHashMap());
+//
+//        ArrayList<HashMap<String,Object>> permissionList = new ArrayList<HashMap<String,Object>>();
+//        for (Permission permission: permissions) {
+//            permissionList.add(permission.getHashMap());
+//        }
+//        map.put("permissions",permissionList.toArray());
+//        map.put("content", content);
+//        return map;
+//    }
 
     public static Document getRandom(FileMetadata metadata, Permission [] permissions){
         Faker faker = new Faker();

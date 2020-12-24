@@ -4,8 +4,7 @@ import Enums.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class Permission implements Serializable {
     private User user;
@@ -42,14 +41,6 @@ public class Permission implements Serializable {
         return map;
     }
 
-    public static HashMap<String,Object>[] getHashMapsArray(Permission[] permissions){
-        HashMap<String,Object>[] maps = new HashMap[permissions.length];
-        for(int i = 0 ; i < permissions.length ; i ++){
-            maps[i] = permissions[i].getHashMap();
-        }
-        return maps;
-    }
-
     public static Permission getRandom(){
         Random rand = new Random();
         User user = User.getRandom();
@@ -65,11 +56,5 @@ public class Permission implements Serializable {
             permissions[i] = Permission.getRandom();
         }
         return permissions;
-    }
-
-    @Override
-    public String toString(){
-        return String.format("Permission { user='%s' , role='%s' }",
-                user, role);
     }
 }

@@ -18,7 +18,7 @@ public class ElasticSearch {
 
     static{
         client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("localhost", 9200, "http")));
+                RestClient.builder(new HttpHost("52.169.31.99", 9200, "http")));
 
     }
 
@@ -26,7 +26,7 @@ public class ElasticSearch {
         try {
             DeleteByQueryRequest request =
                     new DeleteByQueryRequest(index);
-            request.setQuery(new MatchQueryBuilder(fileId,Config.index));
+            request.setQuery(new MatchQueryBuilder(fileId,index));
             BulkByScrollResponse bulkResponse =
                     client.deleteByQuery(request, RequestOptions.DEFAULT);
             long deletedDocs = bulkResponse.getDeleted();

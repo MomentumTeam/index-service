@@ -46,7 +46,7 @@ public class Manager {
                     ElasticOperation elasticOperation;
                     switch (event) {
                         case CREATE:
-                            fields = new DriveField[]{DriveField.PERMISSIONS, DriveField.DOWNLOAD, DriveField.METADATA};
+                            fields = new DriveField[]{DriveField.METADATA, DriveField.PERMISSIONS, DriveField.DOWNLOAD};
                             elasticOperation = ElasticOperation.CREATE;
                             break;
                         case METADATA_CHANGE:

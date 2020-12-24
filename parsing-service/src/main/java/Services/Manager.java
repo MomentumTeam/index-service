@@ -20,17 +20,19 @@ public class Manager {
         }
     }
 
+
     public static void processDocument (Document document) throws Exception {
         try {
             String fileId = document.getFileId();
             FileMetadata metadata = document.getMetadata();
             Permission[] permissions = document.getPermissions();
             ElasticOperation operation = document.getElasticOperation();
-            String path = document.getContent();
+            String key = document.getContent().split("@")[0];
+            String bucket = document.getContent().split("@")[1];
 
-            String content = ParsingService.getContent(path);
+            byte [] fileArray = DataService.download(key, bucket);
+            String content = ParsingService.getContent(fileArray);
             content = ParsingService.cleanContent(content);
-//            FileService.deleteFile(path);
             String[] chunks = ChunkService.getChunks(content);
             for (String chunk : chunks) {
                 Document chunkDocument = new Document(fileId, metadata, permissions, chunk, operation);
@@ -46,8 +48,8 @@ public class Manager {
         }
         catch(Exception e){
             try{
-                producer.sendToElasticQueue(document);
-                FileService.deleteFile(document.getContent());
+//                producer.sendToElasticQueue(document);
+//                FileService.deleteFile(document.getContent());
                 throw new Exception();
             }
             catch(Exception error){

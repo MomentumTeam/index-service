@@ -1,15 +1,15 @@
 package Services;
 
+import com.google.common.io.ByteSource;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.sax.BodyContentHandler;
 import org.xml.sax.SAXException;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.file.Files;
+import java.util.ArrayList;
 
 public class ParsingService {
 
@@ -23,15 +23,19 @@ public class ParsingService {
         return out;
     }
 
-    public static String getContent(String path) throws TikaException, SAXException, IOException {
+    public static String getContent(byte [] fileArray) throws TikaException, SAXException, IOException {
         // return the file content using Tika
         AutoDetectParser parser = new AutoDetectParser();
         BodyContentHandler handler = new BodyContentHandler(-1);
         Metadata metadata = new Metadata();
         try{
-            File initialFile = new File(path);
-            InputStream targetStream = new FileInputStream(initialFile);
+            //File initialFile = new File(path);
+//            byte [] fileContent = Files.readAllBytes(initialFile.toPath());
+            System.out.println(fileArray);
+            InputStream targetStream =new ByteArrayInputStream(fileArray);
+//            InputStream targetStream = new FileInputStream(initialFile);
             parser.parse(targetStream, handler, metadata);
+            System.out.println(handler.toString());
             return handler.toString();
         }
         catch(Exception e){

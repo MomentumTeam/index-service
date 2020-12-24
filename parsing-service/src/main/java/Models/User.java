@@ -42,13 +42,13 @@ public class User implements Serializable {
         return this.hierarchy;
     }
 
-    public HashMap<String,String> getHashMap(){
-        HashMap<String,String> map = new HashMap<String,String>();
-        map.put("userId",userId);
-        map.put("name",name);
-        map.put("hierarchy",hierarchy);
-        return map;
-    }
+//    public HashMap<String,String> getHashMap(){
+//        HashMap<String,String> map = new HashMap<String,String>();
+//        map.put("userId",userId);
+//        map.put("name",name);
+//        map.put("hierarchy",hierarchy);
+//        return map;
+//    }
 
     public static User getRandom() {
         Faker faker = new Faker();

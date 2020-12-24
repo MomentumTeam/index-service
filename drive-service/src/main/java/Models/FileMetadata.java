@@ -19,6 +19,8 @@ public class FileMetadata implements Serializable {
     private long createdAt;
     private long updatedAt;
     private Folder[] ancestors;
+    private String key;
+    private String bucket;
 
     public FileMetadata(@JsonProperty("fileId") String fileId,
                         @JsonProperty("fileName") String fileName,
@@ -27,7 +29,9 @@ public class FileMetadata implements Serializable {
                         @JsonProperty("owner") User owner,
                         @JsonProperty("createdAt") long createdAt,
                         @JsonProperty("updatedAt") long updatedAt,
-                        @JsonProperty("ancestors") Folder[] ancestors){
+                        @JsonProperty("ancestors") Folder[] ancestors,
+                        @JsonProperty("key") String key,
+                        @JsonProperty("bucket") String bucket){
         this.fileId = fileId;
         this.fileName = fileName;
         this.type = type;
@@ -36,7 +40,13 @@ public class FileMetadata implements Serializable {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.ancestors = ancestors;
+        this.key = key;
+        this.bucket = bucket;
     }
+
+    public String getBucket() { return bucket; }
+
+    public String getKey() { return key; }
 
     public String getFileId() {
         return fileId;
@@ -65,6 +75,14 @@ public class FileMetadata implements Serializable {
     public Folder[] getAncestors() {
         return ancestors;
     }
+
+    public User getOwner(){
+        return this.owner;
+    }
+
+    public void setBucket(@JsonProperty("bucket") String bucket) { this.bucket = bucket; }
+
+    public void setKey(@JsonProperty("key") String key) { this.key = key; }
 
     public void setAncestors(@JsonProperty("ancestors") Folder[] ancestors) {
         this.ancestors = ancestors;
@@ -97,9 +115,7 @@ public class FileMetadata implements Serializable {
     public void setUpdatedAt(@JsonProperty("updatedAt") long updatedAt) {
         this.updatedAt = updatedAt;
     }
-    public User getOwner(){
-        return this.owner;
-    }
+
 
     public static Folder[] getRandomAncestors(){
         Faker faker = new Faker();
@@ -118,7 +134,9 @@ public class FileMetadata implements Serializable {
         long size = faker.random().nextLong();
         long createdAt = Math.abs(faker.random().nextLong());
         long updatedAt = createdAt + faker.random().nextLong();
-        FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestors);
+        String key = String.valueOf(faker.random().nextLong());
+        String bucket = String.valueOf(faker.random().nextLong());
+        FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestors, key, bucket);
         return metadata;
     }
 
@@ -131,6 +149,8 @@ public class FileMetadata implements Serializable {
             User owner = User.getUser(file.getOwnerID());
             long createdAt = file.getCreatedAt();
             long updatedAt = file.getUpdatedAt();
+            String key = file.getKey();
+            String bucket = file.getBucket();
             ProtocolStringList ancestors = DataService.getAncestors(fileId).getAncestorsList();
             ArrayList <Folder> ancestorsArray = new ArrayList<Folder>();
             for (String ancestor : ancestors)
@@ -138,7 +158,7 @@ public class FileMetadata implements Serializable {
                 ancestorsArray.add(Folder.getFolder(ancestor));
             }
             Folder[] ancestorsFolderArray = Arrays.stream(ancestorsArray.toArray()).toArray(Folder[]::new);
-            FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestorsFolderArray);
+            FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestorsFolderArray, key, bucket);
             return metadata;
         }
         catch(Exception e){
@@ -158,8 +178,9 @@ public class FileMetadata implements Serializable {
 
     @Override
     public String toString(){
-        return String.format("Metadata { fileId='%s' , filename='%s', type='%s'" +
-                        ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'",
-                fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors));
+        return String.format("Metadata{ fileId='%s' , filename='%s', type='%s'" +
+                        ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'" +
+                        ", key='%s', bucket='%s'}",
+                fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors), key, bucket);
     }
 }
