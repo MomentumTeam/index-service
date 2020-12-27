@@ -10,27 +10,27 @@ public class ChunkService {
 
     public static String[][] getSuffixPrefixArrays(String content){
         try{
-            String preSuff;
-            ArrayList<String[]> preSuffArrays = new ArrayList<String[]>();
-            ArrayList<String> preSuffArray = new ArrayList<String>();
+            String suffixPrefix;
+            ArrayList<String[]> suffixPrefixArrays = new ArrayList<String[]>();
+            ArrayList<String> suffixPrefixArray = new ArrayList<String>();
             int from,to,firstWhiteSpace;
             for (int i = Config.CHUNK_SIZE ; i < content.length() ; i += Config.CHUNK_SIZE){
 
-                from = content.lastIndexOf(' ', i - Config.PRE_SUFF_SIZE) + 1;
-                firstWhiteSpace = content.indexOf(' ', i + Config.PRE_SUFF_SIZE);
+                from = content.lastIndexOf(' ', i - Config.SUFF_PRE_SIZE) + 1;
+                firstWhiteSpace = content.indexOf(' ', i + Config.SUFF_PRE_SIZE);
                 to = firstWhiteSpace == -1 ? content.length() : firstWhiteSpace;
 
-                preSuff = content.substring(from , to);
-                preSuffArray.add(preSuff);
-                if(preSuffArray.size() == Config.PRE_SUFF_PARTS_COUNT) {
-                    preSuffArrays.add(Arrays.stream(preSuffArray.toArray()).toArray(String[]::new));
-                    preSuffArray = new ArrayList<String>();
+                suffixPrefix = content.substring(from , to);
+                suffixPrefixArray.add(suffixPrefix);
+                if(suffixPrefixArray.size() == Config.SUFF_PRE_COUNT_PER_DOCUMENT) {
+                    suffixPrefixArrays.add(Arrays.stream(suffixPrefixArray.toArray()).toArray(String[]::new));
+                    suffixPrefixArray = new ArrayList<String>();
                 }
             }
-            if(preSuffArray.size() > 0){
-                preSuffArrays.add(Arrays.stream(preSuffArray.toArray()).toArray(String[]::new));
+            if(suffixPrefixArray.size() > 0){
+                suffixPrefixArrays.add(Arrays.stream(suffixPrefixArray.toArray()).toArray(String[]::new));
             }
-            return Arrays.stream(preSuffArrays.toArray()).toArray(String[][]::new);
+            return Arrays.stream(suffixPrefixArrays.toArray()).toArray(String[][]::new);
         }
         catch(Exception exception){
             throw exception;

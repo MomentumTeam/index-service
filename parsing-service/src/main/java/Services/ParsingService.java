@@ -1,6 +1,9 @@
 package Services;
 
+import Rabbit.Producer;
 import com.google.common.io.ByteSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
@@ -12,7 +15,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class ParsingService {
-
+    private static final Logger LOGGER = LogManager.getLogger(ParsingService.class);
     public static String convertToUTF8(String s) {
         String out = null;
         try {
@@ -29,13 +32,8 @@ public class ParsingService {
         BodyContentHandler handler = new BodyContentHandler(-1);
         Metadata metadata = new Metadata();
         try{
-            //File initialFile = new File(path);
-//            byte [] fileContent = Files.readAllBytes(initialFile.toPath());
-            System.out.println(fileArray);
             InputStream targetStream =new ByteArrayInputStream(fileArray);
-//            InputStream targetStream = new FileInputStream(initialFile);
             parser.parse(targetStream, handler, metadata);
-            System.out.println(handler.toString());
             return handler.toString();
         }
         catch(Exception e){
@@ -46,7 +44,6 @@ public class ParsingService {
     public static String cleanContent(String content){
         String cleanContent = content.replaceAll("\\s+", " "); // Without spaces
         cleanContent = cleanContent.replaceAll("[^A-Za-z0-9-\\x{0590}-\\x{05FF}-\\x{0600}-\\x{06FF}-\n- ]",""); // Without special characters
-//        cleanContent = cleanContent.replaceAll("[^\\w\\s]","");; // Without special characters
         return cleanContent;
     }
 

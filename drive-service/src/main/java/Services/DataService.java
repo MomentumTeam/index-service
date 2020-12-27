@@ -33,59 +33,6 @@ public class DataService {
         }
     }
 
-//    public ByteArrayOutputStream downloadFile(String fileName) {
-//
-//        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        final CountDownLatch finishLatch = new CountDownLatch(1);
-//        final AtomicBoolean completed = new AtomicBoolean(false);
-//
-//        StreamObserver<DataChunk> streamObserver = new StreamObserver<DataChunk>() {
-//            @Override
-//            public void onNext(DataChunk dataChunk) {
-//                try {
-//                    baos.write(dataChunk.getData().toByteArray());
-//                } catch (IOException e) {
-//                    log.error("error on write to byte array stream", e);
-//                    onError(e);
-//                }
-//            }
-//
-//            @Override
-//            public void onError(Throwable t) {
-//                log.error("downloadFile() error", t);
-//                finishLatch.countDown();
-//            }
-//
-//            @Override
-//            public void onCompleted() {
-//                log.info("downloadFile() has been completed!");
-//                completed.compareAndSet(false, true);
-//                finishLatch.countDown();
-//            }
-//        };
-//
-//        try {
-//
-//            DownloadFileRequest.Builder builder = DownloadFileRequest
-//                    .newBuilder()
-//                    .setFileName(fileName);
-//
-//            nonBlockingStub.downloadFile(builder.build(), streamObserver);
-//
-//            finishLatch.await(5, TimeUnit.MINUTES);
-//
-//            if (!completed.get()) {
-//                throw new Exception("The downloadFile() method did not complete");
-//            }
-//
-//        } catch (Exception e) {
-//            log.error("The downloadFile() method did not complete");
-//        }
-//
-//        return baos;
-//    }
-
-
     public static String download(String fileId, String downloadFolder) throws IOException {
         FileOuterClass.File file = getFileById(fileId);
         ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.DOWNLOAD_SERVICE_PORT).usePlaintext().build();
@@ -103,12 +50,10 @@ public class DataService {
                 byteList.add(b);
             }
         }
-
         String path = downloadFolder + "/"+fileId;
         try (FileOutputStream fos = new FileOutputStream(path)) {
             fos.write(Bytes.toArray(byteList));
             return path;
-            //fos.close(); There is no more need for this line since you had created the instance of "fos" inside the try. And this will automatically close the OutputStream
         } catch (IOException e) {
             throw e;
         }
@@ -139,7 +84,6 @@ public class DataService {
         catch(Exception e){
             throw e;
         }
-
     }
 
     public static FileOuterClass.GetAncestorsResponse getAncestors (String fileId) {
@@ -154,6 +98,5 @@ public class DataService {
         catch(Exception e){
             throw e;
         }
-
     }
 }

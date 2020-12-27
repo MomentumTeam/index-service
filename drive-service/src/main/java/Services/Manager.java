@@ -33,11 +33,11 @@ public class Manager {
         ElasticOperation operation = message.getElasticOperation();
         FileMetadata metadata = null;
         Permission [] permissions;
-        String path;
 
         Document document = new Document(fileId , operation);
         boolean sendToParsingService = false;
         boolean error = false;
+        String errorMessage = "";
 
         for (DriveField field: driveFields)
         {
@@ -50,6 +50,7 @@ public class Manager {
                     }
                     catch(Exception e){
                         error = true;
+                        errorMessage = e.getMessage();
                     }
                     break;
                 case PERMISSIONS:
@@ -66,14 +67,15 @@ public class Manager {
                     break;
                 case DOWNLOAD:
                     try{
-                        if (!error && metadata!=null){ //enough to check one of the condition
-                            String downloadInfo = String.format("%s@%s", metadata.getKey(), metadata.getBucket());
-                            document.setContent(downloadInfo);
+                        if (!error && metadata != null){ //enough to check one of the condition
+                            String keyBucket = String.format("%s@%s", metadata.getKey(), metadata.getBucket());
+                            document.setContent(keyBucket);
                             sendToParsingService = true;
                         }
                     }
                     catch(Exception e){
                         error = true;
+                        errorMessage = errorMessage + e.getMessage();
                         sendToParsingService = false;
                     }
                     break;
@@ -92,7 +94,7 @@ public class Manager {
         }
 
         if(error){
-            throw new Exception("error");
+            throw new Exception(errorMessage);
         }
     }
 

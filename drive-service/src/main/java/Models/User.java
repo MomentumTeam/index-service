@@ -43,25 +43,21 @@ public class User implements Serializable {
         return this.hierarchy;
     }
 
-    public static User getRandom() {
-        Faker faker = new Faker();
-        String userId = faker.idNumber().valid();
-        String name = faker.name().fullName();
-        String hierarchy = faker.name().username();
-        User user = new User(userId, name, hierarchy);
-        return user;
-    }
-
     public static User getUser(String userId){
-        UsersOuterClass.User user = DataService.getUser(userId);
-        String name = user.getFullName();
-        String hierarchy = user.getHierarchyFlat();
-        return new User(userId, name, hierarchy);
+        try{
+            UsersOuterClass.User user = DataService.getUser(userId);
+            String name = user.getFullName();
+            String hierarchy = user.getHierarchyFlat();
+            return new User(userId, name, hierarchy);
+        }
+        catch(Exception e){
+            throw e;
+        }
+
     }
 
-    @Override
     public String toString(){
-        return String.format("User { userId='%s' , name='%s', hierarchy='%s'}",
+        return String.format("User{userId='%s', name='%s', hierarchy='%s'}",
                 userId, name, hierarchy);
     }
 }

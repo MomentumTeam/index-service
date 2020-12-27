@@ -12,11 +12,9 @@ public class Permission implements Serializable {
 
     public Permission(@JsonProperty("user") User user,
                       @JsonProperty("role") Role role){
-        System.out.println(user.getName() + " " +user.getName());
         this.user = user;
         this.role = role;
     }
-
 
     public Role getRole() {
         return role;
@@ -34,27 +32,8 @@ public class Permission implements Serializable {
         this.user = user;
     }
 
-//    public HashMap<String,Object> getHashMap(){
-//        HashMap<String,Object> map = new HashMap<String,Object>();
-//        map.put("user",user.getHashMap());
-//        map.put("role",role);
-//        return map;
-//    }
-
-    public static Permission getRandom(){
-        Random rand = new Random();
-        User user = User.getRandom();
-        Role role = rand.nextBoolean() ? Role.READ : Role.WRITE;
-        return new Permission(user, role);
+    public String toString(){
+        return String.format("Permission{user=%s, role=%s}",user.toString(),role);
     }
 
-    public static Permission [] getRandomArray(){
-        Random rand = new Random();
-        Permission [] permissions = new Permission[rand.nextInt(5)+1];
-        for (int i = 0 ; i < permissions.length ; i++)
-        {
-            permissions[i] = Permission.getRandom();
-        }
-        return permissions;
-    }
 }

@@ -46,7 +46,7 @@ public class DriveRequest implements Serializable {
     }
 
     public String toString(){
-        return String.format("DriveRequest{ fileId='%s' , driveFields='%s' , elasticOperation='%s'",
+        return String.format("DriveRequest{fileId='%s', driveFields='%s', elasticOperation='%s'}",
                 fileId, Arrays.toString(driveFields),elasticOperation);
     }
 }

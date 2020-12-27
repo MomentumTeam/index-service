@@ -7,6 +7,7 @@ import com.github.javafaker.Faker;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Document implements Serializable {
@@ -68,23 +69,13 @@ public class Document implements Serializable {
         return permissions;
     }
 
-//    public HashMap<String,Object> getHashMap(){
-//        HashMap<String,Object> map = new HashMap<String,Object>();
-//        map.put("fileId",fileId);
-//        map.put("metadata",metadata.getHashMap());
-//
-//        ArrayList<HashMap<String,Object>> permissionList = new ArrayList<HashMap<String,Object>>();
-//        for (Permission permission: permissions) {
-//            permissionList.add(permission.getHashMap());
-//        }
-//        map.put("permissions",permissionList.toArray());
-//        map.put("content", content);
-//        return map;
-//    }
-
-    public static Document getRandom(FileMetadata metadata, Permission [] permissions){
-        Faker faker = new Faker();
-        String content = faker.rickAndMorty().quote();
-        return new Document(metadata.getFileId(), metadata, permissions,content, ElasticOperation.CREATE);
+    public String toString(){
+        String contentString = content.contains("@")? "keyBucket="+content : "ContentLength="+content.length();
+        return String.format("Document{fileId='%s'\n" +
+                "metadata=%s\n" +
+                "permissions=%s\n" +
+                contentString +
+                "elasticOperation=%s}", fileId,metadata.toString(),
+                Arrays.toString(permissions),contentString,elasticOperation);
     }
 }

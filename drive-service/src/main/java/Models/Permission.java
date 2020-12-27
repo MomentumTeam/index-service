@@ -21,7 +21,6 @@ public class Permission implements Serializable {
         this.role = role;
     }
 
-
     public Role getRole() {
         return role;
     }
@@ -37,27 +36,6 @@ public class Permission implements Serializable {
     public void setUser(@JsonProperty("user") User user) {
         this.user = user;
     }
-
-    public static Permission getRandom(){
-        Random rand = new Random();
-        User user = User.getRandom();
-        Role role = rand.nextBoolean() ? Role.READ : Role.WRITE;
-        return new Permission(user, role);
-    }
-
-    public static Permission [] getRandomArray(){
-        Random rand = new Random();
-        Permission [] permissions = new Permission[rand.nextInt(5)+1];
-        for (int i = 0 ; i < permissions.length ; i++)
-        {
-            permissions[i] = Permission.getRandom();
-        }
-        return permissions;
-    }
-
-//    public String toString (){
-//        return this.role + " " this.user.getName() + this.user.getUserId();
-//    }
 
     public static Permission [] getPermissions (String fileId) throws Exception {
 
@@ -88,14 +66,13 @@ public class Permission implements Serializable {
             }
             return Arrays.stream(permissionList.toArray()).toArray(Permission[]::new);
         } catch (Exception e){
-            throw new Exception(String.format("Problem while build Permissions array of '%s' error: ", fileId, e.getMessage()));
+            throw new Exception(String.format("Problem while receiving permissions of " +
+                    "fileId='%s', error:%s", fileId, e.getMessage()));
         }
     }
 
-    @Override
     public String toString(){
-        return String.format("Permission { user='%s' , role='%s' }",
-                user, role);
+        return String.format("Permission{user=%s, role=%s}",user.toString(),role);
     }
 
 }

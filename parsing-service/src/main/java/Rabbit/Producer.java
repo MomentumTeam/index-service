@@ -5,6 +5,8 @@ import Config.Config;
 import Models.Document;
 import RabbitModels.ErrorMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -16,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Producer {
+    private static final Logger LOGGER = LogManager.getLogger(Producer.class);
     private AmqpTemplate rabbitTemplate;
 
     public Producer() throws Exception {
@@ -35,9 +38,13 @@ public class Producer {
 
 
             admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
+            LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
             admin.declareQueue(new Queue(Config.PARSING_SERVICE_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.PARSING_SERVICE_QUEUE_NAME));
             admin.declareQueue(new Queue(Config.ELASTIC_SERVICE_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.ELASTIC_SERVICE_QUEUE_NAME));
             admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
 
             admin.declareBinding(parsingBinding);
             admin.declareBinding(elasticBinding);
@@ -45,6 +52,7 @@ public class Producer {
 
             RabbitTemplate template = new RabbitTemplate(new CachingConnectionFactory(Config.RABBIT_URL));
             template.setMessageConverter(producerMessageConverter());
+            template.setChannelTransacted(true);
             this.rabbitTemplate = template;
         }
         catch(Exception exception){
@@ -62,6 +70,8 @@ public class Producer {
     public void sendToElasticQueue(Document message) throws AmqpException {
         try{
             this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.ELASTIC_SERVICE_ROUTING_KEY,message);
+            LOGGER.info(String.format("Message %s sent to %s queue successfully",
+                    message.toString(),Config.ELASTIC_SERVICE_QUEUE_NAME));
         }
         catch (AmqpException exception){
             throw exception;
@@ -72,10 +82,11 @@ public class Producer {
         try{
             this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.ERROR_ROUTING_KEY,
                     message);
+            LOGGER.info(String.format("Message %s sent to %s queue successfully",
+                    message.toString(),Config.ERROR_QUEUE_NAME));
         }
         catch(AmqpException exception){
             throw exception;
         }
-
     }
 }

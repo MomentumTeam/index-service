@@ -5,6 +5,8 @@ import Enums.ErrorOperation;
 import Models.Document;
 import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -20,13 +22,15 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
+    private static final Logger LOGGER = LogManager.getLogger(Consumer.class.getName());
     @RabbitListener(queues = Config.PARSING_SERVICE_QUEUE_NAME)
     public void receiveMessage(final Document message) {
         try{
-            System.out.println(message);
+            LOGGER.info(message);
             Manager.processDocument(message);
         }
         catch (Exception exception){
+            LOGGER.error(String.format("Error while processing message, exception: %s",exception.getMessage()));
             String fileId = message.getFileId();
             if(fileId != null){
                 try{
@@ -34,7 +38,8 @@ public class Consumer {
                     Manager.sendError(fileId,operation);
                 }
                 catch(Exception error){
-                    error.printStackTrace();
+                    LOGGER.error(String.format("Tried unsuccessfully to push '%s' to the Error queue, " +
+                            "exception: %s",fileId,error.getMessage()));
                 }
             }
         }

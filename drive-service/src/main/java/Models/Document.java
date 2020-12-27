@@ -81,10 +81,13 @@ public class Document implements Serializable {
         return new Document(metadata.getFileId(), metadata, permissions,content, ElasticOperation.CREATE);
     }
 
-    @Override
     public String toString(){
-        return String.format("Document { fileId='%s' , elasticOperation='%s', metadata='%s'" +
-                        ", permissions='%s', content='%s'",
-                fileId ,elasticOperation, metadata, Arrays.toString(permissions), content);
+        String contentString = content.contains("@")? "keyBucket="+content : "ContentLength="+content.length();
+        return String.format("Document{fileId='%s'\n" +
+                        "metadata=%s\n" +
+                        "permissions=%s\n" +
+                        contentString +
+                        "elasticOperation=%s}", fileId,metadata.toString(),
+                Arrays.toString(permissions),contentString,elasticOperation);
     }
 }

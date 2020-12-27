@@ -126,20 +126,6 @@ public class FileMetadata implements Serializable {
         return ancestors;
     }
 
-    public static FileMetadata getRandom(String fileId , User owner , Folder[] ancestors){
-        Faker faker = new Faker();
-        String [] types = {"docx", "pptx", "pdf", "xlsx"};
-        String type = types[faker.random().nextInt(types.length)];
-        String fileName = faker.animal().name()+"."+type;
-        long size = faker.random().nextLong();
-        long createdAt = Math.abs(faker.random().nextLong());
-        long updatedAt = createdAt + faker.random().nextLong();
-        String key = String.valueOf(faker.random().nextLong());
-        String bucket = String.valueOf(faker.random().nextLong());
-        FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestors, key, bucket);
-        return metadata;
-    }
-
     public static FileMetadata getMetadata (String fileId) throws Exception {
         try{
             FileOuterClass.File file = DataService.getFileById(fileId);
@@ -162,7 +148,7 @@ public class FileMetadata implements Serializable {
             return metadata;
         }
         catch(Exception e){
-            throw new Exception(String.format("Problem while build metadata object of '%s' error: ", fileId, e.getMessage()));
+            throw new Exception(String.format("Problem while receiving the metadata of fileId='%s', error=%s ", fileId, e.getMessage()));
         }
     }
 
@@ -178,9 +164,9 @@ public class FileMetadata implements Serializable {
 
     @Override
     public String toString(){
-        return String.format("Metadata{ fileId='%s' , filename='%s', type='%s'" +
+        return String.format("Metadata{fileId='%s', filename='%s', type='%s'" +
                         ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'" +
-                        ", key='%s', bucket='%s'}",
+                        ", key='%s', bucket='%s'",
                 fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors), key, bucket);
     }
 }

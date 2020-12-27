@@ -7,9 +7,11 @@ import Models.FileMetadata;
 import Models.Permission;
 import Rabbit.Producer;
 import RabbitModels.ErrorMessage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Manager {
-
+    private static final Logger LOGGER = LogManager.getLogger(Manager.class);
     public static Producer producer;
 
     static {
@@ -20,41 +22,51 @@ public class Manager {
         }
     }
 
-
     public static void processDocument (Document document) throws Exception {
-        try {
-            String fileId = document.getFileId();
-            FileMetadata metadata = document.getMetadata();
-            Permission[] permissions = document.getPermissions();
-            ElasticOperation operation = document.getElasticOperation();
-            String key = document.getContent().split("@")[0];
-            String bucket = document.getContent().split("@")[1];
+        String fileId = document.getFileId();
+        FileMetadata metadata = document.getMetadata();
+        Permission[] permissions = document.getPermissions();
+        ElasticOperation operation = document.getElasticOperation();
+        String key = document.getContent().split("@")[0];
+        String bucket = document.getContent().split("@")[1];
+        String content;
+        boolean error = false;
+        String errorMessage= "";
+        byte [] fileArray;
+        String[] chunks;
+        String[] suffixPrefixArray;
 
-            byte [] fileArray = DataService.download(key, bucket);
-            String content = ParsingService.getContent(fileArray);
+        try{
+            fileArray = DataService.download(key, bucket);
+            content = ParsingService.getContent(fileArray);
             content = ParsingService.cleanContent(content);
-            String[] chunks = ChunkService.getChunks(content);
+            chunks = ChunkService.getChunks(content);
+            suffixPrefixArray = ChunkService.getSuffixPrefixStringArray(content);
+        }
+        catch(Exception e){
+            error = true;
+            errorMessage = e.getMessage();
+            chunks = new String[]{""};
+            suffixPrefixArray = new String[0];
+        }
+        try{
             for (String chunk : chunks) {
                 Document chunkDocument = new Document(fileId, metadata, permissions, chunk, operation);
                 producer.sendToElasticQueue(chunkDocument);
             }
-
-            String[] suffixPrefixArray = ChunkService.getSuffixPrefixStringArray(content);
-
             for (String suffixPrefix : suffixPrefixArray) {
                 Document suffixPrefixDocument = new Document(fileId, metadata, permissions, suffixPrefix, operation);
                 producer.sendToElasticQueue(suffixPrefixDocument);
             }
+            LOGGER.info(String.format("All documents of fileId='%s' were sent to " +
+                    "elastic queue successfully", fileId));
         }
         catch(Exception e){
-            try{
-//                producer.sendToElasticQueue(document);
-//                FileService.deleteFile(document.getContent());
-                throw new Exception();
-            }
-            catch(Exception error){
-                throw error;
-            }
+            error = true;
+            errorMessage = errorMessage + e.getMessage();
+        }
+        if(error){
+            throw new Exception(errorMessage);
         }
     }
 
