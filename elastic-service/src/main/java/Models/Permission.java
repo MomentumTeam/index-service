@@ -12,7 +12,6 @@ public class Permission implements Serializable {
 
     public Permission(@JsonProperty("user") User user,
                       @JsonProperty("role") Role role){
-        System.out.println(user.getName() + " " +user.getName());
         this.user = user;
         this.role = role;
     }
@@ -41,7 +40,19 @@ public class Permission implements Serializable {
         return map;
     }
 
+    public static String[] indicesByPermissions(Permission[] permissions){
+        ArrayList<String> indicesList = new ArrayList<String>();
+        for(Permission permission : permissions){
+            User user = permission.getUser();
+            if(user != null && permission.getRole() == Role.WRITE)
+            indicesList.add(user.getUserId());
+        }
+        return Arrays.stream(indicesList.toArray()).toArray(String[]::new);
+    }
+
+    @Override
     public String toString(){
+        String userString = user == null ? "NULL":user.toString();
         return String.format("Permission{user=%s, role=%s}",user.toString(),role);
     }
 

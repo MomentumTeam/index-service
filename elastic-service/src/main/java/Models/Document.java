@@ -76,8 +76,7 @@ public class Document implements Serializable {
     public HashMap<String,Object> getHashMap(){
         HashMap<String,Object> map = new HashMap<String,Object>();
         map.put("fileId",fileId);
-        map.put("metadata",metadata.getHashMap());
-
+        map.putAll(metadata.getHashMap());
         ArrayList<HashMap<String,Object>> permissionList = new ArrayList<HashMap<String,Object>>();
         for (Permission permission: permissions) {
             permissionList.add(permission.getHashMap());
@@ -88,14 +87,15 @@ public class Document implements Serializable {
     }
 
     public void elasticDo() throws Exception {
-        String index = this.metadata.getOwner().getUserId();
+        String[] indices;
         boolean error = false;
         String errorMessage = "";
         switch(elasticOperation){
             case UPDATE:
                 if(metadata != null){
                     try{
-                        ElasticService.updateMetadata(this.fileId,this.metadata,index);
+                        indices = new String[]{this.metadata.getOwner().getUserId()};
+                        ElasticService.updateMetadata(this.fileId,this.metadata,indices);
                         LOGGER.info(String.format("Updated metadata of %s in elastic successfully"
                         , this.fileId));
                     }
@@ -107,7 +107,8 @@ public class Document implements Serializable {
 
                 if(permissions != null){
                     try{
-                        ElasticService.updatePermissions(this.fileId,this.permissions,index);
+                        indices = Permission.indicesByPermissions(permissions);
+                        ElasticService.updatePermissions(this.fileId,this.permissions,indices);
                         LOGGER.info(String.format("Updated permissions of %s in elastic successfully"
                         , this.fileId));
                     }
@@ -119,6 +120,7 @@ public class Document implements Serializable {
                 break;
             case CREATE:
                 try{
+                    String index = this.metadata.getOwner().getUserId();
                     ElasticService.indexDocument(this,index);
                     LOGGER.info(String.format("Indexed document of %s in successfully"
                     , this.fileId));
@@ -134,13 +136,20 @@ public class Document implements Serializable {
         }
     }
 
+    @Override
     public String toString(){
-        String contentString = content.contains("@")? "keyBucket='"+content+"'": "ContentLength="+content.length();
-        return String.format("Document{fileId='%s'\n" +
-                        "metadata=%s\n" +
-                        "permissions=%s\n" +
-                        contentString +
-                        "elasticOperation=%s}", fileId,metadata.toString(),
-                Arrays.toString(permissions),contentString,elasticOperation);
+        String contentString = content==null?"content=NULL":
+                (content.contains("@")? "keyBucket='"+content+"'": "ContentLength="+content.length());
+        String fileIdString = fileId==null?"NULL":fileId;
+        String metadataString = metadata==null?"NULL":metadata.toString();
+        String permissionsString = permissions==null?"NULL":Arrays.toString(permissions);
+        String elasticOperationString = elasticOperation==null?"NULL":elasticOperation.toString();
+
+        return String.format("Document{fileId='%s',\n" +
+                        "metadata=%s,\n" +
+                        "permissions=%s,\n" +
+                        contentString + ",\n" +
+                        "elasticOperation=%s}", fileIdString,metadataString,
+                permissionsString,elasticOperationString);
     }
 }

@@ -7,6 +7,7 @@ import Models.Permission;
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.support.IndicesOptions;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -26,11 +27,15 @@ public class ElasticService {
                 RestClient.builder(new HttpHost(Config.ELASTIC_HOST, Config.ELASTIC_PORT, Config.ELASTIC_PROTOCOL)));
     }
 
-    public static void updateMetadata(String fileId, FileMetadata fileMetadata, String index) throws Exception {
+    public static void updateMetadata(String fileId, FileMetadata fileMetadata, String[] indices) throws Exception {
         try {
             UpdateByQueryRequest request =
-                    new UpdateByQueryRequest(index);
+                    new UpdateByQueryRequest(indices);
             request.setQuery(new MatchQueryBuilder("fileId", fileId));
+            request.setIndicesOptions(IndicesOptions.fromOptions(true,
+                    false,
+                    false,
+                    false));
             HashMap<String, Object> params = fileMetadata.getHashMap();
             request.setScript(
                     new Script(
@@ -48,11 +53,15 @@ public class ElasticService {
         }
     }
 
-    public static void updatePermissions(String fileId, Permission[] permissions, String index) throws Exception {
+    public static void updatePermissions(String fileId, Permission[] permissions, String[] indices) throws Exception {
         try {
             UpdateByQueryRequest request =
-                    new UpdateByQueryRequest(index);
+                    new UpdateByQueryRequest(indices);
             request.setQuery(new MatchQueryBuilder("fileId", fileId));
+            request.setIndicesOptions(IndicesOptions.fromOptions(true,
+                    false,
+                    false,
+                    false));
             HashMap<String, Object> params = new HashMap<String, Object>();
 
             ArrayList<HashMap<String, Object>> permissionList = new ArrayList<HashMap<String, Object>>();

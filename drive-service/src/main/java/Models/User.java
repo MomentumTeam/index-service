@@ -56,6 +56,7 @@ public class User implements Serializable {
 
     }
 
+    @Override
     public String toString(){
         return String.format("User{userId='%s', name='%s', hierarchy='%s'}",
                 userId, name, hierarchy);

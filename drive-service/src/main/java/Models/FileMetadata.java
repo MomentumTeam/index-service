@@ -164,9 +164,11 @@ public class FileMetadata implements Serializable {
 
     @Override
     public String toString(){
+        String ancestorsString = ancestors==null?"NULL":Arrays.toString(ancestors);
+        String ownerString = owner==null?"NULL":owner.toString();
         return String.format("Metadata{fileId='%s', filename='%s', type='%s'" +
                         ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'" +
                         ", key='%s', bucket='%s'",
-                fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors), key, bucket);
+                fileId ,fileName, type, size, ownerString, createdAt, updatedAt, ancestorsString, key, bucket);
     }
 }

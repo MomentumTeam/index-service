@@ -28,6 +28,7 @@ public class Folder implements Serializable {
         return new Folder(name, id);
     }
 
+    @Override
     public String toString(){
         return String.format("Folder{name='%s',id='%s'}",name,id);
     }

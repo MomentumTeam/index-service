@@ -71,7 +71,9 @@ public class Permission implements Serializable {
         }
     }
 
+    @Override
     public String toString(){
+        String userString = user == null ? "NULL":user.toString();
         return String.format("Permission{user=%s, role=%s}",user.toString(),role);
     }
 

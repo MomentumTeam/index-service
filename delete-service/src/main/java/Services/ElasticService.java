@@ -27,7 +27,7 @@ public class ElasticService {
         try {
             DeleteByQueryRequest request =
                     new DeleteByQueryRequest(index);
-            request.setQuery(new MatchQueryBuilder(fileId,index));
+            request.setQuery(new MatchQueryBuilder("fileId",fileId));
             BulkByScrollResponse bulkResponse =
                     client.deleteByQuery(request, RequestOptions.DEFAULT);
             LOGGER.info(String.format("document '%s' deleted successfully from elastic", fileId));
