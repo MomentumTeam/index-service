@@ -15,15 +15,11 @@ public class Main {
 
 
     public static void main (String[] args){
-//        System.out.println("enter");
-        RabbitListenerEndpointRegistry registry = new RabbitListenerEndpointRegistry();
-        registry.stop();
-//        SpringApplication.run(Consumer.class,args);
+        SpringApplication.run(Consumer.class,args);
 //        System.exit(SpringApplication
 //                .exit(SpringApplication.run(Consumer.class, args)));
-        BeeperControl.beepForAnHour();
+//        RabbitListenerEndpointRegistry registry = new RabbitListenerEndpointRegistry();
+//        registry.stop();
+//        BeeperControl.beepForAnHour();
     }
-
-
-
 }

@@ -6,7 +6,7 @@ import Models.*;
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class.getName());
     public static void main (String[] args){
-        LOGGER.info("Manager Service started");
+        LOGGER.info("manager-service started");
         SpringApplication.run(Consumer.class, args);
     }
 }

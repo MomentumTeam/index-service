@@ -24,24 +24,7 @@ public class ElasticService {
     static{
         client = new RestHighLevelClient(
                 RestClient.builder(new HttpHost(Config.ELASTIC_HOST, Config.ELASTIC_PORT, Config.ELASTIC_PROTOCOL)));
-
     }
-
-//    public static void delete(String fileId, String index) throws Exception {
-//        try {
-//            DeleteByQueryRequest request =
-//                    new DeleteByQueryRequest(index);
-//            request.setQuery(new MatchQueryBuilder("fileId", fileId));
-//            BulkByScrollResponse bulkResponse =
-//                    client.deleteByQuery(request, RequestOptions.DEFAULT);
-//            long deletedDocs = bulkResponse.getDeleted();
-//
-//            System.out.println(deletedDocs);
-//        }
-//        catch(Exception e){
-//            throw e;
-//        }
-//    }
 
     public static void updateMetadata(String fileId, FileMetadata fileMetadata, String index) throws Exception {
         try {
@@ -52,7 +35,8 @@ public class ElasticService {
             request.setScript(
                     new Script(
                             ScriptType.INLINE, "painless",
-                            "ctx._source.metadata = params.metadata",
+                            "for (k in params.keySet()){if (!k.equals('ctx')){ctx._source.put(k, params.get(k))}}"
+                            ,
                             params
                     )
             );
@@ -66,9 +50,6 @@ public class ElasticService {
 
     public static void updatePermissions(String fileId, Permission[] permissions, String index) throws Exception {
         try {
-            for (Permission element : permissions) {
-                System.out.println(element.toString());
-            }
             UpdateByQueryRequest request =
                     new UpdateByQueryRequest(index);
             request.setQuery(new MatchQueryBuilder("fileId", fileId));
@@ -89,7 +70,6 @@ public class ElasticService {
             );
             BulkByScrollResponse bulkResponse =
                     client.updateByQuery(request, RequestOptions.DEFAULT);
-            System.out.println(bulkResponse.getUpdated());
         }
         catch(Exception e){
             throw e;

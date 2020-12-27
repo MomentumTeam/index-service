@@ -10,15 +10,16 @@ import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 
-public class ElasticSearch {
+public class ElasticService {
 
-    private static final Logger LOGGER = LogManager.getLogger(ElasticSearch.class);
+    private static final Logger LOGGER = LogManager.getLogger(ElasticService.class);
 
     public static RestHighLevelClient client;
 
     static{
         client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("52.169.31.99", 9200, "http")));
+                RestClient.builder(new HttpHost(Config.ELASTIC_HOST,
+                        Config.ELASTIC_PORT, Config.ELASTIC_PROTOCOL)));
 
     }
 
@@ -29,14 +30,10 @@ public class ElasticSearch {
             request.setQuery(new MatchQueryBuilder(fileId,index));
             BulkByScrollResponse bulkResponse =
                     client.deleteByQuery(request, RequestOptions.DEFAULT);
-            long deletedDocs = bulkResponse.getDeleted();
-
             LOGGER.info(String.format("document '%s' deleted successfully from elastic", fileId));
-            System.out.println(deletedDocs);
         }
         catch(Exception e){
             throw e;
         }
-
     }
 }

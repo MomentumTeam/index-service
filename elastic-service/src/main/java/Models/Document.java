@@ -5,6 +5,8 @@ import Enums.ElasticOperation;
 import Services.ElasticService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Document implements Serializable {
+    private static final Logger LOGGER = LogManager.getLogger(Document.class.getName());
     private ElasticOperation elasticOperation;
     private String fileId;
     private FileMetadata metadata;
@@ -84,12 +87,6 @@ public class Document implements Serializable {
         return map;
     }
 
-    public static Document getRandom(FileMetadata metadata, Permission [] permissions){
-        Faker faker = new Faker();
-        String content = faker.rickAndMorty().quote();
-        return new Document(metadata.getFileId(), metadata, permissions,content, ElasticOperation.CREATE);
-    }
-
     public void elasticDo() throws Exception {
         String index = this.metadata.getOwner().getUserId();
         boolean error = false;
@@ -99,6 +96,8 @@ public class Document implements Serializable {
                 if(metadata != null){
                     try{
                         ElasticService.updateMetadata(this.fileId,this.metadata,index);
+                        LOGGER.info(String.format("Updated metadata of %s in elastic successfully"
+                        , this.fileId));
                     }
                     catch(Exception e){
                         errorMessage = e.getMessage();
@@ -109,6 +108,8 @@ public class Document implements Serializable {
                 if(permissions != null){
                     try{
                         ElasticService.updatePermissions(this.fileId,this.permissions,index);
+                        LOGGER.info(String.format("Updated permissions of %s in elastic successfully"
+                        , this.fileId));
                     }
                     catch(Exception e){
                         errorMessage = e.getMessage();
@@ -119,10 +120,12 @@ public class Document implements Serializable {
             case CREATE:
                 try{
                     ElasticService.indexDocument(this,index);
+                    LOGGER.info(String.format("Indexed document of %s in successfully"
+                    , this.fileId));
                 }
                 catch(Exception e){
                     errorMessage = e.getMessage();
-                    error = false;
+                    error = true;
                 }
                 break;
         }
@@ -132,8 +135,12 @@ public class Document implements Serializable {
     }
 
     public String toString(){
-        return String.format("Document { fileId='%s' , elasticOperation='%s', metadata='%s'" +
-                        ", permissions='%s', content='%s'",
-                fileId ,elasticOperation, metadata, Arrays.toString(permissions), content);
+        String contentString = content.contains("@")? "keyBucket='"+content+"'": "ContentLength="+content.length();
+        return String.format("Document{fileId='%s'\n" +
+                        "metadata=%s\n" +
+                        "permissions=%s\n" +
+                        contentString +
+                        "elasticOperation=%s}", fileId,metadata.toString(),
+                Arrays.toString(permissions),contentString,elasticOperation);
     }
 }

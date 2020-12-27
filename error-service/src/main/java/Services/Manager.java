@@ -20,15 +20,9 @@ public class Manager {
     public static void processError (ErrorMessage message) throws Exception {
         String fileId = message.getFileId();
         ErrorOperation operation = message.getOperation();
-        boolean createAfter = false;
-
-        if (operation == ErrorOperation.REFRESH)
-            createAfter = true;
-
+        boolean createAfter = operation == ErrorOperation.REFRESH ? true : false;
         DeleteRequest deleteRequest = new DeleteRequest(fileId, createAfter);
-
         producer.sendDelete(deleteRequest);
-
     }
 
 }

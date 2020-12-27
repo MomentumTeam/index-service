@@ -26,18 +26,21 @@ public class Consumer {
     @RabbitListener(queues = Config.DELETE_QUEUE_NAME)
     public void receiveMessage(final DeleteRequest message) {
         try{
-            LOGGER.info(message);
+            LOGGER.info(String.format("Received message from queue='%s': %s", Config.DELETE_QUEUE_NAME,message.toString()));
             DeleteManager.processMessage(message);
         }
         catch (Exception exception){
             LOGGER.error(String.format("Error while processing message, exception: %s",exception.getMessage()));
             String fileId = message.getFileId();
+            boolean createAfter = message.getCreateAfter();
             if(fileId != null){
                 try{
-                    DeleteManager.sendError(fileId , ErrorOperation.DELETE);
+                    ErrorOperation errorOperation = createAfter? ErrorOperation.REFRESH:
+                            ErrorOperation.DELETE;
+                    DeleteManager.sendError(fileId , errorOperation);
                 }
                 catch(Exception error){
-                    LOGGER.error(String.format("Tried unsuccessfully to push '%s' to the Error queue, " +
+                    LOGGER.error(String.format("Tried unsuccessfully to push '%s' to the error queue, " +
                             "exception: %s",fileId,error.getMessage()));
                 }
 

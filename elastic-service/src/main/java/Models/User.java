@@ -50,18 +50,9 @@ public class User implements Serializable {
         return map;
     }
 
-    public static User getRandom() {
-        Faker faker = new Faker();
-        String userId = faker.idNumber().valid();
-        String name = faker.name().fullName();
-        String hierarchy = faker.name().username();
-        User user = new User(userId, name, hierarchy);
-        return user;
-    }
-
     @Override
     public String toString(){
-        return String.format("User { userId='%s' , name='%s', hierarchy='%s'}",
+        return String.format("User{userId='%s', name='%s', hierarchy='%s'}",
                 userId, name, hierarchy);
     }
 }

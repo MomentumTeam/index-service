@@ -23,7 +23,7 @@ public class DeleteManager {
         try {
             String fileId = message.getFileId();
             boolean createAfter = message.getCreateAfter();
-//            ElasticSearch.delete(fileId, Config.Index);
+            ElasticService.delete(fileId, "*");
             if (createAfter) {
                 DriveEventMessage driveEventMessage = new DriveEventMessage(fileId, MessageEvent.CREATE);
                 producer.sendEventRequest(driveEventMessage);

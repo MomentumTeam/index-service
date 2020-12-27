@@ -16,14 +16,6 @@ public class Folder implements Serializable {
         this.id = id;
     }
 
-    public static Folder getRandom(){
-        Faker faker = new Faker();
-        String name = faker.color().name();
-        String id = faker.idNumber().valid();
-        return new Folder(name, id);
-    }
-
-
     public static HashMap<String,String>[] getHashMapsArray(Folder[] folders){
         HashMap<String,String>[] maps = new HashMap[folders.length];
         for(int i = 0 ; i < folders.length ; i ++){
@@ -39,9 +31,8 @@ public class Folder implements Serializable {
         return map;
     }
 
-    @Override
     public String toString(){
-        return String.format("Folder { name='%s' , id='%s'}",
-                name, id);
+        return String.format("Folder{name='%s',id='%s'}",name,id);
     }
+
 }

@@ -26,7 +26,7 @@ public class Consumer {
     @RabbitListener(queues = Config.DRIVE_SERVICE_QUEUE_NAME)
     public void receiveMessage(final DriveRequest message) {
         try{
-            LOGGER.info(message);
+            LOGGER.info(String.format("Received message from queue='%s': %s", Config.DRIVE_SERVICE_QUEUE_NAME,message.toString()));
             Manager.processData(message);
         }
         catch (Exception exception){

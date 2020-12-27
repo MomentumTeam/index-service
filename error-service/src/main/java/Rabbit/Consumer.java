@@ -5,6 +5,8 @@ import Enums.ErrorOperation;
 import RabbitModels.ErrorMessage;
 import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -23,15 +25,16 @@ import org.springframework.scheduling.annotation.Scheduled;
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
+    private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
     @RabbitListener(queues = Config.ERROR_QUEUE_NAME)
     @Scheduled(cron = "0 0 * * * *")
     public void receiveMessage(final ErrorMessage message) {
         try{
-            System.out.println(message);
+            LOGGER.info(String.format("Received message from queue='%s': %s", Config.ERROR_QUEUE_NAME,message.toString()));
             Manager.processError(message);
         }
         catch (Exception error){
-            error.printStackTrace();
+            LOGGER.error(error.getMessage());
         }
     }
 

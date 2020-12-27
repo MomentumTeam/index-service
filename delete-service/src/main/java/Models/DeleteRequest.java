@@ -33,7 +33,7 @@ public class DeleteRequest implements Serializable{
 
     @Override
     public String toString(){
-        return "DeleteRequest{ fileId='" + fileId + "' , createAfter='" + createAfter + "'}";
+        return "DeleteRequest{fileId='" + fileId + "', createAfter='" + createAfter + "'}";
     }
 
 }

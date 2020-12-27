@@ -27,7 +27,7 @@ public class Consumer {
     @RabbitListener(queues = Config.EVENTS_QUEUE_NAME)
     public void receiveMessage(final DriveEventMessage message) {
         try{
-            LOGGER.info(message);
+            LOGGER.info(String.format("Received message from queue='%s': %s", Config.EVENTS_QUEUE_NAME,message.toString()));
             Manager.processMessage(message);
         }
         catch (Exception exception){

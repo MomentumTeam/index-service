@@ -126,40 +126,9 @@ public class FileMetadata implements Serializable {
         return map;
     }
 
-    public static Folder[] getRandomAncestors(){
-        Faker faker = new Faker();
-        Folder[] ancestors = new Folder[faker.random().nextInt(5)+1];
-        for(int i = 0 ; i < ancestors.length ; i ++){
-            Folder folder = Folder.getRandom();
-        }
-        return ancestors;
-    }
-
-//    public static FileMetadata getRandom(String fileId , User owner , Folder[] ancestors){
-//        Faker faker = new Faker();
-//        String [] types = {"docx", "pptx", "pdf", "xlsx"};
-//        String type = types[faker.random().nextInt(types.length)];
-//        String fileName = faker.animal().name()+"."+type;
-//        long size = faker.random().nextLong();
-//        long createdAt = Math.abs(faker.random().nextLong());
-//        long updatedAt = createdAt + faker.random().nextLong();
-//        FileMetadata metadata = new FileMetadata(fileId,fileName, type, size, owner, createdAt, updatedAt,ancestors);
-//        return metadata;
-//    }
-
-//    public static String getFileNameById(String fileId){
-//        try{
-//            FileOuterClass.File file = DataService.getFileById(fileId);
-//            return file.getName();
-//        }
-//        catch(Exception e){
-//            throw e;
-//        }
-//    }
-
     @Override
     public String toString(){
-        return String.format("Metadata { fileId='%s' , filename='%s', type='%s'" +
+        return String.format("Metadata{fileId='%s', filename='%s', type='%s'" +
                         ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'" +
                         ", key='%s', bucket='%s'",
                 fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors), key, bucket);

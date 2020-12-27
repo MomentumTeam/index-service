@@ -70,12 +70,12 @@ public class Document implements Serializable {
     }
 
     public String toString(){
-        String contentString = content.contains("@")? "keyBucket="+content : "ContentLength="+content.length();
+        String contentString = content.contains("@")? "keyBucket='"+content+"'": "ContentLength="+content.length();
         return String.format("Document{fileId='%s'\n" +
-                "metadata=%s\n" +
-                "permissions=%s\n" +
-                contentString +
-                "elasticOperation=%s}", fileId,metadata.toString(),
+                        "metadata=%s\n" +
+                        "permissions=%s\n" +
+                        contentString +
+                        "elasticOperation=%s}", fileId,metadata.toString(),
                 Arrays.toString(permissions),contentString,elasticOperation);
     }
 }

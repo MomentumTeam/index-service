@@ -26,7 +26,7 @@ public class Consumer {
     @RabbitListener(queues = Config.ELASTIC_SERVICE_QUEUE_NAME)
     public void receiveMessage(final Document message) {
         try{
-            LOGGER.info(message);
+            LOGGER.info(String.format("Received message from queue='%s': %s", Config.ELASTIC_SERVICE_QUEUE_NAME,message.toString()));
             Manager.processDocument(message);
         }
         catch (Exception exception){

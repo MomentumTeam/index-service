@@ -82,7 +82,7 @@ public class Document implements Serializable {
     }
 
     public String toString(){
-        String contentString = content.contains("@")? "keyBucket="+content : "ContentLength="+content.length();
+        String contentString = content.contains("@")? "keyBucket='"+content+"'": "ContentLength="+content.length();
         return String.format("Document{fileId='%s'\n" +
                         "metadata=%s\n" +
                         "permissions=%s\n" +

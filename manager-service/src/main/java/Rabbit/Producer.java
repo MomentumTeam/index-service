@@ -48,8 +48,11 @@ public class Producer {
             LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
 
             admin.declareBinding(deleteBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.DELETE_QUEUE_NAME,Config.EXCHANGE_NAME));
             admin.declareBinding(driveBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.DRIVE_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
             admin.declareBinding(errorBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ERROR_QUEUE_NAME,Config.EXCHANGE_NAME));
 
             RabbitTemplate template = new RabbitTemplate(new CachingConnectionFactory(Config.RABBIT_URL));
             template.setMessageConverter(producerMessageConverter());

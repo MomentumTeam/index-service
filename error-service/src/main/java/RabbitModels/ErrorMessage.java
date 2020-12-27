@@ -13,7 +13,7 @@ public class ErrorMessage {
     }
 
     public String toString(){
-        return "Error(fileId="+fileId+",operation="+operation+")";
+        return "ErrorMessage{fileId='"+fileId+"', operation='"+operation+"'}";
     }
 
     public ErrorOperation getOperation() {
@@ -31,4 +31,5 @@ public class ErrorMessage {
     public void setOperation(ErrorOperation operation) {
         this.operation = operation;
     }
+
 }

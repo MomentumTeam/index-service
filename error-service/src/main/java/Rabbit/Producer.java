@@ -5,6 +5,8 @@ import Config.Config;
 import RabbitModels.DeleteRequest;
 import RabbitModels.ErrorMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -16,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Producer {
+    private static final Logger LOGGER = LogManager.getLogger(Producer.class);
     private AmqpTemplate rabbitTemplate;
 
     public Producer() throws Exception {
@@ -50,11 +53,12 @@ public class Producer {
     }
 
 
-
     public void sendDelete(DeleteRequest message) throws AmqpException {
         try{
             this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.DELETE_ROUTING_KEY,
                     message);
+            LOGGER.info(String.format("Message %s sent to %s queue successfully",
+                    message.toString(),Config.DELETE_QUEUE_NAME));
         }
         catch(AmqpException exception){
             throw exception;
