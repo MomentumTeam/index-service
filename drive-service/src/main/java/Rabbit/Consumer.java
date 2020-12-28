@@ -30,7 +30,8 @@ public class Consumer {
             Manager.processData(message);
         }
         catch (Exception exception){
-            LOGGER.error(String.format("Error while processing message, exception: %s",exception.getMessage()));
+            exception.printStackTrace();
+            LOGGER.error(String.format("Error while processing message, exception: %s",exception.toString()));
             String fileId = message.getFileId();
             if(fileId != null){
                 try{

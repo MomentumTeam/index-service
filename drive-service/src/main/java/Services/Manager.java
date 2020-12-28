@@ -46,7 +46,7 @@ public class Manager {
                     try{
                         metadata = FileMetadata.getMetadata(fileId);
                         document.setMetadata(metadata);
-                        LOGGER.info(String.format("Metadata of '%s' added successfully to document",field));
+                        LOGGER.info(String.format("Metadata of '%s' added successfully to document",fileId));
                     }
                     catch(Exception e){
                         error = true;
@@ -57,7 +57,7 @@ public class Manager {
                     try{
                         permissions = Permission.getPermissions(fileId);
                         document.setPermissions(permissions);
-                        LOGGER.info(String.format("Permissions of '%s' added successfully to document",field));
+                        LOGGER.info(String.format("Permissions of '%s' added successfully to document",fileId));
                     }
                     catch(Exception e){
                         if(operation == ElasticOperation.CREATE){

@@ -14,9 +14,16 @@ public class Folder implements Serializable {
         this.id = id;
     }
 
-    public static Folder getFolder(String id){
-        String name = FileMetadata.getFileNameById(id);
-        return new Folder(name);
+    public static Folder getFolder(String folderId){
+        return new Folder(folderId);
+    }
+
+    public String getId(){
+        return this.id;
+    }
+
+    public void setId(){
+        this.id = id;
     }
 
     @Override

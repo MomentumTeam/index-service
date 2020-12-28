@@ -90,6 +90,7 @@ public class Producer {
 
     public void sendToElasticQueue(Document message) throws AmqpException {
         try{
+//            message.setAncestors();
             this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.ELASTIC_SERVICE_ROUTING_KEY,message);
             LOGGER.info(String.format("Message %s sent to %s queue successfully",
                     message.toString(),Config.ELASTIC_SERVICE_QUEUE_NAME));

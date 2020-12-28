@@ -1,12 +1,8 @@
 package Models;
 
-import DriveStubs.grpc.FileOuterClass;
-import Services.DataService;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.javafaker.Faker;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class FileMetadata implements Serializable {
     private String fileId;
@@ -16,7 +12,7 @@ public class FileMetadata implements Serializable {
     private User owner;
     private long createdAt;
     private long updatedAt;
-    private Folder[] ancestors;
+    private String[] ancestors;
     private String key;
     private String bucket;
 
@@ -27,7 +23,7 @@ public class FileMetadata implements Serializable {
                         @JsonProperty("owner") User owner,
                         @JsonProperty("createdAt") long createdAt,
                         @JsonProperty("updatedAt") long updatedAt,
-                        @JsonProperty("ancestors") Folder[] ancestors,
+                        @JsonProperty("ancestors") String[] ancestors,
                         @JsonProperty("key") String key,
                         @JsonProperty("bucket") String bucket){
         this.fileId = fileId;
@@ -70,15 +66,19 @@ public class FileMetadata implements Serializable {
         return type;
     }
 
-    public Folder[] getAncestors() {
+    public String[] getAncestors() {
         return ancestors;
+    }
+
+    public User getOwner(){
+        return this.owner;
     }
 
     public void setBucket(@JsonProperty("bucket") String bucket) { this.bucket = bucket; }
 
     public void setKey(@JsonProperty("key") String key) { this.key = key; }
 
-    public void setAncestors(@JsonProperty("ancestors") Folder[] ancestors) {
+    public void setAncestors(@JsonProperty("ancestors") String[] ancestors) {
         this.ancestors = ancestors;
     }
 
@@ -109,16 +109,14 @@ public class FileMetadata implements Serializable {
     public void setUpdatedAt(@JsonProperty("updatedAt") long updatedAt) {
         this.updatedAt = updatedAt;
     }
-    public User getOwner(){
-        return this.owner;
-    }
-
 
     @Override
     public String toString(){
+        String ancestorsString = ancestors==null?"NULL":Arrays.toString(ancestors);
+        String ownerString = owner==null?"NULL":owner.toString();
         return String.format("Metadata{fileId='%s', filename='%s', type='%s'" +
                         ", size='%s', owner='%s', createdAt='%s', updatedAt='%s', ancestors='%s'" +
                         ", key='%s', bucket='%s'",
-                fileId ,fileName, type, size, owner, createdAt, updatedAt, Arrays.toString(ancestors), key, bucket);
+                fileId ,fileName, type, size, ownerString, createdAt, updatedAt, ancestorsString, key, bucket);
     }
 }

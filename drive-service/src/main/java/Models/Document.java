@@ -75,6 +75,7 @@ public class Document implements Serializable {
         return permissions;
     }
 
+
     public static Document getRandom(FileMetadata metadata, Permission [] permissions){
         Faker faker = new Faker();
         String content = faker.rickAndMorty().quote();
