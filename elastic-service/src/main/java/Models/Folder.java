@@ -8,11 +8,9 @@ import java.util.HashMap;
 
 public class Folder implements Serializable {
 
-    private String name;
     private String id;
 
-    public Folder(@JsonProperty("name") String name, @JsonProperty("id") String id){
-        this.name = name;
+    public Folder(@JsonProperty("id") String id){
         this.id = id;
     }
 
@@ -27,13 +25,12 @@ public class Folder implements Serializable {
     public HashMap<String,String> getHashMap(){
         HashMap<String,String> map = new HashMap<String,String>();
         map.put("id",this.id);
-        map.put("name",this.name);
         return map;
     }
 
     @Override
     public String toString(){
-        return String.format("Folder{name='%s',id='%s'}",name,id);
+        return String.format("Folder{id='%s'}",id);
     }
 
 }

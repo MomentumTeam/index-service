@@ -23,9 +23,11 @@ public class Config {
     public static final String ERROR_QUEUE_NAME = "error";
     public static final String  ERROR_ROUTING_KEY = "errorKey";
 
-    public static String DRIVE_URL = "13.94.64.163";
+    public static String DRIVE_URL = "13.94.97.244";
     public static int DOWNLOAD_SERVICE_PORT = 8082;
     public static int FILE_SERVICE_PORT = 8083;
     public static int USER_SERVICE_PORT = 8086;
     public static int PERMISSION_SERVICE_PORT = 8087;
+
+    public static String FOLDER_TYPE = "application/vnd.drive.folder";
 }

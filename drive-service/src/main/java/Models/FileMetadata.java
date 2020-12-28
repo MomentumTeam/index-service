@@ -117,15 +117,6 @@ public class FileMetadata implements Serializable {
     }
 
 
-    public static Folder[] getRandomAncestors(){
-        Faker faker = new Faker();
-        Folder[] ancestors = new Folder[faker.random().nextInt(5)+1];
-        for(int i = 0 ; i < ancestors.length ; i ++){
-            Folder folder = Folder.getRandom();
-        }
-        return ancestors;
-    }
-
     public static FileMetadata getMetadata (String fileId) throws Exception {
         try{
             FileOuterClass.File file = DataService.getFileById(fileId);

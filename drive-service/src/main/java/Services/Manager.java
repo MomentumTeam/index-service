@@ -37,7 +37,7 @@ public class Manager {
         Document document = new Document(fileId , operation);
         boolean sendToParsingService = false;
         boolean error = false;
-        String errorMessage = "";
+        String errorMessage = "", content="";
 
         for (DriveField field: driveFields)
         {
@@ -68,9 +68,11 @@ public class Manager {
                 case DOWNLOAD:
                     try{
                         if (!error && metadata != null){ //enough to check one of the condition
-                            String keyBucket = String.format("%s@%s", metadata.getKey(), metadata.getBucket());
-                            document.setContent(keyBucket);
-                            sendToParsingService = true;
+                            if(!metadata.getType().equals(Config.FOLDER_TYPE)){
+                                content = String.format("%s@%s", metadata.getKey(), metadata.getBucket());
+                                sendToParsingService = true;
+                            }
+                            document.setContent(content);
                         }
                     }
                     catch(Exception e){
