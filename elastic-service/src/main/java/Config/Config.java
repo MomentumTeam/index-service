@@ -11,7 +11,7 @@ public class Config {
     public static final String ERROR_QUEUE_NAME = "error";
     public static final String  ERROR_ROUTING_KEY = "errorKey";
 
-    public static final String ELASTIC_HOST = "13.94.97.244";
+    public static final String ELASTIC_HOST = "137.135.166.218";
     public static final int ELASTIC_PORT = 9200;
     public static final String ELASTIC_PROTOCOL = "http";
 

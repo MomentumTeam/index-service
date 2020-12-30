@@ -11,7 +11,8 @@ public class DriveEventMessage implements Serializable {
     public final MessageEvent event;
 
     public DriveEventMessage(@JsonProperty("fileId") final String fileId,
-                             @JsonProperty("event")final MessageEvent event) throws ParseException {
+                             @JsonProperty("event")final MessageEvent event
+    ) throws ParseException {
         this.fileId = fileId;
         this.event = event;
     }
@@ -25,6 +26,6 @@ public class DriveEventMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "DriveEventMessage{ fileId='" + fileId + "' , event='" + event + "'}";
+        return "DriveEventMessage{fileId='" + fileId + "', event='" + event + "'}";
     }
 }

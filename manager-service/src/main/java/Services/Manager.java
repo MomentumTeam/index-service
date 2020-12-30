@@ -51,11 +51,11 @@ public class Manager {
                             break;
                         case METADATA_CHANGE:
                             fields = new DriveField[]{DriveField.METADATA};
-                            elasticOperation = ElasticOperation.UPDATE;
+                            elasticOperation = ElasticOperation.METADATA_UPDATE;
                             break;
                         default: //PERMISSION_CHANGE
                             fields = new DriveField[]{DriveField.PERMISSIONS};
-                            elasticOperation = ElasticOperation.UPDATE;
+                            elasticOperation = ElasticOperation.PERMISSIONS_UPDATE;
                             break;
                     }
                     DriveRequest driveRequest = new DriveRequest(fileId, fields,elasticOperation);

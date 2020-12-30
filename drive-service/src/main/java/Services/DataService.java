@@ -2,6 +2,7 @@ package Services;
 
 import Config.Config;
 import DriveStubs.grpc.*;
+import Enums.DriveField;
 import Models.FileMetadata;
 import com.google.common.primitives.Bytes;
 import io.grpc.ManagedChannel;
@@ -33,31 +34,31 @@ public class DataService {
         }
     }
 
-    public static String download(String fileId, String downloadFolder) throws IOException {
-        FileOuterClass.File file = getFileById(fileId);
-        ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.DOWNLOAD_SERVICE_PORT).usePlaintext().build();
-        DownloadGrpc.DownloadBlockingStub downloadStub = DownloadGrpc.newBlockingStub(channel);
-        DownloadService.DownloadRequest downloadRequest = DownloadService.DownloadRequest.newBuilder()
-                .setBucket(file.getBucket()).setKey(file.getKey()).build();
-        Iterator<DownloadService.DownloadResponse> response = downloadStub.download(downloadRequest);
-        DownloadService.DownloadResponse dr;
-        ArrayList<Byte> byteList = new ArrayList<Byte>();
-        byte[] chunk;
-        for (Iterator<DownloadService.DownloadResponse> it = response; it.hasNext(); ) {
-            dr = it.next();
-            chunk = dr.getFile().toByteArray();
-            for(byte b: chunk) {
-                byteList.add(b);
-            }
-        }
-        String path = downloadFolder + "/"+fileId;
-        try (FileOutputStream fos = new FileOutputStream(path)) {
-            fos.write(Bytes.toArray(byteList));
-            return path;
-        } catch (IOException e) {
-            throw e;
-        }
-    }
+//    public static String download(String fileId, String downloadFolder) throws IOException {
+//        FileOuterClass.File file = getFileById(fileId);
+//        ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.DOWNLOAD_SERVICE_PORT).usePlaintext().build();
+//        DownloadGrpc.DownloadBlockingStub downloadStub = DownloadGrpc.newBlockingStub(channel);
+//        DownloadService.DownloadRequest downloadRequest = DownloadService.DownloadRequest.newBuilder()
+//                .setBucket(file.getBucket()).setKey(file.getKey()).build();
+//        Iterator<DownloadService.DownloadResponse> response = downloadStub.download(downloadRequest);
+//        DownloadService.DownloadResponse dr;
+//        ArrayList<Byte> byteList = new ArrayList<Byte>();
+//        byte[] chunk;
+//        for (Iterator<DownloadService.DownloadResponse> it = response; it.hasNext(); ) {
+//            dr = it.next();
+//            chunk = dr.getFile().toByteArray();
+//            for(byte b: chunk) {
+//                byteList.add(b);
+//            }
+//        }
+//        String path = downloadFolder + "/"+fileId;
+//        try (FileOutputStream fos = new FileOutputStream(path)) {
+//            fos.write(Bytes.toArray(byteList));
+//            return path;
+//        } catch (IOException e) {
+//            throw e;
+//        }
+//    }
     public static PermissionOuterClass.GetFilePermissionsResponse getPermissions(String fileId){
         try {
             ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.PERMISSION_SERVICE_PORT).usePlaintext().build();
@@ -94,6 +95,24 @@ public class DataService {
                     .setId(fileId).build();
             FileOuterClass.GetAncestorsResponse ancestors = fileStub.getAncestors(ancestorsRequest);
             return ancestors;
+        }
+        catch(Exception e){
+            throw e;
+        }
+    }
+
+    public static String [] getDescendants (String fileId) {
+        try{
+            ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
+            FileServiceGrpc.FileServiceBlockingStub fileStub = FileServiceGrpc.newBlockingStub(channel);
+            FileOuterClass.GetDescendantsByIDRequest descendantsRequest = FileOuterClass.GetDescendantsByIDRequest.newBuilder()
+                    .setId(fileId).build();
+            FileOuterClass.GetDescendantsByIDResponse descendants = fileStub.getDescendantsByID(descendantsRequest);
+            String [] descendantsId = new String[descendants.getDescendantsCount()];
+            for (int i = 0;i<descendants.getDescendantsCount();i++){
+                descendantsId[i]= descendants.getDescendants(i).getFile().getId();
+            }
+            return descendantsId;
         }
         catch(Exception e){
             throw e;

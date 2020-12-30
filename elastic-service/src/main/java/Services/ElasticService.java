@@ -69,11 +69,18 @@ public class ElasticService {
                 permissionList.add(permission.getHashMap());
             }
             params.put("permissions", permissionList.toArray());
-
+            String ancestorId = permissions[0].getAncestorId();
             request.setScript(
                     new Script(
                             ScriptType.INLINE, "painless",
-                            "ctx._source.permissions = params.permissions",
+                            "ctx._source.permissions.removeAll{ it.ancestorId == \"" + ancestorId + "\"}",
+
+//                            String.format("foreach (item : ctx._source.permissions) { " +
+//                                    "if (item['ancestorId'] == %s) { " +
+//                                    "ctx._source.permissions.remove(item);" +
+//                                    "} }" ,ancestorId),
+
+//                            "ctx._source.permissions.addall(params['permissions']);",ancestorId),
                             params
                     )
             );

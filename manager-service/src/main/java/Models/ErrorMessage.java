@@ -29,6 +29,6 @@ public class ErrorMessage {
     }
 
     public String toString(){
-        return "ErrorMessage{ fileId='" + fileId + "' , operation='" + operation + "'}";
+        return "ErrorMessage{fileId='" + fileId + "', operation='" + operation + "'}";
     }
 }

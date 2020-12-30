@@ -14,7 +14,7 @@ public class Config {
     public static final String ERROR_QUEUE_NAME = "error";
     public static final String  ERROR_ROUTING_KEY = "errorKey";
 
-    public static String DRIVE_URL = "13.94.97.244";
+    public static String DRIVE_URL = "137.135.166.218";
     public static int DOWNLOAD_SERVICE_PORT = 8082;
     public static int FILE_SERVICE_PORT = 8083;
     public static String DOWNLOAD_FOLDER_PATH = "/home/sraya/IdeaProjects/IndexService/src/main/java/downloadFiles";
