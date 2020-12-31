@@ -221,10 +221,19 @@ public class State {
     }
 
     public boolean canPushToElasticQueue(){
-        if(this.elasticOperation == ElasticOperation.CREATE && this.document.getPermissions() == null){
+        if((this.elasticOperation == ElasticOperation.CREATE ||
+                this.elasticOperation == ElasticOperation.PERMISSIONS_UPDATE) &&
+                this.document.getPermissions() == null){
             return false;
         }
-        return true;
+        else if(this.elasticOperation == ElasticOperation.METADATA_UPDATE &&
+        this.document.getMetadata() == null){
+            return false;
+        }
+        else{
+            return true;
+        }
+
     }
 
     public void pushToElasticQueue(){

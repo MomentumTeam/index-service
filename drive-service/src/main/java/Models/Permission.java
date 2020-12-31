@@ -41,7 +41,7 @@ public class Permission implements Serializable {
         this.user = user;
     }
 
-    public void setUser(@JsonProperty("ancestorId") String ancestorId) { this.ancestorId = ancestorId; }
+    public void setAncestorId(@JsonProperty("ancestorId") String ancestorId) { this.ancestorId = ancestorId; }
 
     public static Permission [] getAllPermissions (String fileId) throws Exception {  //with ancestors
         try {

@@ -20,6 +20,12 @@ public class Permission implements Serializable {
         this.ancestorId = ancestorId;
     }
 
+    public Permission(Map<String,Object> map){
+        this.user = new User((HashMap<String,Object>) map.get("user"));
+        this.role = ((String)map.get("role")).equals("WRITE")? Role.WRITE : Role.READ;
+        this.ancestorId = (String) (map.get("ancestorId"));
+    }
+
 
     public Role getRole() {
         return role;
@@ -39,7 +45,7 @@ public class Permission implements Serializable {
         this.user = user;
     }
 
-    public void setUser(@JsonProperty("ancestorId") String ancestorId) { this.ancestorId = ancestorId; }
+    public void setAncestorId(@JsonProperty("ancestorId") String ancestorId) { this.ancestorId = ancestorId; }
 
     public HashMap<String,Object> getHashMap(){
         HashMap<String,Object> map = new HashMap<String,Object>();
