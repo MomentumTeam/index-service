@@ -13,12 +13,14 @@ import java.util.*;
 public class Permission implements Serializable {
     private User user;
     private Role role;
+    private String ancestorId;
 
     public Permission(@JsonProperty("user") User user,
-                      @JsonProperty("role") Role role){
-        System.out.println(user.getName() + " " +user.getName());
+                      @JsonProperty("role") Role role,
+                      @JsonProperty("ancestorId") String ancestorId){
         this.user = user;
         this.role = role;
+        this.ancestorId = ancestorId;
     }
 
     public Role getRole() {
@@ -29,6 +31,8 @@ public class Permission implements Serializable {
         return user;
     }
 
+    public String getAncestorId() { return ancestorId; }
+
     public void setRole(@JsonProperty("role") Role role) {
         this.role = role;
     }
@@ -37,32 +41,33 @@ public class Permission implements Serializable {
         this.user = user;
     }
 
-    public static Permission [] getPermissions (String fileId) throws Exception {
+    public void setAncestorId(@JsonProperty("ancestorId") String ancestorId) { this.ancestorId = ancestorId; }
+
+    public static Permission [] getAllPermissions (String fileId) throws Exception {  //with ancestors
+        try {
+            List<PermissionOuterClass.GetFilePermissionsResponse.UserRole> permissions;
+            List<Permission> permissionList = new ArrayList<Permission>(
+                    Arrays.asList(Permission.getSpecificPermissions(fileId)));
+            ProtocolStringList ancestors = DataService.getAncestors(fileId).getAncestorsList();
+            for (String ancestor : ancestors) {
+                Permission[] ancestorPermissions = getSpecificPermissions(ancestor);
+                permissionList.addAll(Arrays.asList(ancestorPermissions));
+            }
+            return Arrays.stream(permissionList.toArray()).toArray(Permission[]::new);
+        } catch (Exception e){
+            throw new Exception(String.format("Problem while receiving permissions of " +
+                    "fileId='%s', error:%s", fileId, e.getMessage()));
+        }
+    }
+
+    public static Permission [] getSpecificPermissions (String fileId) throws Exception {  //with ancestors
 
         try {
             List<PermissionOuterClass.GetFilePermissionsResponse.UserRole> permissions = DataService.getPermissions(fileId).getPermissionsList();
             ArrayList<Permission> permissionList = new ArrayList<Permission>();
             for (PermissionOuterClass.GetFilePermissionsResponse.UserRole permission : permissions) {
-                Permission p = new Permission(User.getUser(permission.getUserID()), ConvertRole.get(permission.getRole()));
+                Permission p = new Permission(User.getUser(permission.getUserID()), ConvertRole.get(permission.getRole()), fileId);
                 permissionList.add(p);
-            }
-            ProtocolStringList ancestors = DataService.getAncestors(fileId).getAncestorsList();
-            for (String ancestor : ancestors) {
-                permissions = DataService.getPermissions(ancestor).getPermissionsList();
-                for (PermissionOuterClass.GetFilePermissionsResponse.UserRole permission : permissions) {
-                    Permission p = new Permission(User.getUser(permission.getUserID()), ConvertRole.get(permission.getRole()));
-                    Optional<Permission> optionalPermission = permissionList.stream().filter((Permission item) ->
-                            item.getUser().getUserId().equals(p.getUser().getUserId())).findFirst();
-
-                    if (optionalPermission.isPresent()) {
-                        Permission existingPermission = optionalPermission.get();
-                        if (existingPermission.role == Role.READ && p.role == Role.WRITE) {
-                            existingPermission.setRole(Role.WRITE);
-                        }
-                    } else {
-                        permissionList.add(p);
-                    }
-                }
             }
             return Arrays.stream(permissionList.toArray()).toArray(Permission[]::new);
         } catch (Exception e){

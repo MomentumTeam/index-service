@@ -143,7 +143,6 @@ public class FileMetadata implements Serializable {
         }
     }
 
-
     @Override
     public String toString(){
         String ancestorsString = ancestors==null?"NULL":Arrays.toString(ancestors);

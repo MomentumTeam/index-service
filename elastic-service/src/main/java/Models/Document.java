@@ -91,7 +91,7 @@ public class Document implements Serializable {
         boolean error = false;
         String errorMessage = "";
         switch(elasticOperation){
-            case UPDATE:
+            case METADATA_UPDATE:
                 if(metadata != null){
                     try{
                         indices = new String[]{this.metadata.getOwner().getUserId()};
@@ -104,23 +104,10 @@ public class Document implements Serializable {
                         error = true;
                     }
                 }
-
-                if(permissions != null){
-                    try{
-                        indices = Permission.indicesByPermissions(permissions);
-                        ElasticService.updatePermissions(this.fileId,this.permissions,indices);
-                        LOGGER.info(String.format("Updated permissions of %s in elastic successfully"
-                        , this.fileId));
-                    }
-                    catch(Exception e){
-                        errorMessage = e.getMessage();
-                        error = true;
-                    }
-                }
                 break;
             case CREATE:
                 try{
-                    String index = this.metadata.getOwner().getUserId();
+                    String index  = this.metadata.getOwner().getUserId();
                     ElasticService.indexDocument(this,index);
                     LOGGER.info(String.format("Indexed document of %s in successfully"
                     , this.fileId));
@@ -130,6 +117,17 @@ public class Document implements Serializable {
                     error = true;
                 }
                 break;
+
+            case PERMISSIONS_UPDATE:
+                try{
+                    indices = Permission.indicesByPermissions(permissions);
+                    ElasticService.updatePermissions(this.fileId,this.permissions,indices);
+                    LOGGER.info(String.format("Updated permissions of %s in elastic successfully"
+                            , this.fileId));
+                }
+                catch(Exception e){
+
+                }
         }
         if(error){
             throw new Exception(errorMessage);

@@ -2,6 +2,7 @@ package Rabbit;
 
 import Config.Config;
 import Enums.ErrorOperation;
+import Exceptions.MultipleExceptions;
 import RabbitModels.DriveRequest;
 import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,32 +20,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
     @RabbitListener(queues = Config.DRIVE_SERVICE_QUEUE_NAME)
     public void receiveMessage(final DriveRequest message) {
-        try{
-            LOGGER.info(String.format("Received message from queue='%s': %s", Config.DRIVE_SERVICE_QUEUE_NAME,message.toString()));
-            Manager.processData(message);
-        }
-        catch (Exception exception){
-            exception.printStackTrace();
-            LOGGER.error(String.format("Error while processing message, exception: %s",exception.toString()));
-            String fileId = message.getFileId();
-            if(fileId != null){
-                try{
-                    ErrorOperation operation = ErrorOperation.REFRESH;
-                    Manager.sendError(fileId,operation);
-                }
-                catch(Exception error){
-                    error.printStackTrace();
-                    LOGGER.error(String.format("Tried unsuccessfully to push '%s' to the Error queue, " +
-                            "exception: %s",fileId,error.getMessage()));
-                }
-            }
-        }
+        LOGGER.info(String.format("Received message from queue='%s': %s", Config.DRIVE_SERVICE_QUEUE_NAME,message.toString()));
+        Manager.processData(message);
     }
 
     @Bean

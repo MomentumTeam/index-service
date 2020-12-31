@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 public class User implements Serializable {
     private String userId;
@@ -16,6 +17,12 @@ public class User implements Serializable {
         this.userId = userId;
         this.name = name;
         this.hierarchy = hierarchy;
+    }
+
+    public User(Map<String,Object> map){
+        this.userId = (String) (map.get("userId"));
+        this.name = (String) (map.get("name"));
+        this.hierarchy = (String) (map.get("hierarchy"));
     }
 
     public void setName(@JsonProperty("name") String name) {
