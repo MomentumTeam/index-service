@@ -10,6 +10,8 @@ import io.grpc.ManagedChannelBuilder;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.util.concurrent.TimeUnit ;
+
 
 
 import java.io.ByteArrayOutputStream;
@@ -52,6 +54,13 @@ public class DataService {
                 for (byte b : chunk) {
                     byteList.add(b);
                 }
+            }
+            try {
+                channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+                System.out.println("============SHUTDOWN COMPLETED============");
+            } catch (InterruptedException e) {
+                System.out.println("============SHUTDOWN ERROR============");
+//                throw new IllegalStateException("Error happened during shutdown of validator gRPC channel", e);
             }
             byte[] result = new byte[byteList.size()];
             for (int i = 0; i < byteList.size(); i++) {

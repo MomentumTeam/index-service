@@ -1,0 +1,12 @@
+Config/Config.class
+Services/DeleteManager.class
+Config/Config$1.class
+Main.class
+Enums/ErrorOperation.class
+Rabbit/Consumer.class
+Services/ElasticService.class
+Models/ErrorMessage.class
+Models/DriveEventMessage.class
+Enums/MessageEvent.class
+Rabbit/Producer.class
+Models/DeleteRequest.class

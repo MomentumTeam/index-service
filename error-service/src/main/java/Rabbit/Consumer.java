@@ -13,6 +13,7 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistry;
@@ -26,8 +27,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
-    @RabbitListener(queues = Config.ERROR_QUEUE_NAME)
-    @Scheduled(cron = "0 0 * * * *")
+    @RabbitListener(queues = "error")
     public void receiveMessage(final ErrorMessage message) {
         try{
             LOGGER.info(String.format("Received message from queue='%s': %s", Config.ERROR_QUEUE_NAME,message.toString()));
@@ -64,8 +64,18 @@ public class Consumer {
     }
 
     @Bean
+    public ConnectionFactory connectionFactory() {
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+        connectionFactory.setHost("rabbitmq");
+//        connectionFactory.setVirtualHost(System.getProperty("RABBITMQ_VHOST"));
+//        connectionFactory.setUsername(System.getProperty("RABBITMQ_USERNAME"));
+//        connectionFactory.setPassword(System.getProperty("RABBITMQ_PASSWORD"));
+        return connectionFactory;
+    }
+
+    @Bean
     public RabbitTemplate rabbitTemplate(){
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(new CachingConnectionFactory(Config.RABBIT_URL));
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
         rabbitTemplate.setMessageConverter(messageConverter());
         return rabbitTemplate;
     }

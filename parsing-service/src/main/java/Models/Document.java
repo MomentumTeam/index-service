@@ -69,13 +69,20 @@ public class Document implements Serializable {
         return permissions;
     }
 
+    @Override
     public String toString(){
-        String contentString = content.contains("@")? "keyBucket='"+content+"'": "ContentLength="+content.length();
-        return String.format("Document{fileId='%s'\n" +
-                        "metadata=%s\n" +
-                        "permissions=%s\n" +
-                        contentString +
-                        "elasticOperation=%s}", fileId,metadata.toString(),
-                Arrays.toString(permissions),contentString,elasticOperation);
+        String contentString = content==null?"content=NULL":
+                (content.contains("@")? "keyBucket='"+content+"'": "ContentLength="+content.length());
+        String fileIdString = fileId==null?"NULL":fileId;
+        String metadataString = metadata==null?"NULL":metadata.toString();
+        String permissionsString = permissions==null?"NULL":Arrays.toString(permissions);
+        String elasticOperationString = elasticOperation==null?"NULL":elasticOperation.toString();
+
+        return String.format("Document{fileId='%s',\n" +
+                        "metadata=%s,\n" +
+                        "permissions=%s,\n" +
+                        contentString + ",\n" +
+                        "elasticOperation=%s}", fileIdString,metadataString,
+                permissionsString,elasticOperationString);
     }
 }
