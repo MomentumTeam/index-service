@@ -27,6 +27,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
+
     @RabbitListener(queues = "error")
     public void receiveMessage(final ErrorMessage message) {
         try{

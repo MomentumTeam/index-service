@@ -28,6 +28,7 @@ import java.util.HashMap;
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
+
     @RabbitListener(queues = "driveService")
     public void receiveMessage(final DriveRequest message) {
         LOGGER.info(String.format("Received message from queue='%s': %s", Config.DRIVE_SERVICE_QUEUE_NAME,message.toString()));

@@ -20,10 +20,14 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DataService {
+    private static final ManagedChannel fileChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
+    private static final ManagedChannel permissionChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.PERMISSION_SERVICE_PORT).usePlaintext().build();
+    private static final ManagedChannel userChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.USER_SERVICE_PORT).usePlaintext().build();
+
+
     public static FileOuterClass.File getFileById(String fileId){
         try{
-            ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
-            FileServiceGrpc.FileServiceBlockingStub fileStub = FileServiceGrpc.newBlockingStub(channel);
+            FileServiceGrpc.FileServiceBlockingStub fileStub = FileServiceGrpc.newBlockingStub(fileChannel);
             FileOuterClass.GetByFileByIDRequest fileByIDRequest = FileOuterClass.GetByFileByIDRequest.newBuilder()
                     .setId(fileId).build();
             FileOuterClass.File file = fileStub.getFileByID(fileByIDRequest);
@@ -61,8 +65,7 @@ public class DataService {
 //    }
     public static PermissionOuterClass.GetFilePermissionsResponse getPermissions(String fileId){
         try {
-            ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.PERMISSION_SERVICE_PORT).usePlaintext().build();
-            PermissionGrpc.PermissionBlockingStub permissionStub = PermissionGrpc.newBlockingStub(channel);
+            PermissionGrpc.PermissionBlockingStub permissionStub = PermissionGrpc.newBlockingStub(permissionChannel);
             PermissionOuterClass.GetFilePermissionsRequest filePermissionsRequest = PermissionOuterClass.GetFilePermissionsRequest.newBuilder()
                     .setFileID(fileId).build();
             PermissionOuterClass.GetFilePermissionsResponse permissions = permissionStub.getFilePermissions(filePermissionsRequest);
@@ -75,8 +78,7 @@ public class DataService {
 
     public static UsersOuterClass.User getUser (String userId) {
         try{
-            ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.USER_SERVICE_PORT).usePlaintext().build();
-            UsersGrpc.UsersBlockingStub userStub = UsersGrpc.newBlockingStub(channel);
+            UsersGrpc.UsersBlockingStub userStub = UsersGrpc.newBlockingStub(userChannel);
             UsersOuterClass.GetByIDRequest userByIDRequest = UsersOuterClass.GetByIDRequest.newBuilder()
                     .setId(userId).build();
             UsersOuterClass.GetUserResponse user = userStub.getUserByID(userByIDRequest);
@@ -89,8 +91,7 @@ public class DataService {
 
     public static FileOuterClass.GetAncestorsResponse getAncestors (String fileId) {
         try{
-            ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
-            FileServiceGrpc.FileServiceBlockingStub fileStub = FileServiceGrpc.newBlockingStub(channel);
+            FileServiceGrpc.FileServiceBlockingStub fileStub = FileServiceGrpc.newBlockingStub(fileChannel);
             FileOuterClass.GetAncestorsRequest ancestorsRequest = FileOuterClass.GetAncestorsRequest.newBuilder()
                     .setId(fileId).build();
             FileOuterClass.GetAncestorsResponse ancestors = fileStub.getAncestors(ancestorsRequest);
@@ -103,8 +104,7 @@ public class DataService {
 
     public static String [] getDescendants (String fileId) {
         try{
-            ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
-            FileServiceGrpc.FileServiceBlockingStub fileStub = FileServiceGrpc.newBlockingStub(channel);
+            FileServiceGrpc.FileServiceBlockingStub fileStub = FileServiceGrpc.newBlockingStub(fileChannel);
             FileOuterClass.GetDescendantsByIDRequest descendantsRequest = FileOuterClass.GetDescendantsByIDRequest.newBuilder()
                     .setId(fileId).build();
             FileOuterClass.GetDescendantsByIDResponse descendants = fileStub.getDescendantsByID(descendantsRequest);

@@ -24,6 +24,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
+
     @RabbitListener(queues = "delete")
     public void receiveMessage(final DeleteRequest message) {
         try{

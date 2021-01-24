@@ -24,10 +24,13 @@ import java.util.Iterator;
 
 public class DataService {
     private static final Logger LOGGER = LogManager.getLogger(DataService.class);
+    private static final ManagedChannel fileChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
+    private static final ManagedChannel downloadChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.DOWNLOAD_SERVICE_PORT).usePlaintext().build();
+
+
     public static FileOuterClass.File getFileById(String fileId){
         try{
-            ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
-            FileServiceGrpc.FileServiceBlockingStub fileStub = FileServiceGrpc.newBlockingStub(channel);
+            FileServiceGrpc.FileServiceBlockingStub fileStub = FileServiceGrpc.newBlockingStub(fileChannel);
             FileOuterClass.GetByFileByIDRequest fileByIDRequest = FileOuterClass.GetByFileByIDRequest.newBuilder()
                     .setId(fileId).build();
             FileOuterClass.File file = fileStub.getFileByID(fileByIDRequest);
@@ -40,8 +43,7 @@ public class DataService {
 
     public static byte[] download(String key, String bucket) throws IOException {
         try {
-            ManagedChannel channel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.DOWNLOAD_SERVICE_PORT).usePlaintext().build();
-            DownloadGrpc.DownloadBlockingStub downloadStub = DownloadGrpc.newBlockingStub(channel);
+            DownloadGrpc.DownloadBlockingStub downloadStub = DownloadGrpc.newBlockingStub(downloadChannel);
             DownloadService.DownloadRequest downloadRequest = DownloadService.DownloadRequest.newBuilder()
                     .setBucket(bucket).setKey(key).build();
             Iterator<DownloadService.DownloadResponse> response = downloadStub.download(downloadRequest);
@@ -55,13 +57,13 @@ public class DataService {
                     byteList.add(b);
                 }
             }
-            try {
-                channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
-                System.out.println("============SHUTDOWN COMPLETED============");
-            } catch (InterruptedException e) {
-                System.out.println("============SHUTDOWN ERROR============");
-//                throw new IllegalStateException("Error happened during shutdown of validator gRPC channel", e);
-            }
+//            try {
+//                channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+//                System.out.println("============SHUTDOWN COMPLETED============");
+//            } catch (InterruptedException e) {
+//                System.out.println("============SHUTDOWN ERROR============");
+////                throw new IllegalStateException("Error happened during shutdown of validator gRPC channel", e);
+//            }
             byte[] result = new byte[byteList.size()];
             for (int i = 0; i < byteList.size(); i++) {
                 result[i] = byteList.get(i).byteValue();

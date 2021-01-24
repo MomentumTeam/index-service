@@ -24,6 +24,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class.getName());
+
     @RabbitListener(queues = "parsingService")
     public void receiveMessage(final Document message) {
         try{

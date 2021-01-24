@@ -26,6 +26,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class.getName());
+
     @RabbitListener(queues = "events")
     public void receiveMessage(final DriveEventMessage message) {
         try{

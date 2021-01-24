@@ -159,3 +159,23 @@ services:
       - ${MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
     depends_on:
       - rabbitmq
+
+  search:
+    build: ./search-service
+    environment:
+      - DRIVE_URL=${DRIVE_URL}
+      - FILE_SERVICE_PORT=${FILE_SERVICE_PORT}
+      - PERMISSION_SERVICE_PORT=${PERMISSION_SERVICE_PORT}
+      - ELASTIC_HOST=${ELASTIC_HOST}
+      - ELASTIC_PORT=${ELASTIC_PORT}
+      - ELASTIC_PROTOCOL=${ELASTIC_PROTOCOL}
+      - ES_URL=${ES_URL}
+      - SEARCH_URL=${SEARCH_URL}
+      - PERMISSION_SERVICE_URL=${PERMISSION_SERVICE_URL}
+      - FILE_SERVICE_URL=${FILE_SERVICE_URL}
+      - OLDEST_YEAR=${OLDEST_YEAR}
+      - OLDEST_MONTH=${OLDEST_MONTH}
+      - OLDEST_DAY=${OLDEST_DAY}
+    ports:
+      - 8005:8005
+    restart: on-failure
