@@ -11,6 +11,11 @@ import RabbitModels.ErrorMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Manager {
 
     public static Producer producer;
@@ -32,8 +37,7 @@ public class Manager {
         State state = new State(fileId, elasticOperation);
         state.receiveMetadata();
 
-        for (DriveField field: driveFields)
-        {
+        for (DriveField field: driveFields) {
             switch (field) {
                 case METADATA:
                     state.processMetadata();
@@ -45,6 +49,7 @@ public class Manager {
                     state.processDownload();
             }
         }
+
         if(state.canPushToElasticQueue()){
             state.pushToElasticQueue();
         }

@@ -10,6 +10,11 @@ import RabbitModels.ErrorMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Manager {
     private static final Logger LOGGER = LogManager.getLogger(Manager.class);
     public static Producer producer;
@@ -49,13 +54,19 @@ public class Manager {
             chunks = new String[]{""};
             suffixPrefixArray = new String[0];
         }
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dataTime = dateFormat.format(date);
+        document.setDataTime(dataTime);
+
         try{
             for (String chunk : chunks) {
-                Document chunkDocument = new Document(fileId, metadata, permissions, chunk, operation);
+                Document chunkDocument = new Document(fileId, metadata, permissions, chunk, operation,dataTime);
                 producer.sendToElasticQueue(chunkDocument);
             }
             for (String suffixPrefix : suffixPrefixArray) {
-                Document suffixPrefixDocument = new Document(fileId, metadata, permissions, suffixPrefix, operation);
+                Document suffixPrefixDocument = new Document(fileId, metadata, permissions, suffixPrefix, operation, dataTime);
                 producer.sendToElasticQueue(suffixPrefixDocument);
             }
             LOGGER.info(String.format("All documents of fileId='%s' were sent to " +

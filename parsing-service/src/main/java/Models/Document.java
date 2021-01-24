@@ -16,18 +16,23 @@ public class Document implements Serializable {
     private FileMetadata metadata;
     private Permission[] permissions;
     private String content;
+    private String dataTime;
 
     public Document(@JsonProperty("fileId") String fileId,
                     @JsonProperty("metadata") FileMetadata metadata,
                     @JsonProperty("permissions") Permission[] permissions,
                     @JsonProperty("content") String content,
-                    @JsonProperty("elasticOperation") ElasticOperation elasticOperation){
+                    @JsonProperty("elasticOperation") ElasticOperation elasticOperation,
+                    @JsonProperty("dataTime") String dataTime){
         this.fileId = fileId;
         this.metadata = metadata;
         this.permissions = permissions;
         this.content = content;
         this.elasticOperation = elasticOperation;
+        this.dataTime = dataTime;
     }
+
+    public void setDataTime(@JsonProperty("dataTime") String dataTime) { this.dataTime = dataTime; }
 
     public void setFileId(@JsonProperty("fileId") String fileId) {
         this.fileId = fileId;
@@ -49,6 +54,8 @@ public class Document implements Serializable {
         this.permissions = permissions;
     }
 
+    public String getDataTime() { return dataTime; }
+
     public ElasticOperation getElasticOperation() {
         return elasticOperation;
     }
@@ -69,13 +76,21 @@ public class Document implements Serializable {
         return permissions;
     }
 
+    @Override
     public String toString(){
-        String contentString = content.contains("@")? "keyBucket='"+content+"'": "ContentLength="+content.length();
-        return String.format("Document{fileId='%s'\n" +
-                        "metadata=%s\n" +
-                        "permissions=%s\n" +
-                        contentString +
-                        "elasticOperation=%s}", fileId,metadata.toString(),
-                Arrays.toString(permissions),contentString,elasticOperation);
+        String contentString = content==null?"content=NULL":
+                (content.contains("@")? "keyBucket='"+content+"'": "ContentLength="+content.length());
+        String fileIdString = fileId==null?"NULL":fileId;
+        String metadataString = metadata==null?"NULL":metadata.toString();
+        String permissionsString = permissions==null?"NULL":Arrays.toString(permissions);
+        String elasticOperationString = elasticOperation==null?"NULL":elasticOperation.toString();
+
+        return String.format("Document{fileId='%s',\n" +
+                        "metadata=%s,\n" +
+                        "permissions=%s,\n" +
+                        contentString + ",\n" +
+                        "elasticOperation=%s,\n" +
+                        "dataTime=%s}", fileIdString,metadataString,
+                permissionsString,elasticOperationString,dataTime);
     }
 }

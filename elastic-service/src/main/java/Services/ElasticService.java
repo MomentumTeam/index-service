@@ -63,6 +63,34 @@ public class ElasticService {
         }
     }
 
+    public static void delete(String fileId, String index) throws Exception {
+        try {
+            DeleteByQueryRequest request =
+                    new DeleteByQueryRequest(index);
+            request.setQuery(new MatchQueryBuilder("fileId",fileId));
+            BulkByScrollResponse bulkResponse =
+                    client.deleteByQuery(request, RequestOptions.DEFAULT);
+        }
+        catch(Exception e){
+            throw e;
+        }
+    }
+
+    public static void DeleteIfAlreadyExists(Document document, String index) throws Exception {
+        try{
+            Map<String,Object> firstHit = getFirstHit(document.getFileId(), new String[]{index});
+            String dataTimeFromElastic = (String)(firstHit.get("dataTime"));
+            String dataTime = document.getDataTime();
+            if(!dataTimeFromElastic.equals(dataTime)){
+                ElasticService.delete(document.getFileId(),index);
+            }
+        }
+        catch(Exception e){
+            return;
+        }
+
+    }
+
     public static Map <String,Object> getFirstHit(String fileId, String[] indices) throws Exception {
         try{
             SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
@@ -158,4 +186,5 @@ public class ElasticService {
             throw e;
         }
     }
+
 }
