@@ -1,0 +1,11 @@
+/usr/src/mymaven/src/main/java/Services/DeleteManager.java
+/usr/src/mymaven/src/main/java/Config/Config.java
+/usr/src/mymaven/src/main/java/Services/ElasticService.java
+/usr/src/mymaven/src/main/java/Main.java
+/usr/src/mymaven/src/main/java/Enums/ErrorOperation.java
+/usr/src/mymaven/src/main/java/Enums/MessageEvent.java
+/usr/src/mymaven/src/main/java/Rabbit/Producer.java
+/usr/src/mymaven/src/main/java/Models/DriveEventMessage.java
+/usr/src/mymaven/src/main/java/Rabbit/Consumer.java
+/usr/src/mymaven/src/main/java/Models/DeleteRequest.java
+/usr/src/mymaven/src/main/java/Models/ErrorMessage.java
