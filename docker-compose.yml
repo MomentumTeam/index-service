@@ -6,7 +6,6 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-      - "4369:4369"
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://rabbitmq:15672" ]
       interval: 10s
@@ -17,7 +16,6 @@ services:
     image: manager-spring-boot
     build: ./manager-service
     environment:
-#      - SPRING_RABBITMQ_HOST=rabbitmqy
       - RABBIT_URL=${RABBIT_URL}
       - EXCHANGE_NAME=${EXCHANGE_NAME}
       - EVENTS_QUEUE_NAME=${EVENTS_QUEUE_NAME}
@@ -38,7 +36,6 @@ services:
     image: drive-spring-boot
     build: ./drive-service
     environment:
-       #      - SPRING_RABBITMQ_HOST=rabbitmqy
       - RABBIT_URL=${RABBIT_URL}
       - EXCHANGE_NAME=${EXCHANGE_NAME}
       - EVENTS_QUEUE_NAME=${EVENTS_QUEUE_NAME}
@@ -69,7 +66,6 @@ services:
     image: delete-spring-boot
     build: ./delete-service
     environment:
-      #      - SPRING_RABBITMQ_HOST=rabbitmqy
       - RABBIT_URL=${RABBIT_URL}
       - EXCHANGE_NAME=${EXCHANGE_NAME}
       - EVENTS_QUEUE_NAME=${EVENTS_QUEUE_NAME}
@@ -93,7 +89,6 @@ services:
     image: elastic-spring-boot
     build: ./elastic-service
     environment:
-      #      - SPRING_RABBITMQ_HOST=rabbitmqy
       - RABBIT_URL=${RABBIT_URL}
       - EXCHANGE_NAME=${EXCHANGE_NAME}
       - ELASTIC_SERVICE_QUEUE_NAME=${ELASTIC_SERVICE_QUEUE_NAME}
@@ -103,7 +98,6 @@ services:
       - ELASTIC_HOST=${ELASTIC_HOST}
       - ELASTIC_PORT=${ELASTIC_PORT}
       - ELASTIC_PROTOCOL=${ELASTIC_PROTOCOL}
-#      - INDEX_MAPPING=${INDEX_MAPPING}
     volumes:
       - ${ELASTIC_ROOT_FOLDER}:/usr/src/mymaven
       - ${MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
@@ -114,7 +108,6 @@ services:
 #    image: error-spring-boot
 #    build: ./error-service
 #    environment:
-#      #      - SPRING_RABBITMQ_HOST=rabbitmqy
 #      - RABBIT_URL=${RABBIT_URL}
 #      - EXCHANGE_NAME=${EXCHANGE_NAME}
 #      - DELETE_QUEUE_NAME=${DELETE_QUEUE_NAME}
@@ -138,7 +131,6 @@ services:
     image: parsing-spring-boot
     build: ./parsing-service
     environment:
-      #      - SPRING_RABBITMQ_HOST=rabbitmqy
       - RABBIT_URL=${RABBIT_URL}
       - EXCHANGE_NAME=${EXCHANGE_NAME}
       - PARSING_SERVICE_QUEUE_NAME=${PARSING_SERVICE_QUEUE_NAME}
@@ -169,10 +161,7 @@ services:
       - ELASTIC_HOST=${ELASTIC_HOST}
       - ELASTIC_PORT=${ELASTIC_PORT}
       - ELASTIC_PROTOCOL=${ELASTIC_PROTOCOL}
-      - ES_URL=${ES_URL}
       - SEARCH_URL=${SEARCH_URL}
-      - PERMISSION_SERVICE_URL=${PERMISSION_SERVICE_URL}
-      - FILE_SERVICE_URL=${FILE_SERVICE_URL}
       - OLDEST_YEAR=${OLDEST_YEAR}
       - OLDEST_MONTH=${OLDEST_MONTH}
       - OLDEST_DAY=${OLDEST_DAY}
