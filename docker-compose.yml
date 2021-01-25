@@ -1,0 +1,170 @@
+version: "2"
+services:
+  rabbitmq:
+    image: 'drivehub.azurecr.io/meateam/rabbitmq:latest'
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://rabbitmq:15672" ]
+      interval: 10s
+      timeout: 10s
+      retries: 15
+
+  managerService:
+    image: manager-spring-boot
+    build: ./manager-service
+    environment:
+      - RABBIT_URL=${RABBIT_URL}
+      - EXCHANGE_NAME=${EXCHANGE_NAME}
+      - EVENTS_QUEUE_NAME=${EVENTS_QUEUE_NAME}
+      - EVENTS_ROUTING_KEY=${EVENTS_ROUTING_KEY}
+      - DELETE_QUEUE_NAME=${DELETE_QUEUE_NAME}
+      - DELETE_ROUTING_KEY=${DELETE_ROUTING_KEY}
+      - DRIVE_SERVICE_QUEUE_NAME=${DRIVE_SERVICE_QUEUE_NAME}
+      - DRIVE_SERVICE_ROUTING_KEY=${DRIVE_SERVICE_ROUTING_KEY}
+      - ERROR_QUEUE_NAME=${ERROR_QUEUE_NAME}
+      - ERROR_ROUTING_KEY=${ERROR_ROUTING_KEY}
+    volumes:
+      - ${MANAGER_ROOT_FOLDER}:/usr/src/mymaven
+      - ${MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
+    depends_on:
+      - rabbitmq
+
+  driveService:
+    image: drive-spring-boot
+    build: ./drive-service
+    environment:
+      - RABBIT_URL=${RABBIT_URL}
+      - EXCHANGE_NAME=${EXCHANGE_NAME}
+      - EVENTS_QUEUE_NAME=${EVENTS_QUEUE_NAME}
+      - EVENTS_ROUTING_KEY=${EVENTS_ROUTING_KEY}
+      - DELETE_QUEUE_NAME=${DELETE_QUEUE_NAME}
+      - DELETE_ROUTING_KEY=${DELETE_ROUTING_KEY}
+      - DRIVE_SERVICE_QUEUE_NAME=${DRIVE_SERVICE_QUEUE_NAME}
+      - DRIVE_SERVICE_ROUTING_KEY=${DRIVE_SERVICE_ROUTING_KEY}
+      - ERROR_QUEUE_NAME=${ERROR_QUEUE_NAME}
+      - ERROR_ROUTING_KEY=${ERROR_ROUTING_KEY}
+      - PARSING_SERVICE_QUEUE_NAME=${PARSING_SERVICE_QUEUE_NAME}
+      - PARSING_SERVICE_ROUTING_KEY=${PARSING_SERVICE_ROUTING_KEY}
+      - ELASTIC_SERVICE_QUEUE_NAME=${ELASTIC_SERVICE_QUEUE_NAME}
+      - ELASTIC_SERVICE_ROUTING_KEY=${ELASTIC_SERVICE_ROUTING_KEY}
+      - DRIVE_URL=${DRIVE_URL}
+      - DOWNLOAD_SERVICE_PORT=${DOWNLOAD_SERVICE_PORT}
+      - FILE_SERVICE_PORT=${FILE_SERVICE_PORT}
+      - USER_SERVICE_PORT=${USER_SERVICE_PORT}
+      - PERMISSION_SERVICE_PORT=${PERMISSION_SERVICE_PORT}
+      - FOLDER_TYPE=${FOLDER_TYPE}
+    volumes:
+      - ${DRIVE_ROOT_FOLDER}:/usr/src/mymaven
+      - ${MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
+    depends_on:
+      - rabbitmq
+
+  deleteService:
+    image: delete-spring-boot
+    build: ./delete-service
+    environment:
+      - RABBIT_URL=${RABBIT_URL}
+      - EXCHANGE_NAME=${EXCHANGE_NAME}
+      - EVENTS_QUEUE_NAME=${EVENTS_QUEUE_NAME}
+      - EVENTS_ROUTING_KEY=${EVENTS_ROUTING_KEY}
+      - DELETE_QUEUE_NAME=${DELETE_QUEUE_NAME}
+      - DELETE_ROUTING_KEY=${DELETE_ROUTING_KEY}
+      - DRIVE_SERVICE_QUEUE_NAME=${DRIVE_SERVICE_QUEUE_NAME}
+      - DRIVE_SERVICE_ROUTING_KEY=${DRIVE_SERVICE_ROUTING_KEY}
+      - ERROR_QUEUE_NAME=${ERROR_QUEUE_NAME}
+      - ERROR_ROUTING_KEY=${ERROR_ROUTING_KEY}
+      - ELASTIC_HOST=${ELASTIC_HOST}
+      - ELASTIC_PORT=${ELASTIC_PORT}
+      - ELASTIC_PROTOCOL=${ELASTIC_PROTOCOL}
+    volumes:
+      - ${DELETE_ROOT_FOLDER}:/usr/src/mymaven
+      - ${MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
+    depends_on:
+      - rabbitmq
+
+  elasticService:
+    image: elastic-spring-boot
+    build: ./elastic-service
+    environment:
+      - RABBIT_URL=${RABBIT_URL}
+      - EXCHANGE_NAME=${EXCHANGE_NAME}
+      - ELASTIC_SERVICE_QUEUE_NAME=${ELASTIC_SERVICE_QUEUE_NAME}
+      - ELASTIC_SERVICE_ROUTING_KEY=${ELASTIC_SERVICE_ROUTING_KEY}
+      - ERROR_QUEUE_NAME=${ERROR_QUEUE_NAME}
+      - ERROR_ROUTING_KEY=${ERROR_ROUTING_KEY}
+      - ELASTIC_HOST=${ELASTIC_HOST}
+      - ELASTIC_PORT=${ELASTIC_PORT}
+      - ELASTIC_PROTOCOL=${ELASTIC_PROTOCOL}
+    volumes:
+      - ${ELASTIC_ROOT_FOLDER}:/usr/src/mymaven
+      - ${MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
+    depends_on:
+      - rabbitmq
+
+#  errorService:
+#    image: error-spring-boot
+#    build: ./error-service
+#    environment:
+#      - RABBIT_URL=${RABBIT_URL}
+#      - EXCHANGE_NAME=${EXCHANGE_NAME}
+#      - DELETE_QUEUE_NAME=${DELETE_QUEUE_NAME}
+#      - DELETE_ROUTING_KEY=${DELETE_ROUTING_KEY}
+#      - ERROR_QUEUE_NAME=${ERROR_QUEUE_NAME}
+#      - ERROR_ROUTING_KEY=${ERROR_ROUTING_KEY}
+#      - DRIVE_URL=${DRIVE_URL}
+#      - DOWNLOAD_SERVICE_PORT=${DOWNLOAD_SERVICE_PORT}
+#      - DOWNLOAD_FOLDER_PATH=${DOWNLOAD_FOLDER_PATH}
+#      - CHUNK_SIZE=${CHUNK_SIZE}
+#      - PRE_SUFF_SIZE=${PRE_SUFF_SIZE}
+#
+#    volumes:
+#      - ${ERROR_ROOT_FOLDER}:/usr/src/mymaven
+#      - ${MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
+#    depends_on:
+#      - rabbitmq
+
+
+  parsingService:
+    image: parsing-spring-boot
+    build: ./parsing-service
+    environment:
+      - RABBIT_URL=${RABBIT_URL}
+      - EXCHANGE_NAME=${EXCHANGE_NAME}
+      - PARSING_SERVICE_QUEUE_NAME=${PARSING_SERVICE_QUEUE_NAME}
+      - PARSING_SERVICE_ROUTING_KEY=${PARSING_SERVICE_ROUTING_KEY}
+      - ELASTIC_SERVICE_QUEUE_NAME=${ELASTIC_SERVICE_QUEUE_NAME}
+      - ELASTIC_SERVICE_ROUTING_KEY=${ELASTIC_SERVICE_ROUTING_KEY}
+      - ERROR_QUEUE_NAME=${ERROR_QUEUE_NAME}
+      - ERROR_ROUTING_KEY=${ERROR_ROUTING_KEY}
+      - DRIVE_URL=${DRIVE_URL}
+      - DOWNLOAD_SERVICE_PORT=${DOWNLOAD_SERVICE_PORT}
+      - FILE_SERVICE_PORT=${FILE_SERVICE_PORT}
+      - USER_SERVICE_PORT=${USER_SERVICE_PORT}
+#      - DOWNLOAD_FOLDER_PATH=${DOWNLOAD_FOLDER_PATH}
+      - CHUNK_SIZE=${CHUNK_SIZE}
+      - SUFF_PRE_SIZE=${SUFF_PRE_SIZE}
+    volumes:
+      - ${PARSING_ROOT_FOLDER}:/usr/src/mymaven
+      - ${MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
+    depends_on:
+      - rabbitmq
+
+  search:
+    build: ./search-service
+    environment:
+      - DRIVE_URL=${DRIVE_URL}
+      - FILE_SERVICE_PORT=${FILE_SERVICE_PORT}
+      - PERMISSION_SERVICE_PORT=${PERMISSION_SERVICE_PORT}
+      - ELASTIC_HOST=${ELASTIC_HOST}
+      - ELASTIC_PORT=${ELASTIC_PORT}
+      - ELASTIC_PROTOCOL=${ELASTIC_PROTOCOL}
+      - SEARCH_URL=${SEARCH_URL}
+      - OLDEST_YEAR=${OLDEST_YEAR}
+      - OLDEST_MONTH=${OLDEST_MONTH}
+      - OLDEST_DAY=${OLDEST_DAY}
+    ports:
+      - 8005:8005
+    restart: on-failure

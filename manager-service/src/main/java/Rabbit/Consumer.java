@@ -14,9 +14,11 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -24,7 +26,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class.getName());
-    @RabbitListener(queues = Config.EVENTS_QUEUE_NAME)
+
+    @RabbitListener(queues = "events")
     public void receiveMessage(final DriveEventMessage message) {
         try{
             LOGGER.info(String.format("Received message from queue='%s': %s", Config.EVENTS_QUEUE_NAME,message.toString()));
@@ -75,8 +78,15 @@ public class Consumer {
     }
 
     @Bean
+    public ConnectionFactory connectionFactory() {
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+        connectionFactory.setHost("rabbitmq");
+        return connectionFactory;
+    }
+
+    @Bean
     public RabbitTemplate rabbitTemplate(){
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(new CachingConnectionFactory(Config.RABBIT_URL));
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
         rabbitTemplate.setMessageConverter(messageConverter());
         return rabbitTemplate;
     }
