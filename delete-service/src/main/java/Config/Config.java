@@ -27,7 +27,7 @@ public class Config {
         add(MessageEvent.DELETE);
     }};
 
-    public static final String ELASTIC_HOST = "137.135.166.218";
+    public static final String ELASTIC_HOST = "40.127.198.131";
     public static final int ELASTIC_PORT = 9200;
     public static final String ELASTIC_PROTOCOL = "http";
 }
