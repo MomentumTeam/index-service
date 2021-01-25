@@ -2,12 +2,18 @@ package Config;
 
 public class Config {
 
+    // public static final String RABBIT_URL = "localhost";
+    // public static final String EXCHANGE_NAME = "indexService";
     public static final String RABBIT_URL = System.getenv("RABBIT_URL");
     public static final String EXCHANGE_NAME = System.getenv("EXCHANGE_NAME");
 
+    // public static final String ELASTIC_SERVICE_QUEUE_NAME = "elasticService";
+    // public static final String  ELASTIC_SERVICE_ROUTING_KEY = "elasticServiceKey";
     public static final String ELASTIC_SERVICE_QUEUE_NAME = System.getenv("ELASTIC_SERVICE_QUEUE_NAME");
     public static final String  ELASTIC_SERVICE_ROUTING_KEY = System.getenv("ELASTIC_SERVICE_ROUTING_KEY");
 
+    // public static final String ERROR_QUEUE_NAME = "error";
+    // public static final String  ERROR_ROUTING_KEY = "errorKey";
     public static final String ERROR_QUEUE_NAME = System.getenv("ERROR_QUEUE_NAME");
     public static final String  ERROR_ROUTING_KEY = System.getenv("ERROR_ROUTING_KEY");
 
