@@ -33,19 +33,19 @@ const search_proto = grpc.loadPackageDefinition(searchPackageDefinition).searchS
 const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition).permission;
 const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
 
-const clientES = new Client({ node: process.env.ELASTIC_PROTOCOL+"://"+process.env.ELASTIC_HOST+":"+process.env.ELASTIC_PORT });
+const clientES = new Client({ node: process.env.INDUX_ELASTIC_PROTOCOL+"://"+process.env.INDUX_ELASTIC_HOST+":"+process.env.INDUX_ELASTIC_PORT });
 
-const permissionClient = new permission_proto.Permission(`${process.env.DRIVE_URL}:${process.env.PERMISSION_SERVICE_PORT}`,
+const permissionClient = new permission_proto.Permission(`${process.env.INDUX_DRIVE_URL}:${process.env.INDUX_PERMISSION_SERVICE_PORT}`,
   grpc.credentials.createInsecure());
 
-const fileClient = new file_proto.FileService(`${process.env.DRIVE_URL}:${process.env.FILE_SERVICE_PORT}`,
+const fileClient = new file_proto.FileService(`${process.env.INDUX_DRIVE_URL}:${process.env.INDUX_FILE_SERVICE_PORT}`,
   grpc.credentials.createInsecure());
 
 
 function main() {
   var server = new grpc.Server();
   server.addService(search_proto.Search.service, { search: search });
-  server.bindAsync(`${process.env.SEARCH_URL}`, grpc.ServerCredentials.createInsecure(), () => {
+  server.bindAsync(`${process.env.INDUX_SEARCH_URL}`, grpc.ServerCredentials.createInsecure(), () => {
     server.start();
   });
 }
@@ -333,7 +333,7 @@ function queryOrganizer(fields, exactMatch) {
 }
 
 function pushToQuery(field, query, rangeQuery) {
-  const oldest = new Date(process.env.OLDEST_YEAR, process.env.OLDEST_MONTH, process.env.OLDEST_DAY).getTime().toString();
+  const oldest = new Date(process.env.INDUX_OLDEST_YEAR, process.env.INDUX_OLDEST_MONTH, process.env.INDUX_OLDEST_DAY).getTime().toString();
   const newest = Date.now().toString();
   const fieldName = Object.keys(rangeQuery.range)[0];
 
