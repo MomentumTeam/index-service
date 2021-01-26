@@ -80,7 +80,7 @@ public class Consumer {
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-        connectionFactory.setHost("rabbitmq");
+        connectionFactory.setHost(Config.RABBIT_URL);
         return connectionFactory;
     }
 
