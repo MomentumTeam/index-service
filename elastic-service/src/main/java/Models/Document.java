@@ -20,6 +20,7 @@ public class Document implements Serializable {
     private FileMetadata metadata;
     private Permission[] permissions;
     private String content;
+    private String dataTime;
 
     public Document(@JsonProperty("fileId") String fileId,
                     @JsonProperty("metadata") FileMetadata metadata,
@@ -32,6 +33,8 @@ public class Document implements Serializable {
         this.content = content;
         this.elasticOperation = elasticOperation;
     }
+
+    public void setDataTime(@JsonProperty("dataTime") String dataTime) { this.dataTime = dataTime; }
 
     public void setFileId(@JsonProperty("fileId") String fileId) {
         this.fileId = fileId;
@@ -52,6 +55,8 @@ public class Document implements Serializable {
     public void setPermissions(@JsonProperty("permissions") Permission[] permissions) {
         this.permissions = permissions;
     }
+
+    public String getDataTime() { return dataTime; }
 
     public ElasticOperation getElasticOperation() {
         return elasticOperation;
@@ -83,6 +88,7 @@ public class Document implements Serializable {
         }
         map.put("permissions",permissionList.toArray());
         map.put("content", content);
+        map.put("dataTime", dataTime);
         return map;
     }
 
@@ -108,6 +114,7 @@ public class Document implements Serializable {
             case CREATE:
                 try{
                     String index  = this.metadata.getOwner().getUserId();
+                    ElasticService.DeleteIfAlreadyExists(this,index);
                     ElasticService.indexDocument(this,index);
                     LOGGER.info(String.format("Indexed document of %s in successfully"
                     , this.fileId));

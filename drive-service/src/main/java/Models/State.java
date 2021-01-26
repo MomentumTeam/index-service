@@ -10,7 +10,11 @@ import Services.DataService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class State {
     private static final Logger LOGGER = LogManager.getLogger(State.class);
@@ -119,6 +123,13 @@ public class State {
             this.descendants = new String[0];
             return true;
         }
+    }
+
+    public void setDataTime(){
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dataTime = dateFormat.format(date);
+        this.document.setDataTime(dataTime);
     }
 
 
@@ -241,6 +252,7 @@ public class State {
             if (this.sendToParsingService) {
                 State.producer.sendToParsingQueue(this.document);
             } else {
+                this.setDataTime();
                 State.producer.sendToElasticQueue(this.document);
             }
 
