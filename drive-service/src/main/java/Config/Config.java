@@ -14,7 +14,7 @@ public class Config {
     public static final String  DRIVE_SERVICE_ROUTING_KEY = (System.getenv("DRIVE_SERVICE_ROUTING_KEY")!=null) ? System.getenv("DRIVE_SERVICE_ROUTING_KEY") : "driveServiceKey";
 
     public static final String ERROR_QUEUE_NAME = (System.getenv("ERROR_QUEUE_NAME")!=null) ? System.getenv("ERROR_QUEUE_NAME") : "error" ;
-    public static final String  ERROR_ROUTING_KEY = (System.getenv("ERROR_ROUTING_KEY")!=null) ? System.getenv("ERROR_ROUTING_KEY") : "errorKey" ;
+    public static final String  ERROR_ROUTING_KEY = (System.getenv("ERROR_ROUTING_KEY")!=null) ? System.getenv("ERROR_ROUTING_KEY") : "errorKey";
 
     public static final String PARSING_SERVICE_QUEUE_NAME = (System.getenv("PARSING_SERVICE_QUEUE_NAME")!=null) ? System.getenv("PARSING_SERVICE_QUEUE_NAME") : "parsingService";
     public static final String PARSING_SERVICE_ROUTING_KEY = (System.getenv("PARSING_SERVICE_ROUTING_KEY")!=null) ? System.getenv("PARSING_SERVICE_ROUTING_KEY") : "parsingServiceKey";

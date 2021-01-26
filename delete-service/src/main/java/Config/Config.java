@@ -19,7 +19,7 @@ public class Config {
     public static final String DRIVE_SERVICE_QUEUE_NAME = (System.getenv("DRIVE_SERVICE_QUEUE_NAME")!=null) ? System.getenv("DRIVE_SERVICE_QUEUE_NAME") : "driveService" ;
     public static final String  DRIVE_SERVICE_ROUTING_KEY = (System.getenv("DRIVE_SERVICE_ROUTING_KEY")!=null) ? System.getenv("DRIVE_SERVICE_ROUTING_KEY") : "driveServiceKey";
 
-    public static final String ERROR_QUEUE_NAME = (System.getenv("ERROR_QUEUE_NAME")!=null) ? System.getenv("ERROR_QUEUE_NAME") : "error" ;
+    public static final String ERROR_QUEUE_NAME = (System.getenv("ERROR_QUEUE_NAME")!=null) ? System.getenv("ERROR_QUEUE_NAME") : "error";
     public static final String  ERROR_ROUTING_KEY = (System.getenv("ERROR_ROUTING_KEY")!=null) ? System.getenv("ERROR_ROUTING_KEY") : "errorKey" ;
 
     public static final HashSet<MessageEvent> DELETE_EVENTS = new HashSet<MessageEvent>() {{

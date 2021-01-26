@@ -12,7 +12,7 @@ public class Config {
     public static final String  ELASTIC_SERVICE_ROUTING_KEY = (System.getenv("ELASTIC_SERVICE_ROUTING_KEY")!=null) ? System.getenv("ELASTIC_SERVICE_ROUTING_KEY") : "elasticServiceKey" ;
 
     public static final String ERROR_QUEUE_NAME = (System.getenv("ERROR_QUEUE_NAME")!=null) ? System.getenv("ERROR_QUEUE_NAME") : "error";
-    public static final String  ERROR_ROUTING_KEY = (System.getenv("ERROR_ROUTING_KEY")!=null) ? System.getenv("ERROR_ROUTING_KEY") : "errorKey" ;
+    public static final String  ERROR_ROUTING_KEY = (System.getenv("ERROR_ROUTING_KEY")!=null) ? System.getenv("ERROR_ROUTING_KEY") : "errorKey";
 
     public static String DRIVE_URL = (System.getenv("DRIVE_URL")!=null) ? System.getenv("DRIVE_URL") : "40.127.198.131" ;
     public static int DOWNLOAD_SERVICE_PORT = (System.getenv("DOWNLOAD_SERVICE_PORT")!=null) ? Integer.parseInt(System.getenv("DOWNLOAD_SERVICE_PORT")) : 8082;
