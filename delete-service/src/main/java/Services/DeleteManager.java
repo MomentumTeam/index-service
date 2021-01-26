@@ -22,12 +22,7 @@ public class DeleteManager {
     public static void processMessage (DeleteRequest message) throws Exception {
         try {
             String fileId = message.getFileId();
-            boolean createAfter = message.getCreateAfter();
             ElasticService.delete(fileId, "*");
-            if (createAfter) {
-                DriveEventMessage driveEventMessage = new DriveEventMessage(fileId, MessageEvent.CREATE);
-                producer.sendEventRequest(driveEventMessage);
-            }
         }
         catch(Exception exception){
             throw exception;

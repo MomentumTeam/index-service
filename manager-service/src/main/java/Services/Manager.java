@@ -28,13 +28,9 @@ public class Manager {
     public static void processMessage (DriveEventMessage message) throws DeleteException,CreateUpdateException {
             MessageEvent event = message.getEvent();
             String fileId = message.getFileId();
-            if (Config.DELETE_EVENTS.contains(event)) {
+            if (event == MessageEvent.DELETE) {
                 try {
-                    boolean createAfter = false;
-                    if (event == MessageEvent.CONTENT_CHANGE) {
-                        createAfter = true;
-                    }
-                    DeleteRequest deleteRequest = new DeleteRequest(fileId, createAfter);
+                    DeleteRequest deleteRequest = new DeleteRequest(fileId);
                     producer.sendDelete(deleteRequest);
                 }
                 catch(Exception exception){
@@ -46,6 +42,7 @@ public class Manager {
                     ElasticOperation elasticOperation;
                     switch (event) {
                         case CREATE:
+                        case CONTENT_CHANGE:
                             fields = new DriveField[]{DriveField.METADATA, DriveField.PERMISSIONS, DriveField.DOWNLOAD};
                             elasticOperation = ElasticOperation.CREATE;
                             break;
