@@ -3,18 +3,18 @@ package Config;
 public class Config {
 
    
-    public static final String RABBIT_URL = (System.getenv("INDUX_RABBIT_URL")!=null) ? System.getenv("INDUX_RABBIT_URL") : "localhost" ;
-    public static final String EXCHANGE_NAME = (System.getenv("INDUX_EXCHANGE_NAME")!=null) ? System.getenv("INDUX_EXCHANGE_NAME") : "indexService" ;
+    public static final String RABBIT_URL = (System.getenv("INDEXING_RABBIT_URL")!=null) ? System.getenv("INDEXING_RABBIT_URL") : "localhost" ;
+    public static final String EXCHANGE_NAME = (System.getenv("INDEXING_EXCHANGE_NAME")!=null) ? System.getenv("INDEXING_EXCHANGE_NAME") : "indexService" ;
 
-    public static final String ELASTIC_SERVICE_QUEUE_NAME = (System.getenv("INDUX_ELASTIC_SERVICE_QUEUE_NAME")!=null) ? System.getenv("INDUX_ELASTIC_SERVICE_QUEUE_NAME") : "elasticService" ;
-    public static final String  ELASTIC_SERVICE_ROUTING_KEY = (System.getenv("INDUX_ELASTIC_SERVICE_ROUTING_KEY")!=null) ? System.getenv("INDUX_ELASTIC_SERVICE_ROUTING_KEY") : "elasticServiceKey" ;
+    public static final String ELASTIC_SERVICE_QUEUE_NAME = (System.getenv("INDEXING_ELASTIC_SERVICE_QUEUE_NAME")!=null) ? System.getenv("INDEXING_ELASTIC_SERVICE_QUEUE_NAME") : "elasticService" ;
+    public static final String  ELASTIC_SERVICE_ROUTING_KEY = (System.getenv("INDEXING_ELASTIC_SERVICE_ROUTING_KEY")!=null) ? System.getenv("INDEXING_ELASTIC_SERVICE_ROUTING_KEY") : "elasticServiceKey" ;
 
-    public static final String ERROR_QUEUE_NAME = (System.getenv("INDUX_ERROR_QUEUE_NAME")!=null) ? System.getenv("INDUX_ERROR_QUEUE_NAME") : "error" ;
-    public static final String  ERROR_ROUTING_KEY = (System.getenv("INDUX_ERROR_ROUTING_KEY")!=null) ? System.getenv("INDUX_ERROR_ROUTING_KEY") : "errorKey";
+    public static final String ERROR_QUEUE_NAME = (System.getenv("INDEXING_ERROR_QUEUE_NAME")!=null) ? System.getenv("INDEXING_ERROR_QUEUE_NAME") : "error" ;
+    public static final String  ERROR_ROUTING_KEY = (System.getenv("INDEXING_ERROR_ROUTING_KEY")!=null) ? System.getenv("INDEXING_ERROR_ROUTING_KEY") : "errorKey";
 
-    public static final String ELASTIC_HOST = (System.getenv("INDUX_ELASTIC_HOST")!=null) ? System.getenv("INDUX_ELASTIC_HOST") : "40.127.198.131" ;
-    public static final int ELASTIC_PORT = (System.getenv("INDUX_ELASTIC_PORT")!=null) ? Integer.parseInt(System.getenv("INDUX_ELASTIC_PORT")) : 9200;
-    public static final String ELASTIC_PROTOCOL = (System.getenv("INDUX_ELASTIC_PROTOCOL")!=null) ? System.getenv("INDUX_ELASTIC_PROTOCOL") : "http";
+    public static final String ELASTIC_HOST = (System.getenv("INDEXING_ELASTIC_HOST")!=null) ? System.getenv("INDEXING_ELASTIC_HOST") : "40.127.198.131" ;
+    public static final int ELASTIC_PORT = (System.getenv("INDEXING_ELASTIC_PORT")!=null) ? Integer.parseInt(System.getenv("INDEXING_ELASTIC_PORT")) : 9200;
+    public static final String ELASTIC_PROTOCOL = (System.getenv("INDEXING_ELASTIC_PROTOCOL")!=null) ? System.getenv("INDEXING_ELASTIC_PROTOCOL") : "http";
 
     public static final String INDEX_MAPPING = "{\n" +
             "      \"properties\" : {\n" +
