@@ -1,16 +1,16 @@
 version: "2.1"
 services:
-  # rabbitmq:
-  #   image: 'drivehub.azurecr.io/meateam/rabbitmq:latest'
-  #   hostname: rabbitmq
-  #   ports:
-  #     - "5672:5672"
-  #     - "15672:15672"
-  #   healthcheck:
-  #     test: [ "CMD", "curl", "-f", "http://rabbitmq:15672" ]
-  #     interval: 10s
-  #     timeout: 10s
-  #     retries: 15
+  rabbitmq:
+    image: 'drivehub.azurecr.io/meateam/rabbitmq:latest'
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://rabbitmq:15672" ]
+      interval: 10s
+      timeout: 10s
+      retries: 15
 
   managerService:
     image: manager-spring-boot
@@ -28,8 +28,8 @@ services:
       - INDEXING_ERROR_ROUTING_KEY=${INDEXING_ERROR_ROUTING_KEY}
 #    volumes:
 #       - ${INDEXING_MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
-    # depends_on:
-    #   - rabbitmq
+    depends_on:
+        - rabbitmq
 
   driveService:
     image: drive-spring-boot
@@ -61,8 +61,8 @@ services:
       - INDEXING_DOWNLOAD_SERVICE_URL=${INDEXING_DOWNLOAD_SERVICE_URL}
 #    volumes:
 #       - ${INDEXING_MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
-    # depends_on:
-    #   - rabbitmq
+    depends_on:
+      - rabbitmq
 
   deleteService:
     image: delete-spring-boot
@@ -84,8 +84,8 @@ services:
       # - INDEXING_ELASTIC_PROTOCOL=${INDEXING_ELASTIC_PROTOCOL}
 #    volumes:
 #       - ${INDEXING_MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
-    # depends_on:
-    #   - rabbitmq
+    depends_on:
+      - rabbitmq
 
   elasticService:
     image: elastic-spring-boot
@@ -103,8 +103,8 @@ services:
       - INDEXING_ELASTIC_URLS=${INDEXING_ELASTIC_URLS}
 #    volumes:
 #       - ${INDEXING_MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
-    # depends_on:
-    #   - rabbitmq
+    depends_on:
+      - rabbitmq
 
 #  errorService:
 #    image: error-spring-boot
@@ -153,8 +153,8 @@ services:
       - INDEXING_DOWNLOAD_SERVICE_URL=${INDEXING_DOWNLOAD_SERVICE_URL}
 #    volumes:
       # - ${INDEXING_MAVEN_SETTINGS_FOLDER}:/root/.m2   # comment this line if you do not want to use you local maven settings or if you do not have a local maven installed
-    # depends_on:
-    #   - rabbitmq
+    depends_on:
+      - rabbitmq
 
   search:
     build: ./search-service
