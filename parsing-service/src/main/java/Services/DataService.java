@@ -24,8 +24,8 @@ import java.util.Iterator;
 
 public class DataService {
     private static final Logger LOGGER = LogManager.getLogger(DataService.class);
-    private static final ManagedChannel fileChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
-    private static final ManagedChannel downloadChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.DOWNLOAD_SERVICE_PORT).usePlaintext().build();
+    private static final ManagedChannel fileChannel = ManagedChannelBuilder.forTarget(Config.FILE_SERVICE_URL).usePlaintext().build();
+    private static final ManagedChannel downloadChannel = ManagedChannelBuilder.forTarget(Config.DOWNLOAD_SERVICE_URL).usePlaintext().build();
 
 
     public static FileOuterClass.File getFileById(String fileId){

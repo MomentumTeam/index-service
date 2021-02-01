@@ -34,12 +34,9 @@ public class Consumer {
         catch (Exception exception){
             LOGGER.error(String.format("Error while processing message, exception: %s",exception.getMessage()));
             String fileId = message.getFileId();
-            boolean createAfter = message.getCreateAfter();
             if(fileId != null){
                 try{
-                    ErrorOperation errorOperation = createAfter? ErrorOperation.REFRESH:
-                            ErrorOperation.DELETE;
-                    DeleteManager.sendError(fileId , errorOperation);
+                    DeleteManager.sendError(fileId , ErrorOperation.DELETE);
                 }
                 catch(Exception error){
                     LOGGER.error(String.format("Tried unsuccessfully to push '%s' to the error queue, " +

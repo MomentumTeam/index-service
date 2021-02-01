@@ -2,6 +2,7 @@ package Config;
 
 import Enums.MessageEvent;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class Config {
@@ -16,14 +17,10 @@ public class Config {
     public static final String  DELETE_QUEUE_NAME = (System.getenv("INDEXING_DELETE_QUEUE_NAME")!=null) ? System.getenv("INDEXING_DELETE_QUEUE_NAME") : "delete" ;
     public static final String  DELETE_ROUTING_KEY = (System.getenv("INDEXING_DELETE_ROUTING_KEY")!=null) ? System.getenv("INDEXING_DELETE_ROUTING_KEY") : "deleteKey";
 
-    public static final String DRIVE_SERVICE_QUEUE_NAME = (System.getenv("INDEXING_DRIVE_SERVICE_QUEUE_NAME")!=null) ? System.getenv("INDEXING_DRIVE_SERVICE_QUEUE_NAME") : "driveService" ;
-    public static final String  DRIVE_SERVICE_ROUTING_KEY = (System.getenv("INDEXING_DRIVE_SERVICE_ROUTING_KEY")!=null) ? System.getenv("INDEXING_DRIVE_SERVICE_ROUTING_KEY") : "driveServiceKey";
-
     public static final String ERROR_QUEUE_NAME = (System.getenv("INDEXING_ERROR_QUEUE_NAME")!=null) ? System.getenv("INDEXING_ERROR_QUEUE_NAME") : "error";
     public static final String  ERROR_ROUTING_KEY = (System.getenv("INDEXING_ERROR_ROUTING_KEY")!=null) ? System.getenv("INDEXING_ERROR_ROUTING_KEY") : "errorKey" ;
 
-    public static final String ELASTIC_HOST = (System.getenv("INDEXING_ELASTIC_HOST")!=null) ? System.getenv("INDEXING_ELASTIC_HOST") : "40.127.198.131" ;
-    public static final int ELASTIC_PORT = (System.getenv("INDEXING_ELASTIC_PORT")!=null) ? Integer.parseInt(System.getenv("INDEXING_ELASTIC_PORT")) : 9200;
-    public static final String ELASTIC_PROTOCOL = (System.getenv("INDEXING_ELASTIC_PROTOCOL")!=null) ? System.getenv("INDEXING_ELASTIC_PROTOCOL") : "http";
+    public static final String[] ELASTIC_URLS = (System.getenv("INDEXING_ELASTIC_URLS")!=null) ?
+            Arrays.asList(System.getenv("INDEXING_ELASTIC_URLS").split(",")).stream().toArray(String[]::new)
+            :  Arrays.asList("http://40.127.198.131:9200".split(",")).stream().toArray(String[]::new);
 }
-r

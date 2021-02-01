@@ -2,28 +2,18 @@ package Services;
 
 import Config.Config;
 import DriveStubs.grpc.*;
-import Enums.DriveField;
-import Models.FileMetadata;
-import com.google.common.primitives.Bytes;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import org.apache.commons.lang3.ArrayUtils;
 
-
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DataService {
-    private static final ManagedChannel fileChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
-    private static final ManagedChannel permissionChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.PERMISSION_SERVICE_PORT).usePlaintext().build();
-    private static final ManagedChannel userChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.USER_SERVICE_PORT).usePlaintext().build();
+//    private static final ManagedChannel fileChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.FILE_SERVICE_PORT).usePlaintext().build();
+//    private static final ManagedChannel permissionChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.PERMISSION_SERVICE_PORT).usePlaintext().build();
+//    private static final ManagedChannel userChannel = ManagedChannelBuilder.forAddress(Config.DRIVE_URL, Config.USER_SERVICE_PORT).usePlaintext().build();
 
+    private static final ManagedChannel fileChannel = ManagedChannelBuilder.forTarget(Config.FILE_SERVICE_URL).usePlaintext().build();
+    private static final ManagedChannel permissionChannel = ManagedChannelBuilder.forTarget(Config.PERMISSION_SERVICE_URL).usePlaintext().build();
+    private static final ManagedChannel userChannel = ManagedChannelBuilder.forTarget(Config.USER_SERVICE_URL).usePlaintext().build();
 
     public static FileOuterClass.File getFileById(String fileId){
         try{

@@ -33,8 +33,16 @@ import java.util.Map;
 public class ElasticService {
     public static RestHighLevelClient client;
     static{
+        ArrayList <HttpHost> hostsList = new ArrayList<HttpHost>();
+        for(String elasticHost : Config.ELASTIC_URLS){
+            String protocol = elasticHost.substring(0,elasticHost.indexOf(":"));
+            String host = elasticHost.substring(elasticHost.lastIndexOf("/")+1,elasticHost.lastIndexOf(":"));
+            int port = Integer.parseInt(elasticHost.substring(elasticHost.lastIndexOf(":")+1));
+            hostsList.add(new HttpHost(host,port,protocol));
+        }
+        HttpHost[] hostsArray = hostsList.stream().toArray(HttpHost[]::new);
         client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost(Config.ELASTIC_HOST, Config.ELASTIC_PORT, Config.ELASTIC_PROTOCOL)));
+                RestClient.builder(hostsArray));
     }
 
     public static void updateMetadata(String fileId, FileMetadata fileMetadata, String[] indices) throws Exception {
