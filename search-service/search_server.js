@@ -1,13 +1,13 @@
-const { Client } = require('@elastic/elasticsearch')
-const grpc = require('@grpc/grpc-js');
-const protoLoader = require('@grpc/proto-loader');
-const dotenv = require('dotenv');
-const { Console } = require('winston/lib/winston/transports');
+const { Client } = require("@elastic/elasticsearch");
+const grpc = require("@grpc/grpc-js");
+const protoLoader = require("@grpc/proto-loader");
+const dotenv = require("dotenv");
+const { Console } = require("winston/lib/winston/transports");
 dotenv.config();
 
-const SEARCH_PROTO_PATH = __dirname + '/protoFiles/search.proto';
-const PERMMISSION_PROTO_PATH = __dirname + '/protoFiles/permission.proto';
-const FILE_PROTO_PATH = __dirname + '/protoFiles/file.proto';
+const SEARCH_PROTO_PATH = __dirname + "/protoFiles/search.proto";
+const PERMMISSION_PROTO_PATH = __dirname + "/protoFiles/permission.proto";
+const FILE_PROTO_PATH = __dirname + "/protoFiles/file.proto";
 
 const logger = require("./logger");
 
@@ -16,30 +16,41 @@ const conditions = {
   longs: String,
   enums: String,
   defaults: true,
-  oneofs: true
+  oneofs: true,
 };
 
-const searchPackageDefinition = protoLoader.loadSync(
-  SEARCH_PROTO_PATH,
-  conditions);
-const permissionPackageDefinition = protoLoader.loadSync(
-  PERMMISSION_PROTO_PATH,
-  conditions);
-const filePackageDefinition = protoLoader.loadSync(
-  FILE_PROTO_PATH,
-  conditions);
+const searchPackageDefinition = protoLoader.loadSync(SEARCH_PROTO_PATH, conditions);
+const permissionPackageDefinition = protoLoader.loadSync(PERMMISSION_PROTO_PATH, conditions);
+const filePackageDefinition = protoLoader.loadSync(FILE_PROTO_PATH, conditions);
 
 const search_proto = grpc.loadPackageDefinition(searchPackageDefinition).searchService;
 const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition).permission;
 const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
 
-const clientES = new Client({ node: process.env.INDEXING_ELASTIC_PROTOCOL+"://"+process.env.INDEXING_ELASTIC_HOST+":"+process.env.INDEXING_ELASTIC_PORT });
+// const clientES = new Client({ node: process.env.INDEXING_ELASTIC_PROTOCOL+"://"+process.env.INDEXING_ELASTIC_HOST+":"+process.env.INDEXING_ELASTIC_PORT });
+ logger.log({
+      level: "info",
+      message: `liora - ${process.env.INDEXING_ELASTIC_URLS} `,
+      label: `liora`,
+    });
 
-const permissionClient = new permission_proto.Permission(`${process.env.INDEXING_DRIVE_URL}:${process.env.INDEXING_PERMISSION_SERVICE_PORT}`,
-  grpc.credentials.createInsecure());
+     logger.log({
+          level: "error",
+          message: `liora - ${process.env.INDEXING_PERMISSION_SERVICE_URL}  `,
+          label: `liora`,
+        });
 
-const fileClient = new file_proto.FileService(`${process.env.INDEXING_DRIVE_URL}:${process.env.INDEXING_FILE_SERVICE_PORT}`,
-  grpc.credentials.createInsecure());
+         logger.log({
+              level: "error",
+              message: `liora - ${process.env.INDEXING_FILE_SERVICE_URL} `,
+              label: `liora`,
+            });
+
+const clientES = new Client({ node: process.env.INDEXING_ELASTIC_URLS.split(",") });
+
+const permissionClient = new permission_proto.Permission(`${process.env.INDEXING_PERMISSION_SERVICE_URL}`, grpc.credentials.createInsecure());
+
+const fileClient = new file_proto.FileService(`${process.env.INDEXING_FILE_SERVICE_URL}`, grpc.credentials.createInsecure());
 
 
 function main() {
@@ -66,46 +77,45 @@ async function search(call, callback) {
     if (usersPermissions.permissions.length) {
       const ownersArray = await indexesCollector(usersPermissions.permissions);
       ownersArray.unshift(userId);
-      indexesArray = [...new Set(ownersArray)];  //returns an Array of ownerIDs of files that were shared with the user.
+      indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
     }
 
-    const indices_boost = new Object;
+    const indices_boost = new Object();
     indices_boost[userId] = 2; //boost the files of the user who did the search to the top of the results.
 
     const result = await clientES.search({
       index: indexesArray,
       body: {
-        "indices_boost": [indices_boost],
-        "from": call.request.resultsAmount.from,
-        "size": call.request.resultsAmount.amount,
-        "query": {
-          "bool": {
-            "must": query
-          }
+        indices_boost: [indices_boost],
+        from: call.request.resultsAmount.from,
+        size: call.request.resultsAmount.amount,
+        query: {
+          bool: {
+            must: query,
+          },
         },
-        "highlight": {
-          "pre_tags": ["<b>"],
-          "post_tags": ["</b>"],
-          "fields": {
-            "content": {}
-          }
-        }
-        ,
-        "collapse": {   //return uniqe file Ids-(one result from each file)
-          "field": "fileId.keyword"
-        }
-      }
-    }
-    );
+        highlight: {
+          pre_tags: ["<b>"],
+          post_tags: ["</b>"],
+          fields: {
+            content: {},
+          },
+        },
+        collapse: {
+          //return uniqe file Ids-(one result from each file)
+          field: "fileId.keyword",
+        },
+      },
+    });
 
-    const results = await result.body.hits.hits.map(document => {
+    const results = await result.body.hits.hits.map((document) => {
       let highlighted = null;
       if (fields.content) {
         highlighted = document.highlight.content[0];
-      };
+      }
       const fileResult = {
         fileId: document._source.fileId,
-        highlightedContent: highlighted
+        highlightedContent: highlighted,
       };
       return fileResult;
     });
@@ -117,8 +127,7 @@ async function search(call, callback) {
     });
 
     callback(null, { results: results });
-  }
-  catch (err) {
+  } catch (err) {
     logger.log({
       level: "error",
       message: `${err} `,
@@ -133,10 +142,12 @@ async function indexesCollector(permissionArray) {
   let ownersArray = [];
   let fileObj;
 
-  await Promise.all(permissionArray.map(async (permission) => {
-    fileObj = await getFileByID(permission.fileID);
-    filesArray.push(fileObj)
-  }));
+  await Promise.all(
+    permissionArray.map(async (permission) => {
+      fileObj = await getFileByID(permission.fileID);
+      filesArray.push(fileObj);
+    })
+  );
 
   if (filesArray.includes(null)) {
     return [];
@@ -153,10 +164,9 @@ async function indexesCollector(permissionArray) {
           return desendants.file.ownerID;
         });
 
-        ownersIds.push(file.ownerID)
+        ownersIds.push(file.ownerID);
         ownersArray = ownersArray.concat(ownersIds);
-      }
-      else if (file.type.includes("document")) {
+      } else if (file.type.includes("document")) {
         ownersArray.push(file.ownerID);
       }
     }
@@ -222,110 +232,111 @@ function getDesendantsById(folderId) {
 function queryOrganizer(fields, exactMatch) {
   let searchType;
 
-  if (exactMatch) {   //type of content search
+  if (exactMatch) {
+    //type of content search
     searchType = {
-      "match_phrase": {
-        "content": fields.content
-      }
-    }
-  }
-  else {
+      match_phrase: {
+        content: fields.content,
+      },
+    };
+  } else {
     searchType = {
-      "query_string": {
-        "default_field": "content",
-        "query": ` ${fields.content}*`
-      }
-    }
+      query_string: {
+        default_field: "content",
+        query: ` ${fields.content}*`,
+      },
+    };
   }
 
   const query = [
     {
-      "query_string": {
-        "default_field": "fileName",
-        "query": `*${fields.fileName}*`
-      }
+      query_string: {
+        default_field: "fileName",
+        query: `*${fields.fileName}*`,
+      },
     },
     {
-      "query_string": {
-        "default_field": "type",
-        "query": `*${fields.type}*`
-      }
+      query_string: {
+        default_field: "type",
+        query: `*${fields.type}*`,
+      },
     },
     searchType,
     {
-      "nested": {
-        "path": "permissions",
-        "query": {
-          "bool": {
-            "must": [{
-              "bool": {
-                "should": [{
-                  "query_string": {
-                    "default_field": "permissions.user.hierarchy",
-                    "query": `*${fields.permissions}*`
-                  }
+      nested: {
+        path: "permissions",
+        query: {
+          bool: {
+            must: [
+              {
+                bool: {
+                  should: [
+                    {
+                      query_string: {
+                        default_field: "permissions.user.hierarchy",
+                        query: `*${fields.permissions}*`,
+                      },
+                    },
+                    {
+                      query_string: {
+                        default_field: "permissions.user.name",
+                        query: `*${fields.permissions}*`,
+                      },
+                    },
+                  ],
                 },
-                {
-                  "query_string": {
-                    "default_field": "permissions.user.name",
-                    "query": `*${fields.permissions}*`
-                  }
-                }]
-              }
-            },
-            {
-              "query_string": {
-                "default_field": "permissions.user.userId",
-                "query": userId
-              }
-            }
-            ]
-
-          }
-        }
-      }
-    }
+              },
+              {
+                query_string: {
+                  default_field: "permissions.user.userId",
+                  query: userId,
+                },
+              },
+            ],
+          },
+        },
+      },
+    },
   ];
 
   if (fields.owner) {
-    const ownerHierarchy =
-    {
-      "query_string": {
-        "default_field": "owner.hierarchy",
-        "query": `*${fields.owner.hierarchy}*`
-      }
+    const ownerHierarchy = {
+      query_string: {
+        default_field: "owner.hierarchy",
+        query: `*${fields.owner.hierarchy}*`,
+      },
     };
     const ownerName = {
-      "query_string": {
-        "default_field": "owner.name",
-        "query": `*${fields.owner.name}*`
-      }
+      query_string: {
+        default_field: "owner.name",
+        query: `*${fields.owner.name}*`,
+      },
     };
 
     query.push(ownerHierarchy);
-    query.push(ownerName)
+    query.push(ownerName);
   }
 
   if (fields.updatedAt) {
     const updatedAt = {
-      "range": {
-        "updatedAt": {
-          "gte": fields.updatedAt.start,
-          "lte": fields.updatedAt.end
-        }
-      }
+      range: {
+        updatedAt: {
+          gte: fields.updatedAt.start,
+          lte: fields.updatedAt.end,
+        },
+      },
     };
     pushToQuery(fields.updatedAt, query, updatedAt);
   }
 
   if (fields.createdAt) {
     const createdAt = {
-      "range": {
-        "createdAt": {
-          "gte": fields.createdAt.start,
-          "lte": fields.createdAt.end
-        }
-      }
+      range: {
+        createdAt: {
+          gte: fields.createdAt.start,
+          lte: fields.createdAt.end,
+        },
+      },
     };
     pushToQuery(fields.createdAt, query, createdAt);
   }
@@ -339,19 +350,17 @@ function pushToQuery(field, query, rangeQuery) {
 
   if (field.start && field.end) {
     query.push(rangeQuery);
-  }
-
-  else if (field.start || field.end) {
+  } else if (field.start || field.end) {
     if (!field.end) {
       field.end = newest;
-      rangeQuery.range[fieldName].lte = field.end
+      rangeQuery.range[fieldName].lte = field.end;
     }
 
     if (!field.start) {
       field.start = oldest;
-      rangeQuery.range[fieldName].gte = field.start
+      rangeQuery.range[fieldName].gte = field.start;
     }
-    
+
     query.push(rangeQuery);
   }
 }

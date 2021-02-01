@@ -20,9 +20,4 @@ public class Config {
 
     public static final String ERROR_QUEUE_NAME = (System.getenv("INDEXING_ERROR_QUEUE_NAME")!=null) ? System.getenv("INDEXING_ERROR_QUEUE_NAME") : "error" ;
     public static final String  ERROR_ROUTING_KEY = (System.getenv("INDEXING_ERROR_ROUTING_KEY")!=null) ? System.getenv("INDEXING_ERROR_ROUTING_KEY") : "errorKey";
-
-    public static final HashSet<MessageEvent> DELETE_EVENTS = new HashSet<MessageEvent>() {{
-        add(MessageEvent.CONTENT_CHANGE);
-        add(MessageEvent.DELETE);
-    }};
 }
