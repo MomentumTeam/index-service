@@ -1,10 +1,11 @@
 FROM maven:3.6.3-jdk-11-slim
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-COPY . /usr/src/mymaven
-RUN apt-get update && apt-get install dos2unix && dos2unix /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
+# COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY . /mavenProject
+# RUN apt-get update && apt-get install dos2unix && dos2unix /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
 
 #Start application
-WORKDIR /usr/src/mymaven
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["bash"]
+WORKDIR /mavenProject
+RUN mvn clean package spring-boot:repackage
+RUN chmod +x ./target/drive-service-1.0-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar", "./target/drive-service-1.0-SNAPSHOT.jar"]

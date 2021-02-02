@@ -5,12 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>drive-service</artifactId>
+    <artifactId>delete-service</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <start-class>Main</start-class>
     </properties>
 
     <dependencies>
@@ -86,4 +87,23 @@
             <version>7.10.0</version>
         </dependency>
     </dependencies>
+        <build>
+<plugins>
+   <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+            <fork>true</fork>
+            <mainClass>${start-class}</mainClass>
+        </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+        </executions>
+    </plugin>
+</plugins>
+</build>
 </project>
