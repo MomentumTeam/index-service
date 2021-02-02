@@ -8,16 +8,16 @@ service Search {
 
 message SearchRequest {
   //The userID of the person who does the search.
-  required string userID = 1;
+  string userID = 1;
 
   //exactMatch- which sets the type of search(relevant to the content search).
-  required bool exactMatch=2;
+  bool exactMatch=2;
 
   //The fields which contains what the user wants to search
-  required MetaData fields = 3;
+  MetaData fields = 3;
   
   //resultsAmount- the amount of results to be returned
-  required Amount resultsAmount = 4;
+  Amount resultsAmount = 4;
 }
 
 message Amount {
