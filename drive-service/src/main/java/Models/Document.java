@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class Document implements Serializable {
     private ElasticOperation elasticOperation;
@@ -16,11 +14,13 @@ public class Document implements Serializable {
     private FileMetadata metadata;
     private Permission[] permissions;
     private String content;
+    private String dataTime;
 
     public Document(@JsonProperty("fileId") String fileId ,
                     @JsonProperty("elasticOperation") ElasticOperation elasticOperation){
         this.fileId = fileId;
         this.elasticOperation = elasticOperation;
+        this.dataTime = "";
     }
 
     public Document(@JsonProperty("fileId") String fileId,
@@ -33,7 +33,10 @@ public class Document implements Serializable {
         this.permissions = permissions;
         this.content = content;
         this.elasticOperation = elasticOperation;
+        this.dataTime = "";
     }
+
+    public void setDataTime(@JsonProperty("dataTime") String dataTime) { this.dataTime = dataTime; }
 
     public void setFileId(@JsonProperty("fileId") String fileId) {
         this.fileId = fileId;
@@ -54,6 +57,8 @@ public class Document implements Serializable {
     public void setPermissions(@JsonProperty("permissions") Permission[] permissions) {
         this.permissions = permissions;
     }
+
+    public String getDataTime() { return dataTime; }
 
     public String getFileId() {
         return fileId;
@@ -95,7 +100,8 @@ public class Document implements Serializable {
                         "metadata=%s,\n" +
                         "permissions=%s,\n" +
                         contentString + ",\n" +
-                        "elasticOperation=%s}", fileIdString,metadataString,
-                permissionsString,elasticOperationString);
+                        "elasticOperation=%s,\n" +
+                        "dataTime=%s}", fileIdString,metadataString,
+                permissionsString,elasticOperationString,dataTime);
     }
 }

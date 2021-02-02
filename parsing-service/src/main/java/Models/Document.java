@@ -16,18 +16,23 @@ public class Document implements Serializable {
     private FileMetadata metadata;
     private Permission[] permissions;
     private String content;
+    private String dataTime;
 
     public Document(@JsonProperty("fileId") String fileId,
                     @JsonProperty("metadata") FileMetadata metadata,
                     @JsonProperty("permissions") Permission[] permissions,
                     @JsonProperty("content") String content,
-                    @JsonProperty("elasticOperation") ElasticOperation elasticOperation){
+                    @JsonProperty("elasticOperation") ElasticOperation elasticOperation,
+                    @JsonProperty("dataTime") String dataTime){
         this.fileId = fileId;
         this.metadata = metadata;
         this.permissions = permissions;
         this.content = content;
         this.elasticOperation = elasticOperation;
+        this.dataTime = dataTime;
     }
+
+    public void setDataTime(@JsonProperty("dataTime") String dataTime) { this.dataTime = dataTime; }
 
     public void setFileId(@JsonProperty("fileId") String fileId) {
         this.fileId = fileId;
@@ -48,6 +53,8 @@ public class Document implements Serializable {
     public void setPermissions(@JsonProperty("permissions") Permission[] permissions) {
         this.permissions = permissions;
     }
+
+    public String getDataTime() { return dataTime; }
 
     public ElasticOperation getElasticOperation() {
         return elasticOperation;
@@ -82,7 +89,8 @@ public class Document implements Serializable {
                         "metadata=%s,\n" +
                         "permissions=%s,\n" +
                         contentString + ",\n" +
-                        "elasticOperation=%s}", fileIdString,metadataString,
-                permissionsString,elasticOperationString);
+                        "elasticOperation=%s,\n" +
+                        "dataTime=%s}", fileIdString,metadataString,
+                permissionsString,elasticOperationString,dataTime);
     }
 }

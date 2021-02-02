@@ -36,20 +36,6 @@ public class Producer {
                     Config.EXCHANGE_NAME, Config.ERROR_ROUTING_KEY, null);
 
             AmqpAdmin admin = new RabbitAdmin(connectionFactory);
-
-            LOGGER.info(String.format(Config.EXCHANGE_NAME));
-            LOGGER.info(String.format(Config.EVENTS_QUEUE_NAME));
-            LOGGER.info(String.format(Config.EVENTS_ROUTING_KEY));
-
-            LOGGER.info(String.format(Config.DELETE_QUEUE_NAME));
-
-            LOGGER.info(String.format(Config.DELETE_ROUTING_KEY));
-            LOGGER.info(String.format(Config.DRIVE_SERVICE_QUEUE_NAME));
-            LOGGER.info(String.format(Config.DRIVE_SERVICE_ROUTING_KEY));
-            LOGGER.info(String.format(Config.ERROR_QUEUE_NAME));
-            LOGGER.info(String.format(Config.ERROR_ROUTING_KEY));
-            LOGGER.info(String.format("Declared queue '%s'",Config.DELETE_QUEUE_NAME));
-
             admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
             LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
             admin.declareQueue(new Queue(Config.DELETE_QUEUE_NAME));

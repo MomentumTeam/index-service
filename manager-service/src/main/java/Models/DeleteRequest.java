@@ -6,24 +6,14 @@ import java.text.ParseException;
 
 public class DeleteRequest implements Serializable{
     public String fileId;
-    public boolean createAfter;
 
-    public DeleteRequest(@JsonProperty("fileId") String fileId ,
-                         @JsonProperty("createAfter") boolean createAfter)
+    public DeleteRequest(@JsonProperty("fileId") String fileId)
             throws ParseException{
         this.fileId = fileId;
-        this.createAfter = createAfter;
     }
 
     public String getFileId() {
         return fileId;
-    }
-    public boolean getCreateAfter() {
-        return createAfter;
-    }
-
-    public void setCreateAfter(boolean createAfter) {
-        this.createAfter = createAfter;
     }
 
     public void setFileId(String fileId) {
@@ -31,7 +21,7 @@ public class DeleteRequest implements Serializable{
     }
 
     public String toString(){
-        return "DeleteRequest{fileId='" + fileId + "', createAfter='" + createAfter + "'}";
+        return "DeleteRequest{fileId='" + fileId + "'}";
     }
 
 
