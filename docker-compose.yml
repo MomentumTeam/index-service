@@ -12,6 +12,16 @@ services:
       timeout: 10s
       retries: 15
 
+  # rabbitmq:
+  #   image: "rabbitmq:3-management"
+  #   hostname: "rabbitmq"
+  #   ports:
+  #     - "15672:15672"
+  #     - "5672:5672"
+  #   labels:
+  #     NAME: "rabbitmq"
+  #   volumes:
+  #     - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
   managerService:
     image: manager-spring-boot
     build: ./manager-service
@@ -83,29 +93,9 @@ services:
       - INDEXING_ELASTIC_SERVICE_ROUTING_KEY=${INDEXING_ELASTIC_SERVICE_ROUTING_KEY}
       - INDEXING_ERROR_QUEUE_NAME=${INDEXING_ERROR_QUEUE_NAME}
       - INDEXING_ERROR_ROUTING_KEY=${INDEXING_ERROR_ROUTING_KEY}
-      - INDEXING_ELASTIC_HOST=${INDEXING_ELASTIC_HOST}
-      - INDEXING_ELASTIC_PORT=${INDEXING_ELASTIC_PORT}
-      - INDEXING_ELASTIC_PROTOCOL=${INDEXING_ELASTIC_PROTOCOL}
       - INDEXING_ELASTIC_URLS=${INDEXING_ELASTIC_URLS}
     depends_on:
       - rabbitmq
-
-#  errorService:
-#    image: error-spring-boot
-#    build: ./error-service
-#    environment:
-#      - INDEXING_RABBIT_URL=${INDEXING_RABBIT_URL}
-#      - INDEXING_EXCHANGE_NAME=${INDEXING_EXCHANGE_NAME}
-#      - INDEXING_DELETE_QUEUE_NAME=${INDEXING_DELETE_QUEUE_NAME}
-#      - INDEXING_DELETE_ROUTING_KEY=${INDEXING_DELETE_ROUTING_KEY}
-#      - INDEXING_ERROR_QUEUE_NAME=${INDEXING_ERROR_QUEUE_NAME}
-#      - INDEXING_ERROR_ROUTING_KEY=${INDEXING_ERROR_ROUTING_KEY}
-#      - INDEXING_DRIVE_URL=${INDEXING_DRIVE_URL}
-#      - INDEXING_DOWNLOAD_SERVICE_PORT=${INDEXING_DOWNLOAD_SERVICE_PORT}
-#      - INDEXING_CHUNK_SIZE=${INDEXING_CHUNK_SIZE}
-#      - INDEXING_PRE_SUFF_SIZE=${INDEXING_PRE_SUFF_SIZE}
-#    depends_on:
-#      - rabbitmq
 
   parsingService:
     image: parsing-spring-boot
@@ -130,9 +120,6 @@ services:
   search:
     build: ./search-service
     environment:
-      - INDEXING_DRIVE_URL=${INDEXING_DRIVE_URL}
-      - INDEXING_FILE_SERVICE_PORT=${INDEXING_FILE_SERVICE_PORT}
-      - INDEXING_PERMISSION_SERVICE_PORT=${INDEXING_PERMISSION_SERVICE_PORT}
       - INDEXING_SEARCH_URL=${INDEXING_SEARCH_URL}
       - INDEXING_OLDEST_YEAR=${INDEXING_OLDEST_YEAR}
       - INDEXING_OLDEST_MONTH=${INDEXING_OLDEST_MONTH}
@@ -144,3 +131,19 @@ services:
     ports:
       - 8005:8005
     restart: on-failure
+
+#  errorService:
+#    image: error-spring-boot
+#    build: ./error-service
+#    environment:
+#      - INDEXING_RABBIT_URL=${INDEXING_RABBIT_URL}
+#      - INDEXING_EXCHANGE_NAME=${INDEXING_EXCHANGE_NAME}
+#      - INDEXING_DELETE_QUEUE_NAME=${INDEXING_DELETE_QUEUE_NAME}
+#      - INDEXING_DELETE_ROUTING_KEY=${INDEXING_DELETE_ROUTING_KEY}
+#      - INDEXING_ERROR_QUEUE_NAME=${INDEXING_ERROR_QUEUE_NAME}
+#      - INDEXING_ERROR_ROUTING_KEY=${INDEXING_ERROR_ROUTING_KEY}
+#      - INDEXING_DOWNLOAD_SERVICE_PORT=${INDEXING_DOWNLOAD_SERVICE_PORT}
+#      - INDEXING_CHUNK_SIZE=${INDEXING_CHUNK_SIZE}
+#      - INDEXING_PRE_SUFF_SIZE=${INDEXING_PRE_SUFF_SIZE}
+#    depends_on:
+#      - rabbitmq

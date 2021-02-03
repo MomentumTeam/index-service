@@ -6,7 +6,15 @@ import java.util.HashSet;
 
 public class Config {
 
-    public static final String RABBIT_URL = (System.getenv("INDEXING_RABBIT_URL")!=null) ? System.getenv("INDEXING_RABBIT_URL") : "localhost" ;
+    public static final String RABBIT_URL = (System.getenv("INDEXING_RABBIT_URL")!=null) ? System.getenv("INDEXING_RABBIT_URL") : "amqp://localhost" ;
+//    public static final int RABBIT_PORT= (System.getenv("INDEXING_RABBIT_PORT")!=null) ? Integer.parseInt(System.getenv("INDEXING_RABBIT_HOST")) : 5672 ;
+
+//    public static final String RABBIT_HOST = (System.getenv("INDEXING_RABBIT_HOST")!=null) ? System.getenv("INDEXING_RABBIT_HOST") : "localhost" ;
+//    public static final int RABBIT_PORT = (System.getenv("INDEXING_RABBIT_PORT")!=null) ? Integer.parseInt(System.getenv("INDEXING_RABBIT_PORT")) : 5672 ;
+//    public static final String RABBIT_USER = (System.getenv("INDEXING_RABBIT_USER")!=null) ? System.getenv("INDEXING_RABBIT_USER") : "guest" ;
+//    public static final String RABBIT_PASSWORD = (System.getenv("INDEXING_RABBIT_PASSWORD")!=null) ? System.getenv("INDEXING_RABBIT_PASSWORD") : "guest" ;
+
+
     public static final String EXCHANGE_NAME = (System.getenv("INDEXING_EXCHANGE_NAME")!=null) ? System.getenv("INDEXING_EXCHANGE_NAME") : "indexService" ;
 
     public static final String EVENTS_QUEUE_NAME = (System.getenv("INDEXING_EVENTS_QUEUE_NAME")!=null) ? System.getenv("INDEXING_EVENTS_QUEUE_NAME") : "events";

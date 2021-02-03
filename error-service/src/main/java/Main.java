@@ -1,4 +1,5 @@
 import Rabbit.Consumer;
+import Rabbit.Producer;
 import Services.BeeperControl;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistry;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,7 @@ public class Main {
 
 
     public static void main (String[] args){
+        Producer.initQueues();
         SpringApplication.run(Consumer.class,args);
 //        System.exit(SpringApplication
 //                .exit(SpringApplication.run(Consumer.class, args)));

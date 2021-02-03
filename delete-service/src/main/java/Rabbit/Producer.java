@@ -23,30 +23,9 @@ public class Producer {
 
     public Producer() throws Exception {
         try {
-            ConnectionFactory connectionFactory = new CachingConnectionFactory(Config.RABBIT_URL);
-
-            Binding eventBinding = new Binding(Config.EVENTS_QUEUE_NAME, Binding.DestinationType.QUEUE,
-                    Config.EXCHANGE_NAME, Config.EVENTS_ROUTING_KEY, null);
-
-            Binding errorBinding = new Binding(Config.ERROR_QUEUE_NAME, Binding.DestinationType.QUEUE,
-                    Config.EXCHANGE_NAME, Config.ERROR_ROUTING_KEY, null);
-
-            AmqpAdmin admin = new RabbitAdmin(connectionFactory);
-
-
-            admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
-            LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
-            admin.declareQueue(new Queue(Config.EVENTS_QUEUE_NAME));
-            LOGGER.info(String.format("Declared queue '%s'",Config.EVENTS_QUEUE_NAME));
-            admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
-            LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
-
-            admin.declareBinding(eventBinding);
-            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.EVENTS_QUEUE_NAME,Config.EXCHANGE_NAME));
-            admin.declareBinding(errorBinding);
-            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ERROR_QUEUE_NAME,Config.EXCHANGE_NAME));
-
-            RabbitTemplate template = new RabbitTemplate(new CachingConnectionFactory(Config.RABBIT_URL));
+            CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+            connectionFactory.setUri(Config.RABBIT_URL);
+            RabbitTemplate template = new RabbitTemplate(connectionFactory);
             template.setMessageConverter(producerMessageConverter());
             template.setChannelTransacted(true);
             this.rabbitTemplate = template;
@@ -56,6 +35,33 @@ public class Producer {
         }
     }
 
+
+    public static void initQueues(){
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+        connectionFactory.setUri(Config.RABBIT_URL);
+
+        Binding eventBinding = new Binding(Config.EVENTS_QUEUE_NAME, Binding.DestinationType.QUEUE,
+                Config.EXCHANGE_NAME, Config.EVENTS_ROUTING_KEY, null);
+
+        Binding errorBinding = new Binding(Config.ERROR_QUEUE_NAME, Binding.DestinationType.QUEUE,
+                Config.EXCHANGE_NAME, Config.ERROR_ROUTING_KEY, null);
+
+        AmqpAdmin admin = new RabbitAdmin(connectionFactory);
+
+
+        admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
+        LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
+        admin.declareQueue(new Queue(Config.EVENTS_QUEUE_NAME));
+        LOGGER.info(String.format("Declared queue '%s'",Config.EVENTS_QUEUE_NAME));
+        admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
+        LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
+
+        admin.declareBinding(eventBinding);
+        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.EVENTS_QUEUE_NAME,Config.EXCHANGE_NAME));
+        admin.declareBinding(errorBinding);
+        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ERROR_QUEUE_NAME,Config.EXCHANGE_NAME));
+        connectionFactory.resetConnection();
+    }
 
     public Jackson2JsonMessageConverter producerMessageConverter() {
         ObjectMapper mapper = new ObjectMapper();

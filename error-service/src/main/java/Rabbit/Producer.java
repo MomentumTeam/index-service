@@ -23,27 +23,32 @@ public class Producer {
 
     public Producer() throws Exception {
         try {
-            ConnectionFactory connectionFactory = new CachingConnectionFactory(Config.RABBIT_URL);
-
-            Binding deleteBinding = new Binding(Config.DELETE_QUEUE_NAME, Binding.DestinationType.QUEUE,
-                    Config.EXCHANGE_NAME, Config.DELETE_ROUTING_KEY, null);
-
-            AmqpAdmin admin = new RabbitAdmin(connectionFactory);
-
-
-            admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
-            admin.declareQueue(new Queue(Config.DELETE_QUEUE_NAME));
-
-            admin.declareBinding(deleteBinding);
-
-
-            RabbitTemplate template = new RabbitTemplate(new CachingConnectionFactory(Config.RABBIT_URL));
+            CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+            connectionFactory.setUri(Config.RABBIT_URL);
+            RabbitTemplate template = new RabbitTemplate(connectionFactory);
             template.setMessageConverter(producerMessageConverter());
             this.rabbitTemplate = template;
         }
         catch(Exception exception){
             throw exception;
         }
+    }
+
+    public static void initQueues(){
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+        connectionFactory.setUri(Config.RABBIT_URL);
+
+        Binding deleteBinding = new Binding(Config.DELETE_QUEUE_NAME, Binding.DestinationType.QUEUE,
+                Config.EXCHANGE_NAME, Config.DELETE_ROUTING_KEY, null);
+
+        AmqpAdmin admin = new RabbitAdmin(connectionFactory);
+
+
+        admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
+        admin.declareQueue(new Queue(Config.DELETE_QUEUE_NAME));
+
+        admin.declareBinding(deleteBinding);
+        connectionFactory.resetConnection();
     }
 
 

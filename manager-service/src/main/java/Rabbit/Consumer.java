@@ -80,7 +80,11 @@ public class Consumer {
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-        connectionFactory.setHost(Config.RABBIT_URL);
+        connectionFactory.setUri(Config.RABBIT_URL);
+//        connectionFactory.setPort(Config.RABBIT_PORT);
+//        connectionFactory.setUsername(Config.RABBIT_USER);
+//        connectionFactory.setPassword(Config.RABBIT_PASSWORD);
+
         return connectionFactory;
     }
 
