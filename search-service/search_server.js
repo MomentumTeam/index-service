@@ -5,9 +5,9 @@ const dotenv = require("dotenv");
 const { Console } = require("winston/lib/winston/transports");
 dotenv.config();
 
-const SEARCH_PROTO_PATH = __dirname + "/protoFiles/search.proto";
-const PERMMISSION_PROTO_PATH = __dirname + "/protoFiles/permission.proto";
-const FILE_PROTO_PATH = __dirname + "/protoFiles/file.proto";
+const SEARCH_PROTO_PATH = `${__dirname}/proto/search/search.proto`;
+const PERMMISSION_PROTO_PATH = `${__dirname}/proto/permission/permission.proto`;
+const FILE_PROTO_PATH = `${__dirname}/proto/file/file.proto`;
 
 const logger = require("./logger");
 
