@@ -28,30 +28,29 @@ const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition)
 const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
 
 // const clientES = new Client({ node: process.env.INDEXING_ELASTIC_PROTOCOL+"://"+process.env.INDEXING_ELASTIC_HOST+":"+process.env.INDEXING_ELASTIC_PORT });
- logger.log({
-      level: "info",
-      message: `liora - ${process.env.INDEXING_ELASTIC_URLS} `,
-      label: `liora`,
-    });
+logger.log({
+  level: "info",
+  message: `liora - ${process.env.INDEXING_ELASTIC_URLS} `,
+  label: `liora`,
+});
 
-     logger.log({
-          level: "error",
-          message: `liora - ${process.env.INDEXING_PERMISSION_SERVICE_URL}  `,
-          label: `liora`,
-        });
+logger.log({
+  level: "error",
+  message: `liora - ${process.env.INDEXING_PERMISSION_SERVICE_URL}  `,
+  label: `liora`,
+});
 
-         logger.log({
-              level: "error",
-              message: `liora - ${process.env.INDEXING_FILE_SERVICE_URL} `,
-              label: `liora`,
-            });
+logger.log({
+  level: "error",
+  message: `liora - ${process.env.INDEXING_FILE_SERVICE_URL} `,
+  label: `liora`,
+});
 
 const clientES = new Client({ node: process.env.INDEXING_ELASTIC_URLS.split(",") });
 
 const permissionClient = new permission_proto.Permission(`${process.env.INDEXING_PERMISSION_SERVICE_URL}`, grpc.credentials.createInsecure());
 
 const fileClient = new file_proto.FileService(`${process.env.INDEXING_FILE_SERVICE_URL}`, grpc.credentials.createInsecure());
-
 
 function main() {
   var server = new grpc.Server();

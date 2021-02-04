@@ -21,7 +21,7 @@ public class Config {
 
     public static String FOLDER_TYPE = (System.getenv("INDEXING_PARSING_SERVICE_ROUTING_KEY")!=null) ? System.getenv("INDEXING_PARSING_SERVICE_ROUTING_KEY") : "parsingServiceKey";
 
-    public static String FILE_SERVICE_URL = (System.getenv("INDEXING_FILE_SERVICE_URL")!=null) ? System.getenv("INDEXING_FILE_SERVICE_URL") : "40.127.198.131:8083";
-    public static String PERMISSION_SERVICE_URL = (System.getenv("INDEXING_PERMISSION_SERVICE_URL")!=null) ? System.getenv("INDEXING_PERMISSION_SERVICE_URL") : "40.127.198.131:8087";
-    public static String USER_SERVICE_URL = (System.getenv("INDEXING_USER_SERVICE_URL")!=null) ? System.getenv("INDEXING_USER_SERVICE_URL") : "40.127.198.131:8086";
+    public static String FILE_SERVICE_URL = (System.getenv("INDEXING_FILE_SERVICE_URL")!=null) ? System.getenv("INDEXING_FILE_SERVICE_URL") : "13.79.86.8:8083";
+    public static String PERMISSION_SERVICE_URL = (System.getenv("INDEXING_PERMISSION_SERVICE_URL")!=null) ? System.getenv("INDEXING_PERMISSION_SERVICE_URL") : "13.79.86.8:8087";
+    public static String USER_SERVICE_URL = (System.getenv("INDEXING_USER_SERVICE_URL")!=null) ? System.getenv("INDEXING_USER_SERVICE_URL") : "13.79.86.8:8086";
 }

@@ -21,9 +21,9 @@ public class Config {
 //    public static int DOWNLOAD_SERVICE_PORT = (System.getenv("INDEXING_DOWNLOAD_SERVICE_PORT")!=null) ? Integer.parseInt(System.getenv("INDEXING_DOWNLOAD_SERVICE_PORT")) : 8082;
 //    public static int FILE_SERVICE_PORT =  (System.getenv("INDEXING_FILE_SERVICE_PORT")!=null) ? Integer.parseInt(System.getenv("INDEXING_FILE_SERVICE_PORT")) : 8083;
 
-    public static String FILE_SERVICE_URL =  (System.getenv("INDEXING_FILE_SERVICE_URL")!=null) ? System.getenv("INDEXING_FILE_SERVICE_URL") : "40.127.198.131:8083";
-    public static String DOWNLOAD_SERVICE_URL =  (System.getenv("INDEXING_DOWNLOAD_SERVICE_URL")!=null) ? System.getenv("INDEXING_DOWNLOAD_SERVICE_URL") : "40.127.198.131:8082";
-    public static int CHUNK_SIZE = (System.getenv("INDEXING_CHUNK_SIZE")!=null) ? Integer.parseInt(System.getenv("INDEXING_CHUNK_SIZE")) : 1000;
+    public static String FILE_SERVICE_URL =  (System.getenv("INDEXING_FILE_SERVICE_URL")!=null) ? System.getenv("INDEXING_FILE_SERVICE_URL") : "13.79.86.8:8083";
+    public static String DOWNLOAD_SERVICE_URL =  (System.getenv("INDEXING_DOWNLOAD_SERVICE_URL")!=null) ? System.getenv("INDEXING_DOWNLOAD_SERVICE_URL") : "13.79.86.8:8082";
+    public static int CHUNK_SIZE = (System.getenv("INDEXING_CHUNK_SIZE")!=null) ? Integer.parseInt(System.getenv("INDEXING_CHUNK_SIZE")) : 10000;
     public static int SUFF_PRE_SIZE = (System.getenv("INDEXING_SUFF_PRE_SIZE")!=null) ? Integer.parseInt(System.getenv("INDEXING_SUFF_PRE_SIZE")) : 100;
     public static int SUFF_PRE_COUNT_PER_DOCUMENT= CHUNK_SIZE / SUFF_PRE_SIZE;
 

@@ -15,7 +15,9 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.index.reindex.UpdateByQueryRequest;
@@ -71,11 +73,14 @@ public class ElasticService {
         }
     }
 
-    public static void delete(String fileId, String index) throws Exception {
+    public static void delete(String fileId, String dataTime, String index) throws Exception {
         try {
             DeleteByQueryRequest request =
                     new DeleteByQueryRequest(index);
-            request.setQuery(new MatchQueryBuilder("fileId",fileId));
+            BoolQueryBuilder boolQuery = new BoolQueryBuilder();
+            boolQuery.must(new MatchQueryBuilder("fileId",fileId));
+            boolQuery.must(new MatchQueryBuilder("dataTime",dataTime));
+            request.setQuery(boolQuery);
             BulkByScrollResponse bulkResponse =
                     client.deleteByQuery(request, RequestOptions.DEFAULT);
         }
@@ -90,7 +95,7 @@ public class ElasticService {
             String dataTimeFromElastic = (String)(firstHit.get("dataTime"));
             String dataTime = document.getDataTime();
             if(!dataTimeFromElastic.equals(dataTime)){
-                ElasticService.delete(document.getFileId(),index);
+                ElasticService.delete(document.getFileId(), dataTimeFromElastic, index);
             }
         }
         catch(Exception e){
