@@ -1,5 +1,6 @@
 const { Client } = require("@elastic/elasticsearch");
 const grpc = require("@grpc/grpc-js");
+const axios = require('axios').default;
 const health = require('grpc-health-check');
 const protoLoader = require("@grpc/proto-loader");
 const dotenv = require("dotenv");
@@ -9,8 +10,11 @@ dotenv.config();
 // Define service status map. Key is the service name, value is the corresponding status.
 // By convention, the empty string "" key represents that status of the entire server.
 const healthCheckStatusMap = {
-  '': proto.grpc.health.v1.HealthCheckResponse.ServingStatus.SERVING
+  '': proto.grpc.health.v1.HealthCheckResponse.ServingStatus.UNKNOWN
 };
+
+// Construct the service implementation
+let healthImpl = new health.Implementation(healthCheckStatusMap);
 
 // Elastic
 const clientES = new Client({ node: process.env.INDEXING_ELASTIC_URLS.split(",") });
@@ -41,13 +45,33 @@ const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
 const permissionClient = new permission_proto.Permission(`${process.env.INDEXING_PERMISSION_SERVICE_URL}`, grpc.credentials.createInsecure());
 const fileClient = new file_proto.FileService(`${process.env.INDEXING_FILE_SERVICE_URL}`, grpc.credentials.createInsecure());
 
+// Health check - without elastic access the service won't work
+function healthCheck() {
+  process.env.INDEXING_ELASTIC_URLS.split(",").forEach(async(elasticUrl) => {
+    let response = await axios.get(elasticUrl+'/_cluster/health');
+
+    if ( response.status === 200 ) {
+      healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.SERVING);
+    } else {
+      logger.log({
+        level: "error",
+        message: `elastic url ${elasticUrl} not healthy, status: ${response.status}`,
+        label: `elastic-health`,
+      });
+      
+      healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.NOT_SERVING);
+    }
+  });
+}
+
 function main() {
   var server = new grpc.Server();
   server.addService(search_proto.Search.service, { search: search });
-
-  // Construct the service implementation
-  let healthImpl = new health.Implementation(healthCheckStatusMap);
   
+  // Check the health status every 5 min
+  healthCheck()
+  setInterval(healthCheck, 300000);
+
   // Add the service and implementation to your pre-existing gRPC-node server
   server.addService(health.service, healthImpl);
 
