@@ -1,10 +1,21 @@
 const { Client } = require("@elastic/elasticsearch");
 const grpc = require("@grpc/grpc-js");
+const health = require('grpc-health-check');
 const protoLoader = require("@grpc/proto-loader");
 const dotenv = require("dotenv");
-const { Console } = require("winston/lib/winston/transports");
+
 dotenv.config();
 
+// Define service status map. Key is the service name, value is the corresponding status.
+// By convention, the empty string "" key represents that status of the entire server.
+const healthCheckStatusMap = {
+  '': proto.grpc.health.v1.HealthCheckResponse.ServingStatus.SERVING
+};
+
+// Elastic
+const clientES = new Client({ node: process.env.INDEXING_ELASTIC_URLS.split(",") });
+
+// Proto loader
 const SEARCH_PROTO_PATH = `${__dirname}/proto/search/search.proto`;
 const PERMMISSION_PROTO_PATH = `${__dirname}/proto/permission/permission.proto`;
 const FILE_PROTO_PATH = `${__dirname}/proto/file/file.proto`;
@@ -27,37 +38,28 @@ const search_proto = grpc.loadPackageDefinition(searchPackageDefinition).searchS
 const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition).permission;
 const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
 
-// const clientES = new Client({ node: process.env.INDEXING_ELASTIC_PROTOCOL+"://"+process.env.INDEXING_ELASTIC_HOST+":"+process.env.INDEXING_ELASTIC_PORT });
-logger.log({
-  level: "info",
-  message: `liora - ${process.env.INDEXING_ELASTIC_URLS} `,
-  label: `liora`,
-});
-
-logger.log({
-  level: "error",
-  message: `liora - ${process.env.INDEXING_PERMISSION_SERVICE_URL}  `,
-  label: `liora`,
-});
-
-logger.log({
-  level: "error",
-  message: `liora - ${process.env.INDEXING_FILE_SERVICE_URL} `,
-  label: `liora`,
-});
-
-const clientES = new Client({ node: process.env.INDEXING_ELASTIC_URLS.split(",") });
-
 const permissionClient = new permission_proto.Permission(`${process.env.INDEXING_PERMISSION_SERVICE_URL}`, grpc.credentials.createInsecure());
-
 const fileClient = new file_proto.FileService(`${process.env.INDEXING_FILE_SERVICE_URL}`, grpc.credentials.createInsecure());
 
 function main() {
   var server = new grpc.Server();
   server.addService(search_proto.Search.service, { search: search });
+
+  // Construct the service implementation
+  let healthImpl = new health.Implementation(healthCheckStatusMap);
+  
+  // Add the service and implementation to your pre-existing gRPC-node server
+  server.addService(health.service, healthImpl);
+
   server.bindAsync(`${process.env.INDEXING_SEARCH_URL}`, grpc.ServerCredentials.createInsecure(), () => {
     server.start();
+    logger.log({
+      level: "info",
+      message: `SERVER START AT:${process.env.INDEXING_SEARCH_URL}`,
+      label: `search-server`,
+    });
   });
+
 }
 
 main();
