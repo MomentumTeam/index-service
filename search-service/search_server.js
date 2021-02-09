@@ -48,18 +48,30 @@ const fileClient = new file_proto.FileService(`${process.env.INDEXING_FILE_SERVI
 // Health check - without elastic access the service won't work
 function healthCheck() {
   process.env.INDEXING_ELASTIC_URLS.split(",").forEach(async(elasticUrl) => {
-    let response = await axios.get(elasticUrl+'/_cluster/health');
+    try {
+      let response = await axios.get(elasticUrl+'/_cluster/health');
 
-    if ( response.status === 200 ) {
-      healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.SERVING);
-    } else {
-      logger.log({
-        level: "error",
-        message: `elastic url ${elasticUrl} not healthy, status: ${response.status}`,
-        label: `elastic-health`,
-      });
+      if ( response.status === 200 ) {
+        healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.SERVING);
+      } else {
+        logger.log({
+          level: "error",
+          message: `elastic url ${elasticUrl} not healthy, status: ${response.status}`,
+          label: `elastic-health`,
+        });
+        
+        healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.NOT_SERVING);
+      }
       
-      healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.NOT_SERVING);
+    } catch (error) {
+        logger.log({
+          level: "error",
+          message: `elastic url ${elasticUrl} not healthy`,
+          label: `elastic-health`,
+          error
+        });
+        
+        healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.NOT_SERVING);
     }
   });
 }
