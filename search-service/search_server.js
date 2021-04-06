@@ -1,7 +1,7 @@
 const { Client } = require("@elastic/elasticsearch");
 const grpc = require("@grpc/grpc-js");
-const axios = require('axios').default;
-const health = require('grpc-health-check');
+const axios = require("axios").default;
+const health = require("grpc-health-check");
 const protoLoader = require("@grpc/proto-loader");
 const dotenv = require("dotenv");
 
@@ -10,14 +10,15 @@ dotenv.config();
 // Define service status map. Key is the service name, value is the corresponding status.
 // By convention, the empty string "" key represents that status of the entire server.
 const healthCheckStatusMap = {
-  '': proto.grpc.health.v1.HealthCheckResponse.ServingStatus.UNKNOWN
+  "": proto.grpc.health.v1.HealthCheckResponse.ServingStatus.UNKNOWN,
 };
 
 // Construct the service implementation
 let healthImpl = new health.Implementation(healthCheckStatusMap);
 
+const elasticUrls = process.env.INDEXING_ELASTIC_URLS.split(",");
 // Elastic
-const clientES = new Client({ node: process.env.INDEXING_ELASTIC_URLS.split(",") });
+const clientES = new Client({ node: elasticUrls });
 
 // Proto loader
 const SEARCH_PROTO_PATH = `${__dirname}/proto/search/search.proto`;
@@ -42,46 +43,56 @@ const search_proto = grpc.loadPackageDefinition(searchPackageDefinition).searchS
 const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition).permission;
 const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
 
-const permissionClient = new permission_proto.Permission(`${process.env.INDEXING_PERMISSION_SERVICE_URL}`, grpc.credentials.createInsecure());
-const fileClient = new file_proto.FileService(`${process.env.INDEXING_FILE_SERVICE_URL}`, grpc.credentials.createInsecure());
+const permissionClient = new permission_proto.Permission(
+  `${process.env.INDEXING_PERMISSION_SERVICE_URL}`,
+  grpc.credentials.createInsecure()
+);
+const fileClient = new file_proto.FileService(
+  `${process.env.INDEXING_FILE_SERVICE_URL}`,
+  grpc.credentials.createInsecure()
+);
 
 // Health check - without elastic access the service won't work
-function healthCheck() {
-  process.env.INDEXING_ELASTIC_URLS.split(",").forEach(async(elasticUrl) => {
-    try {
-      let response = await axios.get(elasticUrl+'/_cluster/health');
+async function healthCheck() {
+  let isHealthy = false;
 
-      if ( response.status === 200 ) {
-        healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.SERVING);
-      } else {
-        logger.log({
-          level: "error",
-          message: `elastic url ${elasticUrl} not healthy, status: ${response.status}`,
-          label: `elastic-health`,
-        });
-        
-        healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.NOT_SERVING);
-      }
-      
-    } catch (error) {
+  await Promise.all(
+    elasticUrls.map(async (elasticUrl) => {
+      try {
+        let response = await axios.get(elasticUrl + "/_cluster/health");
+
+        if (response.status === 200) {
+          isHealthy = true;
+          healthImpl.setStatus("", proto.grpc.health.v1.HealthCheckResponse.ServingStatus.SERVING);
+        } else {
+          logger.log({
+            level: "error",
+            message: `elastic url ${elasticUrl} not healthy, status: ${response.status}`,
+            label: `elastic-health`,
+          });
+        }
+      } catch (error) {
         logger.log({
           level: "error",
           message: `elastic url ${elasticUrl} not healthy`,
           label: `elastic-health`,
-          error
+          error,
         });
-        
-        healthImpl.setStatus('', proto.grpc.health.v1.HealthCheckResponse.ServingStatus.NOT_SERVING);
-    }
-  });
+      }
+    })
+  );
+
+  if (!isHealthy) {
+    healthImpl.setStatus("", proto.grpc.health.v1.HealthCheckResponse.ServingStatus.NOT_SERVING);
+  }
 }
 
 function main() {
   var server = new grpc.Server();
   server.addService(search_proto.Search.service, { search: search });
-  
+
   // Check the health status every 5 min
-  healthCheck()
+  healthCheck();
   setInterval(healthCheck, 300000);
 
   // Add the service and implementation to your pre-existing gRPC-node server
@@ -95,7 +106,6 @@ function main() {
       label: `search-server`,
     });
   });
-
 }
 
 main();
@@ -381,7 +391,13 @@ function queryOrganizer(fields, exactMatch) {
 }
 
 function pushToQuery(field, query, rangeQuery) {
-  const oldest = new Date(process.env.INDEXING_OLDEST_YEAR, process.env.INDEXING_OLDEST_MONTH, process.env.INDEXING_OLDEST_DAY).getTime().toString();
+  const oldest = new Date(
+    process.env.INDEXING_OLDEST_YEAR,
+    process.env.INDEXING_OLDEST_MONTH,
+    process.env.INDEXING_OLDEST_DAY
+  )
+    .getTime()
+    .toString();
   const newest = Date.now().toString();
   const fieldName = Object.keys(rangeQuery.range)[0];
 
