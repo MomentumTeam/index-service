@@ -13,7 +13,9 @@
     "@elastic/elasticsearch": "^7.10.0",
     "@grpc/grpc-js": "^1.2.0",
     "@grpc/proto-loader": "^0.5.5",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
+    "grpc-health-check": "^1.8.0",
     "winston": "^3.3.3"
   }
 }

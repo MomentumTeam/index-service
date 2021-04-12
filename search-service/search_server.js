@@ -1,10 +1,26 @@
 const { Client } = require("@elastic/elasticsearch");
 const grpc = require("@grpc/grpc-js");
+const axios = require("axios").default;
+const health = require("grpc-health-check");
 const protoLoader = require("@grpc/proto-loader");
 const dotenv = require("dotenv");
-const { Console } = require("winston/lib/winston/transports");
+
 dotenv.config();
 
+// Define service status map. Key is the service name, value is the corresponding status.
+// By convention, the empty string "" key represents that status of the entire server.
+const healthCheckStatusMap = {
+  "": proto.grpc.health.v1.HealthCheckResponse.ServingStatus.UNKNOWN,
+};
+
+// Construct the service implementation
+let healthImpl = new health.Implementation(healthCheckStatusMap);
+
+const elasticUrls = process.env.INDEXING_ELASTIC_URLS.split(",");
+// Elastic
+const clientES = new Client({ node: elasticUrls });
+
+// Proto loader
 const SEARCH_PROTO_PATH = `${__dirname}/proto/search/search.proto`;
 const PERMMISSION_PROTO_PATH = `${__dirname}/proto/permission/permission.proto`;
 const FILE_PROTO_PATH = `${__dirname}/proto/file/file.proto`;
@@ -27,36 +43,68 @@ const search_proto = grpc.loadPackageDefinition(searchPackageDefinition).searchS
 const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition).permission;
 const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
 
-// const clientES = new Client({ node: process.env.INDEXING_ELASTIC_PROTOCOL+"://"+process.env.INDEXING_ELASTIC_HOST+":"+process.env.INDEXING_ELASTIC_PORT });
-logger.log({
-  level: "info",
-  message: `liora - ${process.env.INDEXING_ELASTIC_URLS} `,
-  label: `liora`,
-});
+const permissionClient = new permission_proto.Permission(
+  `${process.env.INDEXING_PERMISSION_SERVICE_URL}`,
+  grpc.credentials.createInsecure()
+);
+const fileClient = new file_proto.FileService(
+  `${process.env.INDEXING_FILE_SERVICE_URL}`,
+  grpc.credentials.createInsecure()
+);
 
-logger.log({
-  level: "error",
-  message: `liora - ${process.env.INDEXING_PERMISSION_SERVICE_URL}  `,
-  label: `liora`,
-});
+// Health check - without elastic access the service won't work
+async function healthCheck() {
+  let isHealthy = false;
 
-logger.log({
-  level: "error",
-  message: `liora - ${process.env.INDEXING_FILE_SERVICE_URL} `,
-  label: `liora`,
-});
+  await Promise.all(
+    elasticUrls.map(async (elasticUrl) => {
+      try {
+        let response = await axios.get(elasticUrl + "/_cluster/health");
 
-const clientES = new Client({ node: process.env.INDEXING_ELASTIC_URLS.split(",") });
+        if (response.status === 200) {
+          isHealthy = true;
+          healthImpl.setStatus("", proto.grpc.health.v1.HealthCheckResponse.ServingStatus.SERVING);
+        } else {
+          logger.log({
+            level: "error",
+            message: `elastic url ${elasticUrl} not healthy, status: ${response.status}`,
+            label: `elastic-health`,
+          });
+        }
+      } catch (error) {
+        logger.log({
+          level: "error",
+          message: `elastic url ${elasticUrl} not healthy`,
+          label: `elastic-health`,
+          error,
+        });
+      }
+    })
+  );
 
-const permissionClient = new permission_proto.Permission(`${process.env.INDEXING_PERMISSION_SERVICE_URL}`, grpc.credentials.createInsecure());
-
-const fileClient = new file_proto.FileService(`${process.env.INDEXING_FILE_SERVICE_URL}`, grpc.credentials.createInsecure());
+  if (!isHealthy) {
+    healthImpl.setStatus("", proto.grpc.health.v1.HealthCheckResponse.ServingStatus.NOT_SERVING);
+  }
+}
 
 function main() {
   var server = new grpc.Server();
   server.addService(search_proto.Search.service, { search: search });
+
+  // Check the health status every 5 min
+  healthCheck();
+  setInterval(healthCheck, 300000);
+
+  // Add the service and implementation to your pre-existing gRPC-node server
+  server.addService(health.service, healthImpl);
+
   server.bindAsync(`${process.env.INDEXING_SEARCH_URL}`, grpc.ServerCredentials.createInsecure(), () => {
     server.start();
+    logger.log({
+      level: "info",
+      message: `SERVER START AT:${process.env.INDEXING_SEARCH_URL}`,
+      label: `search-server`,
+    });
   });
 }
 
@@ -343,7 +391,13 @@ function queryOrganizer(fields, exactMatch) {
 }
 
 function pushToQuery(field, query, rangeQuery) {
-  const oldest = new Date(process.env.INDEXING_OLDEST_YEAR, process.env.INDEXING_OLDEST_MONTH, process.env.INDEXING_OLDEST_DAY).getTime().toString();
+  const oldest = new Date(
+    process.env.INDEXING_OLDEST_YEAR,
+    process.env.INDEXING_OLDEST_MONTH,
+    process.env.INDEXING_OLDEST_DAY
+  )
+    .getTime()
+    .toString();
   const newest = Date.now().toString();
   const fieldName = Object.keys(rangeQuery.range)[0];
 
