@@ -2,7 +2,9 @@ package Config;
 
 public class Config {
 
-    public static final String RABBIT_URL = (System.getenv("INDEXING_RABBIT_URL")!=null) ? System.getenv("INDEXING_RABBIT_URL") : "localhost" ;
+    public static final int HC_PORT = (System.getenv("INDEXING_ERROR_SERVICE_HC_PORT")!=null)? Integer.parseInt(System.getenv("INDEXING_ERROR_SERVICE_HC_PORT")): 8085;
+
+    public static final String RABBIT_URL = (System.getenv("INDEXING_RABBIT_URL")!=null) ? System.getenv("INDEXING_RABBIT_URL") : "amqp://localhost" ;
     public static final String EXCHANGE_NAME = (System.getenv("INDEXING_EXCHANGE_NAME")!=null) ? System.getenv("INDEXING_EXCHANGE_NAME") : "indexService" ;
 
     public static final String  DELETE_QUEUE_NAME = (System.getenv("INDEXING_DELETE_QUEUE_NAME")!=null) ? System.getenv("INDEXING_DELETE_QUEUE_NAME") : "delete" ;

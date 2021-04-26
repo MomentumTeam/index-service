@@ -5,6 +5,7 @@ import io.grpc.ManagedChannelBuilder;
 
 public class Config {
 
+    public static final int HC_PORT = (System.getenv("INDEXING_PARSING_SERVICE_HC_PORT")!=null)? Integer.parseInt(System.getenv("INDEXING_PARSING_SERVICE_HC_PORT")): 8082;
     public static final String RABBIT_URL = (System.getenv("INDEXING_RABBIT_URL")!=null) ? System.getenv("INDEXING_RABBIT_URL") : "amqp://localhost" ;
     public static final String EXCHANGE_NAME = (System.getenv("INDEXING_EXCHANGE_NAME")!=null) ? System.getenv("INDEXING_EXCHANGE_NAME") : "indexService" ;
 
@@ -21,8 +22,8 @@ public class Config {
 //    public static int DOWNLOAD_SERVICE_PORT = (System.getenv("INDEXING_DOWNLOAD_SERVICE_PORT")!=null) ? Integer.parseInt(System.getenv("INDEXING_DOWNLOAD_SERVICE_PORT")) : 8082;
 //    public static int FILE_SERVICE_PORT =  (System.getenv("INDEXING_FILE_SERVICE_PORT")!=null) ? Integer.parseInt(System.getenv("INDEXING_FILE_SERVICE_PORT")) : 8083;
 
-    public static String FILE_SERVICE_URL =  (System.getenv("INDEXING_FILE_SERVICE_URL")!=null) ? System.getenv("INDEXING_FILE_SERVICE_URL") : "13.79.86.8:8083";
-    public static String DOWNLOAD_SERVICE_URL =  (System.getenv("INDEXING_DOWNLOAD_SERVICE_URL")!=null) ? System.getenv("INDEXING_DOWNLOAD_SERVICE_URL") : "13.79.86.8:8082";
+    public static String FILE_SERVICE_URL =  (System.getenv("INDEXING_FILE_SERVICE_URL")!=null) ? System.getenv("INDEXING_FILE_SERVICE_URL") : "52.169.188.7:8083";
+    public static String DOWNLOAD_SERVICE_URL =  (System.getenv("INDEXING_DOWNLOAD_SERVICE_URL")!=null) ? System.getenv("INDEXING_DOWNLOAD_SERVICE_URL") : "52.169.188.7:8082";
     public static int CHUNK_SIZE = (System.getenv("INDEXING_CHUNK_SIZE")!=null) ? Integer.parseInt(System.getenv("INDEXING_CHUNK_SIZE")) : 10000;
     public static int SUFF_PRE_SIZE = (System.getenv("INDEXING_SUFF_PRE_SIZE")!=null) ? Integer.parseInt(System.getenv("INDEXING_SUFF_PRE_SIZE")) : 100;
     public static int SUFF_PRE_COUNT_PER_DOCUMENT= CHUNK_SIZE / SUFF_PRE_SIZE;

@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Config {
 
+    public static final int HC_PORT = (System.getenv("INDEXING_ELASTIC_SERVICE_HC_PORT")!=null)? Integer.parseInt(System.getenv("INDEXING_ELASTIC_SERVICE_HC_PORT")): 8083;
 
     public static final String RABBIT_URL = (System.getenv("INDEXING_RABBIT_URL")!=null) ? System.getenv("INDEXING_RABBIT_URL") : "amqp://localhost" ;
     public static final String EXCHANGE_NAME = (System.getenv("INDEXING_EXCHANGE_NAME")!=null) ? System.getenv("INDEXING_EXCHANGE_NAME") : "indexService" ;
@@ -16,7 +17,7 @@ public class Config {
 
     public static final String[] ELASTIC_URLS = (System.getenv("INDEXING_ELASTIC_URLS")!=null) ?
             Arrays.asList(System.getenv("INDEXING_ELASTIC_URLS").split(",")).stream().toArray(String[]::new)
-    :  Arrays.asList("http://13.79.86.8:9200".split(",")).stream().toArray(String[]::new);
+    :  Arrays.asList("http://52.169.188.7:9200".split(",")).stream().toArray(String[]::new);
 
     public static final String INDEX_MAPPING = "{\n" +
             "      \"properties\" : {\n" +

@@ -1,6 +1,6 @@
 package Config;
 public class Config {
-
+    public static final int HC_PORT = (System.getenv("INDEXING_DRIVE_SERVICE_HC_PORT")!=null)? Integer.parseInt(System.getenv("INDEXING_DRIVE_SERVICE_HC_PORT")): 8081;
     public static final String RABBIT_URL = (System.getenv("INDEXING_RABBIT_URL")!=null) ? System.getenv("INDEXING_RABBIT_URL") : "amqp://localhost" ;
     public static final String EXCHANGE_NAME = (System.getenv("INDEXING_EXCHANGE_NAME")!=null) ? System.getenv("INDEXING_EXCHANGE_NAME") : "indexService" ;
 
@@ -21,7 +21,7 @@ public class Config {
 
     public static String FOLDER_TYPE = (System.getenv("INDEXING_PARSING_SERVICE_ROUTING_KEY")!=null) ? System.getenv("INDEXING_PARSING_SERVICE_ROUTING_KEY") : "parsingServiceKey";
 
-    public static String FILE_SERVICE_URL = (System.getenv("INDEXING_FILE_SERVICE_URL")!=null) ? System.getenv("INDEXING_FILE_SERVICE_URL") : "13.79.86.8:8083";
-    public static String PERMISSION_SERVICE_URL = (System.getenv("INDEXING_PERMISSION_SERVICE_URL")!=null) ? System.getenv("INDEXING_PERMISSION_SERVICE_URL") : "13.79.86.8:8087";
-    public static String USER_SERVICE_URL = (System.getenv("INDEXING_USER_SERVICE_URL")!=null) ? System.getenv("INDEXING_USER_SERVICE_URL") : "13.79.86.8:8086";
+    public static String FILE_SERVICE_URL = (System.getenv("INDEXING_FILE_SERVICE_URL")!=null) ? System.getenv("INDEXING_FILE_SERVICE_URL") : "52.169.188.7:8083";
+    public static String PERMISSION_SERVICE_URL = (System.getenv("INDEXING_PERMISSION_SERVICE_URL")!=null) ? System.getenv("INDEXING_PERMISSION_SERVICE_URL") : "52.169.188.7:8087";
+    public static String USER_SERVICE_URL = (System.getenv("INDEXING_USER_SERVICE_URL")!=null) ? System.getenv("INDEXING_USER_SERVICE_URL") : "52.169.188.7:8086";
 }
