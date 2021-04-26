@@ -1,9 +1,9 @@
 package Services;
 
-import Config.Config;
 import Enums.ErrorOperation;
+import Enums.MessageEvent;
 import Rabbit.Producer;
-import RabbitModels.DeleteRequest;
+import RabbitModels.DriveEventMessage;
 import RabbitModels.ErrorMessage;
 
 public class Manager {
@@ -18,11 +18,17 @@ public class Manager {
     }
 
     public static void processError (ErrorMessage message) throws Exception {
-        String fileId = message.getFileId();
-        ErrorOperation operation = message.getOperation();
-        boolean createAfter = operation == ErrorOperation.REFRESH ? true : false;
-        DeleteRequest deleteRequest = new DeleteRequest(fileId, createAfter);
-        producer.sendDelete(deleteRequest);
+        try{
+            String fileId = message.getFileId();
+            ErrorOperation operation = message.getOperation();
+            MessageEvent event = operation == ErrorOperation.REFRESH ? MessageEvent.CREATE : MessageEvent.DELETE;
+            DriveEventMessage driveEventMessage = new DriveEventMessage(fileId , event);
+            producer.sendEvent(driveEventMessage);
+        }
+        catch(Exception e){
+            throw e;
+        }
+
     }
 
 }

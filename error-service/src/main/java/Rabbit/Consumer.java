@@ -23,14 +23,32 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.concurrent.TimeUnit;
+
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
-
+    private static boolean flag = true;
     @RabbitListener(queues = "error")
     public void receiveMessage(final ErrorMessage message) {
         try{
+            LocalTime now = LocalTime.now();
+            while(now.isBefore(Config.startTime) || now.isAfter(Config.endTime)){
+                if(flag){
+                    LOGGER.info(String.format("error-service stopped"));
+                }
+                flag = false;
+                //TimeUnit.MINUTES.sleep(5);
+                TimeUnit.SECONDS.sleep(1);
+                now = LocalTime.now();
+            }
+            if(!flag){
+                LOGGER.info(String.format("error-service started"));
+            }
+            flag = true;
             LOGGER.info(String.format("Received message from queue='%s': %s", Config.ERROR_QUEUE_NAME,message.toString()));
             Manager.processError(message);
         }
