@@ -6,8 +6,8 @@ public class Config {
 
     public static final int HC_PORT = (System.getenv("INDEXING_ERROR_SERVICE_HC_PORT")!=null)? Integer.parseInt(System.getenv("INDEXING_ERROR_SERVICE_HC_PORT")): 8085;
 
-    public static final String startTimeString = (System.getenv("INDEXING_ERROR_SERVICE_START_TIME")!=null) ? System.getenv("INDEXING_ERROR_SERVICE_START_TIME") : "17:15" ;
-    public static final String endTimeString = (System.getenv("INDEXING_ERROR_SERVICE_END_TIME")!=null) ? System.getenv("INDEXING_ERROR_SERVICE_END_TIME") : "17:17" ;
+    public static final String startTimeString = (System.getenv("INDEXING_ERROR_SERVICE_START_TIME")!=null) ? System.getenv("INDEXING_ERROR_SERVICE_START_TIME") : "12:00" ;
+    public static final String endTimeString = (System.getenv("INDEXING_ERROR_SERVICE_END_TIME")!=null) ? System.getenv("INDEXING_ERROR_SERVICE_END_TIME") : "12:10" ;
 
     public static final LocalTime startTime = LocalTime.parse(startTimeString);
     public static final LocalTime endTime = LocalTime.parse(endTimeString);

@@ -7,6 +7,7 @@ import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.Seconds;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -25,30 +26,34 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableScheduling
 public class Consumer {
     private static final Logger LOGGER = LogManager.getLogger(Consumer.class);
-    private static boolean flag = true;
+    private static boolean flag = false;
+    private static LocalTime now = null;
     @RabbitListener(queues = "error")
     public void receiveMessage(final ErrorMessage message) {
         try{
-            LocalTime now = LocalTime.now();
-            while(now.isBefore(Config.startTime) || now.isAfter(Config.endTime)){
-                if(flag){
-                    LOGGER.info(String.format("error-service stopped"));
-                }
+            now = LocalTime.now();
+            if(now.isBefore(Config.startTime) || now.isAfter(Config.endTime)){
                 flag = false;
-                //TimeUnit.MINUTES.sleep(5);
-                TimeUnit.SECONDS.sleep(1);
-                now = LocalTime.now();
+                LOGGER.info(String.format("error-service stopped"));
+                long seconds = now.isBefore(Config.startTime)?
+                        now.until(Config.startTime, ChronoUnit.SECONDS):
+                        24*60*60 - Config.endTime.until(now, ChronoUnit.SECONDS) -
+                                Config.startTime.until(Config.endTime, ChronoUnit.SECONDS);
+                LOGGER.info(String.format("I need to wait %d seconds = %f minutes = %f hours",
+                        seconds, seconds/60.0, seconds/3600.0));
+                TimeUnit.SECONDS.sleep(seconds);
             }
             if(!flag){
                 LOGGER.info(String.format("error-service started"));
+                flag = true;
             }
-            flag = true;
             LOGGER.info(String.format("Received message from queue='%s': %s", Config.ERROR_QUEUE_NAME,message.toString()));
             Manager.processError(message);
         }

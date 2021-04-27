@@ -31,11 +31,6 @@ public class Main {
         initHealthCheck();
         Producer.initQueues();
         SpringApplication.run(Consumer.class,args);
-//        System.exit(SpringApplication
-//                .exit(SpringApplication.run(Consumer.class, args)));
-//        RabbitListenerEndpointRegistry registry = new RabbitListenerEndpointRegistry();
-//        registry.stop();
-//        BeeperControl.beepForAnHour();
     }
 
     public static void initHealthCheck() {
