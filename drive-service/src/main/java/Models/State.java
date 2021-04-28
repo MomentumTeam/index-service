@@ -50,9 +50,20 @@ public class State {
 
     }
 
+    public static String cleanFileName(String fileName){
+        String cleanFileName = fileName.replaceAll("[$&+,:;=?@#|'<>.^*()%!{}-]"," ");
+        cleanFileName = cleanFileName.replaceAll("\\s+", " "); // Without spaces
+        cleanFileName = cleanFileName.replaceAll("[^A-Za-z0-9\\x{0590}-\\x{05FF}\\x{0600}-\\x{06FF}\n ]",""); // Without special characters
+        cleanFileName = cleanFileName.toLowerCase();
+        return cleanFileName;
+    }
+
     public void receiveMetadata(){
         try{
             this.metadata = FileMetadata.getMetadata(this.fileId);
+            if(this.metadata.getFileName() != null){
+                this.metadata.setFileName(cleanFileName(this.metadata.getFileName()));
+            }
         }
         catch(Exception e){
             LOGGER.error(String.format("Error in receiving metadata of '%s': %s",this.fileId, e.getMessage()));
@@ -231,7 +242,7 @@ public class State {
         }
     }
 
-    public boolean canPushToElasticQueue(){
+    public boolean canPushToQueue(){
         if((this.elasticOperation == ElasticOperation.CREATE ||
                 this.elasticOperation == ElasticOperation.PERMISSIONS_UPDATE) &&
                 this.document.getPermissions() == null){
@@ -247,7 +258,7 @@ public class State {
 
     }
 
-    public void pushToElasticQueue(){
+    public void pushToQueue(){
         try {
             if (this.sendToParsingService) {
                 State.producer.sendToParsingQueue(this.document);

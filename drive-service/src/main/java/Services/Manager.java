@@ -49,9 +49,8 @@ public class Manager {
                     state.processDownload();
             }
         }
-
-        if(state.canPushToElasticQueue()){
-            state.pushToElasticQueue();
+        if(state.canPushToQueue()){
+            state.pushToQueue();
         }
         state.pushToErrorQueue();
     }
