@@ -4,6 +4,7 @@ const axios = require("axios").default;
 const health = require("grpc-health-check");
 const protoLoader = require("@grpc/proto-loader");
 const dotenv = require("dotenv");
+const logger = require("./logger");
 
 dotenv.config();
 
@@ -24,8 +25,6 @@ const clientES = new Client({ node: elasticUrls });
 const SEARCH_PROTO_PATH = `${__dirname}/proto/search/search.proto`;
 const PERMMISSION_PROTO_PATH = `${__dirname}/proto/permission/permission.proto`;
 const FILE_PROTO_PATH = `${__dirname}/proto/file/file.proto`;
-
-const logger = require("./logger");
 
 const conditions = {
   keepCase: true,
@@ -125,7 +124,6 @@ async function search(call, callback) {
     if (fields.fileName) {
       fields.fileName = cleanString(fields.fileName);
     }
-    console.log(`fields.fileName = ${fields.fileName}  fields.content = ${fields.content}`);
     userId = call.request.userID;
 
     const query = queryOrganizer(fields, exactMatch); //returns an organized Query according to the search conditions.
