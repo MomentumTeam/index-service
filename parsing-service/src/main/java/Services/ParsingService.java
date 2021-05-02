@@ -43,8 +43,10 @@ public class ParsingService {
 
     public static String cleanContent(String content){
         String cleanContent = content.replaceAll("[$&+,:;=?@#|'<>.^*()%!{}-]"," ");
-        cleanContent = cleanContent.replaceAll("[^A-Za-z0-9\\x{0590}-\\x{05FF}\\x{0600}-\\x{06FF}\n ]",""); // Without special characters
-        cleanContent = cleanContent.replaceAll("\\s+", " "); // Without spaces
+        cleanContent = cleanContent.replaceAll("[^A-Za-z0-9\\x{0590}-\\x{05FF}\\x{0600}-\\x{06FF}\n]"," ");
+        cleanContent = cleanContent.replaceAll("[\\t\\n\\r]+"," ");
+        cleanContent = cleanContent.replaceAll("(\\t|\\r?\\n)+", " ");
+        cleanContent = cleanContent.trim().replaceAll("\\s+", " "); // Without spaces
         cleanContent = cleanContent.toLowerCase();
         return cleanContent;
     }

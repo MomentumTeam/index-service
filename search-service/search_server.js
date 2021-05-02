@@ -107,8 +107,9 @@ let userId;
 
 function cleanString(str) {
   cleanStr = str.replace(/[$&+,:;=?@#|'<>.^*()%!{}-]/g, " ");
-  cleanStr = cleanStr.replace(/[^A-Za-z0-9\u0590-\u05FF\u0600-\u06FF\n ]/g, ""); // Without special characters
-  cleanStr = cleanStr.replace(/\s+/g, " ");
+  cleanStr = cleanStr.replace(/[^A-Za-z0-9\u0590-\u05FF\u0600-\u06FF]/g, " "); // Without special characters
+  cleanStr = cleanStr.replace(/\r?\n|\r/g," ");
+  cleanStr = cleanStr.trim().replace(/\s+/g, " ");
   cleanStr = cleanStr.toLowerCase();
   return cleanStr;
 }
@@ -124,6 +125,7 @@ async function search(call, callback) {
     if (fields.fileName) {
       fields.fileName = cleanString(fields.fileName);
     }
+    console.log(`fields.fileName = ${fields.fileName}  fields.content = ${fields.content}`);
     userId = call.request.userID;
 
     const query = queryOrganizer(fields, exactMatch); //returns an organized Query according to the search conditions.
