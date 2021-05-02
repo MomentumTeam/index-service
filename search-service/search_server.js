@@ -43,14 +43,8 @@ const search_proto = grpc.loadPackageDefinition(searchPackageDefinition).searchS
 const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition).permission;
 const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
 
-const permissionClient = new permission_proto.Permission(
-  `${process.env.INDEXING_PERMISSION_SERVICE_URL}`,
-  grpc.credentials.createInsecure()
-);
-const fileClient = new file_proto.FileService(
-  `${process.env.INDEXING_FILE_SERVICE_URL}`,
-  grpc.credentials.createInsecure()
-);
+const permissionClient = new permission_proto.Permission(`${process.env.INDEXING_PERMISSION_SERVICE_URL}`, grpc.credentials.createInsecure());
+const fileClient = new file_proto.FileService(`${process.env.INDEXING_FILE_SERVICE_URL}`, grpc.credentials.createInsecure());
 
 // Health check - without elastic access the service won't work
 async function healthCheck() {
@@ -111,11 +105,25 @@ function main() {
 main();
 let userId;
 
+function cleanString(str) {
+  cleanStr = str.replace(/[$&+,:;=?@#|'<>.^*()%!{}-]/g, " ");
+  cleanStr = cleanStr.replace(/[^A-Za-z0-9\u0590-\u05FF\u0600-\u06FF\n ]/g, ""); // Without special characters
+  cleanStr = cleanStr.replace(/\s+/g, " ");
+  cleanStr = cleanStr.toLowerCase();
+  return cleanStr;
+}
+
 async function search(call, callback) {
   try {
     let indexesArray = [];
     const exactMatch = call.request.exactMatch;
     const fields = call.request.fields;
+    if (fields.content) {
+      fields.content = cleanString(fields.content);
+    }
+    if (fields.fileName) {
+      fields.fileName = cleanString(fields.fileName);
+    }
     userId = call.request.userID;
 
     const query = queryOrganizer(fields, exactMatch); //returns an organized Query according to the search conditions.
@@ -391,13 +399,7 @@ function queryOrganizer(fields, exactMatch) {
 }
 
 function pushToQuery(field, query, rangeQuery) {
-  const oldest = new Date(
-    process.env.INDEXING_OLDEST_YEAR,
-    process.env.INDEXING_OLDEST_MONTH,
-    process.env.INDEXING_OLDEST_DAY
-  )
-    .getTime()
-    .toString();
+  const oldest = new Date(process.env.INDEXING_OLDEST_YEAR, process.env.INDEXING_OLDEST_MONTH, process.env.INDEXING_OLDEST_DAY).getTime().toString();
   const newest = Date.now().toString();
   const fieldName = Object.keys(rangeQuery.range)[0];
 

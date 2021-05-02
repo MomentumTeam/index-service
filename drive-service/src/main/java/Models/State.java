@@ -52,8 +52,8 @@ public class State {
 
     public static String cleanFileName(String fileName){
         String cleanFileName = fileName.replaceAll("[$&+,:;=?@#|'<>.^*()%!{}-]"," ");
-        cleanFileName = cleanFileName.replaceAll("\\s+", " "); // Without spaces
         cleanFileName = cleanFileName.replaceAll("[^A-Za-z0-9\\x{0590}-\\x{05FF}\\x{0600}-\\x{06FF}\n ]",""); // Without special characters
+        cleanFileName = cleanFileName.replaceAll("\\s+", " "); // Without spaces
         cleanFileName = cleanFileName.toLowerCase();
         return cleanFileName;
     }

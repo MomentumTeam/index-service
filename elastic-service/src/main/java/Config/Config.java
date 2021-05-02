@@ -17,7 +17,7 @@ public class Config {
 
     public static final String[] ELASTIC_URLS = (System.getenv("INDEXING_ELASTIC_URLS")!=null) ?
             Arrays.asList(System.getenv("INDEXING_ELASTIC_URLS").split(",")).stream().toArray(String[]::new)
-    :  Arrays.asList("http://52.169.188.7:9200".split(",")).stream().toArray(String[]::new);
+    :  Arrays.asList("http://13.70.205.201:9200".split(",")).stream().toArray(String[]::new);
 
     public static final String INDEX_MAPPING = "{\n" +
             "      \"properties\" : {\n" +
