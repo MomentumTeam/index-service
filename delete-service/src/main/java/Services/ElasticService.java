@@ -16,7 +16,7 @@ public class ElasticService {
 
     private static final Logger LOGGER = LogManager.getLogger(ElasticService.class);
 
-    public static RestHighLevelClient client;
+    public static HttpHost[] hostsArray;
 
     static{
         ArrayList<HttpHost> hostsList = new ArrayList<HttpHost>();
@@ -26,13 +26,13 @@ public class ElasticService {
             int port = Integer.parseInt(elasticHost.substring(elasticHost.lastIndexOf(":")+1));
             hostsList.add(new HttpHost(host,port,protocol));
         }
-        HttpHost[] hostsArray = hostsList.stream().toArray(HttpHost[]::new);
-        client = new RestHighLevelClient(
-                RestClient.builder(hostsArray));
+        hostsArray = hostsList.stream().toArray(HttpHost[]::new);
     }
 
     public static void delete(String fileId, String index) throws Exception {
         try {
+            RestHighLevelClient client = new RestHighLevelClient(
+                    RestClient.builder(hostsArray));
             DeleteByQueryRequest request =
                     new DeleteByQueryRequest(index);
             request.setQuery(new MatchQueryBuilder("fileId",fileId));

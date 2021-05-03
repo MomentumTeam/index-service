@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ElasticService {
-    public static RestHighLevelClient client;
+    public static HttpHost[] hostsArray;
     static{
         ArrayList <HttpHost> hostsList = new ArrayList<HttpHost>();
         for(String elasticHost : Config.ELASTIC_URLS){
@@ -42,13 +42,13 @@ public class ElasticService {
             int port = Integer.parseInt(elasticHost.substring(elasticHost.lastIndexOf(":")+1));
             hostsList.add(new HttpHost(host,port,protocol));
         }
-        HttpHost[] hostsArray = hostsList.stream().toArray(HttpHost[]::new);
-        client = new RestHighLevelClient(
-                RestClient.builder(hostsArray));
+        hostsArray = hostsList.stream().toArray(HttpHost[]::new);
     }
 
     public static void updateMetadata(String fileId, FileMetadata fileMetadata, String[] indices) throws Exception {
         try {
+            RestHighLevelClient client = new RestHighLevelClient(
+                    RestClient.builder(hostsArray));
             UpdateByQueryRequest request =
                     new UpdateByQueryRequest(indices);
             request.setQuery(new MatchQueryBuilder("fileId", fileId));
@@ -75,6 +75,8 @@ public class ElasticService {
 
     public static void delete(String fileId, String dataTime, String index) throws Exception {
         try {
+            RestHighLevelClient client = new RestHighLevelClient(
+                    RestClient.builder(hostsArray));
             DeleteByQueryRequest request =
                     new DeleteByQueryRequest(index);
             BoolQueryBuilder boolQuery = new BoolQueryBuilder();
@@ -106,6 +108,8 @@ public class ElasticService {
 
     public static Map <String,Object> getFirstHit(String fileId, String[] indices) throws Exception {
         try{
+            RestHighLevelClient client = new RestHighLevelClient(
+                    RestClient.builder(hostsArray));
             SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
             MatchQueryBuilder matchQueryBuilder = new MatchQueryBuilder("fileId", fileId);
             SearchRequest searchRequest = new SearchRequest(indices);
@@ -132,6 +136,8 @@ public class ElasticService {
 
     public static void updatePermissions(String fileId, Permission[] permissions, String[] indices) throws Exception {
         try {
+            RestHighLevelClient client = new RestHighLevelClient(
+                    RestClient.builder(hostsArray));
             ArrayList<HashMap<String, Object>> permissionList = new ArrayList<HashMap<String, Object>>();
             for (Permission permission : permissions) {
                 permissionList.add(permission.getHashMap());
@@ -177,7 +183,8 @@ public class ElasticService {
 
     public static void indexDocument(Document document, String index) throws Exception {
         try{
-
+            RestHighLevelClient client = new RestHighLevelClient(
+                    RestClient.builder(hostsArray));
             GetIndexRequest getIndexRequest = new GetIndexRequest(index);
             // Check if the index already exists
             boolean indexExists = client.indices().exists(getIndexRequest,RequestOptions.DEFAULT);
