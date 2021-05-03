@@ -81,10 +81,7 @@ public class Consumer {
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
         connectionFactory.setUri(Config.RABBIT_URL);
-//        connectionFactory.setPort(Config.RABBIT_PORT);
-//        connectionFactory.setUsername(Config.RABBIT_USER);
-//        connectionFactory.setPassword(Config.RABBIT_PASSWORD);
-
+        connectionFactory.setCloseTimeout(0);
         return connectionFactory;
     }
 

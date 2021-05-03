@@ -25,6 +25,7 @@ public class Producer {
         try {
             CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
             connectionFactory.setUri(Config.RABBIT_URL);
+            connectionFactory.setCloseTimeout(0);
             RabbitTemplate template = new RabbitTemplate(connectionFactory);
             template.setMessageConverter(producerMessageConverter());
             template.setChannelTransacted(true);
@@ -38,7 +39,7 @@ public class Producer {
     public static void initQueues(){
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
         connectionFactory.setUri(Config.RABBIT_URL);
-
+        connectionFactory.setCloseTimeout(0);
         Binding elasticBinding = new Binding(Config.ELASTIC_SERVICE_QUEUE_NAME, Binding.DestinationType.QUEUE,
                 Config.EXCHANGE_NAME, Config.ELASTIC_SERVICE_ROUTING_KEY, null);
 

@@ -24,6 +24,7 @@ public class Producer {
         try {
             CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
             connectionFactory.setUri(Config.RABBIT_URL);
+            connectionFactory.setCloseTimeout(0);
             RabbitTemplate template = new RabbitTemplate(connectionFactory);
             template.setMessageConverter(producerMessageConverter());
             this.rabbitTemplate = template;
@@ -36,6 +37,7 @@ public class Producer {
     public static void initQueues(){
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
         connectionFactory.setUri(Config.RABBIT_URL);
+        connectionFactory.setCloseTimeout(0);
 
         Binding deleteBinding = new Binding(Config.EVENTS_QUEUE_NAME, Binding.DestinationType.QUEUE,
                 Config.EXCHANGE_NAME, Config.EVENTS_ROUTING_KEY, null);

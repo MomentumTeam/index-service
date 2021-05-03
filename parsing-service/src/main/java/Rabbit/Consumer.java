@@ -77,9 +77,7 @@ public class Consumer {
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
         connectionFactory.setUri(Config.RABBIT_URL);
-//        connectionFactory.setVirtualHost(System.getProperty("RABBITMQ_VHOST"));
-//        connectionFactory.setUsername(System.getProperty("RABBITMQ_USERNAME"));
-//        connectionFactory.setPassword(System.getProperty("RABBITMQ_PASSWORD"));
+        connectionFactory.setCloseTimeout(0);
         return connectionFactory;
     }
 
