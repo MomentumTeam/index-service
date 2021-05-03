@@ -51,6 +51,7 @@ pipeline {
         }
       }
     }
+    // comment
     // run unit test using docker-compose with mongo 
     //   stage('build dockerfile of tests') {
     //       steps {
