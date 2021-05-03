@@ -1,5 +1,6 @@
 package Services;
 
+import Config.Config;
 import Enums.ElasticOperation;
 import Enums.ErrorOperation;
 import Models.Document;
@@ -76,7 +77,7 @@ public class Manager {
             error = true;
             errorMessage = errorMessage + e.getMessage();
         }
-        if(error){
+        if(error && metadata != null && Config.SUPPORTED_TYPES.contains(metadata.getType())){
             throw new Exception(errorMessage);
         }
     }
