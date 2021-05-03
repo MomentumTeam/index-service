@@ -66,7 +66,7 @@ pipeline {
       stage('login to azure container registry') {
           when {
             anyOf {
-              branch 'master'; branch 'develop'
+              branch 'master'; branch 'development'
             }
           } 
           steps{ 
@@ -79,7 +79,7 @@ pipeline {
         stage('build dockerfile of system only for master and develop') {
             when {
               anyOf {
-                 branch 'master'; branch 'develop'
+                 branch 'master'; branch 'development'
               }
             }
             steps {
@@ -88,7 +88,7 @@ pipeline {
                   sh "docker build -t  drivehub.azurecr.io/meateam/${env.GIT_REPO_NAME}:master ."
                   sh "docker push  drivehub.azurecr.io/meateam/${env.GIT_REPO_NAME}:master"
                 }
-                else if(env.GIT_BRANCH == 'develop') {
+                else if(env.GIT_BRANCH == 'development') {
                   sh "docker build -t  drivehub.azurecr.io/meateam/indexing-delete-service:develop ./delete-service"
                   sh "docker build -t  drivehub.azurecr.io/meateam/indexing-drive-service:develop ./drive-service"
                   sh "docker build -t  drivehub.azurecr.io/meateam/indexing-elastic-service:develop ./elastic-service"
