@@ -91,7 +91,7 @@ public class ElasticService {
         }
     }
 
-    public static void DeleteIfAlreadyExists(Document document, String index) throws Exception {
+    public static void deleteIfAlreadyExists(Document document, String index) throws Exception {
         try{
             Map<String,Object> firstHit = getFirstHit(document.getFileId(), new String[]{index});
             String dataTimeFromElastic = (String)(firstHit.get("dataTime"));
@@ -103,24 +103,42 @@ public class ElasticService {
         catch(Exception e){
             return;
         }
-
     }
 
-    public static Map <String,Object> getFirstHit(String fileId, String[] indices) throws Exception {
+    public static boolean existsInElastic(String fileId, String[] indices) throws Exception {
         try{
-            RestHighLevelClient client = new RestHighLevelClient(
-                    RestClient.builder(hostsArray));
+            SearchHit[] searchHits = getHits(fileId, indices);
+            return searchHits.length != 0;
+        }
+        catch(Exception e){
+            throw e;
+        }
+    }
+
+    public static SearchHit[] getHits(String fileId, String[] indices) throws Exception {
+        try{
+            RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(hostsArray));
             SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
             MatchQueryBuilder matchQueryBuilder = new MatchQueryBuilder("fileId", fileId);
             SearchRequest searchRequest = new SearchRequest(indices);
             searchRequest.indicesOptions(IndicesOptions.fromOptions(true,
-                    false,
-                    false,
-                    false));
+                false,
+                false,
+                false));
             searchRequest.source(sourceBuilder);
             SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
             SearchHits hits = searchResponse.getHits();
             SearchHit[] searchHits = hits.getHits();
+            return searchHits;
+        }
+        catch(Exception e){
+            throw e;
+        }
+    }
+
+    public static Map <String,Object> getFirstHit(String fileId, String[] indices) throws Exception {
+        try{
+            SearchHit[] searchHits = getHits(fileId, indices);
             if(searchHits.length == 0){
                 throw new Exception(String.format("Did not find document of " +
                         "fileId='%s'", fileId));

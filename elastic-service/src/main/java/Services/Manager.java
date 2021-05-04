@@ -2,10 +2,12 @@ package Services;
 
 import Enums.ElasticOperation;
 import Enums.ErrorOperation;
+import Enums.MessageEvent;
 import Models.Document;
 import Models.FileMetadata;
 import Models.Permission;
 import Rabbit.Producer;
+import RabbitModels.DriveEventMessage;
 import RabbitModels.ErrorMessage;
 
 public class Manager {
@@ -32,6 +34,15 @@ public class Manager {
     public static void sendError(String fileId, ErrorOperation operation) throws Exception {
         try{
             producer.sendError(new ErrorMessage(fileId , operation));
+        }
+        catch(Exception exception){
+            throw exception;
+        }
+    }
+
+    public static void sendEvent(String fileId, MessageEvent event) throws Exception {
+        try{
+            producer.sendEvent(new DriveEventMessage(fileId , event));
         }
         catch(Exception exception){
             throw exception;

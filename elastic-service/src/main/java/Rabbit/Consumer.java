@@ -2,6 +2,7 @@ package Rabbit;
 
 import Config.Config;
 import Enums.ErrorOperation;
+import Enums.MessageEvent;
 import Models.Document;
 import Services.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,7 +29,6 @@ public class Consumer {
     @RabbitListener(queues = "elasticService")
     public void receiveMessage(final Document message) {
         try{
-            LOGGER.info(String.format(message.toString()));
             LOGGER.info(String.format("Received message from queue='%s': %s", Config.ELASTIC_SERVICE_QUEUE_NAME,message.toString()));
             Manager.processDocument(message);
         }
@@ -37,8 +37,14 @@ public class Consumer {
             String fileId = message.getFileId();
             if(fileId != null){
                 try{
-                    ErrorOperation operation = ErrorOperation.REFRESH;
-                    Manager.sendError(fileId,operation);
+                    if(exception.getMessage().indexOf("ELASTIC_FILE_ID_NOT_FOUND") != -1){
+                        Manager.sendEvent(fileId, MessageEvent.CREATE);
+                    }
+                    else{
+                        ErrorOperation operation = ErrorOperation.REFRESH;
+                        Manager.sendError(fileId,operation);
+                    }
+
                 }
                 catch(Exception error){
                     LOGGER.error(String.format("Tried unsuccessfully to push '%s' to the Error queue, " +

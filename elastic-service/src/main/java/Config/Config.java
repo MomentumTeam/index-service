@@ -19,6 +19,10 @@ public class Config {
             Arrays.asList(System.getenv("INDEXING_ELASTIC_URLS").split(",")).stream().toArray(String[]::new)
     :  Arrays.asList("http://13.70.205.201:9200".split(",")).stream().toArray(String[]::new);
 
+    public static final String EVENTS_QUEUE_NAME = (System.getenv("INDEXING_EVENTS_QUEUE_NAME")!=null) ? System.getenv("INDEXING_EVENTS_QUEUE_NAME") : "events";
+    public static final String  EVENTS_ROUTING_KEY = (System.getenv("INDEXING_EVENTS_ROUTING_KEY")!=null) ? System.getenv("INDEXING_EVENTS_ROUTING_KEY") : "eventsKey";
+
+
     public static final String INDEX_MAPPING = "{\n" +
             "      \"properties\" : {\n" +
             "        \"ancestors\" : {\n" +

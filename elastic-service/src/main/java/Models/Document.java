@@ -101,9 +101,17 @@ public class Document implements Serializable {
                 if(metadata != null){
                     try{
                         indices = new String[]{this.metadata.getOwner().getUserId()};
-                        ElasticService.updateMetadata(this.fileId,this.metadata,indices);
-                        LOGGER.info(String.format("Updated metadata of %s in elastic successfully"
-                        , this.fileId));
+                        if(ElasticService.existsInElastic(this.fileId, indices)){
+                            ElasticService.updateMetadata(this.fileId,this.metadata,indices);
+                            LOGGER.info(String.format("Updated metadata of %s in elastic successfully"
+                                    , this.fileId));
+                        }
+                        else{
+                            LOGGER.info(String.format("fileId %s does not exist in elastic, however, operation " +
+                                            "METADATA_UPDATE was received"
+                                    , this.fileId));
+                            throw new Exception("ELASTIC_FILE_ID_NOT_FOUND");
+                        }
                     }
                     catch(Exception e){
                         errorMessage = e.getMessage();
@@ -114,7 +122,7 @@ public class Document implements Serializable {
             case CREATE:
                 try{
                     String index  = this.metadata.getOwner().getUserId();
-                    ElasticService.DeleteIfAlreadyExists(this,index);
+                    ElasticService.deleteIfAlreadyExists(this,index);
                     ElasticService.indexDocument(this,index);
                     LOGGER.info(String.format("Indexed document of %s in successfully"
                     , this.fileId));
@@ -124,16 +132,24 @@ public class Document implements Serializable {
                     error = true;
                 }
                 break;
-
             case PERMISSIONS_UPDATE:
                 try{
                     indices = Permission.indicesByPermissions(permissions);
-                    ElasticService.updatePermissions(this.fileId,this.permissions,indices);
-                    LOGGER.info(String.format("Updated permissions of %s in elastic successfully"
-                            , this.fileId));
+                    if(ElasticService.existsInElastic(this.fileId, indices)) {
+                        ElasticService.updatePermissions(this.fileId, this.permissions, indices);
+                        LOGGER.info(String.format("Updated permissions of %s in elastic successfully"
+                                , this.fileId));
+                    }
+                    else{
+                        LOGGER.info(String.format("fileId %s does not exist in elastic, however, operation " +
+                                        "PERMISSION_UPDATE was received"
+                                , this.fileId));
+                        throw new Exception("ELASTIC_FILE_ID_NOT_FOUND");
+                    }
                 }
                 catch(Exception e){
-
+                    errorMessage = e.getMessage();
+                    error = true;
                 }
         }
         if(error){

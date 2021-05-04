@@ -3,6 +3,7 @@ package Rabbit;
 
 import Config.Config;
 import Models.Document;
+import RabbitModels.DriveEventMessage;
 import RabbitModels.ErrorMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
@@ -46,20 +47,27 @@ public class Producer {
         Binding errorBinding = new Binding(Config.ERROR_QUEUE_NAME, Binding.DestinationType.QUEUE,
                 Config.EXCHANGE_NAME, Config.ERROR_ROUTING_KEY, null);
 
+        Binding eventsBinding = new Binding(Config.EVENTS_QUEUE_NAME, Binding.DestinationType.QUEUE,
+                Config.EXCHANGE_NAME, Config.EVENTS_ROUTING_KEY, null);
+
         AmqpAdmin admin = new RabbitAdmin(connectionFactory);
 
 
         admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
         LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
         admin.declareQueue(new Queue(Config.ELASTIC_SERVICE_QUEUE_NAME));
-        LOGGER.info(String.format("Declared exchange '%s'",Config.ELASTIC_SERVICE_QUEUE_NAME));
+        LOGGER.info(String.format("Declared queue '%s'",Config.ELASTIC_SERVICE_QUEUE_NAME));
         admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
-        LOGGER.info(String.format("Declared exchange '%s'",Config.ERROR_QUEUE_NAME));
+        LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
+        admin.declareQueue(new Queue(Config.EVENTS_QUEUE_NAME));
+        LOGGER.info(String.format("Declared queue '%s'",Config.EVENTS_QUEUE_NAME));
 
         admin.declareBinding(elasticBinding);
         LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ELASTIC_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
         admin.declareBinding(errorBinding);
         LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ERROR_QUEUE_NAME,Config.EXCHANGE_NAME));
+        admin.declareBinding(eventsBinding);
+        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.EVENTS_QUEUE_NAME,Config.EXCHANGE_NAME));
         connectionFactory.resetConnection();
     }
 
@@ -79,6 +87,17 @@ public class Producer {
         catch(AmqpException exception){
             throw exception;
         }
+    }
 
+    public void sendEvent(DriveEventMessage message) throws AmqpException {
+        try{
+            this.rabbitTemplate.convertAndSend(Config.EXCHANGE_NAME,Config.EVENTS_ROUTING_KEY,
+                    message);
+            LOGGER.info(String.format("Message %s sent to %s queue successfully",
+                    message.toString(),Config.EVENTS_ROUTING_KEY));
+        }
+        catch(AmqpException exception){
+            throw exception;
+        }
     }
 }

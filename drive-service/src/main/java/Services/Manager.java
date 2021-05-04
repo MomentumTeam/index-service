@@ -36,23 +36,27 @@ public class Manager {
 
         State state = new State(fileId, elasticOperation);
         state.receiveMetadata();
-
-        for (DriveField field: driveFields) {
-            switch (field) {
-                case METADATA:
-                    state.processMetadata();
-                    break;
-                case PERMISSIONS:
-                    state.processPermissions();
-                    break;
-                case DOWNLOAD:
-                    state.processDownload();
+        if(!state.fileExists){
+            state.pushDeleteError();
+        }
+        else{
+            for (DriveField field: driveFields) {
+                switch (field) {
+                    case METADATA:
+                        state.processMetadata();
+                        break;
+                    case PERMISSIONS:
+                        state.processPermissions();
+                        break;
+                    case DOWNLOAD:
+                        state.processDownload();
+                }
             }
+            if(state.canPushToQueue()){
+                state.pushToQueue();
+            }
+            state.pushToErrorQueue();
         }
-        if(state.canPushToQueue()){
-            state.pushToQueue();
-        }
-        state.pushToErrorQueue();
     }
 
     public static void sendError(String fileId, ErrorOperation operation) throws Exception {

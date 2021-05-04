@@ -27,6 +27,7 @@ public class State {
     public String[] descendants;
     public boolean sendToParsingService;
     public ArrayList<Document> descendantDocuments;
+    public boolean fileExists;
     public static Producer producer;
 
     static {
@@ -43,6 +44,7 @@ public class State {
         this.document = new Document(fileId, elasticOperation);
         this.metadata = null;
         this.error = false;
+        this.fileExists = true;
         this.multipleExceptions = new MultipleExceptions();
         this.descendants = null;
         this.sendToParsingService = false;
@@ -68,6 +70,9 @@ public class State {
             }
         }
         catch(Exception e){
+            if(e.getMessage().indexOf("NOT_FOUND") != -1){
+                this.fileExists = false;
+            }
             LOGGER.error(String.format("Error in receiving metadata of '%s': %s",this.fileId, e.getMessage()));
         }
     }
@@ -245,7 +250,10 @@ public class State {
     }
 
     public boolean canPushToQueue(){
-        if((this.elasticOperation == ElasticOperation.CREATE ||
+        if(!this.fileExists){
+            return false;
+        }
+        else if((this.elasticOperation == ElasticOperation.CREATE ||
                 this.elasticOperation == ElasticOperation.PERMISSIONS_UPDATE) &&
                 this.document.getPermissions() == null){
             return false;
@@ -297,6 +305,15 @@ public class State {
                     LOGGER.error(String.format("Error in pushing fileid='%s' to error queue",id));
                 }
             }
+        }
+    }
+
+    public void pushDeleteError(){
+        try{
+            State.producer.sendError(new ErrorMessage(this.fileId, ErrorOperation.DELETE));
+        }
+        catch(Exception e){
+            LOGGER.error(String.format("Error in pushing fileid='%s' to error queue",this.fileId));
         }
     }
 }
