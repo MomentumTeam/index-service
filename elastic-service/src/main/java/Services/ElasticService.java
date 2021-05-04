@@ -108,9 +108,11 @@ public class ElasticService {
     public static boolean existsInElastic(String fileId, String[] indices) throws Exception {
         try{
             SearchHit[] searchHits = getHits(fileId, indices);
+            System.out.println("searchHits.length = "+searchHits.length);
             return searchHits.length != 0;
         }
         catch(Exception e){
+            System.out.println("Exception:"+e.getMessage());
             throw e;
         }
     }

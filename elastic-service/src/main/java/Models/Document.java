@@ -102,6 +102,7 @@ public class Document implements Serializable {
                     try{
                         indices = new String[]{this.metadata.getOwner().getUserId()};
                         if(ElasticService.existsInElastic(this.fileId, indices)){
+                            LOGGER.info(String.format("Exists in elastic!"));
                             ElasticService.updateMetadata(this.fileId,this.metadata,indices);
                             LOGGER.info(String.format("Updated metadata of %s in elastic successfully"
                                     , this.fileId));
@@ -114,6 +115,9 @@ public class Document implements Serializable {
                         }
                     }
                     catch(Exception e){
+                        if(e.getMessage().indexOf("ELASTIC_FILE_ID_NOT_FOUND") != -1) {
+                            throw e;
+                        }
                         errorMessage = e.getMessage();
                         error = true;
                     }
@@ -148,6 +152,9 @@ public class Document implements Serializable {
                     }
                 }
                 catch(Exception e){
+                    if(e.getMessage().indexOf("ELASTIC_FILE_ID_NOT_FOUND") != -1) {
+                        throw e;
+                    }
                     errorMessage = e.getMessage();
                     error = true;
                 }
