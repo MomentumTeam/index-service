@@ -127,6 +127,7 @@ public class ElasticService {
                 false,
                 false,
                 false));
+            sourceBuilder.query(matchQueryBuilder);
             searchRequest.source(sourceBuilder);
             SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
             SearchHits hits = searchResponse.getHits();
