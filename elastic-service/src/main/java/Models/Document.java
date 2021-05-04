@@ -102,7 +102,6 @@ public class Document implements Serializable {
                     try{
                         indices = new String[]{this.metadata.getOwner().getUserId()};
                         if(ElasticService.existsInElastic(this.fileId, indices)){
-                            LOGGER.info(String.format("Exists in elastic!"));
                             ElasticService.updateMetadata(this.fileId,this.metadata,indices);
                             LOGGER.info(String.format("Updated metadata of %s in elastic successfully"
                                     , this.fileId));
