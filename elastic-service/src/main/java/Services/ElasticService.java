@@ -5,10 +5,12 @@ import Models.Document;
 import Models.FileMetadata;
 import Models.Permission;
 import org.apache.http.HttpHost;
+import org.elasticsearch.ElasticsearchStatusException;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.support.IndicesOptions;
+import org.elasticsearch.client.ElasticsearchClient;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -111,7 +113,18 @@ public class ElasticService {
             return searchHits.length != 0;
         }
         catch(Exception e){
-            throw e;
+            if(e instanceof ElasticsearchStatusException){
+                String status = ((ElasticsearchStatusException)e).status().toString();
+                if(status.equals("NOT_FOUND")){
+                    return false;
+                }
+                else{
+                    throw e;
+                }
+            }
+            else{
+                throw e;
+            }
         }
     }
 
