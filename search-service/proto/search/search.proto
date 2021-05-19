@@ -27,13 +27,12 @@ message Amount {
   
 message MetaData {
   string fileName = 1;
-  string userId  = 2;
-  Range createdAt = 3;
-  Range updatedAt = 4;
-  string type = 5;
-  string content = 6;
-  Owner owner = 7;
-  string permissions = 8;
+  Range createdAt = 2;
+  Range updatedAt = 3;
+  string type = 4;
+  string content = 5;
+  string ownerId = 6;
+  string sharedWith = 7;
 }
 
 message SearchReply {
@@ -45,16 +44,19 @@ message SearchReply {
 
     //highlightedContent- Array of the Content that matched the content search(with highlighted words).
     string highlightedContent = 2;
+
+    //highlightedContent- Array of the Content that matched the content search(with highlighted words).
+    string highlightedFileName = 3;
   }
   
  repeated fileResult results=1;
 }
 
-message Owner {
-  string hierarchy = 1;
-  string name = 2;
-  string userId = 3;
-}
+// message Owner {
+//   string userId = 1;
+//   string hierarchy = 2;
+//   string name = 3;
+// }
 
 message Range {
   int64 start = 1;

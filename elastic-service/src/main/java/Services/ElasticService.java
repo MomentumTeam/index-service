@@ -225,6 +225,7 @@ public class ElasticService {
             if(!indexExists){
                 CreateIndexRequest createIndexRequest = new CreateIndexRequest(index);
                 createIndexRequest.mapping(Config.INDEX_MAPPING, XContentType.JSON);
+//                createIndexRequest.settings(Config.INDEX_SETTINGS,XContentType.JSON);
                 client.indices().create(createIndexRequest, RequestOptions.DEFAULT);
             }
 

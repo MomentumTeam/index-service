@@ -6,7 +6,7 @@ const protoLoader = require("@grpc/proto-loader");
 const dotenv = require("dotenv");
 const logger = require("./logger");
 
-dotenv.config();
+dotenv.config({ path: "../.env" });
 
 // Define service status map. Key is the service name, value is the corresponding status.
 // By convention, the empty string "" key represents that status of the entire server.
@@ -107,10 +107,23 @@ let userId;
 function cleanString(str) {
   cleanStr = str.replace(/[$&+,:;=?@#|'<>.^*()%!{}-]/g, " ");
   cleanStr = cleanStr.replace(/[^A-Za-z0-9\u0590-\u05FF\u0600-\u06FF]/g, " "); // Without special characters
-  cleanStr = cleanStr.replace(/\r?\n|\r/g," ");
+  cleanStr = cleanStr.replace(/\r?\n|\r/g, " ");
   cleanStr = cleanStr.trim().replace(/\s+/g, " ");
   cleanStr = cleanStr.toLowerCase();
   return cleanStr;
+}
+
+function getStringWithBold(str, query) {
+  if (!query || !str) {
+    return str;
+  }
+  const queryArray = query.split(" ");
+  str = str.replace(new RegExp("<b>", "g"), "");
+  str = str.replace(new RegExp("</b>", "g"), "");
+  queryArray.forEach((element) => {
+    str = str.replace(new RegExp(element, "g"), `<b>${element}</b>`);
+  });
+  return str;
 }
 
 async function search(call, callback) {
@@ -126,15 +139,25 @@ async function search(call, callback) {
     }
     userId = call.request.userID;
 
-    const query = queryOrganizer(fields, exactMatch); //returns an organized Query according to the search conditions.
-    const usersPermissions = await getUsersPermissions(userId);
+    const must = getQueryMust(fields, userId);
+    const should = getQueryShould(fields, exactMatch);
+    console.log("should");
+    console.dir(JSON.stringify(should));
+    console.log("must");
+    console.dir(JSON.stringify(must));
+    // const query = queryOrganizer(fields, exactMatch); //returns an organized Query according to the search conditions.
 
-    if (usersPermissions.permissions.length) {
-      const ownersArray = await indexesCollector(usersPermissions.permissions);
-      ownersArray.unshift(userId);
-      indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
-    }
+    //TODO UNCOMMENT
+    // const usersPermissions = await getUsersPermissions(userId);
 
+    // if (usersPermissions.permissions.length) {
+    //   const ownersArray = await indexesCollector(usersPermissions.permissions);
+    //   ownersArray.unshift(userId);
+    //   indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
+    // }
+    //TODO UNCOMMENT
+
+    indexesArray = ["5e5688324203fc40043591aa"];
     const indices_boost = new Object();
     indices_boost[userId] = 2; //boost the files of the user who did the search to the top of the results.
 
@@ -146,7 +169,9 @@ async function search(call, callback) {
         size: call.request.resultsAmount.amount,
         query: {
           bool: {
-            must: query,
+            must: must,
+            should: should,
+            minimum_should_match: should.length === 0 ? 0 : 1,
           },
         },
         highlight: {
@@ -154,6 +179,7 @@ async function search(call, callback) {
           post_tags: ["</b>"],
           fields: {
             content: {},
+            fileName: {},
           },
         },
         collapse: {
@@ -164,13 +190,19 @@ async function search(call, callback) {
     });
 
     const results = await result.body.hits.hits.map((document) => {
-      let highlighted = null;
-      if (fields.content) {
-        highlighted = document.highlight.content[0];
+      let highlightedContent = null,
+        highlightedFileName = null;
+      if (fields.content && fields.content != "") {
+        highlightedContent = document.highlight.content[0];
       }
+      if (fields.fileName && fields.fileName != "") {
+        highlightedFileName = document.highlight.fileName[0];
+      }
+
       const fileResult = {
         fileId: document._source.fileId,
-        highlightedContent: highlighted,
+        highlightedContent: getStringWithBold(highlightedContent, fields.content),
+        highlightedFileName: getStringWithBold(highlightedFileName, fields.fileName),
       };
       return fileResult;
     });
@@ -284,94 +316,52 @@ function getDesendantsById(folderId) {
   });
 }
 
-function queryOrganizer(fields, exactMatch) {
-  let searchType;
-
-  if (exactMatch) {
-    //type of content search
-    searchType = {
-      match_phrase: {
-        content: fields.content,
-      },
-    };
-  } else {
-    searchType = {
-      query_string: {
-        default_field: "content",
-        query: ` ${fields.content}*`,
-      },
-    };
-  }
-
-  const query = [
-    {
+function getQueryShould(fields, exactMatch) {
+  let should = [];
+  if (fields.fileName && fields.fileName !== "") {
+    const fileNameQuery = {
       query_string: {
         default_field: "fileName",
         query: `*${fields.fileName}*`,
       },
-    },
-    {
+    };
+    should.push(fileNameQuery);
+  }
+
+  if (fields.type && fields.type !== "") {
+    const typeQuery = {
       query_string: {
         default_field: "type",
         query: `*${fields.type}*`,
       },
-    },
-    searchType,
-    {
-      nested: {
-        path: "permissions",
-        query: {
-          bool: {
-            must: [
-              {
-                bool: {
-                  should: [
-                    {
-                      query_string: {
-                        default_field: "permissions.user.hierarchy",
-                        query: `*${fields.permissions}*`,
-                      },
-                    },
-                    {
-                      query_string: {
-                        default_field: "permissions.user.name",
-                        query: `*${fields.permissions}*`,
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                query_string: {
-                  default_field: "permissions.user.userId",
-                  query: userId,
-                },
-              },
-            ],
-          },
-        },
-      },
-    },
-  ];
-
-  if (fields.owner) {
-    const ownerHierarchy = {
-      query_string: {
-        default_field: "owner.hierarchy",
-        query: `*${fields.owner.hierarchy}*`,
-      },
     };
-    const ownerName = {
-      query_string: {
-        default_field: "owner.name",
-        query: `*${fields.owner.name}*`,
-      },
-    };
-
-    query.push(ownerHierarchy);
-    query.push(ownerName);
+    should.push(typeQuery);
   }
 
+  if (fields.content && fields.content !== "") {
+    let contentQuery;
+    if (exactMatch) {
+      contentQuery = {
+        match_phrase: {
+          content: fields.content,
+        },
+      };
+    } else {
+      contentQuery = {
+        query_string: {
+          default_field: "content",
+          query: `*${fields.content}*`,
+        },
+      };
+    }
+    should.push(contentQuery);
+  }
+
+  return should;
+}
+
+function getDatesShould(fields) {
+  const should = [];
   if (fields.updatedAt) {
     const updatedAt = {
       range: {
@@ -381,7 +371,7 @@ function queryOrganizer(fields, exactMatch) {
         },
       },
     };
-    pushToQuery(fields.updatedAt, query, updatedAt);
+    pushDateToQuery(fields.updatedAt, should, updatedAt);
   }
 
   if (fields.createdAt) {
@@ -393,12 +383,80 @@ function queryOrganizer(fields, exactMatch) {
         },
       },
     };
-    pushToQuery(fields.createdAt, query, createdAt);
+    pushDateToQuery(fields.createdAt, should, createdAt);
+  }
+  return should;
+}
+
+function getQueryMust(fields, userId) {
+  // const permissionsMust = [
+  //   {
+  //     query_string: {
+  //       default_field: "permissions.user.userId",
+  //       query: `${userId}`,
+  //     },
+  //   },
+  // ];
+  const permissionsMust = [
+    {
+      terms: {
+        "permissions.user.userId": [userId],
+      },
+    },
+  ];
+
+  if (fields.sharedWith && fields.sharedWith !== "") {
+    // permissionsMust.push({
+    //   query_string: {
+    //     default_field: "permissions.user.userId",
+    //     query: `${fields.sharedWith}`,
+    //   },
+    // });
+    console.log("yes");
+    permissionsMust.push({
+      terms: {
+        "permissions.user.userId": [fields.sharedWith],
+      },
+    });
+  }
+  const query = [
+    {
+      nested: {
+        path: "permissions",
+        query: {
+          bool: {
+            must: permissionsMust,
+          },
+        },
+      },
+    },
+  ];
+
+  if (fields.ownerId && fields.ownerId !== "") {
+    const ownerIdQuery = {
+      query_string: {
+        default_field: "owner.userId",
+        query: `${fields.ownerId}`,
+      },
+    };
+    query.push(ownerIdQuery);
+  }
+
+  if (fields.updatedAt || fields.createdAt) {
+    console.log("yes");
+    const datesShould = getDatesShould(fields);
+    console.log(datesShould);
+    query.push({
+      bool: {
+        should: datesShould,
+        minimum_should_match: 1,
+      },
+    });
   }
   return query;
 }
 
-function pushToQuery(field, query, rangeQuery) {
+function pushDateToQuery(field, query, rangeQuery) {
   const oldest = new Date(process.env.INDEXING_OLDEST_YEAR, process.env.INDEXING_OLDEST_MONTH, process.env.INDEXING_OLDEST_DAY).getTime().toString();
   const newest = Date.now().toString();
   const fieldName = Object.keys(rangeQuery.range)[0];
