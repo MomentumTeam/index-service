@@ -126,104 +126,6 @@ function getStringWithBold(str, query) {
   return str;
 }
 
-async function search(call, callback) {
-  try {
-    let indexesArray = [];
-    const exactMatch = call.request.exactMatch;
-    const fields = call.request.fields;
-    if (fields.content) {
-      fields.content = cleanString(fields.content);
-    }
-    if (fields.fileName) {
-      fields.fileName = cleanString(fields.fileName);
-    }
-    userId = call.request.userID;
-
-    const must = getQueryMust(fields, userId);
-    const should = getQueryShould(fields, exactMatch);
-    console.log("should");
-    console.dir(JSON.stringify(should));
-    console.log("must");
-    console.dir(JSON.stringify(must));
-    // const query = queryOrganizer(fields, exactMatch); //returns an organized Query according to the search conditions.
-
-    //TODO UNCOMMENT
-    // const usersPermissions = await getUsersPermissions(userId);
-
-    // if (usersPermissions.permissions.length) {
-    //   const ownersArray = await indexesCollector(usersPermissions.permissions);
-    //   ownersArray.unshift(userId);
-    //   indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
-    // }
-    //TODO UNCOMMENT
-
-    indexesArray = ["5e5688324203fc40043591aa"];
-    const indices_boost = new Object();
-    indices_boost[userId] = 2; //boost the files of the user who did the search to the top of the results.
-
-    const result = await clientES.search({
-      index: indexesArray,
-      body: {
-        indices_boost: [indices_boost],
-        from: call.request.resultsAmount.from,
-        size: call.request.resultsAmount.amount,
-        query: {
-          bool: {
-            must: must,
-            should: should,
-            minimum_should_match: should.length === 0 ? 0 : 1,
-          },
-        },
-        highlight: {
-          pre_tags: ["<b>"],
-          post_tags: ["</b>"],
-          fields: {
-            content: {},
-            fileName: {},
-          },
-        },
-        collapse: {
-          //return uniqe file Ids-(one result from each file)
-          field: "fileId.keyword",
-        },
-      },
-    });
-
-    const results = await result.body.hits.hits.map((document) => {
-      let highlightedContent = null,
-        highlightedFileName = null;
-      if (fields.content && fields.content != "") {
-        highlightedContent = document.highlight.content[0];
-      }
-      if (fields.fileName && fields.fileName != "") {
-        highlightedFileName = document.highlight.fileName[0];
-      }
-
-      const fileResult = {
-        fileId: document._source.fileId,
-        highlightedContent: getStringWithBold(highlightedContent, fields.content),
-        highlightedFileName: getStringWithBold(highlightedFileName, fields.fileName),
-      };
-      return fileResult;
-    });
-
-    logger.log({
-      level: "info",
-      message: `Search completed successfully!`,
-      label: `userId: ${userId}`,
-    });
-
-    callback(null, { results: results });
-  } catch (err) {
-    logger.log({
-      level: "error",
-      message: `${err} `,
-      label: `userId: ${userId}`,
-    });
-    callback(err, null);
-  }
-}
-
 async function indexesCollector(permissionArray) {
   let filesArray = [];
   let ownersArray = [];
@@ -328,16 +230,6 @@ function getQueryShould(fields, exactMatch) {
     should.push(fileNameQuery);
   }
 
-  if (fields.type && fields.type !== "") {
-    const typeQuery = {
-      query_string: {
-        default_field: "type",
-        query: `*${fields.type}*`,
-      },
-    };
-    should.push(typeQuery);
-  }
-
   if (fields.content && fields.content !== "") {
     let contentQuery;
     if (exactMatch) {
@@ -388,15 +280,9 @@ function getDatesShould(fields) {
   return should;
 }
 
+function getQueryFilter(fields) {}
+
 function getQueryMust(fields, userId) {
-  // const permissionsMust = [
-  //   {
-  //     query_string: {
-  //       default_field: "permissions.user.userId",
-  //       query: `${userId}`,
-  //     },
-  //   },
-  // ];
   const permissionsMust = [
     {
       terms: {
@@ -404,15 +290,7 @@ function getQueryMust(fields, userId) {
       },
     },
   ];
-
   if (fields.sharedWith && fields.sharedWith !== "") {
-    // permissionsMust.push({
-    //   query_string: {
-    //     default_field: "permissions.user.userId",
-    //     query: `${fields.sharedWith}`,
-    //   },
-    // });
-    console.log("yes");
     permissionsMust.push({
       terms: {
         "permissions.user.userId": [fields.sharedWith],
@@ -443,9 +321,7 @@ function getQueryMust(fields, userId) {
   }
 
   if (fields.updatedAt || fields.createdAt) {
-    console.log("yes");
     const datesShould = getDatesShould(fields);
-    console.log(datesShould);
     query.push({
       bool: {
         should: datesShould,
@@ -453,6 +329,17 @@ function getQueryMust(fields, userId) {
       },
     });
   }
+
+  if (fields.type && fields.type !== "") {
+    const typeQuery = {
+      query_string: {
+        default_field: "type",
+        query: `*${fields.type}*`,
+      },
+    };
+    query.push(typeQuery);
+  }
+
   return query;
 }
 
@@ -475,5 +362,100 @@ function pushDateToQuery(field, query, rangeQuery) {
     }
 
     query.push(rangeQuery);
+  }
+}
+
+async function search(call, callback) {
+  try {
+    let indexesArray = [];
+    const exactMatch = call.request.exactMatch;
+    const fields = call.request.fields;
+    if (fields.content) {
+      fields.content = cleanString(fields.content);
+    }
+    if (fields.fileName) {
+      fields.fileName = cleanString(fields.fileName);
+    }
+    userId = call.request.userID;
+
+    const must = getQueryMust(fields, userId);
+    const should = getQueryShould(fields, exactMatch);
+
+    //TODO UNCOMMENT
+    // const usersPermissions = await getUsersPermissions(userId);
+
+    // if (usersPermissions.permissions.length) {
+    //   const ownersArray = await indexesCollector(usersPermissions.permissions);
+    //   ownersArray.unshift(userId);
+    //   indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
+    // }
+    //TODO UNCOMMENT
+
+    indexesArray = ["5e5688324203fc40043591aa"];
+    const indices_boost = new Object();
+    indices_boost[userId] = 2; //boost the files of the user who did the search to the top of the results.
+
+    const elasticRequest = {
+      index: indexesArray,
+      body: {
+        indices_boost: [indices_boost],
+        from: call.request.resultsAmount.from,
+        size: call.request.resultsAmount.amount,
+        query: {
+          bool: {
+            must: must,
+            should: should,
+            minimum_should_match: should.length === 0 ? 0 : 1,
+          },
+        },
+        highlight: {
+          pre_tags: ["<b>"],
+          post_tags: ["</b>"],
+          fields: {
+            content: {},
+            fileName: {},
+          },
+        },
+        collapse: {
+          //return uniqe file Ids-(one result from each file)
+          field: "fileId.keyword",
+        },
+      },
+    };
+
+    const result = await clientES.search(elasticRequest);
+
+    const results = await result.body.hits.hits.map((document) => {
+      let highlightedContent = null,
+        highlightedFileName = null;
+      if (fields.content && fields.content != "" && document.highlight.content) {
+        highlightedContent = document.highlight.content[0];
+      }
+      if (fields.fileName && fields.fileName != "" && document.highlight.fileName) {
+        highlightedFileName = document.highlight.fileName[0];
+      }
+
+      const fileResult = {
+        fileId: document._source.fileId,
+        highlightedContent: getStringWithBold(highlightedContent, fields.content),
+        highlightedFileName: getStringWithBold(highlightedFileName, fields.fileName),
+      };
+      return fileResult;
+    });
+
+    logger.log({
+      level: "info",
+      message: `Search completed successfully!`,
+      label: `userId: ${userId}`,
+    });
+
+    callback(null, { results: results });
+  } catch (err) {
+    logger.log({
+      level: "error",
+      message: `${err} `,
+      label: `userId: ${userId}`,
+    });
+    callback(err, null);
   }
 }
