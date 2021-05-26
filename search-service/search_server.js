@@ -281,33 +281,29 @@ function getDatesShould(fields) {
 }
 
 function getQueryMust(fields, userId) {
-  const uderIds = [userId];
-  const permissionsMust = [
-    {
-      terms: {
-        "permissions.user.userId": [userId],
-      },
-    },
-  ];
-  if (fields.sharedWith && fields.sharedWith !== "") {
-    permissionsMust.push({
-      terms: {
-        "permissions.user.userId": [fields.sharedWith],
-      },
-    });
-  }
-  const query = [
-    {
-      nested: {
-        path: "permissions",
-        query: {
-          bool: {
-            must: permissionsMust,
-          },
+  const query = [];
+  query.push({
+    nested: {
+      path: "permissions",
+      query: {
+        match: {
+          "permissions.user.userId": userId,
         },
       },
     },
-  ];
+  });
+  if (fields.sharedWith && fields.sharedWith !== "") {
+    query.push({
+      nested: {
+        path: "permissions",
+        query: {
+          match: {
+            "permissions.user.userId": fields.sharedWith,
+          },
+        },
+      },
+    });
+  }
 
   if (fields.ownerId && fields.ownerId !== "") {
     const ownerIdQuery = {
@@ -381,16 +377,16 @@ async function search(call, callback) {
     const should = getQueryShould(fields, exactMatch);
 
     //TODO UNCOMMENT
-    const usersPermissions = await getUsersPermissions(userId);
+    // const usersPermissions = await getUsersPermissions(userId);
 
-    if (usersPermissions.permissions.length) {
-      const ownersArray = await indexesCollector(usersPermissions.permissions);
-      ownersArray.unshift(userId);
-      indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
-    }
+    // if (usersPermissions.permissions.length) {
+    //   const ownersArray = await indexesCollector(usersPermissions.permissions);
+    //   ownersArray.unshift(userId);
+    //   indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
+    // }
     //TODO UNCOMMENT
 
-    //indexesArray = ["5e5688324203fc40043591aa"];
+    indexesArray = ["5e5688324203fc40043591aa"];
     const indices_boost = new Object();
     indices_boost[userId] = 2; //boost the files of the user who did the search to the top of the results.
 
