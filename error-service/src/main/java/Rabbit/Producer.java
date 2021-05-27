@@ -44,12 +44,17 @@ public class Producer {
 
         AmqpAdmin admin = new RabbitAdmin(connectionFactory);
 
+try{
+    admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
+    admin.declareQueue(new Queue(Config.EVENTS_QUEUE_NAME));
 
-        admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
-        admin.declareQueue(new Queue(Config.EVENTS_QUEUE_NAME));
+    admin.declareBinding(deleteBinding);
+    connectionFactory.resetConnection();
+}
+catch(Exception ex){
+    throw ex;
+}
 
-        admin.declareBinding(deleteBinding);
-        connectionFactory.resetConnection();
     }
 
 

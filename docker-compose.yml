@@ -12,16 +12,16 @@ services:
       timeout: 10s
       retries: 15
 
-  # rabbitmq:
-  #   image: "rabbitmq:3-management"
-  #   hostname: "rabbitmq"
-  #   ports:
-  #     - "15672:15672"
-  #     - "5672:5672"
-  #   labels:
-  #     NAME: "rabbitmq"
-  #   volumes:
-  #     - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbitmq"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+      - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
 
   managerService:
     image: manager-spring-boot
@@ -38,6 +38,7 @@ services:
       - INDEXING_DRIVE_SERVICE_ROUTING_KEY=${INDEXING_DRIVE_SERVICE_ROUTING_KEY}
       - INDEXING_ERROR_QUEUE_NAME=${INDEXING_ERROR_QUEUE_NAME}
       - INDEXING_ERROR_ROUTING_KEY=${INDEXING_ERROR_ROUTING_KEY}
+      - RABBIT_MAX_WAIT_TIME=${RABBIT_MAX_WAIT_TIME}
     depends_on:
         - rabbitmq
 
@@ -65,6 +66,7 @@ services:
       - INDEXING_PERMISSION_SERVICE_URL=${INDEXING_PERMISSION_SERVICE_URL}
       - INDEXING_USER_SERVICE_URL=${INDEXING_USER_SERVICE_URL}
       - INDEXING_DOWNLOAD_SERVICE_URL=${INDEXING_DOWNLOAD_SERVICE_URL}
+      - RABBIT_MAX_WAIT_TIME=${RABBIT_MAX_WAIT_TIME}
     depends_on:
       - rabbitmq
 
@@ -84,6 +86,7 @@ services:
       - INDEXING_ERROR_QUEUE_NAME=${INDEXING_ERROR_QUEUE_NAME}
       - INDEXING_ERROR_ROUTING_KEY=${INDEXING_ERROR_ROUTING_KEY}
       - INDEXING_ELASTIC_URLS=${INDEXING_ELASTIC_URLS}
+      - RABBIT_MAX_WAIT_TIME=${RABBIT_MAX_WAIT_TIME}
     depends_on:
       - rabbitmq
 
@@ -99,6 +102,7 @@ services:
       - INDEXING_ERROR_QUEUE_NAME=${INDEXING_ERROR_QUEUE_NAME}
       - INDEXING_ERROR_ROUTING_KEY=${INDEXING_ERROR_ROUTING_KEY}
       - INDEXING_ELASTIC_URLS=${INDEXING_ELASTIC_URLS}
+      - RABBIT_MAX_WAIT_TIME=${RABBIT_MAX_WAIT_TIME}
     depends_on:
       - rabbitmq
 
@@ -120,6 +124,7 @@ services:
       - INDEXING_FOLDER_TYPE=${INDEXING_FOLDER_TYPE}
       - INDEXING_FILE_SERVICE_URL=${INDEXING_FILE_SERVICE_URL}
       - INDEXING_DOWNLOAD_SERVICE_URL=${INDEXING_DOWNLOAD_SERVICE_URL}
+      - RABBIT_MAX_WAIT_TIME=${RABBIT_MAX_WAIT_TIME}
     depends_on:
       - rabbitmq
 
@@ -134,6 +139,7 @@ services:
       - INDEXING_FILE_SERVICE_URL=${INDEXING_FILE_SERVICE_URL}
       - INDEXING_PERMISSION_SERVICE_URL=${INDEXING_PERMISSION_SERVICE_URL}
       - INDEXING_ELASTIC_URLS=${INDEXING_ELASTIC_URLS}
+      - RABBIT_MAX_WAIT_TIME=${RABBIT_MAX_WAIT_TIME}
     ports:
       - 8005:8005
     restart: on-failure
@@ -151,5 +157,6 @@ services:
       - INDEXING_ERROR_QUEUE_NAME=${INDEXING_ERROR_QUEUE_NAME}
       - INDEXING_ERROR_ROUTING_KEY=${INDEXING_ERROR_ROUTING_KEY}
       - INDEXING_ERROR_SERVICE_HC_PORT=${INDEXING_ERROR_SERVICE_HC_PORT}
+      - RABBIT_MAX_WAIT_TIME=${RABBIT_MAX_WAIT_TIME}
     depends_on:
       - rabbitmq

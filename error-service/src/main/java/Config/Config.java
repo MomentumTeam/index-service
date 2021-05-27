@@ -5,6 +5,7 @@ import java.time.LocalTime;
 public class Config {
 
     public static final int HC_PORT = (System.getenv("INDEXING_ERROR_SERVICE_HC_PORT")!=null)? Integer.parseInt(System.getenv("INDEXING_ERROR_SERVICE_HC_PORT")): 8085;
+    public static final int RABBIT_MAX_WAIT_TIME = (System.getenv("RABBIT_MAX_WAIT_TIME")!=null)? Integer.parseInt(System.getenv("RABBIT_MAX_WAIT_TIME")): 300000;
 
     public static final String startTimeString = (System.getenv("INDEXING_ERROR_SERVICE_START_TIME")!=null) ? System.getenv("INDEXING_ERROR_SERVICE_START_TIME") : "12:00" ;
     public static final String endTimeString = (System.getenv("INDEXING_ERROR_SERVICE_END_TIME")!=null) ? System.getenv("INDEXING_ERROR_SERVICE_END_TIME") : "12:10" ;

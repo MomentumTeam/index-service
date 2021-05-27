@@ -16,10 +16,25 @@ public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
-    public static void main (String[] args){
+    public static void main (String[] args) throws InterruptedException {
         LOGGER.info("delete-service started");
         initHealthCheck();
-        Producer.initQueues();
+        boolean flag = false;
+        int waitTime = 1000;
+        while(!flag){
+            try{
+                Producer.initQueues();
+                flag = true;
+            }
+            catch(Exception e){
+                LOGGER.info("RabbitMQ is down probably");
+                Thread.sleep(waitTime);
+                waitTime = waitTime * 2;
+                if(waitTime >= Config.RABBIT_MAX_WAIT_TIME){
+                    waitTime = 5000;
+                }
+            }
+        }
         SpringApplication.run(Consumer.class, args);
     }
 

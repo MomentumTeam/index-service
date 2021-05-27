@@ -55,28 +55,31 @@ public class Producer {
 
         AmqpAdmin admin = new RabbitAdmin(connectionFactory);
 
+        try{
+            admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
+            LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
+            admin.declareQueue(new Queue(Config.DRIVE_SERVICE_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.DRIVE_SERVICE_QUEUE_NAME));
+            admin.declareQueue(new Queue(Config.PARSING_SERVICE_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.PARSING_SERVICE_QUEUE_NAME));
+            admin.declareQueue(new Queue(Config.ELASTIC_SERVICE_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.ELASTIC_SERVICE_QUEUE_NAME));
+            admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
 
-        admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
-        LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
-        admin.declareQueue(new Queue(Config.DRIVE_SERVICE_QUEUE_NAME));
-        LOGGER.info(String.format("Declared queue '%s'",Config.DRIVE_SERVICE_QUEUE_NAME));
-        admin.declareQueue(new Queue(Config.PARSING_SERVICE_QUEUE_NAME));
-        LOGGER.info(String.format("Declared queue '%s'",Config.PARSING_SERVICE_QUEUE_NAME));
-        admin.declareQueue(new Queue(Config.ELASTIC_SERVICE_QUEUE_NAME));
-        LOGGER.info(String.format("Declared queue '%s'",Config.ELASTIC_SERVICE_QUEUE_NAME));
-        admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
-        LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
-
-        admin.declareBinding(driveBinding);
-        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.DRIVE_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
-        admin.declareBinding(parsingBinding);
-        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.PARSING_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
-        admin.declareBinding(elasticBinding);
-        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ELASTIC_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
-        admin.declareBinding(errorBinding);
-        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ERROR_QUEUE_NAME,Config.EXCHANGE_NAME));
-        connectionFactory.resetConnection();
-
+            admin.declareBinding(driveBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.DRIVE_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
+            admin.declareBinding(parsingBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.PARSING_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
+            admin.declareBinding(elasticBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ELASTIC_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
+            admin.declareBinding(errorBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ERROR_QUEUE_NAME,Config.EXCHANGE_NAME));
+            connectionFactory.resetConnection();
+        }
+        catch(Exception ex){
+            throw ex;
+        }
     }
 
     public Jackson2JsonMessageConverter producerMessageConverter() {

@@ -14,6 +14,7 @@ public class Config {
 //    public static final String RABBIT_USER = (System.getenv("INDEXING_RABBIT_USER")!=null) ? System.getenv("INDEXING_RABBIT_USER") : "guest" ;
 //    public static final String RABBIT_PASSWORD = (System.getenv("INDEXING_RABBIT_PASSWORD")!=null) ? System.getenv("INDEXING_RABBIT_PASSWORD") : "guest" ;
 
+    public static final int RABBIT_MAX_WAIT_TIME = (System.getenv("RABBIT_MAX_WAIT_TIME")!=null)? Integer.parseInt(System.getenv("RABBIT_MAX_WAIT_TIME")): 300000;
     public static final int HC_PORT = (System.getenv("INDEXING_MANAGER_SERVICE_HC_PORT")!=null)? Integer.parseInt(System.getenv("INDEXING_MANAGER_SERVICE_HC_PORT")): 8080;
     public static final String EXCHANGE_NAME = (System.getenv("INDEXING_EXCHANGE_NAME")!=null) ? System.getenv("INDEXING_EXCHANGE_NAME") : "indexService" ;
 

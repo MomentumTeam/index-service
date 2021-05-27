@@ -52,22 +52,28 @@ public class Producer {
                 Config.EXCHANGE_NAME, Config.ERROR_ROUTING_KEY, null);
 
         AmqpAdmin admin = new RabbitAdmin(connectionFactory);
-        admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
-        LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
-        admin.declareQueue(new Queue(Config.DELETE_QUEUE_NAME));
-        LOGGER.info(String.format("Declared queue '%s'",Config.DELETE_QUEUE_NAME));
-        admin.declareQueue(new Queue(Config.DRIVE_SERVICE_QUEUE_NAME));
-        LOGGER.info(String.format("Declared queue '%s'",Config.DRIVE_SERVICE_QUEUE_NAME));
-        admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
-        LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
+        try{
+            admin.declareExchange(new TopicExchange(Config.EXCHANGE_NAME));
+            LOGGER.info(String.format("Declared exchange '%s'",Config.EXCHANGE_NAME));
+            admin.declareQueue(new Queue(Config.DELETE_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.DELETE_QUEUE_NAME));
+            admin.declareQueue(new Queue(Config.DRIVE_SERVICE_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.DRIVE_SERVICE_QUEUE_NAME));
+            admin.declareQueue(new Queue(Config.ERROR_QUEUE_NAME));
+            LOGGER.info(String.format("Declared queue '%s'",Config.ERROR_QUEUE_NAME));
 
-        admin.declareBinding(deleteBinding);
-        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.DELETE_QUEUE_NAME,Config.EXCHANGE_NAME));
-        admin.declareBinding(driveBinding);
-        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.DRIVE_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
-        admin.declareBinding(errorBinding);
-        LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ERROR_QUEUE_NAME,Config.EXCHANGE_NAME));
-        connectionFactory.resetConnection();
+            admin.declareBinding(deleteBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.DELETE_QUEUE_NAME,Config.EXCHANGE_NAME));
+            admin.declareBinding(driveBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.DRIVE_SERVICE_QUEUE_NAME,Config.EXCHANGE_NAME));
+            admin.declareBinding(errorBinding);
+            LOGGER.info(String.format("Declared Binding of '%s' to %s",Config.ERROR_QUEUE_NAME,Config.EXCHANGE_NAME));
+            connectionFactory.resetConnection();
+        }
+        catch(Exception ex){
+            throw ex;
+        }
+
     }
 
 
