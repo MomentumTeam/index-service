@@ -327,9 +327,8 @@ function getQueryMust(fields, userId) {
 
   if (fields.type && fields.type !== "") {
     const typeQuery = {
-      query_string: {
-        default_field: "type",
-        query: `*${fields.type}*`,
+      match_phrase: {
+        type: fields.type,
       },
     };
     query.push(typeQuery);
