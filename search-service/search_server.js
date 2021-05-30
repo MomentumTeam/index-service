@@ -42,8 +42,14 @@ const search_proto = grpc.loadPackageDefinition(searchPackageDefinition).searchS
 const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition).permission;
 const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
 
-const permissionClient = new permission_proto.Permission(`${process.env.INDEXING_PERMISSION_SERVICE_URL}`, grpc.credentials.createInsecure());
-const fileClient = new file_proto.FileService(`${process.env.INDEXING_FILE_SERVICE_URL}`, grpc.credentials.createInsecure());
+const permissionClient = new permission_proto.Permission(
+  `${process.env.INDEXING_PERMISSION_SERVICE_URL}`,
+  grpc.credentials.createInsecure()
+);
+const fileClient = new file_proto.FileService(
+  `${process.env.INDEXING_FILE_SERVICE_URL}`,
+  grpc.credentials.createInsecure()
+);
 
 // Health check - without elastic access the service won't work
 async function healthCheck() {
@@ -155,7 +161,7 @@ async function indexesCollector(permissionArray) {
 
         ownersIds.push(file.ownerID);
         ownersArray = ownersArray.concat(ownersIds);
-      } else if (file.type.includes("document")) {
+      } else {
         ownersArray.push(file.ownerID);
       }
     }
@@ -338,7 +344,13 @@ function getQueryMust(fields, userId) {
 }
 
 function pushDateToQuery(field, query, rangeQuery) {
-  const oldest = new Date(process.env.INDEXING_OLDEST_YEAR, process.env.INDEXING_OLDEST_MONTH, process.env.INDEXING_OLDEST_DAY).getTime().toString();
+  const oldest = new Date(
+    process.env.INDEXING_OLDEST_YEAR,
+    process.env.INDEXING_OLDEST_MONTH,
+    process.env.INDEXING_OLDEST_DAY
+  )
+    .getTime()
+    .toString();
   const newest = Date.now().toString();
   const fieldName = Object.keys(rangeQuery.range)[0];
 
@@ -376,16 +388,16 @@ async function search(call, callback) {
     const should = getQueryShould(fields, exactMatch);
 
     //TODO UNCOMMENT
-    // const usersPermissions = await getUsersPermissions(userId);
+    const usersPermissions = await getUsersPermissions(userId);
 
-    // if (usersPermissions.permissions.length) {
-    //   const ownersArray = await indexesCollector(usersPermissions.permissions);
-    //   ownersArray.unshift(userId);
-    //   indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
-    // }
+    if (usersPermissions.permissions.length) {
+      const ownersArray = await indexesCollector(usersPermissions.permissions);
+      ownersArray.unshift(userId);
+      indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
+    }
     //TODO UNCOMMENT
 
-    indexesArray = ["5e5688324203fc40043591aa"];
+    // indexesArray = ["5e5688324203fc40043591aa"];
     const indices_boost = new Object();
     indices_boost[userId] = 2; //boost the files of the user who did the search to the top of the results.
 

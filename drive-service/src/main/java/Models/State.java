@@ -65,9 +65,9 @@ public class State {
     public void receiveMetadata(){
         try{
             this.metadata = FileMetadata.getMetadata(this.fileId);
-            if(this.metadata.getFileName() != null){
-                this.metadata.setFileName(cleanFileName(this.metadata.getFileName()));
-            }
+            // if(this.metadata.getFileName() != null){
+            //     this.metadata.setFileName(cleanFileName(this.metadata.getFileName()));
+            // }
         }
         catch(Exception e){
             if(e.getMessage().indexOf("NOT_FOUND") != -1){
