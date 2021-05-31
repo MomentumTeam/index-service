@@ -380,7 +380,7 @@ async function search(call, callback) {
       fields.content = cleanString(fields.content);
     }
     if (fields.fileName) {
-      fields.fileName = cleanString(fields.fileName);
+      // fields.fileName = cleanString(fields.fileName);
     }
     userId = call.request.userID;
 
