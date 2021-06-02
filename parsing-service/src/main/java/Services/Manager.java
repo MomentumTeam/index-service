@@ -44,7 +44,7 @@ public class Manager {
 
         try{
             fileArray = DataService.download(key, bucket);
-            content = ParsingService.getContent(fileArray);
+            content = Config.SUPPORTED_TYPES.contains(metadata.getType()) ? ParsingService.getContent(fileArray) : "";
             content = ParsingService.cleanContent(content);
             chunks = ChunkService.getChunks(content);
             suffixPrefixArray = ChunkService.getSuffixPrefixStringArray(content);

@@ -139,21 +139,29 @@ async function indexesCollector(permissionArray) {
 
   await Promise.all(
     permissionArray.map(async (permission) => {
-      fileObj = await getFileByID(permission.fileID);
-      filesArray.push(fileObj);
+      try {
+        fileObj = await getFileByID(permission.fileID);
+        filesArray.push(fileObj);
+      } catch (error) {
+        logger.log({
+          level: "error",
+          message: `Error in getFileById for fileId=${permission.fileID}, error: ${error.message}`,
+          label: `indexesCollector`,
+        });
+      }
     })
   );
 
-  if (filesArray.includes(null)) {
-    return [];
-  }
+  // if (filesArray.includes(null)) {
+  //   return [];
+  // }
 
   for (let file of filesArray) {
     if (file) {
       if (file.type.includes("folder")) {
         let desendantsArray = await getDesendantsById(file.id);
         if (!desendantsArray) {
-          return [];
+          desendantsArray = [];
         }
         let ownersIds = desendantsArray.map((desendants) => {
           return desendants.file.ownerID;
@@ -201,7 +209,7 @@ function getFileByID(fileId) {
           message: `in GetFileByID request to Drive - ${err.details}`,
           label: `userId: ${userId}`,
         });
-        resolve(null);
+        reject(err);
       }
       resolve(response);
     });

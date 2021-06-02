@@ -53,17 +53,22 @@ public class ChunkService {
         List<String> chunks = new ArrayList<String>();
         String chunk;
         int from,to,firstWhiteSpace;
-
-        for (int i = 0 ; i < content.length() ; i += Config.CHUNK_SIZE){
-            from = content.lastIndexOf(' ', i) + 1;
-            firstWhiteSpace = content.indexOf(' ', i + Config.CHUNK_SIZE);
-            to = firstWhiteSpace == -1 ? content.length() : firstWhiteSpace;
-            chunk = content.substring(from, to);
-            chunks.add(chunk);
+        if(content == null || content.length() == 0){
+            return new String[]{""};
+        }
+        else{
+            for (int i = 0 ; i < content.length() ; i += Config.CHUNK_SIZE){
+                from = content.lastIndexOf(' ', i) + 1;
+                firstWhiteSpace = content.indexOf(' ', i + Config.CHUNK_SIZE);
+                to = firstWhiteSpace == -1 ? content.length() : firstWhiteSpace;
+                chunk = content.substring(from, to);
+                chunks.add(chunk);
+            }   
+            String [] arrayChunks = new String[chunks.size()];
+            chunks.toArray(arrayChunks);
+            return arrayChunks;
         }
 
-        String [] arrayChunks = new String[chunks.size()];
-        chunks.toArray(arrayChunks);
-        return arrayChunks;
+
     }
 }
