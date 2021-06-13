@@ -1,10 +1,11 @@
-const { Client } = require("@elastic/elasticsearch");
 const grpc = require("@grpc/grpc-js");
 const axios = require("axios").default;
 const health = require("grpc-health-check");
 const protoLoader = require("@grpc/proto-loader");
 const dotenv = require("dotenv");
 const logger = require("./logger");
+const { Client } = require("@elastic/elasticsearch");
+const { getFileByID, getDesendantsById, getUsersPermissions, conditions } = require("./drive_utils");
 
 dotenv.config({ path: "../.env" });
 
@@ -13,43 +14,16 @@ dotenv.config({ path: "../.env" });
 const healthCheckStatusMap = {
   "": proto.grpc.health.v1.HealthCheckResponse.ServingStatus.UNKNOWN,
 };
-
-// Construct the service implementation
 let healthImpl = new health.Implementation(healthCheckStatusMap);
 
-const elasticUrls = process.env.INDEXING_ELASTIC_URLS.split(",");
 // Elastic
+const elasticUrls = process.env.INDEXING_ELASTIC_URLS.split(",");
 const clientES = new Client({ node: elasticUrls });
 
-// Proto loader
+// Search Proto loader
 const SEARCH_PROTO_PATH = `${__dirname}/proto/search/search.proto`;
-const PERMMISSION_PROTO_PATH = `${__dirname}/proto/permission/permission.proto`;
-const FILE_PROTO_PATH = `${__dirname}/proto/file/file.proto`;
-
-const conditions = {
-  keepCase: true,
-  longs: String,
-  enums: String,
-  defaults: true,
-  oneofs: true,
-};
-
 const searchPackageDefinition = protoLoader.loadSync(SEARCH_PROTO_PATH, conditions);
-const permissionPackageDefinition = protoLoader.loadSync(PERMMISSION_PROTO_PATH, conditions);
-const filePackageDefinition = protoLoader.loadSync(FILE_PROTO_PATH, conditions);
-
 const search_proto = grpc.loadPackageDefinition(searchPackageDefinition).searchService;
-const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition).permission;
-const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
-
-const permissionClient = new permission_proto.Permission(
-  `${process.env.INDEXING_PERMISSION_SERVICE_URL}`,
-  grpc.credentials.createInsecure()
-);
-const fileClient = new file_proto.FileService(
-  `${process.env.INDEXING_FILE_SERVICE_URL}`,
-  grpc.credentials.createInsecure()
-);
 
 // Health check - without elastic access the service won't work
 async function healthCheck() {
@@ -126,8 +100,12 @@ function getStringWithBold(str, query) {
   const queryArray = query.split(" ");
   str = str.replace(new RegExp("<b>", "g"), "");
   str = str.replace(new RegExp("</b>", "g"), "");
+  resultstr = str;
   queryArray.forEach((element) => {
-    str = str.replace(new RegExp(element, "g"), `<b>${element}</b>`);
+    // str.match(new RegExp(element, "ig")).forEach((matchString) => {
+    //   resultstr = resultstr.replace(new RegExp(matchString, "g"), `<b>${matchString}</b>`);
+    // });
+    str = str.replace(new RegExp(element, "ig"), `<b>${element}</b>`);
   });
   return str;
 }
@@ -182,54 +160,6 @@ async function indexesCollector(permissionArray) {
   });
 
   return ownersArray;
-}
-
-function getUsersPermissions(userId) {
-  return new Promise((resolve, reject) => {
-    permissionClient.GetUserPermissions({ userID: userId }, function (err, response) {
-      if (err) {
-        logger.log({
-          level: "error",
-          message: `in GetUserPermissions request to Drive - ${err.details}`,
-          label: `userId: ${userId}`,
-        });
-        resolve(null);
-      }
-      resolve(response);
-    });
-  });
-}
-
-function getFileByID(fileId) {
-  return new Promise((resolve, reject) => {
-    fileClient.GetFileByID({ id: fileId }, function (err, response) {
-      if (err) {
-        logger.log({
-          level: "error",
-          message: `in GetFileByID request to Drive - ${err.details}`,
-          label: `userId: ${userId}`,
-        });
-        reject(err);
-      }
-      resolve(response);
-    });
-  });
-}
-
-function getDesendantsById(folderId) {
-  return new Promise((resolve, reject) => {
-    fileClient.GetDescendantsByID({ id: folderId }, function (err, response) {
-      if (err) {
-        logger.log({
-          level: "error",
-          message: `in GetDescendantsByID request to Drive - ${err.details}`,
-          label: `userId: ${userId}`,
-        });
-        resolve(null);
-      }
-      resolve(response.descendants);
-    });
-  });
 }
 
 function getQueryShould(fields, exactMatch) {
@@ -438,7 +368,7 @@ async function search(call, callback) {
     };
 
     const result = await clientES.search(elasticRequest);
-
+    const itemCount = JSON.stringify(result.body.hits.total.value);
     const results = await result.body.hits.hits.map((document) => {
       let highlightedContent = null,
         highlightedFileName = null;
@@ -463,7 +393,7 @@ async function search(call, callback) {
       label: `userId: ${userId}`,
     });
 
-    callback(null, { results: results });
+    callback(null, { results: results, itemCount });
   } catch (err) {
     logger.log({
       level: "error",

@@ -50,6 +50,8 @@ message SearchReply {
   }
   
  repeated fileResult results=1;
+ int64 itemCount = 2;
+
 }
 
 // message Owner {

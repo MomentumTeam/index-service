@@ -27,36 +27,36 @@ public final class UsersGrpc {
   public static final String SERVICE_NAME = "users.Users";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetByMailRequest,
-      DriveStubs.grpc.UsersOuterClass.GetUserResponse> getGetUserByMailMethod;
+  private static volatile io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest,
+      DriveStubs.grpc.UsersOuterClass.GetUserResponse> getGetUserByMailOrTMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "GetUserByMail",
-      requestType = DriveStubs.grpc.UsersOuterClass.GetByMailRequest.class,
+      fullMethodName = SERVICE_NAME + '/' + "GetUserByMailOrT",
+      requestType = DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest.class,
       responseType = DriveStubs.grpc.UsersOuterClass.GetUserResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetByMailRequest,
-      DriveStubs.grpc.UsersOuterClass.GetUserResponse> getGetUserByMailMethod() {
-    io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetByMailRequest, DriveStubs.grpc.UsersOuterClass.GetUserResponse> getGetUserByMailMethod;
-    if ((getGetUserByMailMethod = UsersGrpc.getGetUserByMailMethod) == null) {
+  public static io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest,
+      DriveStubs.grpc.UsersOuterClass.GetUserResponse> getGetUserByMailOrTMethod() {
+    io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest, DriveStubs.grpc.UsersOuterClass.GetUserResponse> getGetUserByMailOrTMethod;
+    if ((getGetUserByMailOrTMethod = UsersGrpc.getGetUserByMailOrTMethod) == null) {
       synchronized (UsersGrpc.class) {
-        if ((getGetUserByMailMethod = UsersGrpc.getGetUserByMailMethod) == null) {
-          UsersGrpc.getGetUserByMailMethod = getGetUserByMailMethod = 
-              io.grpc.MethodDescriptor.<DriveStubs.grpc.UsersOuterClass.GetByMailRequest, DriveStubs.grpc.UsersOuterClass.GetUserResponse>newBuilder()
+        if ((getGetUserByMailOrTMethod = UsersGrpc.getGetUserByMailOrTMethod) == null) {
+          UsersGrpc.getGetUserByMailOrTMethod = getGetUserByMailOrTMethod = 
+              io.grpc.MethodDescriptor.<DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest, DriveStubs.grpc.UsersOuterClass.GetUserResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "users.Users", "GetUserByMail"))
+                  "users.Users", "GetUserByMailOrT"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  DriveStubs.grpc.UsersOuterClass.GetByMailRequest.getDefaultInstance()))
+                  DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   DriveStubs.grpc.UsersOuterClass.GetUserResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new UsersMethodDescriptorSupplier("GetUserByMail"))
+                  .setSchemaDescriptor(new UsersMethodDescriptorSupplier("GetUserByMailOrT"))
                   .build();
           }
         }
      }
-     return getGetUserByMailMethod;
+     return getGetUserByMailOrTMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetByIDRequest,
@@ -123,38 +123,6 @@ public final class UsersGrpc {
      return getFindUserByNameMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest,
-      DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse> getGetApproverInfoMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "GetApproverInfo",
-      requestType = DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest.class,
-      responseType = DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest,
-      DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse> getGetApproverInfoMethod() {
-    io.grpc.MethodDescriptor<DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest, DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse> getGetApproverInfoMethod;
-    if ((getGetApproverInfoMethod = UsersGrpc.getGetApproverInfoMethod) == null) {
-      synchronized (UsersGrpc.class) {
-        if ((getGetApproverInfoMethod = UsersGrpc.getGetApproverInfoMethod) == null) {
-          UsersGrpc.getGetApproverInfoMethod = getGetApproverInfoMethod = 
-              io.grpc.MethodDescriptor.<DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest, DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "users.Users", "GetApproverInfo"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new UsersMethodDescriptorSupplier("GetApproverInfo"))
-                  .build();
-          }
-        }
-     }
-     return getGetApproverInfoMethod;
-  }
-
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -184,9 +152,9 @@ public final class UsersGrpc {
 
     /**
      */
-    public void getUserByMail(DriveStubs.grpc.UsersOuterClass.GetByMailRequest request,
+    public void getUserByMailOrT(DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest request,
         io.grpc.stub.StreamObserver<DriveStubs.grpc.UsersOuterClass.GetUserResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetUserByMailMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getGetUserByMailOrTMethod(), responseObserver);
     }
 
     /**
@@ -203,22 +171,15 @@ public final class UsersGrpc {
       asyncUnimplementedUnaryCall(getFindUserByNameMethod(), responseObserver);
     }
 
-    /**
-     */
-    public void getApproverInfo(DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest request,
-        io.grpc.stub.StreamObserver<DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetApproverInfoMethod(), responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getGetUserByMailMethod(),
+            getGetUserByMailOrTMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                DriveStubs.grpc.UsersOuterClass.GetByMailRequest,
+                DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest,
                 DriveStubs.grpc.UsersOuterClass.GetUserResponse>(
-                  this, METHODID_GET_USER_BY_MAIL)))
+                  this, METHODID_GET_USER_BY_MAIL_OR_T)))
           .addMethod(
             getGetUserByIDMethod(),
             asyncUnaryCall(
@@ -233,13 +194,6 @@ public final class UsersGrpc {
                 DriveStubs.grpc.UsersOuterClass.FindUserByNameRequest,
                 DriveStubs.grpc.UsersOuterClass.FindUserByNameResponse>(
                   this, METHODID_FIND_USER_BY_NAME)))
-          .addMethod(
-            getGetApproverInfoMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest,
-                DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse>(
-                  this, METHODID_GET_APPROVER_INFO)))
           .build();
     }
   }
@@ -264,10 +218,10 @@ public final class UsersGrpc {
 
     /**
      */
-    public void getUserByMail(DriveStubs.grpc.UsersOuterClass.GetByMailRequest request,
+    public void getUserByMailOrT(DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest request,
         io.grpc.stub.StreamObserver<DriveStubs.grpc.UsersOuterClass.GetUserResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetUserByMailMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetUserByMailOrTMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -284,14 +238,6 @@ public final class UsersGrpc {
         io.grpc.stub.StreamObserver<DriveStubs.grpc.UsersOuterClass.FindUserByNameResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getFindUserByNameMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void getApproverInfo(DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest request,
-        io.grpc.stub.StreamObserver<DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getGetApproverInfoMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -315,9 +261,9 @@ public final class UsersGrpc {
 
     /**
      */
-    public DriveStubs.grpc.UsersOuterClass.GetUserResponse getUserByMail(DriveStubs.grpc.UsersOuterClass.GetByMailRequest request) {
+    public DriveStubs.grpc.UsersOuterClass.GetUserResponse getUserByMailOrT(DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest request) {
       return blockingUnaryCall(
-          getChannel(), getGetUserByMailMethod(), getCallOptions(), request);
+          getChannel(), getGetUserByMailOrTMethod(), getCallOptions(), request);
     }
 
     /**
@@ -332,13 +278,6 @@ public final class UsersGrpc {
     public DriveStubs.grpc.UsersOuterClass.FindUserByNameResponse findUserByName(DriveStubs.grpc.UsersOuterClass.FindUserByNameRequest request) {
       return blockingUnaryCall(
           getChannel(), getFindUserByNameMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse getApproverInfo(DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getGetApproverInfoMethod(), getCallOptions(), request);
     }
   }
 
@@ -362,10 +301,10 @@ public final class UsersGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<DriveStubs.grpc.UsersOuterClass.GetUserResponse> getUserByMail(
-        DriveStubs.grpc.UsersOuterClass.GetByMailRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<DriveStubs.grpc.UsersOuterClass.GetUserResponse> getUserByMailOrT(
+        DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetUserByMailMethod(), getCallOptions()), request);
+          getChannel().newCall(getGetUserByMailOrTMethod(), getCallOptions()), request);
     }
 
     /**
@@ -383,20 +322,11 @@ public final class UsersGrpc {
       return futureUnaryCall(
           getChannel().newCall(getFindUserByNameMethod(), getCallOptions()), request);
     }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse> getApproverInfo(
-        DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getGetApproverInfoMethod(), getCallOptions()), request);
-    }
   }
 
-  private static final int METHODID_GET_USER_BY_MAIL = 0;
+  private static final int METHODID_GET_USER_BY_MAIL_OR_T = 0;
   private static final int METHODID_GET_USER_BY_ID = 1;
   private static final int METHODID_FIND_USER_BY_NAME = 2;
-  private static final int METHODID_GET_APPROVER_INFO = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -415,8 +345,8 @@ public final class UsersGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_GET_USER_BY_MAIL:
-          serviceImpl.getUserByMail((DriveStubs.grpc.UsersOuterClass.GetByMailRequest) request,
+        case METHODID_GET_USER_BY_MAIL_OR_T:
+          serviceImpl.getUserByMailOrT((DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest) request,
               (io.grpc.stub.StreamObserver<DriveStubs.grpc.UsersOuterClass.GetUserResponse>) responseObserver);
           break;
         case METHODID_GET_USER_BY_ID:
@@ -426,10 +356,6 @@ public final class UsersGrpc {
         case METHODID_FIND_USER_BY_NAME:
           serviceImpl.findUserByName((DriveStubs.grpc.UsersOuterClass.FindUserByNameRequest) request,
               (io.grpc.stub.StreamObserver<DriveStubs.grpc.UsersOuterClass.FindUserByNameResponse>) responseObserver);
-          break;
-        case METHODID_GET_APPROVER_INFO:
-          serviceImpl.getApproverInfo((DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest) request,
-              (io.grpc.stub.StreamObserver<DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -492,10 +418,9 @@ public final class UsersGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new UsersFileDescriptorSupplier())
-              .addMethod(getGetUserByMailMethod())
+              .addMethod(getGetUserByMailOrTMethod())
               .addMethod(getGetUserByIDMethod())
               .addMethod(getFindUserByNameMethod())
-              .addMethod(getGetApproverInfoMethod())
               .build();
         }
       }

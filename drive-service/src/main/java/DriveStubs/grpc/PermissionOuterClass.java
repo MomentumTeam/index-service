@@ -57,6 +57,8 @@ public final class PermissionOuterClass {
     }
 
     /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
@@ -64,6 +66,10 @@ public final class PermissionOuterClass {
       return forNumber(value);
     }
 
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
     public static Role forNumber(int value) {
       switch (value) {
         case 0: return NONE;
@@ -87,6 +93,10 @@ public final class PermissionOuterClass {
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
@@ -131,6 +141,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
     java.lang.String getFileID();
     /**
@@ -139,6 +150,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
     com.google.protobuf.ByteString
         getFileIDBytes();
@@ -149,6 +161,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
     java.lang.String getUserID();
     /**
@@ -157,6 +170,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
     com.google.protobuf.ByteString
         getUserIDBytes();
@@ -167,6 +181,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 3;</code>
+     * @return The enum numeric value on the wire for role.
      */
     int getRoleValue();
     /**
@@ -175,6 +190,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 3;</code>
+     * @return The role.
      */
     DriveStubs.grpc.PermissionOuterClass.Role getRole();
 
@@ -184,6 +200,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string creator = 4;</code>
+     * @return The creator.
      */
     java.lang.String getCreator();
     /**
@@ -192,6 +209,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string creator = 4;</code>
+     * @return The bytes for creator.
      */
     com.google.protobuf.ByteString
         getCreatorBytes();
@@ -202,13 +220,14 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>bool override = 5;</code>
+     * @return The override.
      */
     boolean getOverride();
   }
   /**
    * Protobuf type {@code permission.CreatePermissionRequest}
    */
-  public  static final class CreatePermissionRequest extends
+  public static final class CreatePermissionRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.CreatePermissionRequest)
       CreatePermissionRequestOrBuilder {
@@ -222,7 +241,13 @@ public final class PermissionOuterClass {
       userID_ = "";
       role_ = 0;
       creator_ = "";
-      override_ = false;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CreatePermissionRequest();
     }
 
     @java.lang.Override
@@ -238,7 +263,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -279,7 +303,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -318,7 +342,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
+    @java.lang.Override
     public java.lang.String getFileID() {
       java.lang.Object ref = fileID_;
       if (ref instanceof java.lang.String) {
@@ -337,7 +363,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFileIDBytes() {
       java.lang.Object ref = fileID_;
@@ -360,7 +388,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
+    @java.lang.Override
     public java.lang.String getUserID() {
       java.lang.Object ref = userID_;
       if (ref instanceof java.lang.String) {
@@ -379,7 +409,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUserIDBytes() {
       java.lang.Object ref = userID_;
@@ -402,8 +434,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 3;</code>
+     * @return The enum numeric value on the wire for role.
      */
-    public int getRoleValue() {
+    @java.lang.Override public int getRoleValue() {
       return role_;
     }
     /**
@@ -412,8 +445,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 3;</code>
+     * @return The role.
      */
-    public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
+    @java.lang.Override public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
       @SuppressWarnings("deprecation")
       DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
       return result == null ? DriveStubs.grpc.PermissionOuterClass.Role.UNRECOGNIZED : result;
@@ -427,7 +461,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string creator = 4;</code>
+     * @return The creator.
      */
+    @java.lang.Override
     public java.lang.String getCreator() {
       java.lang.Object ref = creator_;
       if (ref instanceof java.lang.String) {
@@ -446,7 +482,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string creator = 4;</code>
+     * @return The bytes for creator.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCreatorBytes() {
       java.lang.Object ref = creator_;
@@ -469,7 +507,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>bool override = 5;</code>
+     * @return The override.
      */
+    @java.lang.Override
     public boolean getOverride() {
       return override_;
     }
@@ -544,18 +584,17 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.CreatePermissionRequest other = (DriveStubs.grpc.PermissionOuterClass.CreatePermissionRequest) obj;
 
-      boolean result = true;
-      result = result && getFileID()
-          .equals(other.getFileID());
-      result = result && getUserID()
-          .equals(other.getUserID());
-      result = result && role_ == other.role_;
-      result = result && getCreator()
-          .equals(other.getCreator());
-      result = result && (getOverride()
-          == other.getOverride());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFileID()
+          .equals(other.getFileID())) return false;
+      if (!getUserID()
+          .equals(other.getUserID())) return false;
+      if (role_ != other.role_) return false;
+      if (!getCreator()
+          .equals(other.getCreator())) return false;
+      if (getOverride()
+          != other.getOverride()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -756,35 +795,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -852,6 +891,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The fileID.
        */
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
@@ -871,6 +911,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The bytes for fileID.
        */
       public com.google.protobuf.ByteString
           getFileIDBytes() {
@@ -891,6 +932,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @param value The fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileID(
           java.lang.String value) {
@@ -908,6 +951,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFileID() {
         
@@ -921,6 +965,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @param value The bytes for fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileIDBytes(
           com.google.protobuf.ByteString value) {
@@ -941,6 +987,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @return The userID.
        */
       public java.lang.String getUserID() {
         java.lang.Object ref = userID_;
@@ -960,6 +1007,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @return The bytes for userID.
        */
       public com.google.protobuf.ByteString
           getUserIDBytes() {
@@ -980,6 +1028,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @param value The userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserID(
           java.lang.String value) {
@@ -997,6 +1047,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUserID() {
         
@@ -1010,6 +1061,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @param value The bytes for userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserIDBytes(
           com.google.protobuf.ByteString value) {
@@ -1030,8 +1083,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @return The enum numeric value on the wire for role.
        */
-      public int getRoleValue() {
+      @java.lang.Override public int getRoleValue() {
         return role_;
       }
       /**
@@ -1040,8 +1094,11 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @param value The enum numeric value on the wire for role to set.
+       * @return This builder for chaining.
        */
       public Builder setRoleValue(int value) {
+        
         role_ = value;
         onChanged();
         return this;
@@ -1052,7 +1109,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @return The role.
        */
+      @java.lang.Override
       public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
         @SuppressWarnings("deprecation")
         DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
@@ -1064,6 +1123,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @param value The role to set.
+       * @return This builder for chaining.
        */
       public Builder setRole(DriveStubs.grpc.PermissionOuterClass.Role value) {
         if (value == null) {
@@ -1080,6 +1141,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearRole() {
         
@@ -1095,6 +1157,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 4;</code>
+       * @return The creator.
        */
       public java.lang.String getCreator() {
         java.lang.Object ref = creator_;
@@ -1114,6 +1177,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 4;</code>
+       * @return The bytes for creator.
        */
       public com.google.protobuf.ByteString
           getCreatorBytes() {
@@ -1134,6 +1198,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 4;</code>
+       * @param value The creator to set.
+       * @return This builder for chaining.
        */
       public Builder setCreator(
           java.lang.String value) {
@@ -1151,6 +1217,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCreator() {
         
@@ -1164,6 +1231,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 4;</code>
+       * @param value The bytes for creator to set.
+       * @return This builder for chaining.
        */
       public Builder setCreatorBytes(
           com.google.protobuf.ByteString value) {
@@ -1184,7 +1253,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>bool override = 5;</code>
+       * @return The override.
        */
+      @java.lang.Override
       public boolean getOverride() {
         return override_;
       }
@@ -1194,6 +1265,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>bool override = 5;</code>
+       * @param value The override to set.
+       * @return This builder for chaining.
        */
       public Builder setOverride(boolean value) {
         
@@ -1207,6 +1280,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>bool override = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOverride() {
         
@@ -1217,7 +1291,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1277,6 +1351,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
     java.lang.String getFileID();
     /**
@@ -1285,6 +1360,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
     com.google.protobuf.ByteString
         getFileIDBytes();
@@ -1295,6 +1371,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
     java.lang.String getUserID();
     /**
@@ -1303,6 +1380,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
     com.google.protobuf.ByteString
         getUserIDBytes();
@@ -1310,7 +1388,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.DeletePermissionRequest}
    */
-  public  static final class DeletePermissionRequest extends
+  public static final class DeletePermissionRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.DeletePermissionRequest)
       DeletePermissionRequestOrBuilder {
@@ -1322,6 +1400,13 @@ public final class PermissionOuterClass {
     private DeletePermissionRequest() {
       fileID_ = "";
       userID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeletePermissionRequest();
     }
 
     @java.lang.Override
@@ -1337,7 +1422,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -1361,7 +1445,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1400,7 +1484,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
+    @java.lang.Override
     public java.lang.String getFileID() {
       java.lang.Object ref = fileID_;
       if (ref instanceof java.lang.String) {
@@ -1419,7 +1505,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFileIDBytes() {
       java.lang.Object ref = fileID_;
@@ -1442,7 +1530,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
+    @java.lang.Override
     public java.lang.String getUserID() {
       java.lang.Object ref = userID_;
       if (ref instanceof java.lang.String) {
@@ -1461,7 +1551,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUserIDBytes() {
       java.lang.Object ref = userID_;
@@ -1526,13 +1618,12 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.DeletePermissionRequest other = (DriveStubs.grpc.PermissionOuterClass.DeletePermissionRequest) obj;
 
-      boolean result = true;
-      result = result && getFileID()
-          .equals(other.getFileID());
-      result = result && getUserID()
-          .equals(other.getUserID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFileID()
+          .equals(other.getFileID())) return false;
+      if (!getUserID()
+          .equals(other.getUserID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1717,35 +1808,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1803,6 +1894,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The fileID.
        */
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
@@ -1822,6 +1914,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The bytes for fileID.
        */
       public com.google.protobuf.ByteString
           getFileIDBytes() {
@@ -1842,6 +1935,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @param value The fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileID(
           java.lang.String value) {
@@ -1859,6 +1954,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFileID() {
         
@@ -1872,6 +1968,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @param value The bytes for fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileIDBytes(
           com.google.protobuf.ByteString value) {
@@ -1892,6 +1990,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @return The userID.
        */
       public java.lang.String getUserID() {
         java.lang.Object ref = userID_;
@@ -1911,6 +2010,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @return The bytes for userID.
        */
       public com.google.protobuf.ByteString
           getUserIDBytes() {
@@ -1931,6 +2031,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @param value The userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserID(
           java.lang.String value) {
@@ -1948,6 +2050,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUserID() {
         
@@ -1961,6 +2064,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @param value The bytes for userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserIDBytes(
           com.google.protobuf.ByteString value) {
@@ -1976,7 +2081,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -2036,6 +2141,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
@@ -2044,6 +2150,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
@@ -2054,6 +2161,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 2;</code>
+     * @return The fileID.
      */
     java.lang.String getFileID();
     /**
@@ -2062,6 +2170,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 2;</code>
+     * @return The bytes for fileID.
      */
     com.google.protobuf.ByteString
         getFileIDBytes();
@@ -2072,6 +2181,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 3;</code>
+     * @return The userID.
      */
     java.lang.String getUserID();
     /**
@@ -2080,6 +2190,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 3;</code>
+     * @return The bytes for userID.
      */
     com.google.protobuf.ByteString
         getUserIDBytes();
@@ -2090,6 +2201,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 4;</code>
+     * @return The enum numeric value on the wire for role.
      */
     int getRoleValue();
     /**
@@ -2098,6 +2210,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 4;</code>
+     * @return The role.
      */
     DriveStubs.grpc.PermissionOuterClass.Role getRole();
 
@@ -2107,6 +2220,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string creator = 5;</code>
+     * @return The creator.
      */
     java.lang.String getCreator();
     /**
@@ -2115,6 +2229,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string creator = 5;</code>
+     * @return The bytes for creator.
      */
     com.google.protobuf.ByteString
         getCreatorBytes();
@@ -2122,7 +2237,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.PermissionObject}
    */
-  public  static final class PermissionObject extends
+  public static final class PermissionObject extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.PermissionObject)
       PermissionObjectOrBuilder {
@@ -2140,6 +2255,13 @@ public final class PermissionOuterClass {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PermissionObject();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2152,7 +2274,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2194,7 +2315,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2233,7 +2354,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -2252,7 +2375,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -2275,7 +2400,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 2;</code>
+     * @return The fileID.
      */
+    @java.lang.Override
     public java.lang.String getFileID() {
       java.lang.Object ref = fileID_;
       if (ref instanceof java.lang.String) {
@@ -2294,7 +2421,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 2;</code>
+     * @return The bytes for fileID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFileIDBytes() {
       java.lang.Object ref = fileID_;
@@ -2317,7 +2446,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 3;</code>
+     * @return The userID.
      */
+    @java.lang.Override
     public java.lang.String getUserID() {
       java.lang.Object ref = userID_;
       if (ref instanceof java.lang.String) {
@@ -2336,7 +2467,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 3;</code>
+     * @return The bytes for userID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUserIDBytes() {
       java.lang.Object ref = userID_;
@@ -2359,8 +2492,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 4;</code>
+     * @return The enum numeric value on the wire for role.
      */
-    public int getRoleValue() {
+    @java.lang.Override public int getRoleValue() {
       return role_;
     }
     /**
@@ -2369,8 +2503,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 4;</code>
+     * @return The role.
      */
-    public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
+    @java.lang.Override public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
       @SuppressWarnings("deprecation")
       DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
       return result == null ? DriveStubs.grpc.PermissionOuterClass.Role.UNRECOGNIZED : result;
@@ -2384,7 +2519,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string creator = 5;</code>
+     * @return The creator.
      */
+    @java.lang.Override
     public java.lang.String getCreator() {
       java.lang.Object ref = creator_;
       if (ref instanceof java.lang.String) {
@@ -2403,7 +2540,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string creator = 5;</code>
+     * @return The bytes for creator.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCreatorBytes() {
       java.lang.Object ref = creator_;
@@ -2487,18 +2626,17 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.PermissionObject other = (DriveStubs.grpc.PermissionOuterClass.PermissionObject) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && getFileID()
-          .equals(other.getFileID());
-      result = result && getUserID()
-          .equals(other.getUserID());
-      result = result && role_ == other.role_;
-      result = result && getCreator()
-          .equals(other.getCreator());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getFileID()
+          .equals(other.getFileID())) return false;
+      if (!getUserID()
+          .equals(other.getUserID())) return false;
+      if (role_ != other.role_) return false;
+      if (!getCreator()
+          .equals(other.getCreator())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -2698,35 +2836,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2795,6 +2933,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -2814,6 +2953,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -2834,6 +2974,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -2851,6 +2993,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -2864,6 +3007,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -2884,6 +3029,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 2;</code>
+       * @return The fileID.
        */
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
@@ -2903,6 +3049,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 2;</code>
+       * @return The bytes for fileID.
        */
       public com.google.protobuf.ByteString
           getFileIDBytes() {
@@ -2923,6 +3070,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 2;</code>
+       * @param value The fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileID(
           java.lang.String value) {
@@ -2940,6 +3089,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFileID() {
         
@@ -2953,6 +3103,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 2;</code>
+       * @param value The bytes for fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileIDBytes(
           com.google.protobuf.ByteString value) {
@@ -2973,6 +3125,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 3;</code>
+       * @return The userID.
        */
       public java.lang.String getUserID() {
         java.lang.Object ref = userID_;
@@ -2992,6 +3145,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 3;</code>
+       * @return The bytes for userID.
        */
       public com.google.protobuf.ByteString
           getUserIDBytes() {
@@ -3012,6 +3166,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 3;</code>
+       * @param value The userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserID(
           java.lang.String value) {
@@ -3029,6 +3185,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUserID() {
         
@@ -3042,6 +3199,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 3;</code>
+       * @param value The bytes for userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserIDBytes(
           com.google.protobuf.ByteString value) {
@@ -3062,8 +3221,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 4;</code>
+       * @return The enum numeric value on the wire for role.
        */
-      public int getRoleValue() {
+      @java.lang.Override public int getRoleValue() {
         return role_;
       }
       /**
@@ -3072,8 +3232,11 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 4;</code>
+       * @param value The enum numeric value on the wire for role to set.
+       * @return This builder for chaining.
        */
       public Builder setRoleValue(int value) {
+        
         role_ = value;
         onChanged();
         return this;
@@ -3084,7 +3247,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 4;</code>
+       * @return The role.
        */
+      @java.lang.Override
       public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
         @SuppressWarnings("deprecation")
         DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
@@ -3096,6 +3261,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 4;</code>
+       * @param value The role to set.
+       * @return This builder for chaining.
        */
       public Builder setRole(DriveStubs.grpc.PermissionOuterClass.Role value) {
         if (value == null) {
@@ -3112,6 +3279,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearRole() {
         
@@ -3127,6 +3295,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 5;</code>
+       * @return The creator.
        */
       public java.lang.String getCreator() {
         java.lang.Object ref = creator_;
@@ -3146,6 +3315,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 5;</code>
+       * @return The bytes for creator.
        */
       public com.google.protobuf.ByteString
           getCreatorBytes() {
@@ -3166,6 +3336,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 5;</code>
+       * @param value The creator to set.
+       * @return This builder for chaining.
        */
       public Builder setCreator(
           java.lang.String value) {
@@ -3183,6 +3355,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCreator() {
         
@@ -3196,6 +3369,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 5;</code>
+       * @param value The bytes for creator to set.
+       * @return This builder for chaining.
        */
       public Builder setCreatorBytes(
           com.google.protobuf.ByteString value) {
@@ -3211,7 +3386,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -3267,20 +3442,24 @@ public final class PermissionOuterClass {
 
     /**
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
     java.lang.String getFileID();
     /**
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
     com.google.protobuf.ByteString
         getFileIDBytes();
 
     /**
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
     java.lang.String getUserID();
     /**
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
     com.google.protobuf.ByteString
         getUserIDBytes();
@@ -3288,7 +3467,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.GetPermissionRequest}
    */
-  public  static final class GetPermissionRequest extends
+  public static final class GetPermissionRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.GetPermissionRequest)
       GetPermissionRequestOrBuilder {
@@ -3300,6 +3479,13 @@ public final class PermissionOuterClass {
     private GetPermissionRequest() {
       fileID_ = "";
       userID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetPermissionRequest();
     }
 
     @java.lang.Override
@@ -3315,7 +3501,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -3339,7 +3524,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -3374,7 +3559,9 @@ public final class PermissionOuterClass {
     private volatile java.lang.Object fileID_;
     /**
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
+    @java.lang.Override
     public java.lang.String getFileID() {
       java.lang.Object ref = fileID_;
       if (ref instanceof java.lang.String) {
@@ -3389,7 +3576,9 @@ public final class PermissionOuterClass {
     }
     /**
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFileIDBytes() {
       java.lang.Object ref = fileID_;
@@ -3408,7 +3597,9 @@ public final class PermissionOuterClass {
     private volatile java.lang.Object userID_;
     /**
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
+    @java.lang.Override
     public java.lang.String getUserID() {
       java.lang.Object ref = userID_;
       if (ref instanceof java.lang.String) {
@@ -3423,7 +3614,9 @@ public final class PermissionOuterClass {
     }
     /**
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUserIDBytes() {
       java.lang.Object ref = userID_;
@@ -3488,13 +3681,12 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.GetPermissionRequest other = (DriveStubs.grpc.PermissionOuterClass.GetPermissionRequest) obj;
 
-      boolean result = true;
-      result = result && getFileID()
-          .equals(other.getFileID());
-      result = result && getUserID()
-          .equals(other.getUserID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFileID()
+          .equals(other.getFileID())) return false;
+      if (!getUserID()
+          .equals(other.getUserID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -3679,35 +3871,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3761,6 +3953,7 @@ public final class PermissionOuterClass {
       private java.lang.Object fileID_ = "";
       /**
        * <code>string fileID = 1;</code>
+       * @return The fileID.
        */
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
@@ -3776,6 +3969,7 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @return The bytes for fileID.
        */
       public com.google.protobuf.ByteString
           getFileIDBytes() {
@@ -3792,6 +3986,8 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @param value The fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileID(
           java.lang.String value) {
@@ -3805,6 +4001,7 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFileID() {
         
@@ -3814,6 +4011,8 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @param value The bytes for fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileIDBytes(
           com.google.protobuf.ByteString value) {
@@ -3830,6 +4029,7 @@ public final class PermissionOuterClass {
       private java.lang.Object userID_ = "";
       /**
        * <code>string userID = 2;</code>
+       * @return The userID.
        */
       public java.lang.String getUserID() {
         java.lang.Object ref = userID_;
@@ -3845,6 +4045,7 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string userID = 2;</code>
+       * @return The bytes for userID.
        */
       public com.google.protobuf.ByteString
           getUserIDBytes() {
@@ -3861,6 +4062,8 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string userID = 2;</code>
+       * @param value The userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserID(
           java.lang.String value) {
@@ -3874,6 +4077,7 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string userID = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUserID() {
         
@@ -3883,6 +4087,8 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string userID = 2;</code>
+       * @param value The bytes for userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserIDBytes(
           com.google.protobuf.ByteString value) {
@@ -3898,7 +4104,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -3954,10 +4160,12 @@ public final class PermissionOuterClass {
 
     /**
      * <code>string mongoID = 1;</code>
+     * @return The mongoID.
      */
     java.lang.String getMongoID();
     /**
      * <code>string mongoID = 1;</code>
+     * @return The bytes for mongoID.
      */
     com.google.protobuf.ByteString
         getMongoIDBytes();
@@ -3965,7 +4173,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.GetPermissionByMongoIDRequest}
    */
-  public  static final class GetPermissionByMongoIDRequest extends
+  public static final class GetPermissionByMongoIDRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.GetPermissionByMongoIDRequest)
       GetPermissionByMongoIDRequestOrBuilder {
@@ -3976,6 +4184,13 @@ public final class PermissionOuterClass {
     }
     private GetPermissionByMongoIDRequest() {
       mongoID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetPermissionByMongoIDRequest();
     }
 
     @java.lang.Override
@@ -3991,7 +4206,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -4009,7 +4223,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -4044,7 +4258,9 @@ public final class PermissionOuterClass {
     private volatile java.lang.Object mongoID_;
     /**
      * <code>string mongoID = 1;</code>
+     * @return The mongoID.
      */
+    @java.lang.Override
     public java.lang.String getMongoID() {
       java.lang.Object ref = mongoID_;
       if (ref instanceof java.lang.String) {
@@ -4059,7 +4275,9 @@ public final class PermissionOuterClass {
     }
     /**
      * <code>string mongoID = 1;</code>
+     * @return The bytes for mongoID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getMongoIDBytes() {
       java.lang.Object ref = mongoID_;
@@ -4118,11 +4336,10 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.GetPermissionByMongoIDRequest other = (DriveStubs.grpc.PermissionOuterClass.GetPermissionByMongoIDRequest) obj;
 
-      boolean result = true;
-      result = result && getMongoID()
-          .equals(other.getMongoID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getMongoID()
+          .equals(other.getMongoID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -4302,35 +4519,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -4380,6 +4597,7 @@ public final class PermissionOuterClass {
       private java.lang.Object mongoID_ = "";
       /**
        * <code>string mongoID = 1;</code>
+       * @return The mongoID.
        */
       public java.lang.String getMongoID() {
         java.lang.Object ref = mongoID_;
@@ -4395,6 +4613,7 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string mongoID = 1;</code>
+       * @return The bytes for mongoID.
        */
       public com.google.protobuf.ByteString
           getMongoIDBytes() {
@@ -4411,6 +4630,8 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string mongoID = 1;</code>
+       * @param value The mongoID to set.
+       * @return This builder for chaining.
        */
       public Builder setMongoID(
           java.lang.String value) {
@@ -4424,6 +4645,7 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string mongoID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMongoID() {
         
@@ -4433,6 +4655,8 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string mongoID = 1;</code>
+       * @param value The bytes for mongoID to set.
+       * @return This builder for chaining.
        */
       public Builder setMongoIDBytes(
           com.google.protobuf.ByteString value) {
@@ -4448,7 +4672,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -4508,6 +4732,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
     java.lang.String getFileID();
     /**
@@ -4516,6 +4741,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
     com.google.protobuf.ByteString
         getFileIDBytes();
@@ -4523,7 +4749,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.GetFilePermissionsRequest}
    */
-  public  static final class GetFilePermissionsRequest extends
+  public static final class GetFilePermissionsRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.GetFilePermissionsRequest)
       GetFilePermissionsRequestOrBuilder {
@@ -4534,6 +4760,13 @@ public final class PermissionOuterClass {
     }
     private GetFilePermissionsRequest() {
       fileID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetFilePermissionsRequest();
     }
 
     @java.lang.Override
@@ -4549,7 +4782,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -4567,7 +4799,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -4606,7 +4838,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
+    @java.lang.Override
     public java.lang.String getFileID() {
       java.lang.Object ref = fileID_;
       if (ref instanceof java.lang.String) {
@@ -4625,7 +4859,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFileIDBytes() {
       java.lang.Object ref = fileID_;
@@ -4684,11 +4920,10 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsRequest other = (DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsRequest) obj;
 
-      boolean result = true;
-      result = result && getFileID()
-          .equals(other.getFileID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFileID()
+          .equals(other.getFileID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -4868,35 +5103,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -4950,6 +5185,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The fileID.
        */
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
@@ -4969,6 +5205,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The bytes for fileID.
        */
       public com.google.protobuf.ByteString
           getFileIDBytes() {
@@ -4989,6 +5226,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @param value The fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileID(
           java.lang.String value) {
@@ -5006,6 +5245,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFileID() {
         
@@ -5019,6 +5259,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @param value The bytes for fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileIDBytes(
           com.google.protobuf.ByteString value) {
@@ -5034,7 +5276,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -5135,7 +5377,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.GetFilePermissionsResponse}
    */
-  public  static final class GetFilePermissionsResponse extends
+  public static final class GetFilePermissionsResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.GetFilePermissionsResponse)
       GetFilePermissionsResponseOrBuilder {
@@ -5146,6 +5388,13 @@ public final class PermissionOuterClass {
     }
     private GetFilePermissionsResponse() {
       permissions_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetFilePermissionsResponse();
     }
 
     @java.lang.Override
@@ -5173,7 +5422,7 @@ public final class PermissionOuterClass {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 permissions_ = new java.util.ArrayList<DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRole>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -5182,7 +5431,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -5196,7 +5445,7 @@ public final class PermissionOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           permissions_ = java.util.Collections.unmodifiableList(permissions_);
         }
         this.unknownFields = unknownFields.build();
@@ -5226,6 +5475,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 1;</code>
+       * @return The userID.
        */
       java.lang.String getUserID();
       /**
@@ -5234,6 +5484,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 1;</code>
+       * @return The bytes for userID.
        */
       com.google.protobuf.ByteString
           getUserIDBytes();
@@ -5244,6 +5495,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 2;</code>
+       * @return The enum numeric value on the wire for role.
        */
       int getRoleValue();
       /**
@@ -5252,6 +5504,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 2;</code>
+       * @return The role.
        */
       DriveStubs.grpc.PermissionOuterClass.Role getRole();
 
@@ -5261,6 +5514,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 3;</code>
+       * @return The creator.
        */
       java.lang.String getCreator();
       /**
@@ -5269,6 +5523,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 3;</code>
+       * @return The bytes for creator.
        */
       com.google.protobuf.ByteString
           getCreatorBytes();
@@ -5280,7 +5535,7 @@ public final class PermissionOuterClass {
      *
      * Protobuf type {@code permission.GetFilePermissionsResponse.UserRole}
      */
-    public  static final class UserRole extends
+    public static final class UserRole extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:permission.GetFilePermissionsResponse.UserRole)
         UserRoleOrBuilder {
@@ -5296,6 +5551,13 @@ public final class PermissionOuterClass {
       }
 
       @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new UserRole();
+      }
+
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
         return this.unknownFields;
@@ -5308,7 +5570,6 @@ public final class PermissionOuterClass {
         if (extensionRegistry == null) {
           throw new java.lang.NullPointerException();
         }
-        int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
@@ -5338,7 +5599,7 @@ public final class PermissionOuterClass {
                 break;
               }
               default: {
-                if (!parseUnknownFieldProto3(
+                if (!parseUnknownField(
                     input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
@@ -5377,7 +5638,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 1;</code>
+       * @return The userID.
        */
+      @java.lang.Override
       public java.lang.String getUserID() {
         java.lang.Object ref = userID_;
         if (ref instanceof java.lang.String) {
@@ -5396,7 +5659,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 1;</code>
+       * @return The bytes for userID.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getUserIDBytes() {
         java.lang.Object ref = userID_;
@@ -5419,8 +5684,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 2;</code>
+       * @return The enum numeric value on the wire for role.
        */
-      public int getRoleValue() {
+      @java.lang.Override public int getRoleValue() {
         return role_;
       }
       /**
@@ -5429,8 +5695,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 2;</code>
+       * @return The role.
        */
-      public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
+      @java.lang.Override public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
         @SuppressWarnings("deprecation")
         DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
         return result == null ? DriveStubs.grpc.PermissionOuterClass.Role.UNRECOGNIZED : result;
@@ -5444,7 +5711,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 3;</code>
+       * @return The creator.
        */
+      @java.lang.Override
       public java.lang.String getCreator() {
         java.lang.Object ref = creator_;
         if (ref instanceof java.lang.String) {
@@ -5463,7 +5732,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 3;</code>
+       * @return The bytes for creator.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getCreatorBytes() {
         java.lang.Object ref = creator_;
@@ -5535,14 +5806,13 @@ public final class PermissionOuterClass {
         }
         DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRole other = (DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRole) obj;
 
-        boolean result = true;
-        result = result && getUserID()
-            .equals(other.getUserID());
-        result = result && role_ == other.role_;
-        result = result && getCreator()
-            .equals(other.getCreator());
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
+        if (!getUserID()
+            .equals(other.getUserID())) return false;
+        if (role_ != other.role_) return false;
+        if (!getCreator()
+            .equals(other.getCreator())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
       }
 
       @java.lang.Override
@@ -5736,35 +6006,35 @@ public final class PermissionOuterClass {
 
         @java.lang.Override
         public Builder clone() {
-          return (Builder) super.clone();
+          return super.clone();
         }
         @java.lang.Override
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.setField(field, value);
+          return super.setField(field, value);
         }
         @java.lang.Override
         public Builder clearField(
             com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
+          return super.clearField(field);
         }
         @java.lang.Override
         public Builder clearOneof(
             com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
+          return super.clearOneof(oneof);
         }
         @java.lang.Override
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             int index, java.lang.Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
+          return super.setRepeatedField(field, index, value);
         }
         @java.lang.Override
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.addRepeatedField(field, value);
+          return super.addRepeatedField(field, value);
         }
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -5825,6 +6095,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string userID = 1;</code>
+         * @return The userID.
          */
         public java.lang.String getUserID() {
           java.lang.Object ref = userID_;
@@ -5844,6 +6115,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string userID = 1;</code>
+         * @return The bytes for userID.
          */
         public com.google.protobuf.ByteString
             getUserIDBytes() {
@@ -5864,6 +6136,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string userID = 1;</code>
+         * @param value The userID to set.
+         * @return This builder for chaining.
          */
         public Builder setUserID(
             java.lang.String value) {
@@ -5881,6 +6155,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string userID = 1;</code>
+         * @return This builder for chaining.
          */
         public Builder clearUserID() {
           
@@ -5894,6 +6169,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string userID = 1;</code>
+         * @param value The bytes for userID to set.
+         * @return This builder for chaining.
          */
         public Builder setUserIDBytes(
             com.google.protobuf.ByteString value) {
@@ -5914,8 +6191,9 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @return The enum numeric value on the wire for role.
          */
-        public int getRoleValue() {
+        @java.lang.Override public int getRoleValue() {
           return role_;
         }
         /**
@@ -5924,8 +6202,11 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @param value The enum numeric value on the wire for role to set.
+         * @return This builder for chaining.
          */
         public Builder setRoleValue(int value) {
+          
           role_ = value;
           onChanged();
           return this;
@@ -5936,7 +6217,9 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @return The role.
          */
+        @java.lang.Override
         public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
           @SuppressWarnings("deprecation")
           DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
@@ -5948,6 +6231,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @param value The role to set.
+         * @return This builder for chaining.
          */
         public Builder setRole(DriveStubs.grpc.PermissionOuterClass.Role value) {
           if (value == null) {
@@ -5964,6 +6249,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @return This builder for chaining.
          */
         public Builder clearRole() {
           
@@ -5979,6 +6265,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @return The creator.
          */
         public java.lang.String getCreator() {
           java.lang.Object ref = creator_;
@@ -5998,6 +6285,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @return The bytes for creator.
          */
         public com.google.protobuf.ByteString
             getCreatorBytes() {
@@ -6018,6 +6306,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @param value The creator to set.
+         * @return This builder for chaining.
          */
         public Builder setCreator(
             java.lang.String value) {
@@ -6035,6 +6325,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @return This builder for chaining.
          */
         public Builder clearCreator() {
           
@@ -6048,6 +6339,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @param value The bytes for creator to set.
+         * @return This builder for chaining.
          */
         public Builder setCreatorBytes(
             com.google.protobuf.ByteString value) {
@@ -6063,7 +6356,7 @@ public final class PermissionOuterClass {
         @java.lang.Override
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFieldsProto3(unknownFields);
+          return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
@@ -6122,6 +6415,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetFilePermissionsResponse.UserRole permissions = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRole> getPermissionsList() {
       return permissions_;
     }
@@ -6132,6 +6426,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetFilePermissionsResponse.UserRole permissions = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRoleOrBuilder> 
         getPermissionsOrBuilderList() {
       return permissions_;
@@ -6143,6 +6438,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetFilePermissionsResponse.UserRole permissions = 1;</code>
      */
+    @java.lang.Override
     public int getPermissionsCount() {
       return permissions_.size();
     }
@@ -6153,6 +6449,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetFilePermissionsResponse.UserRole permissions = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRole getPermissions(int index) {
       return permissions_.get(index);
     }
@@ -6163,6 +6460,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetFilePermissionsResponse.UserRole permissions = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRoleOrBuilder getPermissionsOrBuilder(
         int index) {
       return permissions_.get(index);
@@ -6213,11 +6511,10 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse other = (DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse) obj;
 
-      boolean result = true;
-      result = result && getPermissionsList()
-          .equals(other.getPermissionsList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getPermissionsList()
+          .equals(other.getPermissionsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -6399,7 +6696,7 @@ public final class PermissionOuterClass {
         DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse result = new DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse(this);
         int from_bitField0_ = bitField0_;
         if (permissionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             permissions_ = java.util.Collections.unmodifiableList(permissions_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -6413,35 +6710,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -6514,7 +6811,7 @@ public final class PermissionOuterClass {
       private java.util.List<DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRole> permissions_ =
         java.util.Collections.emptyList();
       private void ensurePermissionsIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           permissions_ = new java.util.ArrayList<DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRole>(permissions_);
           bitField0_ |= 0x00000001;
          }
@@ -6815,7 +7112,7 @@ public final class PermissionOuterClass {
           permissionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRole, DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRole.Builder, DriveStubs.grpc.PermissionOuterClass.GetFilePermissionsResponse.UserRoleOrBuilder>(
                   permissions_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           permissions_ = null;
@@ -6825,7 +7122,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -6885,6 +7182,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
     java.lang.String getFileID();
     /**
@@ -6893,6 +7191,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
     com.google.protobuf.ByteString
         getFileIDBytes();
@@ -6903,6 +7202,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
     java.lang.String getUserID();
     /**
@@ -6911,6 +7211,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
     com.google.protobuf.ByteString
         getUserIDBytes();
@@ -6921,6 +7222,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 3;</code>
+     * @return The enum numeric value on the wire for role.
      */
     int getRoleValue();
     /**
@@ -6929,13 +7231,14 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 3;</code>
+     * @return The role.
      */
     DriveStubs.grpc.PermissionOuterClass.Role getRole();
   }
   /**
    * Protobuf type {@code permission.IsPermittedRequest}
    */
-  public  static final class IsPermittedRequest extends
+  public static final class IsPermittedRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.IsPermittedRequest)
       IsPermittedRequestOrBuilder {
@@ -6951,6 +7254,13 @@ public final class PermissionOuterClass {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new IsPermittedRequest();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -6963,7 +7273,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -6993,7 +7302,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -7032,7 +7341,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
+    @java.lang.Override
     public java.lang.String getFileID() {
       java.lang.Object ref = fileID_;
       if (ref instanceof java.lang.String) {
@@ -7051,7 +7362,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFileIDBytes() {
       java.lang.Object ref = fileID_;
@@ -7074,7 +7387,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
+    @java.lang.Override
     public java.lang.String getUserID() {
       java.lang.Object ref = userID_;
       if (ref instanceof java.lang.String) {
@@ -7093,7 +7408,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUserIDBytes() {
       java.lang.Object ref = userID_;
@@ -7116,8 +7433,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 3;</code>
+     * @return The enum numeric value on the wire for role.
      */
-    public int getRoleValue() {
+    @java.lang.Override public int getRoleValue() {
       return role_;
     }
     /**
@@ -7126,8 +7444,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>.permission.Role role = 3;</code>
+     * @return The role.
      */
-    public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
+    @java.lang.Override public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
       @SuppressWarnings("deprecation")
       DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
       return result == null ? DriveStubs.grpc.PermissionOuterClass.Role.UNRECOGNIZED : result;
@@ -7190,14 +7509,13 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.IsPermittedRequest other = (DriveStubs.grpc.PermissionOuterClass.IsPermittedRequest) obj;
 
-      boolean result = true;
-      result = result && getFileID()
-          .equals(other.getFileID());
-      result = result && getUserID()
-          .equals(other.getUserID());
-      result = result && role_ == other.role_;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFileID()
+          .equals(other.getFileID())) return false;
+      if (!getUserID()
+          .equals(other.getUserID())) return false;
+      if (role_ != other.role_) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -7387,35 +7705,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -7476,6 +7794,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The fileID.
        */
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
@@ -7495,6 +7814,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The bytes for fileID.
        */
       public com.google.protobuf.ByteString
           getFileIDBytes() {
@@ -7515,6 +7835,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @param value The fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileID(
           java.lang.String value) {
@@ -7532,6 +7854,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFileID() {
         
@@ -7545,6 +7868,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @param value The bytes for fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileIDBytes(
           com.google.protobuf.ByteString value) {
@@ -7565,6 +7890,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @return The userID.
        */
       public java.lang.String getUserID() {
         java.lang.Object ref = userID_;
@@ -7584,6 +7910,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @return The bytes for userID.
        */
       public com.google.protobuf.ByteString
           getUserIDBytes() {
@@ -7604,6 +7931,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @param value The userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserID(
           java.lang.String value) {
@@ -7621,6 +7950,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUserID() {
         
@@ -7634,6 +7964,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 2;</code>
+       * @param value The bytes for userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserIDBytes(
           com.google.protobuf.ByteString value) {
@@ -7654,8 +7986,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @return The enum numeric value on the wire for role.
        */
-      public int getRoleValue() {
+      @java.lang.Override public int getRoleValue() {
         return role_;
       }
       /**
@@ -7664,8 +7997,11 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @param value The enum numeric value on the wire for role to set.
+       * @return This builder for chaining.
        */
       public Builder setRoleValue(int value) {
+        
         role_ = value;
         onChanged();
         return this;
@@ -7676,7 +8012,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @return The role.
        */
+      @java.lang.Override
       public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
         @SuppressWarnings("deprecation")
         DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
@@ -7688,6 +8026,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @param value The role to set.
+       * @return This builder for chaining.
        */
       public Builder setRole(DriveStubs.grpc.PermissionOuterClass.Role value) {
         if (value == null) {
@@ -7704,6 +8044,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearRole() {
         
@@ -7714,7 +8055,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -7770,13 +8111,14 @@ public final class PermissionOuterClass {
 
     /**
      * <code>bool permitted = 1;</code>
+     * @return The permitted.
      */
     boolean getPermitted();
   }
   /**
    * Protobuf type {@code permission.IsPermittedResponse}
    */
-  public  static final class IsPermittedResponse extends
+  public static final class IsPermittedResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.IsPermittedResponse)
       IsPermittedResponseOrBuilder {
@@ -7786,7 +8128,13 @@ public final class PermissionOuterClass {
       super(builder);
     }
     private IsPermittedResponse() {
-      permitted_ = false;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new IsPermittedResponse();
     }
 
     @java.lang.Override
@@ -7802,7 +8150,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -7819,7 +8166,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -7854,7 +8201,9 @@ public final class PermissionOuterClass {
     private boolean permitted_;
     /**
      * <code>bool permitted = 1;</code>
+     * @return The permitted.
      */
+    @java.lang.Override
     public boolean getPermitted() {
       return permitted_;
     }
@@ -7904,11 +8253,10 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.IsPermittedResponse other = (DriveStubs.grpc.PermissionOuterClass.IsPermittedResponse) obj;
 
-      boolean result = true;
-      result = result && (getPermitted()
-          == other.getPermitted());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (getPermitted()
+          != other.getPermitted()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -8089,35 +8437,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8166,12 +8514,16 @@ public final class PermissionOuterClass {
       private boolean permitted_ ;
       /**
        * <code>bool permitted = 1;</code>
+       * @return The permitted.
        */
+      @java.lang.Override
       public boolean getPermitted() {
         return permitted_;
       }
       /**
        * <code>bool permitted = 1;</code>
+       * @param value The permitted to set.
+       * @return This builder for chaining.
        */
       public Builder setPermitted(boolean value) {
         
@@ -8181,6 +8533,7 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>bool permitted = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPermitted() {
         
@@ -8191,7 +8544,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -8251,6 +8604,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 1;</code>
+     * @return The userID.
      */
     java.lang.String getUserID();
     /**
@@ -8259,6 +8613,7 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 1;</code>
+     * @return The bytes for userID.
      */
     com.google.protobuf.ByteString
         getUserIDBytes();
@@ -8266,7 +8621,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.GetUserPermissionsRequest}
    */
-  public  static final class GetUserPermissionsRequest extends
+  public static final class GetUserPermissionsRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.GetUserPermissionsRequest)
       GetUserPermissionsRequestOrBuilder {
@@ -8277,6 +8632,13 @@ public final class PermissionOuterClass {
     }
     private GetUserPermissionsRequest() {
       userID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetUserPermissionsRequest();
     }
 
     @java.lang.Override
@@ -8292,7 +8654,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -8310,7 +8671,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -8349,7 +8710,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 1;</code>
+     * @return The userID.
      */
+    @java.lang.Override
     public java.lang.String getUserID() {
       java.lang.Object ref = userID_;
       if (ref instanceof java.lang.String) {
@@ -8368,7 +8731,9 @@ public final class PermissionOuterClass {
      * </pre>
      *
      * <code>string userID = 1;</code>
+     * @return The bytes for userID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUserIDBytes() {
       java.lang.Object ref = userID_;
@@ -8427,11 +8792,10 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsRequest other = (DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsRequest) obj;
 
-      boolean result = true;
-      result = result && getUserID()
-          .equals(other.getUserID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUserID()
+          .equals(other.getUserID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -8611,35 +8975,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8693,6 +9057,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 1;</code>
+       * @return The userID.
        */
       public java.lang.String getUserID() {
         java.lang.Object ref = userID_;
@@ -8712,6 +9077,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 1;</code>
+       * @return The bytes for userID.
        */
       public com.google.protobuf.ByteString
           getUserIDBytes() {
@@ -8732,6 +9098,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 1;</code>
+       * @param value The userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserID(
           java.lang.String value) {
@@ -8749,6 +9117,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUserID() {
         
@@ -8762,6 +9131,8 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string userID = 1;</code>
+       * @param value The bytes for userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserIDBytes(
           com.google.protobuf.ByteString value) {
@@ -8777,7 +9148,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -8878,7 +9249,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.GetUserPermissionsResponse}
    */
-  public  static final class GetUserPermissionsResponse extends
+  public static final class GetUserPermissionsResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.GetUserPermissionsResponse)
       GetUserPermissionsResponseOrBuilder {
@@ -8889,6 +9260,13 @@ public final class PermissionOuterClass {
     }
     private GetUserPermissionsResponse() {
       permissions_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetUserPermissionsResponse();
     }
 
     @java.lang.Override
@@ -8916,7 +9294,7 @@ public final class PermissionOuterClass {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 permissions_ = new java.util.ArrayList<DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRole>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -8925,7 +9303,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -8939,7 +9317,7 @@ public final class PermissionOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           permissions_ = java.util.Collections.unmodifiableList(permissions_);
         }
         this.unknownFields = unknownFields.build();
@@ -8969,6 +9347,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The fileID.
        */
       java.lang.String getFileID();
       /**
@@ -8977,6 +9356,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The bytes for fileID.
        */
       com.google.protobuf.ByteString
           getFileIDBytes();
@@ -8987,6 +9367,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 2;</code>
+       * @return The enum numeric value on the wire for role.
        */
       int getRoleValue();
       /**
@@ -8995,6 +9376,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 2;</code>
+       * @return The role.
        */
       DriveStubs.grpc.PermissionOuterClass.Role getRole();
 
@@ -9004,6 +9386,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 3;</code>
+       * @return The creator.
        */
       java.lang.String getCreator();
       /**
@@ -9012,6 +9395,7 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 3;</code>
+       * @return The bytes for creator.
        */
       com.google.protobuf.ByteString
           getCreatorBytes();
@@ -9023,7 +9407,7 @@ public final class PermissionOuterClass {
      *
      * Protobuf type {@code permission.GetUserPermissionsResponse.FileRole}
      */
-    public  static final class FileRole extends
+    public static final class FileRole extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:permission.GetUserPermissionsResponse.FileRole)
         FileRoleOrBuilder {
@@ -9039,6 +9423,13 @@ public final class PermissionOuterClass {
       }
 
       @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new FileRole();
+      }
+
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
         return this.unknownFields;
@@ -9051,7 +9442,6 @@ public final class PermissionOuterClass {
         if (extensionRegistry == null) {
           throw new java.lang.NullPointerException();
         }
-        int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
@@ -9081,7 +9471,7 @@ public final class PermissionOuterClass {
                 break;
               }
               default: {
-                if (!parseUnknownFieldProto3(
+                if (!parseUnknownField(
                     input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
@@ -9120,7 +9510,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The fileID.
        */
+      @java.lang.Override
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
         if (ref instanceof java.lang.String) {
@@ -9139,7 +9531,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string fileID = 1;</code>
+       * @return The bytes for fileID.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getFileIDBytes() {
         java.lang.Object ref = fileID_;
@@ -9162,8 +9556,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 2;</code>
+       * @return The enum numeric value on the wire for role.
        */
-      public int getRoleValue() {
+      @java.lang.Override public int getRoleValue() {
         return role_;
       }
       /**
@@ -9172,8 +9567,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>.permission.Role role = 2;</code>
+       * @return The role.
        */
-      public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
+      @java.lang.Override public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
         @SuppressWarnings("deprecation")
         DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
         return result == null ? DriveStubs.grpc.PermissionOuterClass.Role.UNRECOGNIZED : result;
@@ -9187,7 +9583,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 3;</code>
+       * @return The creator.
        */
+      @java.lang.Override
       public java.lang.String getCreator() {
         java.lang.Object ref = creator_;
         if (ref instanceof java.lang.String) {
@@ -9206,7 +9604,9 @@ public final class PermissionOuterClass {
        * </pre>
        *
        * <code>string creator = 3;</code>
+       * @return The bytes for creator.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getCreatorBytes() {
         java.lang.Object ref = creator_;
@@ -9278,14 +9678,13 @@ public final class PermissionOuterClass {
         }
         DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRole other = (DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRole) obj;
 
-        boolean result = true;
-        result = result && getFileID()
-            .equals(other.getFileID());
-        result = result && role_ == other.role_;
-        result = result && getCreator()
-            .equals(other.getCreator());
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
+        if (!getFileID()
+            .equals(other.getFileID())) return false;
+        if (role_ != other.role_) return false;
+        if (!getCreator()
+            .equals(other.getCreator())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
       }
 
       @java.lang.Override
@@ -9479,35 +9878,35 @@ public final class PermissionOuterClass {
 
         @java.lang.Override
         public Builder clone() {
-          return (Builder) super.clone();
+          return super.clone();
         }
         @java.lang.Override
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.setField(field, value);
+          return super.setField(field, value);
         }
         @java.lang.Override
         public Builder clearField(
             com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
+          return super.clearField(field);
         }
         @java.lang.Override
         public Builder clearOneof(
             com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
+          return super.clearOneof(oneof);
         }
         @java.lang.Override
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             int index, java.lang.Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
+          return super.setRepeatedField(field, index, value);
         }
         @java.lang.Override
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.addRepeatedField(field, value);
+          return super.addRepeatedField(field, value);
         }
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -9568,6 +9967,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string fileID = 1;</code>
+         * @return The fileID.
          */
         public java.lang.String getFileID() {
           java.lang.Object ref = fileID_;
@@ -9587,6 +9987,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string fileID = 1;</code>
+         * @return The bytes for fileID.
          */
         public com.google.protobuf.ByteString
             getFileIDBytes() {
@@ -9607,6 +10008,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string fileID = 1;</code>
+         * @param value The fileID to set.
+         * @return This builder for chaining.
          */
         public Builder setFileID(
             java.lang.String value) {
@@ -9624,6 +10027,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string fileID = 1;</code>
+         * @return This builder for chaining.
          */
         public Builder clearFileID() {
           
@@ -9637,6 +10041,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string fileID = 1;</code>
+         * @param value The bytes for fileID to set.
+         * @return This builder for chaining.
          */
         public Builder setFileIDBytes(
             com.google.protobuf.ByteString value) {
@@ -9657,8 +10063,9 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @return The enum numeric value on the wire for role.
          */
-        public int getRoleValue() {
+        @java.lang.Override public int getRoleValue() {
           return role_;
         }
         /**
@@ -9667,8 +10074,11 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @param value The enum numeric value on the wire for role to set.
+         * @return This builder for chaining.
          */
         public Builder setRoleValue(int value) {
+          
           role_ = value;
           onChanged();
           return this;
@@ -9679,7 +10089,9 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @return The role.
          */
+        @java.lang.Override
         public DriveStubs.grpc.PermissionOuterClass.Role getRole() {
           @SuppressWarnings("deprecation")
           DriveStubs.grpc.PermissionOuterClass.Role result = DriveStubs.grpc.PermissionOuterClass.Role.valueOf(role_);
@@ -9691,6 +10103,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @param value The role to set.
+         * @return This builder for chaining.
          */
         public Builder setRole(DriveStubs.grpc.PermissionOuterClass.Role value) {
           if (value == null) {
@@ -9707,6 +10121,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>.permission.Role role = 2;</code>
+         * @return This builder for chaining.
          */
         public Builder clearRole() {
           
@@ -9722,6 +10137,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @return The creator.
          */
         public java.lang.String getCreator() {
           java.lang.Object ref = creator_;
@@ -9741,6 +10157,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @return The bytes for creator.
          */
         public com.google.protobuf.ByteString
             getCreatorBytes() {
@@ -9761,6 +10178,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @param value The creator to set.
+         * @return This builder for chaining.
          */
         public Builder setCreator(
             java.lang.String value) {
@@ -9778,6 +10197,7 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @return This builder for chaining.
          */
         public Builder clearCreator() {
           
@@ -9791,6 +10211,8 @@ public final class PermissionOuterClass {
          * </pre>
          *
          * <code>string creator = 3;</code>
+         * @param value The bytes for creator to set.
+         * @return This builder for chaining.
          */
         public Builder setCreatorBytes(
             com.google.protobuf.ByteString value) {
@@ -9806,7 +10228,7 @@ public final class PermissionOuterClass {
         @java.lang.Override
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFieldsProto3(unknownFields);
+          return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
@@ -9865,6 +10287,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetUserPermissionsResponse.FileRole permissions = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRole> getPermissionsList() {
       return permissions_;
     }
@@ -9875,6 +10298,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetUserPermissionsResponse.FileRole permissions = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRoleOrBuilder> 
         getPermissionsOrBuilderList() {
       return permissions_;
@@ -9886,6 +10310,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetUserPermissionsResponse.FileRole permissions = 1;</code>
      */
+    @java.lang.Override
     public int getPermissionsCount() {
       return permissions_.size();
     }
@@ -9896,6 +10321,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetUserPermissionsResponse.FileRole permissions = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRole getPermissions(int index) {
       return permissions_.get(index);
     }
@@ -9906,6 +10332,7 @@ public final class PermissionOuterClass {
      *
      * <code>repeated .permission.GetUserPermissionsResponse.FileRole permissions = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRoleOrBuilder getPermissionsOrBuilder(
         int index) {
       return permissions_.get(index);
@@ -9956,11 +10383,10 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse other = (DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse) obj;
 
-      boolean result = true;
-      result = result && getPermissionsList()
-          .equals(other.getPermissionsList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getPermissionsList()
+          .equals(other.getPermissionsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -10142,7 +10568,7 @@ public final class PermissionOuterClass {
         DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse result = new DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse(this);
         int from_bitField0_ = bitField0_;
         if (permissionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             permissions_ = java.util.Collections.unmodifiableList(permissions_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -10156,35 +10582,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -10257,7 +10683,7 @@ public final class PermissionOuterClass {
       private java.util.List<DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRole> permissions_ =
         java.util.Collections.emptyList();
       private void ensurePermissionsIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           permissions_ = new java.util.ArrayList<DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRole>(permissions_);
           bitField0_ |= 0x00000001;
          }
@@ -10558,7 +10984,7 @@ public final class PermissionOuterClass {
           permissionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRole, DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRole.Builder, DriveStubs.grpc.PermissionOuterClass.GetUserPermissionsResponse.FileRoleOrBuilder>(
                   permissions_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           permissions_ = null;
@@ -10568,7 +10994,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -10624,10 +11050,12 @@ public final class PermissionOuterClass {
 
     /**
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
     java.lang.String getFileID();
     /**
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
     com.google.protobuf.ByteString
         getFileIDBytes();
@@ -10635,7 +11063,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.DeleteFilePermissionsRequest}
    */
-  public  static final class DeleteFilePermissionsRequest extends
+  public static final class DeleteFilePermissionsRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.DeleteFilePermissionsRequest)
       DeleteFilePermissionsRequestOrBuilder {
@@ -10646,6 +11074,13 @@ public final class PermissionOuterClass {
     }
     private DeleteFilePermissionsRequest() {
       fileID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteFilePermissionsRequest();
     }
 
     @java.lang.Override
@@ -10661,7 +11096,6 @@ public final class PermissionOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -10679,7 +11113,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -10714,7 +11148,9 @@ public final class PermissionOuterClass {
     private volatile java.lang.Object fileID_;
     /**
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
+    @java.lang.Override
     public java.lang.String getFileID() {
       java.lang.Object ref = fileID_;
       if (ref instanceof java.lang.String) {
@@ -10729,7 +11165,9 @@ public final class PermissionOuterClass {
     }
     /**
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFileIDBytes() {
       java.lang.Object ref = fileID_;
@@ -10788,11 +11226,10 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.DeleteFilePermissionsRequest other = (DriveStubs.grpc.PermissionOuterClass.DeleteFilePermissionsRequest) obj;
 
-      boolean result = true;
-      result = result && getFileID()
-          .equals(other.getFileID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFileID()
+          .equals(other.getFileID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -10972,35 +11409,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -11050,6 +11487,7 @@ public final class PermissionOuterClass {
       private java.lang.Object fileID_ = "";
       /**
        * <code>string fileID = 1;</code>
+       * @return The fileID.
        */
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
@@ -11065,6 +11503,7 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @return The bytes for fileID.
        */
       public com.google.protobuf.ByteString
           getFileIDBytes() {
@@ -11081,6 +11520,8 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @param value The fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileID(
           java.lang.String value) {
@@ -11094,6 +11535,7 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFileID() {
         
@@ -11103,6 +11545,8 @@ public final class PermissionOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @param value The bytes for fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileIDBytes(
           com.google.protobuf.ByteString value) {
@@ -11118,7 +11562,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -11199,7 +11643,7 @@ public final class PermissionOuterClass {
   /**
    * Protobuf type {@code permission.DeleteFilePermissionsResponse}
    */
-  public  static final class DeleteFilePermissionsResponse extends
+  public static final class DeleteFilePermissionsResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:permission.DeleteFilePermissionsResponse)
       DeleteFilePermissionsResponseOrBuilder {
@@ -11210,6 +11654,13 @@ public final class PermissionOuterClass {
     }
     private DeleteFilePermissionsResponse() {
       permissions_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteFilePermissionsResponse();
     }
 
     @java.lang.Override
@@ -11237,7 +11688,7 @@ public final class PermissionOuterClass {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 permissions_ = new java.util.ArrayList<DriveStubs.grpc.PermissionOuterClass.PermissionObject>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -11246,7 +11697,7 @@ public final class PermissionOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -11260,7 +11711,7 @@ public final class PermissionOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           permissions_ = java.util.Collections.unmodifiableList(permissions_);
         }
         this.unknownFields = unknownFields.build();
@@ -11285,12 +11736,14 @@ public final class PermissionOuterClass {
     /**
      * <code>repeated .permission.PermissionObject permissions = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.PermissionOuterClass.PermissionObject> getPermissionsList() {
       return permissions_;
     }
     /**
      * <code>repeated .permission.PermissionObject permissions = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.PermissionOuterClass.PermissionObjectOrBuilder> 
         getPermissionsOrBuilderList() {
       return permissions_;
@@ -11298,18 +11751,21 @@ public final class PermissionOuterClass {
     /**
      * <code>repeated .permission.PermissionObject permissions = 1;</code>
      */
+    @java.lang.Override
     public int getPermissionsCount() {
       return permissions_.size();
     }
     /**
      * <code>repeated .permission.PermissionObject permissions = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.PermissionOuterClass.PermissionObject getPermissions(int index) {
       return permissions_.get(index);
     }
     /**
      * <code>repeated .permission.PermissionObject permissions = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.PermissionOuterClass.PermissionObjectOrBuilder getPermissionsOrBuilder(
         int index) {
       return permissions_.get(index);
@@ -11360,11 +11816,10 @@ public final class PermissionOuterClass {
       }
       DriveStubs.grpc.PermissionOuterClass.DeleteFilePermissionsResponse other = (DriveStubs.grpc.PermissionOuterClass.DeleteFilePermissionsResponse) obj;
 
-      boolean result = true;
-      result = result && getPermissionsList()
-          .equals(other.getPermissionsList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getPermissionsList()
+          .equals(other.getPermissionsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -11546,7 +12001,7 @@ public final class PermissionOuterClass {
         DriveStubs.grpc.PermissionOuterClass.DeleteFilePermissionsResponse result = new DriveStubs.grpc.PermissionOuterClass.DeleteFilePermissionsResponse(this);
         int from_bitField0_ = bitField0_;
         if (permissionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             permissions_ = java.util.Collections.unmodifiableList(permissions_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -11560,35 +12015,35 @@ public final class PermissionOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -11661,7 +12116,7 @@ public final class PermissionOuterClass {
       private java.util.List<DriveStubs.grpc.PermissionOuterClass.PermissionObject> permissions_ =
         java.util.Collections.emptyList();
       private void ensurePermissionsIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           permissions_ = new java.util.ArrayList<DriveStubs.grpc.PermissionOuterClass.PermissionObject>(permissions_);
           bitField0_ |= 0x00000001;
          }
@@ -11890,7 +12345,7 @@ public final class PermissionOuterClass {
           permissionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.PermissionOuterClass.PermissionObject, DriveStubs.grpc.PermissionOuterClass.PermissionObject.Builder, DriveStubs.grpc.PermissionOuterClass.PermissionObjectOrBuilder>(
                   permissions_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           permissions_ = null;
@@ -11900,7 +12355,7 @@ public final class PermissionOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -12085,18 +12540,10 @@ public final class PermissionOuterClass {
       "uest\032\034.permission.PermissionObject\"\000B\021\n\017" +
       "DriveStubs.grpcb\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
+        });
     internal_static_permission_CreatePermissionRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_permission_CreatePermissionRequest_fieldAccessorTable = new

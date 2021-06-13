@@ -66,7 +66,7 @@ public class Permission implements Serializable {
             List<PermissionOuterClass.GetFilePermissionsResponse.UserRole> permissions = DataService.getPermissions(fileId).getPermissionsList();
             ArrayList<Permission> permissionList = new ArrayList<Permission>();
             for (PermissionOuterClass.GetFilePermissionsResponse.UserRole permission : permissions) {
-                Permission p = new Permission(User.getUser(permission.getUserID()), ConvertRole.get(permission.getRole()), fileId);
+                Permission p = new Permission(User.getUser(permission.getUserID(), ""), ConvertRole.get(permission.getRole()), fileId);
                 permissionList.add(p);
             }
             return Arrays.stream(permissionList.toArray()).toArray(Permission[]::new);

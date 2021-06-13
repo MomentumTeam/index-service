@@ -43,9 +43,9 @@ public class User implements Serializable {
         return this.hierarchy;
     }
 
-    public static User getUser(String userId){
+    public static User getUser(String userId, String dest){
         try{
-            UsersOuterClass.User user = DataService.getUser(userId);
+            UsersOuterClass.User user = DataService.getUser(userId, dest);
             String name = user.getFullName();
             String hierarchy = user.getHierarchyFlat();
             return new User(userId, name, hierarchy);
