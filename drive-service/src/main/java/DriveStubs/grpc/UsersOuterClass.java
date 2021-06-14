@@ -14,34 +14,56 @@ public final class UsersOuterClass {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface GetByMailRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:users.GetByMailRequest)
+  public interface GetByMailOrTRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:users.GetByMailOrTRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string mail = 1;</code>
+     * <code>string mailOrT = 1;</code>
+     * @return The mailOrT.
      */
-    java.lang.String getMail();
+    java.lang.String getMailOrT();
     /**
-     * <code>string mail = 1;</code>
+     * <code>string mailOrT = 1;</code>
+     * @return The bytes for mailOrT.
      */
     com.google.protobuf.ByteString
-        getMailBytes();
+        getMailOrTBytes();
+
+    /**
+     * <code>string destination = 2;</code>
+     * @return The destination.
+     */
+    java.lang.String getDestination();
+    /**
+     * <code>string destination = 2;</code>
+     * @return The bytes for destination.
+     */
+    com.google.protobuf.ByteString
+        getDestinationBytes();
   }
   /**
-   * Protobuf type {@code users.GetByMailRequest}
+   * Protobuf type {@code users.GetByMailOrTRequest}
    */
-  public  static final class GetByMailRequest extends
+  public static final class GetByMailOrTRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:users.GetByMailRequest)
-      GetByMailRequestOrBuilder {
+      // @@protoc_insertion_point(message_implements:users.GetByMailOrTRequest)
+      GetByMailOrTRequestOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use GetByMailRequest.newBuilder() to construct.
-    private GetByMailRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use GetByMailOrTRequest.newBuilder() to construct.
+    private GetByMailOrTRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private GetByMailRequest() {
-      mail_ = "";
+    private GetByMailOrTRequest() {
+      mailOrT_ = "";
+      destination_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetByMailOrTRequest();
     }
 
     @java.lang.Override
@@ -49,7 +71,7 @@ public final class UsersOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private GetByMailRequest(
+    private GetByMailOrTRequest(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -57,7 +79,6 @@ public final class UsersOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -71,11 +92,17 @@ public final class UsersOuterClass {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              mail_ = s;
+              mailOrT_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              destination_ = s;
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -95,45 +122,87 @@ public final class UsersOuterClass {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailRequest_descriptor;
+      return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailOrTRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailRequest_fieldAccessorTable
+      return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailOrTRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              DriveStubs.grpc.UsersOuterClass.GetByMailRequest.class, DriveStubs.grpc.UsersOuterClass.GetByMailRequest.Builder.class);
+              DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest.class, DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest.Builder.class);
     }
 
-    public static final int MAIL_FIELD_NUMBER = 1;
-    private volatile java.lang.Object mail_;
+    public static final int MAILORT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object mailOrT_;
     /**
-     * <code>string mail = 1;</code>
+     * <code>string mailOrT = 1;</code>
+     * @return The mailOrT.
      */
-    public java.lang.String getMail() {
-      java.lang.Object ref = mail_;
+    @java.lang.Override
+    public java.lang.String getMailOrT() {
+      java.lang.Object ref = mailOrT_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        mail_ = s;
+        mailOrT_ = s;
         return s;
       }
     }
     /**
-     * <code>string mail = 1;</code>
+     * <code>string mailOrT = 1;</code>
+     * @return The bytes for mailOrT.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
-        getMailBytes() {
-      java.lang.Object ref = mail_;
+        getMailOrTBytes() {
+      java.lang.Object ref = mailOrT_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        mail_ = b;
+        mailOrT_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DESTINATION_FIELD_NUMBER = 2;
+    private volatile java.lang.Object destination_;
+    /**
+     * <code>string destination = 2;</code>
+     * @return The destination.
+     */
+    @java.lang.Override
+    public java.lang.String getDestination() {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        destination_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string destination = 2;</code>
+     * @return The bytes for destination.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDestinationBytes() {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        destination_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -154,8 +223,11 @@ public final class UsersOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMailBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, mail_);
+      if (!getMailOrTBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, mailOrT_);
+      }
+      if (!getDestinationBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, destination_);
       }
       unknownFields.writeTo(output);
     }
@@ -166,8 +238,11 @@ public final class UsersOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMailBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, mail_);
+      if (!getMailOrTBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, mailOrT_);
+      }
+      if (!getDestinationBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, destination_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -179,16 +254,17 @@ public final class UsersOuterClass {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof DriveStubs.grpc.UsersOuterClass.GetByMailRequest)) {
+      if (!(obj instanceof DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest)) {
         return super.equals(obj);
       }
-      DriveStubs.grpc.UsersOuterClass.GetByMailRequest other = (DriveStubs.grpc.UsersOuterClass.GetByMailRequest) obj;
+      DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest other = (DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest) obj;
 
-      boolean result = true;
-      result = result && getMail()
-          .equals(other.getMail());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getMailOrT()
+          .equals(other.getMailOrT())) return false;
+      if (!getDestination()
+          .equals(other.getDestination())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -198,76 +274,78 @@ public final class UsersOuterClass {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + MAIL_FIELD_NUMBER;
-      hash = (53 * hash) + getMail().hashCode();
+      hash = (37 * hash) + MAILORT_FIELD_NUMBER;
+      hash = (53 * hash) + getMailOrT().hashCode();
+      hash = (37 * hash) + DESTINATION_FIELD_NUMBER;
+      hash = (53 * hash) + getDestination().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(byte[] data)
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(java.io.InputStream input)
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseDelimitedFrom(java.io.InputStream input)
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseDelimitedFrom(
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest parseFrom(
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -280,7 +358,7 @@ public final class UsersOuterClass {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(DriveStubs.grpc.UsersOuterClass.GetByMailRequest prototype) {
+    public static Builder newBuilder(DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -296,26 +374,26 @@ public final class UsersOuterClass {
       return builder;
     }
     /**
-     * Protobuf type {@code users.GetByMailRequest}
+     * Protobuf type {@code users.GetByMailOrTRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:users.GetByMailRequest)
-        DriveStubs.grpc.UsersOuterClass.GetByMailRequestOrBuilder {
+        // @@protoc_insertion_point(builder_implements:users.GetByMailOrTRequest)
+        DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailRequest_descriptor;
+        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailOrTRequest_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailRequest_fieldAccessorTable
+        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailOrTRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                DriveStubs.grpc.UsersOuterClass.GetByMailRequest.class, DriveStubs.grpc.UsersOuterClass.GetByMailRequest.Builder.class);
+                DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest.class, DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest.Builder.class);
       }
 
-      // Construct using DriveStubs.grpc.UsersOuterClass.GetByMailRequest.newBuilder()
+      // Construct using DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -333,7 +411,9 @@ public final class UsersOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        mail_ = "";
+        mailOrT_ = "";
+
+        destination_ = "";
 
         return this;
       }
@@ -341,17 +421,17 @@ public final class UsersOuterClass {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailRequest_descriptor;
+        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetByMailOrTRequest_descriptor;
       }
 
       @java.lang.Override
-      public DriveStubs.grpc.UsersOuterClass.GetByMailRequest getDefaultInstanceForType() {
-        return DriveStubs.grpc.UsersOuterClass.GetByMailRequest.getDefaultInstance();
+      public DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest getDefaultInstanceForType() {
+        return DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest.getDefaultInstance();
       }
 
       @java.lang.Override
-      public DriveStubs.grpc.UsersOuterClass.GetByMailRequest build() {
-        DriveStubs.grpc.UsersOuterClass.GetByMailRequest result = buildPartial();
+      public DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest build() {
+        DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -359,59 +439,64 @@ public final class UsersOuterClass {
       }
 
       @java.lang.Override
-      public DriveStubs.grpc.UsersOuterClass.GetByMailRequest buildPartial() {
-        DriveStubs.grpc.UsersOuterClass.GetByMailRequest result = new DriveStubs.grpc.UsersOuterClass.GetByMailRequest(this);
-        result.mail_ = mail_;
+      public DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest buildPartial() {
+        DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest result = new DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest(this);
+        result.mailOrT_ = mailOrT_;
+        result.destination_ = destination_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof DriveStubs.grpc.UsersOuterClass.GetByMailRequest) {
-          return mergeFrom((DriveStubs.grpc.UsersOuterClass.GetByMailRequest)other);
+        if (other instanceof DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest) {
+          return mergeFrom((DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(DriveStubs.grpc.UsersOuterClass.GetByMailRequest other) {
-        if (other == DriveStubs.grpc.UsersOuterClass.GetByMailRequest.getDefaultInstance()) return this;
-        if (!other.getMail().isEmpty()) {
-          mail_ = other.mail_;
+      public Builder mergeFrom(DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest other) {
+        if (other == DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest.getDefaultInstance()) return this;
+        if (!other.getMailOrT().isEmpty()) {
+          mailOrT_ = other.mailOrT_;
+          onChanged();
+        }
+        if (!other.getDestination().isEmpty()) {
+          destination_ = other.destination_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -429,11 +514,11 @@ public final class UsersOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        DriveStubs.grpc.UsersOuterClass.GetByMailRequest parsedMessage = null;
+        DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (DriveStubs.grpc.UsersOuterClass.GetByMailRequest) e.getUnfinishedMessage();
+          parsedMessage = (DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -443,78 +528,161 @@ public final class UsersOuterClass {
         return this;
       }
 
-      private java.lang.Object mail_ = "";
+      private java.lang.Object mailOrT_ = "";
       /**
-       * <code>string mail = 1;</code>
+       * <code>string mailOrT = 1;</code>
+       * @return The mailOrT.
        */
-      public java.lang.String getMail() {
-        java.lang.Object ref = mail_;
+      public java.lang.String getMailOrT() {
+        java.lang.Object ref = mailOrT_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          mail_ = s;
+          mailOrT_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string mail = 1;</code>
+       * <code>string mailOrT = 1;</code>
+       * @return The bytes for mailOrT.
        */
       public com.google.protobuf.ByteString
-          getMailBytes() {
-        java.lang.Object ref = mail_;
+          getMailOrTBytes() {
+        java.lang.Object ref = mailOrT_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          mail_ = b;
+          mailOrT_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string mail = 1;</code>
+       * <code>string mailOrT = 1;</code>
+       * @param value The mailOrT to set.
+       * @return This builder for chaining.
        */
-      public Builder setMail(
+      public Builder setMailOrT(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        mail_ = value;
+        mailOrT_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string mail = 1;</code>
+       * <code>string mailOrT = 1;</code>
+       * @return This builder for chaining.
        */
-      public Builder clearMail() {
+      public Builder clearMailOrT() {
         
-        mail_ = getDefaultInstance().getMail();
+        mailOrT_ = getDefaultInstance().getMailOrT();
         onChanged();
         return this;
       }
       /**
-       * <code>string mail = 1;</code>
+       * <code>string mailOrT = 1;</code>
+       * @param value The bytes for mailOrT to set.
+       * @return This builder for chaining.
        */
-      public Builder setMailBytes(
+      public Builder setMailOrTBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        mail_ = value;
+        mailOrT_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object destination_ = "";
+      /**
+       * <code>string destination = 2;</code>
+       * @return The destination.
+       */
+      public java.lang.String getDestination() {
+        java.lang.Object ref = destination_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          destination_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @return The bytes for destination.
+       */
+      public com.google.protobuf.ByteString
+          getDestinationBytes() {
+        java.lang.Object ref = destination_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          destination_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @param value The destination to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDestination(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        destination_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDestination() {
+        
+        destination_ = getDefaultInstance().getDestination();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @param value The bytes for destination to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDestinationBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        destination_ = value;
         onChanged();
         return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -524,41 +692,41 @@ public final class UsersOuterClass {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:users.GetByMailRequest)
+      // @@protoc_insertion_point(builder_scope:users.GetByMailOrTRequest)
     }
 
-    // @@protoc_insertion_point(class_scope:users.GetByMailRequest)
-    private static final DriveStubs.grpc.UsersOuterClass.GetByMailRequest DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:users.GetByMailOrTRequest)
+    private static final DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new DriveStubs.grpc.UsersOuterClass.GetByMailRequest();
+      DEFAULT_INSTANCE = new DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest();
     }
 
-    public static DriveStubs.grpc.UsersOuterClass.GetByMailRequest getDefaultInstance() {
+    public static DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetByMailRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetByMailRequest>() {
+    private static final com.google.protobuf.Parser<GetByMailOrTRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetByMailOrTRequest>() {
       @java.lang.Override
-      public GetByMailRequest parsePartialFrom(
+      public GetByMailOrTRequest parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetByMailRequest(input, extensionRegistry);
+        return new GetByMailOrTRequest(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<GetByMailRequest> parser() {
+    public static com.google.protobuf.Parser<GetByMailOrTRequest> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<GetByMailRequest> getParserForType() {
+    public com.google.protobuf.Parser<GetByMailOrTRequest> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public DriveStubs.grpc.UsersOuterClass.GetByMailRequest getDefaultInstanceForType() {
+    public DriveStubs.grpc.UsersOuterClass.GetByMailOrTRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -570,18 +738,32 @@ public final class UsersOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
+
+    /**
+     * <code>string destination = 2;</code>
+     * @return The destination.
+     */
+    java.lang.String getDestination();
+    /**
+     * <code>string destination = 2;</code>
+     * @return The bytes for destination.
+     */
+    com.google.protobuf.ByteString
+        getDestinationBytes();
   }
   /**
    * Protobuf type {@code users.GetByIDRequest}
    */
-  public  static final class GetByIDRequest extends
+  public static final class GetByIDRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:users.GetByIDRequest)
       GetByIDRequestOrBuilder {
@@ -592,6 +774,14 @@ public final class UsersOuterClass {
     }
     private GetByIDRequest() {
       id_ = "";
+      destination_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetByIDRequest();
     }
 
     @java.lang.Override
@@ -607,7 +797,6 @@ public final class UsersOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -624,8 +813,14 @@ public final class UsersOuterClass {
               id_ = s;
               break;
             }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              destination_ = s;
+              break;
+            }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -660,7 +855,9 @@ public final class UsersOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -675,7 +872,9 @@ public final class UsersOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -684,6 +883,44 @@ public final class UsersOuterClass {
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DESTINATION_FIELD_NUMBER = 2;
+    private volatile java.lang.Object destination_;
+    /**
+     * <code>string destination = 2;</code>
+     * @return The destination.
+     */
+    @java.lang.Override
+    public java.lang.String getDestination() {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        destination_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string destination = 2;</code>
+     * @return The bytes for destination.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDestinationBytes() {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        destination_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -707,6 +944,9 @@ public final class UsersOuterClass {
       if (!getIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
       }
+      if (!getDestinationBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, destination_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -718,6 +958,9 @@ public final class UsersOuterClass {
       size = 0;
       if (!getIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      }
+      if (!getDestinationBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, destination_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -734,11 +977,12 @@ public final class UsersOuterClass {
       }
       DriveStubs.grpc.UsersOuterClass.GetByIDRequest other = (DriveStubs.grpc.UsersOuterClass.GetByIDRequest) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getDestination()
+          .equals(other.getDestination())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -750,6 +994,8 @@ public final class UsersOuterClass {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + getId().hashCode();
+      hash = (37 * hash) + DESTINATION_FIELD_NUMBER;
+      hash = (53 * hash) + getDestination().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -885,6 +1131,8 @@ public final class UsersOuterClass {
         super.clear();
         id_ = "";
 
+        destination_ = "";
+
         return this;
       }
 
@@ -912,41 +1160,42 @@ public final class UsersOuterClass {
       public DriveStubs.grpc.UsersOuterClass.GetByIDRequest buildPartial() {
         DriveStubs.grpc.UsersOuterClass.GetByIDRequest result = new DriveStubs.grpc.UsersOuterClass.GetByIDRequest(this);
         result.id_ = id_;
+        result.destination_ = destination_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -962,6 +1211,10 @@ public final class UsersOuterClass {
         if (other == DriveStubs.grpc.UsersOuterClass.GetByIDRequest.getDefaultInstance()) return this;
         if (!other.getId().isEmpty()) {
           id_ = other.id_;
+          onChanged();
+        }
+        if (!other.getDestination().isEmpty()) {
+          destination_ = other.destination_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -996,6 +1249,7 @@ public final class UsersOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -1011,6 +1265,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -1027,6 +1282,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -1040,6 +1297,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -1049,6 +1307,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -1061,10 +1321,86 @@ public final class UsersOuterClass {
         onChanged();
         return this;
       }
+
+      private java.lang.Object destination_ = "";
+      /**
+       * <code>string destination = 2;</code>
+       * @return The destination.
+       */
+      public java.lang.String getDestination() {
+        java.lang.Object ref = destination_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          destination_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @return The bytes for destination.
+       */
+      public com.google.protobuf.ByteString
+          getDestinationBytes() {
+        java.lang.Object ref = destination_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          destination_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @param value The destination to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDestination(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        destination_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDestination() {
+        
+        destination_ = getDefaultInstance().getDestination();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @param value The bytes for destination to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDestinationBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        destination_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1120,79 +1456,97 @@ public final class UsersOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
 
     /**
      * <code>string mail = 2;</code>
+     * @return The mail.
      */
     java.lang.String getMail();
     /**
      * <code>string mail = 2;</code>
+     * @return The bytes for mail.
      */
     com.google.protobuf.ByteString
         getMailBytes();
 
     /**
      * <code>string firstName = 3;</code>
+     * @return The firstName.
      */
     java.lang.String getFirstName();
     /**
      * <code>string firstName = 3;</code>
+     * @return The bytes for firstName.
      */
     com.google.protobuf.ByteString
         getFirstNameBytes();
 
     /**
      * <code>string lastName = 4;</code>
+     * @return The lastName.
      */
     java.lang.String getLastName();
     /**
      * <code>string lastName = 4;</code>
+     * @return The bytes for lastName.
      */
     com.google.protobuf.ByteString
         getLastNameBytes();
 
     /**
      * <code>string fullName = 5;</code>
+     * @return The fullName.
      */
     java.lang.String getFullName();
     /**
      * <code>string fullName = 5;</code>
+     * @return The bytes for fullName.
      */
     com.google.protobuf.ByteString
         getFullNameBytes();
 
     /**
      * <code>repeated string hierarchy = 6;</code>
+     * @return A list containing the hierarchy.
      */
     java.util.List<java.lang.String>
         getHierarchyList();
     /**
      * <code>repeated string hierarchy = 6;</code>
+     * @return The count of hierarchy.
      */
     int getHierarchyCount();
     /**
      * <code>repeated string hierarchy = 6;</code>
+     * @param index The index of the element to return.
+     * @return The hierarchy at the given index.
      */
     java.lang.String getHierarchy(int index);
     /**
      * <code>repeated string hierarchy = 6;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the hierarchy at the given index.
      */
     com.google.protobuf.ByteString
         getHierarchyBytes(int index);
 
     /**
      * <code>string hierarchyFlat = 7;</code>
+     * @return The hierarchyFlat.
      */
     java.lang.String getHierarchyFlat();
     /**
      * <code>string hierarchyFlat = 7;</code>
+     * @return The bytes for hierarchyFlat.
      */
     com.google.protobuf.ByteString
         getHierarchyFlatBytes();
@@ -1200,7 +1554,7 @@ public final class UsersOuterClass {
   /**
    * Protobuf type {@code users.User}
    */
-  public  static final class User extends
+  public static final class User extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:users.User)
       UserOrBuilder {
@@ -1217,6 +1571,13 @@ public final class UsersOuterClass {
       fullName_ = "";
       hierarchy_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       hierarchyFlat_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new User();
     }
 
     @java.lang.Override
@@ -1275,9 +1636,9 @@ public final class UsersOuterClass {
             }
             case 50: {
               java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 hierarchy_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000020;
+                mutable_bitField0_ |= 0x00000001;
               }
               hierarchy_.add(s);
               break;
@@ -1289,7 +1650,7 @@ public final class UsersOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1303,7 +1664,7 @@ public final class UsersOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           hierarchy_ = hierarchy_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
@@ -1323,12 +1684,13 @@ public final class UsersOuterClass {
               DriveStubs.grpc.UsersOuterClass.User.class, DriveStubs.grpc.UsersOuterClass.User.Builder.class);
     }
 
-    private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -1343,7 +1705,9 @@ public final class UsersOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -1362,7 +1726,9 @@ public final class UsersOuterClass {
     private volatile java.lang.Object mail_;
     /**
      * <code>string mail = 2;</code>
+     * @return The mail.
      */
+    @java.lang.Override
     public java.lang.String getMail() {
       java.lang.Object ref = mail_;
       if (ref instanceof java.lang.String) {
@@ -1377,7 +1743,9 @@ public final class UsersOuterClass {
     }
     /**
      * <code>string mail = 2;</code>
+     * @return The bytes for mail.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getMailBytes() {
       java.lang.Object ref = mail_;
@@ -1396,7 +1764,9 @@ public final class UsersOuterClass {
     private volatile java.lang.Object firstName_;
     /**
      * <code>string firstName = 3;</code>
+     * @return The firstName.
      */
+    @java.lang.Override
     public java.lang.String getFirstName() {
       java.lang.Object ref = firstName_;
       if (ref instanceof java.lang.String) {
@@ -1411,7 +1781,9 @@ public final class UsersOuterClass {
     }
     /**
      * <code>string firstName = 3;</code>
+     * @return The bytes for firstName.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFirstNameBytes() {
       java.lang.Object ref = firstName_;
@@ -1430,7 +1802,9 @@ public final class UsersOuterClass {
     private volatile java.lang.Object lastName_;
     /**
      * <code>string lastName = 4;</code>
+     * @return The lastName.
      */
+    @java.lang.Override
     public java.lang.String getLastName() {
       java.lang.Object ref = lastName_;
       if (ref instanceof java.lang.String) {
@@ -1445,7 +1819,9 @@ public final class UsersOuterClass {
     }
     /**
      * <code>string lastName = 4;</code>
+     * @return The bytes for lastName.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLastNameBytes() {
       java.lang.Object ref = lastName_;
@@ -1464,7 +1840,9 @@ public final class UsersOuterClass {
     private volatile java.lang.Object fullName_;
     /**
      * <code>string fullName = 5;</code>
+     * @return The fullName.
      */
+    @java.lang.Override
     public java.lang.String getFullName() {
       java.lang.Object ref = fullName_;
       if (ref instanceof java.lang.String) {
@@ -1479,7 +1857,9 @@ public final class UsersOuterClass {
     }
     /**
      * <code>string fullName = 5;</code>
+     * @return The bytes for fullName.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFullNameBytes() {
       java.lang.Object ref = fullName_;
@@ -1498,6 +1878,7 @@ public final class UsersOuterClass {
     private com.google.protobuf.LazyStringList hierarchy_;
     /**
      * <code>repeated string hierarchy = 6;</code>
+     * @return A list containing the hierarchy.
      */
     public com.google.protobuf.ProtocolStringList
         getHierarchyList() {
@@ -1505,18 +1886,23 @@ public final class UsersOuterClass {
     }
     /**
      * <code>repeated string hierarchy = 6;</code>
+     * @return The count of hierarchy.
      */
     public int getHierarchyCount() {
       return hierarchy_.size();
     }
     /**
      * <code>repeated string hierarchy = 6;</code>
+     * @param index The index of the element to return.
+     * @return The hierarchy at the given index.
      */
     public java.lang.String getHierarchy(int index) {
       return hierarchy_.get(index);
     }
     /**
      * <code>repeated string hierarchy = 6;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the hierarchy at the given index.
      */
     public com.google.protobuf.ByteString
         getHierarchyBytes(int index) {
@@ -1527,7 +1913,9 @@ public final class UsersOuterClass {
     private volatile java.lang.Object hierarchyFlat_;
     /**
      * <code>string hierarchyFlat = 7;</code>
+     * @return The hierarchyFlat.
      */
+    @java.lang.Override
     public java.lang.String getHierarchyFlat() {
       java.lang.Object ref = hierarchyFlat_;
       if (ref instanceof java.lang.String) {
@@ -1542,7 +1930,9 @@ public final class UsersOuterClass {
     }
     /**
      * <code>string hierarchyFlat = 7;</code>
+     * @return The bytes for hierarchyFlat.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getHierarchyFlatBytes() {
       java.lang.Object ref = hierarchyFlat_;
@@ -1642,23 +2032,22 @@ public final class UsersOuterClass {
       }
       DriveStubs.grpc.UsersOuterClass.User other = (DriveStubs.grpc.UsersOuterClass.User) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && getMail()
-          .equals(other.getMail());
-      result = result && getFirstName()
-          .equals(other.getFirstName());
-      result = result && getLastName()
-          .equals(other.getLastName());
-      result = result && getFullName()
-          .equals(other.getFullName());
-      result = result && getHierarchyList()
-          .equals(other.getHierarchyList());
-      result = result && getHierarchyFlat()
-          .equals(other.getHierarchyFlat());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getMail()
+          .equals(other.getMail())) return false;
+      if (!getFirstName()
+          .equals(other.getFirstName())) return false;
+      if (!getLastName()
+          .equals(other.getLastName())) return false;
+      if (!getFullName()
+          .equals(other.getFullName())) return false;
+      if (!getHierarchyList()
+          .equals(other.getHierarchyList())) return false;
+      if (!getHierarchyFlat()
+          .equals(other.getHierarchyFlat())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1828,7 +2217,7 @@ public final class UsersOuterClass {
         fullName_ = "";
 
         hierarchy_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000001);
         hierarchyFlat_ = "";
 
         return this;
@@ -1858,54 +2247,52 @@ public final class UsersOuterClass {
       public DriveStubs.grpc.UsersOuterClass.User buildPartial() {
         DriveStubs.grpc.UsersOuterClass.User result = new DriveStubs.grpc.UsersOuterClass.User(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         result.id_ = id_;
         result.mail_ = mail_;
         result.firstName_ = firstName_;
         result.lastName_ = lastName_;
         result.fullName_ = fullName_;
-        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        if (((bitField0_ & 0x00000001) != 0)) {
           hierarchy_ = hierarchy_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000020);
+          bitField0_ = (bitField0_ & ~0x00000001);
         }
         result.hierarchy_ = hierarchy_;
         result.hierarchyFlat_ = hierarchyFlat_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1942,7 +2329,7 @@ public final class UsersOuterClass {
         if (!other.hierarchy_.isEmpty()) {
           if (hierarchy_.isEmpty()) {
             hierarchy_ = other.hierarchy_;
-            bitField0_ = (bitField0_ & ~0x00000020);
+            bitField0_ = (bitField0_ & ~0x00000001);
           } else {
             ensureHierarchyIsMutable();
             hierarchy_.addAll(other.hierarchy_);
@@ -1986,6 +2373,7 @@ public final class UsersOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -2001,6 +2389,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -2017,6 +2406,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -2030,6 +2421,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -2039,6 +2431,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -2055,6 +2449,7 @@ public final class UsersOuterClass {
       private java.lang.Object mail_ = "";
       /**
        * <code>string mail = 2;</code>
+       * @return The mail.
        */
       public java.lang.String getMail() {
         java.lang.Object ref = mail_;
@@ -2070,6 +2465,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string mail = 2;</code>
+       * @return The bytes for mail.
        */
       public com.google.protobuf.ByteString
           getMailBytes() {
@@ -2086,6 +2482,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string mail = 2;</code>
+       * @param value The mail to set.
+       * @return This builder for chaining.
        */
       public Builder setMail(
           java.lang.String value) {
@@ -2099,6 +2497,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string mail = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMail() {
         
@@ -2108,6 +2507,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string mail = 2;</code>
+       * @param value The bytes for mail to set.
+       * @return This builder for chaining.
        */
       public Builder setMailBytes(
           com.google.protobuf.ByteString value) {
@@ -2124,6 +2525,7 @@ public final class UsersOuterClass {
       private java.lang.Object firstName_ = "";
       /**
        * <code>string firstName = 3;</code>
+       * @return The firstName.
        */
       public java.lang.String getFirstName() {
         java.lang.Object ref = firstName_;
@@ -2139,6 +2541,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string firstName = 3;</code>
+       * @return The bytes for firstName.
        */
       public com.google.protobuf.ByteString
           getFirstNameBytes() {
@@ -2155,6 +2558,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string firstName = 3;</code>
+       * @param value The firstName to set.
+       * @return This builder for chaining.
        */
       public Builder setFirstName(
           java.lang.String value) {
@@ -2168,6 +2573,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string firstName = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFirstName() {
         
@@ -2177,6 +2583,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string firstName = 3;</code>
+       * @param value The bytes for firstName to set.
+       * @return This builder for chaining.
        */
       public Builder setFirstNameBytes(
           com.google.protobuf.ByteString value) {
@@ -2193,6 +2601,7 @@ public final class UsersOuterClass {
       private java.lang.Object lastName_ = "";
       /**
        * <code>string lastName = 4;</code>
+       * @return The lastName.
        */
       public java.lang.String getLastName() {
         java.lang.Object ref = lastName_;
@@ -2208,6 +2617,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string lastName = 4;</code>
+       * @return The bytes for lastName.
        */
       public com.google.protobuf.ByteString
           getLastNameBytes() {
@@ -2224,6 +2634,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string lastName = 4;</code>
+       * @param value The lastName to set.
+       * @return This builder for chaining.
        */
       public Builder setLastName(
           java.lang.String value) {
@@ -2237,6 +2649,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string lastName = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLastName() {
         
@@ -2246,6 +2659,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string lastName = 4;</code>
+       * @param value The bytes for lastName to set.
+       * @return This builder for chaining.
        */
       public Builder setLastNameBytes(
           com.google.protobuf.ByteString value) {
@@ -2262,6 +2677,7 @@ public final class UsersOuterClass {
       private java.lang.Object fullName_ = "";
       /**
        * <code>string fullName = 5;</code>
+       * @return The fullName.
        */
       public java.lang.String getFullName() {
         java.lang.Object ref = fullName_;
@@ -2277,6 +2693,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string fullName = 5;</code>
+       * @return The bytes for fullName.
        */
       public com.google.protobuf.ByteString
           getFullNameBytes() {
@@ -2293,6 +2710,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string fullName = 5;</code>
+       * @param value The fullName to set.
+       * @return This builder for chaining.
        */
       public Builder setFullName(
           java.lang.String value) {
@@ -2306,6 +2725,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string fullName = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFullName() {
         
@@ -2315,6 +2735,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string fullName = 5;</code>
+       * @param value The bytes for fullName to set.
+       * @return This builder for chaining.
        */
       public Builder setFullNameBytes(
           com.google.protobuf.ByteString value) {
@@ -2330,13 +2752,14 @@ public final class UsersOuterClass {
 
       private com.google.protobuf.LazyStringList hierarchy_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureHierarchyIsMutable() {
-        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           hierarchy_ = new com.google.protobuf.LazyStringArrayList(hierarchy_);
-          bitField0_ |= 0x00000020;
+          bitField0_ |= 0x00000001;
          }
       }
       /**
        * <code>repeated string hierarchy = 6;</code>
+       * @return A list containing the hierarchy.
        */
       public com.google.protobuf.ProtocolStringList
           getHierarchyList() {
@@ -2344,18 +2767,23 @@ public final class UsersOuterClass {
       }
       /**
        * <code>repeated string hierarchy = 6;</code>
+       * @return The count of hierarchy.
        */
       public int getHierarchyCount() {
         return hierarchy_.size();
       }
       /**
        * <code>repeated string hierarchy = 6;</code>
+       * @param index The index of the element to return.
+       * @return The hierarchy at the given index.
        */
       public java.lang.String getHierarchy(int index) {
         return hierarchy_.get(index);
       }
       /**
        * <code>repeated string hierarchy = 6;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the hierarchy at the given index.
        */
       public com.google.protobuf.ByteString
           getHierarchyBytes(int index) {
@@ -2363,6 +2791,9 @@ public final class UsersOuterClass {
       }
       /**
        * <code>repeated string hierarchy = 6;</code>
+       * @param index The index to set the value at.
+       * @param value The hierarchy to set.
+       * @return This builder for chaining.
        */
       public Builder setHierarchy(
           int index, java.lang.String value) {
@@ -2376,6 +2807,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>repeated string hierarchy = 6;</code>
+       * @param value The hierarchy to add.
+       * @return This builder for chaining.
        */
       public Builder addHierarchy(
           java.lang.String value) {
@@ -2389,6 +2822,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>repeated string hierarchy = 6;</code>
+       * @param values The hierarchy to add.
+       * @return This builder for chaining.
        */
       public Builder addAllHierarchy(
           java.lang.Iterable<java.lang.String> values) {
@@ -2400,15 +2835,18 @@ public final class UsersOuterClass {
       }
       /**
        * <code>repeated string hierarchy = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHierarchy() {
         hierarchy_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
        * <code>repeated string hierarchy = 6;</code>
+       * @param value The bytes of the hierarchy to add.
+       * @return This builder for chaining.
        */
       public Builder addHierarchyBytes(
           com.google.protobuf.ByteString value) {
@@ -2425,6 +2863,7 @@ public final class UsersOuterClass {
       private java.lang.Object hierarchyFlat_ = "";
       /**
        * <code>string hierarchyFlat = 7;</code>
+       * @return The hierarchyFlat.
        */
       public java.lang.String getHierarchyFlat() {
         java.lang.Object ref = hierarchyFlat_;
@@ -2440,6 +2879,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string hierarchyFlat = 7;</code>
+       * @return The bytes for hierarchyFlat.
        */
       public com.google.protobuf.ByteString
           getHierarchyFlatBytes() {
@@ -2456,6 +2896,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string hierarchyFlat = 7;</code>
+       * @param value The hierarchyFlat to set.
+       * @return This builder for chaining.
        */
       public Builder setHierarchyFlat(
           java.lang.String value) {
@@ -2469,6 +2911,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string hierarchyFlat = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHierarchyFlat() {
         
@@ -2478,6 +2921,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string hierarchyFlat = 7;</code>
+       * @param value The bytes for hierarchyFlat to set.
+       * @return This builder for chaining.
        */
       public Builder setHierarchyFlatBytes(
           com.google.protobuf.ByteString value) {
@@ -2493,7 +2938,7 @@ public final class UsersOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -2549,10 +2994,12 @@ public final class UsersOuterClass {
 
     /**
      * <code>.users.User user = 1;</code>
+     * @return Whether the user field is set.
      */
     boolean hasUser();
     /**
      * <code>.users.User user = 1;</code>
+     * @return The user.
      */
     DriveStubs.grpc.UsersOuterClass.User getUser();
     /**
@@ -2563,7 +3010,7 @@ public final class UsersOuterClass {
   /**
    * Protobuf type {@code users.GetUserResponse}
    */
-  public  static final class GetUserResponse extends
+  public static final class GetUserResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:users.GetUserResponse)
       GetUserResponseOrBuilder {
@@ -2573,6 +3020,13 @@ public final class UsersOuterClass {
       super(builder);
     }
     private GetUserResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetUserResponse();
     }
 
     @java.lang.Override
@@ -2588,7 +3042,6 @@ public final class UsersOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2613,7 +3066,7 @@ public final class UsersOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2648,19 +3101,24 @@ public final class UsersOuterClass {
     private DriveStubs.grpc.UsersOuterClass.User user_;
     /**
      * <code>.users.User user = 1;</code>
+     * @return Whether the user field is set.
      */
+    @java.lang.Override
     public boolean hasUser() {
       return user_ != null;
     }
     /**
      * <code>.users.User user = 1;</code>
+     * @return The user.
      */
+    @java.lang.Override
     public DriveStubs.grpc.UsersOuterClass.User getUser() {
       return user_ == null ? DriveStubs.grpc.UsersOuterClass.User.getDefaultInstance() : user_;
     }
     /**
      * <code>.users.User user = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.UsersOuterClass.UserOrBuilder getUserOrBuilder() {
       return getUser();
     }
@@ -2710,14 +3168,13 @@ public final class UsersOuterClass {
       }
       DriveStubs.grpc.UsersOuterClass.GetUserResponse other = (DriveStubs.grpc.UsersOuterClass.GetUserResponse) obj;
 
-      boolean result = true;
-      result = result && (hasUser() == other.hasUser());
+      if (hasUser() != other.hasUser()) return false;
       if (hasUser()) {
-        result = result && getUser()
-            .equals(other.getUser());
+        if (!getUser()
+            .equals(other.getUser())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -2907,35 +3364,35 @@ public final class UsersOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2981,17 +3438,19 @@ public final class UsersOuterClass {
         return this;
       }
 
-      private DriveStubs.grpc.UsersOuterClass.User user_ = null;
+      private DriveStubs.grpc.UsersOuterClass.User user_;
       private com.google.protobuf.SingleFieldBuilderV3<
           DriveStubs.grpc.UsersOuterClass.User, DriveStubs.grpc.UsersOuterClass.User.Builder, DriveStubs.grpc.UsersOuterClass.UserOrBuilder> userBuilder_;
       /**
        * <code>.users.User user = 1;</code>
+       * @return Whether the user field is set.
        */
       public boolean hasUser() {
         return userBuilder_ != null || user_ != null;
       }
       /**
        * <code>.users.User user = 1;</code>
+       * @return The user.
        */
       public DriveStubs.grpc.UsersOuterClass.User getUser() {
         if (userBuilder_ == null) {
@@ -3100,7 +3559,7 @@ public final class UsersOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -3156,18 +3615,32 @@ public final class UsersOuterClass {
 
     /**
      * <code>string name = 1;</code>
+     * @return The name.
      */
     java.lang.String getName();
     /**
      * <code>string name = 1;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
+
+    /**
+     * <code>string destination = 2;</code>
+     * @return The destination.
+     */
+    java.lang.String getDestination();
+    /**
+     * <code>string destination = 2;</code>
+     * @return The bytes for destination.
+     */
+    com.google.protobuf.ByteString
+        getDestinationBytes();
   }
   /**
    * Protobuf type {@code users.FindUserByNameRequest}
    */
-  public  static final class FindUserByNameRequest extends
+  public static final class FindUserByNameRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:users.FindUserByNameRequest)
       FindUserByNameRequestOrBuilder {
@@ -3178,6 +3651,14 @@ public final class UsersOuterClass {
     }
     private FindUserByNameRequest() {
       name_ = "";
+      destination_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new FindUserByNameRequest();
     }
 
     @java.lang.Override
@@ -3193,7 +3674,6 @@ public final class UsersOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -3210,8 +3690,14 @@ public final class UsersOuterClass {
               name_ = s;
               break;
             }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              destination_ = s;
+              break;
+            }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -3246,7 +3732,9 @@ public final class UsersOuterClass {
     private volatile java.lang.Object name_;
     /**
      * <code>string name = 1;</code>
+     * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -3261,7 +3749,9 @@ public final class UsersOuterClass {
     }
     /**
      * <code>string name = 1;</code>
+     * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -3270,6 +3760,44 @@ public final class UsersOuterClass {
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DESTINATION_FIELD_NUMBER = 2;
+    private volatile java.lang.Object destination_;
+    /**
+     * <code>string destination = 2;</code>
+     * @return The destination.
+     */
+    @java.lang.Override
+    public java.lang.String getDestination() {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        destination_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string destination = 2;</code>
+     * @return The bytes for destination.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDestinationBytes() {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        destination_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -3293,6 +3821,9 @@ public final class UsersOuterClass {
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
+      if (!getDestinationBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, destination_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -3304,6 +3835,9 @@ public final class UsersOuterClass {
       size = 0;
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+      }
+      if (!getDestinationBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, destination_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3320,11 +3854,12 @@ public final class UsersOuterClass {
       }
       DriveStubs.grpc.UsersOuterClass.FindUserByNameRequest other = (DriveStubs.grpc.UsersOuterClass.FindUserByNameRequest) obj;
 
-      boolean result = true;
-      result = result && getName()
-          .equals(other.getName());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getDestination()
+          .equals(other.getDestination())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -3336,6 +3871,8 @@ public final class UsersOuterClass {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + DESTINATION_FIELD_NUMBER;
+      hash = (53 * hash) + getDestination().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3471,6 +4008,8 @@ public final class UsersOuterClass {
         super.clear();
         name_ = "";
 
+        destination_ = "";
+
         return this;
       }
 
@@ -3498,41 +4037,42 @@ public final class UsersOuterClass {
       public DriveStubs.grpc.UsersOuterClass.FindUserByNameRequest buildPartial() {
         DriveStubs.grpc.UsersOuterClass.FindUserByNameRequest result = new DriveStubs.grpc.UsersOuterClass.FindUserByNameRequest(this);
         result.name_ = name_;
+        result.destination_ = destination_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3548,6 +4088,10 @@ public final class UsersOuterClass {
         if (other == DriveStubs.grpc.UsersOuterClass.FindUserByNameRequest.getDefaultInstance()) return this;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
+          onChanged();
+        }
+        if (!other.getDestination().isEmpty()) {
+          destination_ = other.destination_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -3582,6 +4126,7 @@ public final class UsersOuterClass {
       private java.lang.Object name_ = "";
       /**
        * <code>string name = 1;</code>
+       * @return The name.
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -3597,6 +4142,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string name = 1;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -3613,6 +4159,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string name = 1;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
        */
       public Builder setName(
           java.lang.String value) {
@@ -3626,6 +4174,7 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string name = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearName() {
         
@@ -3635,6 +4184,8 @@ public final class UsersOuterClass {
       }
       /**
        * <code>string name = 1;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -3647,10 +4198,86 @@ public final class UsersOuterClass {
         onChanged();
         return this;
       }
+
+      private java.lang.Object destination_ = "";
+      /**
+       * <code>string destination = 2;</code>
+       * @return The destination.
+       */
+      public java.lang.String getDestination() {
+        java.lang.Object ref = destination_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          destination_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @return The bytes for destination.
+       */
+      public com.google.protobuf.ByteString
+          getDestinationBytes() {
+        java.lang.Object ref = destination_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          destination_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @param value The destination to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDestination(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        destination_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDestination() {
+        
+        destination_ = getDefaultInstance().getDestination();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string destination = 2;</code>
+       * @param value The bytes for destination to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDestinationBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        destination_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -3731,7 +4358,7 @@ public final class UsersOuterClass {
   /**
    * Protobuf type {@code users.FindUserByNameResponse}
    */
-  public  static final class FindUserByNameResponse extends
+  public static final class FindUserByNameResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:users.FindUserByNameResponse)
       FindUserByNameResponseOrBuilder {
@@ -3742,6 +4369,13 @@ public final class UsersOuterClass {
     }
     private FindUserByNameResponse() {
       users_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new FindUserByNameResponse();
     }
 
     @java.lang.Override
@@ -3769,7 +4403,7 @@ public final class UsersOuterClass {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 users_ = new java.util.ArrayList<DriveStubs.grpc.UsersOuterClass.User>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -3778,7 +4412,7 @@ public final class UsersOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -3792,7 +4426,7 @@ public final class UsersOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           users_ = java.util.Collections.unmodifiableList(users_);
         }
         this.unknownFields = unknownFields.build();
@@ -3817,12 +4451,14 @@ public final class UsersOuterClass {
     /**
      * <code>repeated .users.User users = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.UsersOuterClass.User> getUsersList() {
       return users_;
     }
     /**
      * <code>repeated .users.User users = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.UsersOuterClass.UserOrBuilder> 
         getUsersOrBuilderList() {
       return users_;
@@ -3830,18 +4466,21 @@ public final class UsersOuterClass {
     /**
      * <code>repeated .users.User users = 1;</code>
      */
+    @java.lang.Override
     public int getUsersCount() {
       return users_.size();
     }
     /**
      * <code>repeated .users.User users = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.UsersOuterClass.User getUsers(int index) {
       return users_.get(index);
     }
     /**
      * <code>repeated .users.User users = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.UsersOuterClass.UserOrBuilder getUsersOrBuilder(
         int index) {
       return users_.get(index);
@@ -3892,11 +4531,10 @@ public final class UsersOuterClass {
       }
       DriveStubs.grpc.UsersOuterClass.FindUserByNameResponse other = (DriveStubs.grpc.UsersOuterClass.FindUserByNameResponse) obj;
 
-      boolean result = true;
-      result = result && getUsersList()
-          .equals(other.getUsersList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUsersList()
+          .equals(other.getUsersList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -4078,7 +4716,7 @@ public final class UsersOuterClass {
         DriveStubs.grpc.UsersOuterClass.FindUserByNameResponse result = new DriveStubs.grpc.UsersOuterClass.FindUserByNameResponse(this);
         int from_bitField0_ = bitField0_;
         if (usersBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             users_ = java.util.Collections.unmodifiableList(users_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -4092,35 +4730,35 @@ public final class UsersOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -4193,7 +4831,7 @@ public final class UsersOuterClass {
       private java.util.List<DriveStubs.grpc.UsersOuterClass.User> users_ =
         java.util.Collections.emptyList();
       private void ensureUsersIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           users_ = new java.util.ArrayList<DriveStubs.grpc.UsersOuterClass.User>(users_);
           bitField0_ |= 0x00000001;
          }
@@ -4422,7 +5060,7 @@ public final class UsersOuterClass {
           usersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.UsersOuterClass.User, DriveStubs.grpc.UsersOuterClass.User.Builder, DriveStubs.grpc.UsersOuterClass.UserOrBuilder>(
                   users_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           users_ = null;
@@ -4432,7 +5070,7 @@ public final class UsersOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -4482,1369 +5120,11 @@ public final class UsersOuterClass {
 
   }
 
-  public interface GetApproverInfoRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:users.GetApproverInfoRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string id = 1;</code>
-     */
-    java.lang.String getId();
-    /**
-     * <code>string id = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getIdBytes();
-  }
-  /**
-   * Protobuf type {@code users.GetApproverInfoRequest}
-   */
-  public  static final class GetApproverInfoRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:users.GetApproverInfoRequest)
-      GetApproverInfoRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GetApproverInfoRequest.newBuilder() to construct.
-    private GetApproverInfoRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GetApproverInfoRequest() {
-      id_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GetApproverInfoRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              id_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest.class, DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest.Builder.class);
-    }
-
-    public static final int ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object id_;
-    /**
-     * <code>string id = 1;</code>
-     */
-    public java.lang.String getId() {
-      java.lang.Object ref = id_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        id_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string id = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getIdBytes() {
-      java.lang.Object ref = id_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        id_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest)) {
-        return super.equals(obj);
-      }
-      DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest other = (DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest) obj;
-
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code users.GetApproverInfoRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:users.GetApproverInfoRequest)
-        DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest.class, DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest.Builder.class);
-      }
-
-      // Construct using DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        id_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest getDefaultInstanceForType() {
-        return DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest build() {
-        DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest buildPartial() {
-        DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest result = new DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest(this);
-        result.id_ = id_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest) {
-          return mergeFrom((DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest other) {
-        if (other == DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest.getDefaultInstance()) return this;
-        if (!other.getId().isEmpty()) {
-          id_ = other.id_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object id_ = "";
-      /**
-       * <code>string id = 1;</code>
-       */
-      public java.lang.String getId() {
-        java.lang.Object ref = id_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          id_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string id = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getIdBytes() {
-        java.lang.Object ref = id_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          id_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string id = 1;</code>
-       */
-      public Builder setId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        id_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string id = 1;</code>
-       */
-      public Builder clearId() {
-        
-        id_ = getDefaultInstance().getId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string id = 1;</code>
-       */
-      public Builder setIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        id_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:users.GetApproverInfoRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:users.GetApproverInfoRequest)
-    private static final DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest();
-    }
-
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<GetApproverInfoRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetApproverInfoRequest>() {
-      @java.lang.Override
-      public GetApproverInfoRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetApproverInfoRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<GetApproverInfoRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GetApproverInfoRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public DriveStubs.grpc.UsersOuterClass.GetApproverInfoRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface GetApproverInfoResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:users.GetApproverInfoResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bool canApprove = 1;</code>
-     */
-    boolean getCanApprove();
-
-    /**
-     * <code>string unit = 2;</code>
-     */
-    java.lang.String getUnit();
-    /**
-     * <code>string unit = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getUnitBytes();
-
-    /**
-     * <code>repeated string ranks = 3;</code>
-     */
-    java.util.List<java.lang.String>
-        getRanksList();
-    /**
-     * <code>repeated string ranks = 3;</code>
-     */
-    int getRanksCount();
-    /**
-     * <code>repeated string ranks = 3;</code>
-     */
-    java.lang.String getRanks(int index);
-    /**
-     * <code>repeated string ranks = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getRanksBytes(int index);
-  }
-  /**
-   * Protobuf type {@code users.GetApproverInfoResponse}
-   */
-  public  static final class GetApproverInfoResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:users.GetApproverInfoResponse)
-      GetApproverInfoResponseOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GetApproverInfoResponse.newBuilder() to construct.
-    private GetApproverInfoResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GetApproverInfoResponse() {
-      canApprove_ = false;
-      unit_ = "";
-      ranks_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GetApproverInfoResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              canApprove_ = input.readBool();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              unit_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                ranks_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000004;
-              }
-              ranks_.add(s);
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-          ranks_ = ranks_.getUnmodifiableView();
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoResponse_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse.class, DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int CANAPPROVE_FIELD_NUMBER = 1;
-    private boolean canApprove_;
-    /**
-     * <code>bool canApprove = 1;</code>
-     */
-    public boolean getCanApprove() {
-      return canApprove_;
-    }
-
-    public static final int UNIT_FIELD_NUMBER = 2;
-    private volatile java.lang.Object unit_;
-    /**
-     * <code>string unit = 2;</code>
-     */
-    public java.lang.String getUnit() {
-      java.lang.Object ref = unit_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        unit_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string unit = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getUnitBytes() {
-      java.lang.Object ref = unit_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        unit_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int RANKS_FIELD_NUMBER = 3;
-    private com.google.protobuf.LazyStringList ranks_;
-    /**
-     * <code>repeated string ranks = 3;</code>
-     */
-    public com.google.protobuf.ProtocolStringList
-        getRanksList() {
-      return ranks_;
-    }
-    /**
-     * <code>repeated string ranks = 3;</code>
-     */
-    public int getRanksCount() {
-      return ranks_.size();
-    }
-    /**
-     * <code>repeated string ranks = 3;</code>
-     */
-    public java.lang.String getRanks(int index) {
-      return ranks_.get(index);
-    }
-    /**
-     * <code>repeated string ranks = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getRanksBytes(int index) {
-      return ranks_.getByteString(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (canApprove_ != false) {
-        output.writeBool(1, canApprove_);
-      }
-      if (!getUnitBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, unit_);
-      }
-      for (int i = 0; i < ranks_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, ranks_.getRaw(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (canApprove_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, canApprove_);
-      }
-      if (!getUnitBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, unit_);
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < ranks_.size(); i++) {
-          dataSize += computeStringSizeNoTag(ranks_.getRaw(i));
-        }
-        size += dataSize;
-        size += 1 * getRanksList().size();
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse)) {
-        return super.equals(obj);
-      }
-      DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse other = (DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse) obj;
-
-      boolean result = true;
-      result = result && (getCanApprove()
-          == other.getCanApprove());
-      result = result && getUnit()
-          .equals(other.getUnit());
-      result = result && getRanksList()
-          .equals(other.getRanksList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CANAPPROVE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getCanApprove());
-      hash = (37 * hash) + UNIT_FIELD_NUMBER;
-      hash = (53 * hash) + getUnit().hashCode();
-      if (getRanksCount() > 0) {
-        hash = (37 * hash) + RANKS_FIELD_NUMBER;
-        hash = (53 * hash) + getRanksList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code users.GetApproverInfoResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:users.GetApproverInfoResponse)
-        DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoResponse_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse.class, DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse.Builder.class);
-      }
-
-      // Construct using DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        canApprove_ = false;
-
-        unit_ = "";
-
-        ranks_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return DriveStubs.grpc.UsersOuterClass.internal_static_users_GetApproverInfoResponse_descriptor;
-      }
-
-      @java.lang.Override
-      public DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse getDefaultInstanceForType() {
-        return DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse build() {
-        DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse buildPartial() {
-        DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse result = new DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        result.canApprove_ = canApprove_;
-        result.unit_ = unit_;
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          ranks_ = ranks_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000004);
-        }
-        result.ranks_ = ranks_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse) {
-          return mergeFrom((DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse other) {
-        if (other == DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse.getDefaultInstance()) return this;
-        if (other.getCanApprove() != false) {
-          setCanApprove(other.getCanApprove());
-        }
-        if (!other.getUnit().isEmpty()) {
-          unit_ = other.unit_;
-          onChanged();
-        }
-        if (!other.ranks_.isEmpty()) {
-          if (ranks_.isEmpty()) {
-            ranks_ = other.ranks_;
-            bitField0_ = (bitField0_ & ~0x00000004);
-          } else {
-            ensureRanksIsMutable();
-            ranks_.addAll(other.ranks_);
-          }
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private boolean canApprove_ ;
-      /**
-       * <code>bool canApprove = 1;</code>
-       */
-      public boolean getCanApprove() {
-        return canApprove_;
-      }
-      /**
-       * <code>bool canApprove = 1;</code>
-       */
-      public Builder setCanApprove(boolean value) {
-        
-        canApprove_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool canApprove = 1;</code>
-       */
-      public Builder clearCanApprove() {
-        
-        canApprove_ = false;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object unit_ = "";
-      /**
-       * <code>string unit = 2;</code>
-       */
-      public java.lang.String getUnit() {
-        java.lang.Object ref = unit_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          unit_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string unit = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getUnitBytes() {
-        java.lang.Object ref = unit_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          unit_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string unit = 2;</code>
-       */
-      public Builder setUnit(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        unit_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string unit = 2;</code>
-       */
-      public Builder clearUnit() {
-        
-        unit_ = getDefaultInstance().getUnit();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string unit = 2;</code>
-       */
-      public Builder setUnitBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        unit_ = value;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.LazyStringList ranks_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureRanksIsMutable() {
-        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          ranks_ = new com.google.protobuf.LazyStringArrayList(ranks_);
-          bitField0_ |= 0x00000004;
-         }
-      }
-      /**
-       * <code>repeated string ranks = 3;</code>
-       */
-      public com.google.protobuf.ProtocolStringList
-          getRanksList() {
-        return ranks_.getUnmodifiableView();
-      }
-      /**
-       * <code>repeated string ranks = 3;</code>
-       */
-      public int getRanksCount() {
-        return ranks_.size();
-      }
-      /**
-       * <code>repeated string ranks = 3;</code>
-       */
-      public java.lang.String getRanks(int index) {
-        return ranks_.get(index);
-      }
-      /**
-       * <code>repeated string ranks = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getRanksBytes(int index) {
-        return ranks_.getByteString(index);
-      }
-      /**
-       * <code>repeated string ranks = 3;</code>
-       */
-      public Builder setRanks(
-          int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRanksIsMutable();
-        ranks_.set(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string ranks = 3;</code>
-       */
-      public Builder addRanks(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRanksIsMutable();
-        ranks_.add(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string ranks = 3;</code>
-       */
-      public Builder addAllRanks(
-          java.lang.Iterable<java.lang.String> values) {
-        ensureRanksIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, ranks_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string ranks = 3;</code>
-       */
-      public Builder clearRanks() {
-        ranks_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string ranks = 3;</code>
-       */
-      public Builder addRanksBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        ensureRanksIsMutable();
-        ranks_.add(value);
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:users.GetApproverInfoResponse)
-    }
-
-    // @@protoc_insertion_point(class_scope:users.GetApproverInfoResponse)
-    private static final DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse();
-    }
-
-    public static DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<GetApproverInfoResponse>
-        PARSER = new com.google.protobuf.AbstractParser<GetApproverInfoResponse>() {
-      @java.lang.Override
-      public GetApproverInfoResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetApproverInfoResponse(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<GetApproverInfoResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GetApproverInfoResponse> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public DriveStubs.grpc.UsersOuterClass.GetApproverInfoResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_users_GetByMailRequest_descriptor;
+    internal_static_users_GetByMailOrTRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_users_GetByMailRequest_fieldAccessorTable;
+      internal_static_users_GetByMailOrTRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_users_GetByIDRequest_descriptor;
   private static final 
@@ -5870,16 +5150,6 @@ public final class UsersOuterClass {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_users_FindUserByNameResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_users_GetApproverInfoRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_users_GetApproverInfoRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_users_GetApproverInfoResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_users_GetApproverInfoResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -5889,52 +5159,40 @@ public final class UsersOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013users.proto\022\005users\" \n\020GetByMailRequest" +
-      "\022\014\n\004mail\030\001 \001(\t\"\034\n\016GetByIDRequest\022\n\n\002id\030\001" +
-      " \001(\t\"\201\001\n\004User\022\n\n\002id\030\001 \001(\t\022\014\n\004mail\030\002 \001(\t\022" +
-      "\021\n\tfirstName\030\003 \001(\t\022\020\n\010lastName\030\004 \001(\t\022\020\n\010" +
-      "fullName\030\005 \001(\t\022\021\n\thierarchy\030\006 \003(\t\022\025\n\rhie" +
-      "rarchyFlat\030\007 \001(\t\",\n\017GetUserResponse\022\031\n\004u" +
-      "ser\030\001 \001(\0132\013.users.User\"%\n\025FindUserByName" +
-      "Request\022\014\n\004name\030\001 \001(\t\"4\n\026FindUserByNameR" +
-      "esponse\022\032\n\005users\030\001 \003(\0132\013.users.User\"$\n\026G" +
-      "etApproverInfoRequest\022\n\n\002id\030\001 \001(\t\"J\n\027Get" +
-      "ApproverInfoResponse\022\022\n\ncanApprove\030\001 \001(\010" +
-      "\022\014\n\004unit\030\002 \001(\t\022\r\n\005ranks\030\003 \003(\t2\260\002\n\005Users\022" +
-      "B\n\rGetUserByMail\022\027.users.GetByMailReques" +
-      "t\032\026.users.GetUserResponse\"\000\022>\n\013GetUserBy" +
-      "ID\022\025.users.GetByIDRequest\032\026.users.GetUse" +
-      "rResponse\"\000\022O\n\016FindUserByName\022\034.users.Fi" +
-      "ndUserByNameRequest\032\035.users.FindUserByNa" +
-      "meResponse\"\000\022R\n\017GetApproverInfo\022\035.users." +
-      "GetApproverInfoRequest\032\036.users.GetApprov" +
-      "erInfoResponse\"\000B\021\n\017DriveStubs.grpcb\006pro" +
-      "to3"
+      "\n\013users.proto\022\005users\";\n\023GetByMailOrTRequ" +
+      "est\022\017\n\007mailOrT\030\001 \001(\t\022\023\n\013destination\030\002 \001(" +
+      "\t\"1\n\016GetByIDRequest\022\n\n\002id\030\001 \001(\t\022\023\n\013desti" +
+      "nation\030\002 \001(\t\"\201\001\n\004User\022\n\n\002id\030\001 \001(\t\022\014\n\004mai" +
+      "l\030\002 \001(\t\022\021\n\tfirstName\030\003 \001(\t\022\020\n\010lastName\030\004" +
+      " \001(\t\022\020\n\010fullName\030\005 \001(\t\022\021\n\thierarchy\030\006 \003(" +
+      "\t\022\025\n\rhierarchyFlat\030\007 \001(\t\",\n\017GetUserRespo" +
+      "nse\022\031\n\004user\030\001 \001(\0132\013.users.User\":\n\025FindUs" +
+      "erByNameRequest\022\014\n\004name\030\001 \001(\t\022\023\n\013destina" +
+      "tion\030\002 \001(\t\"4\n\026FindUserByNameResponse\022\032\n\005" +
+      "users\030\001 \003(\0132\013.users.User2\342\001\n\005Users\022H\n\020Ge" +
+      "tUserByMailOrT\022\032.users.GetByMailOrTReque" +
+      "st\032\026.users.GetUserResponse\"\000\022>\n\013GetUserB" +
+      "yID\022\025.users.GetByIDRequest\032\026.users.GetUs" +
+      "erResponse\"\000\022O\n\016FindUserByName\022\034.users.F" +
+      "indUserByNameRequest\032\035.users.FindUserByN" +
+      "ameResponse\"\000B\021\n\017DriveStubs.grpcb\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
-    internal_static_users_GetByMailRequest_descriptor =
+        });
+    internal_static_users_GetByMailOrTRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_users_GetByMailRequest_fieldAccessorTable = new
+    internal_static_users_GetByMailOrTRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_users_GetByMailRequest_descriptor,
-        new java.lang.String[] { "Mail", });
+        internal_static_users_GetByMailOrTRequest_descriptor,
+        new java.lang.String[] { "MailOrT", "Destination", });
     internal_static_users_GetByIDRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_users_GetByIDRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_users_GetByIDRequest_descriptor,
-        new java.lang.String[] { "Id", });
+        new java.lang.String[] { "Id", "Destination", });
     internal_static_users_User_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_users_User_fieldAccessorTable = new
@@ -5952,25 +5210,13 @@ public final class UsersOuterClass {
     internal_static_users_FindUserByNameRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_users_FindUserByNameRequest_descriptor,
-        new java.lang.String[] { "Name", });
+        new java.lang.String[] { "Name", "Destination", });
     internal_static_users_FindUserByNameResponse_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_users_FindUserByNameResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_users_FindUserByNameResponse_descriptor,
         new java.lang.String[] { "Users", });
-    internal_static_users_GetApproverInfoRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_users_GetApproverInfoRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_users_GetApproverInfoRequest_descriptor,
-        new java.lang.String[] { "Id", });
-    internal_static_users_GetApproverInfoResponse_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_users_GetApproverInfoResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_users_GetApproverInfoResponse_descriptor,
-        new java.lang.String[] { "CanApprove", "Unit", "Ranks", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

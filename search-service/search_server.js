@@ -1,10 +1,12 @@
-const { Client } = require("@elastic/elasticsearch");
 const grpc = require("@grpc/grpc-js");
 const axios = require("axios").default;
 const health = require("grpc-health-check");
 const protoLoader = require("@grpc/proto-loader");
 const dotenv = require("dotenv");
 const logger = require("./logger");
+const { Client } = require("@elastic/elasticsearch");
+const { getFileByID, getDesendantsById, getUsersPermissions, conditions } = require("./drive_utils");
+const { cleanString, getStringWithBold } = require("./str_utils");
 
 dotenv.config({ path: "../.env" });
 
@@ -13,43 +15,16 @@ dotenv.config({ path: "../.env" });
 const healthCheckStatusMap = {
   "": proto.grpc.health.v1.HealthCheckResponse.ServingStatus.UNKNOWN,
 };
-
-// Construct the service implementation
 let healthImpl = new health.Implementation(healthCheckStatusMap);
 
-const elasticUrls = process.env.INDEXING_ELASTIC_URLS.split(",");
 // Elastic
+const elasticUrls = process.env.INDEXING_ELASTIC_URLS.split(",");
 const clientES = new Client({ node: elasticUrls });
 
-// Proto loader
+// Search Proto loader
 const SEARCH_PROTO_PATH = `${__dirname}/proto/search/search.proto`;
-const PERMMISSION_PROTO_PATH = `${__dirname}/proto/permission/permission.proto`;
-const FILE_PROTO_PATH = `${__dirname}/proto/file/file.proto`;
-
-const conditions = {
-  keepCase: true,
-  longs: String,
-  enums: String,
-  defaults: true,
-  oneofs: true,
-};
-
 const searchPackageDefinition = protoLoader.loadSync(SEARCH_PROTO_PATH, conditions);
-const permissionPackageDefinition = protoLoader.loadSync(PERMMISSION_PROTO_PATH, conditions);
-const filePackageDefinition = protoLoader.loadSync(FILE_PROTO_PATH, conditions);
-
 const search_proto = grpc.loadPackageDefinition(searchPackageDefinition).searchService;
-const permission_proto = grpc.loadPackageDefinition(permissionPackageDefinition).permission;
-const file_proto = grpc.loadPackageDefinition(filePackageDefinition).file;
-
-const permissionClient = new permission_proto.Permission(
-  `${process.env.INDEXING_PERMISSION_SERVICE_URL}`,
-  grpc.credentials.createInsecure()
-);
-const fileClient = new file_proto.FileService(
-  `${process.env.INDEXING_FILE_SERVICE_URL}`,
-  grpc.credentials.createInsecure()
-);
 
 // Health check - without elastic access the service won't work
 async function healthCheck() {
@@ -110,28 +85,6 @@ function main() {
 main();
 let userId;
 
-function cleanString(str) {
-  cleanStr = str.replace(/[$&+,:;=?@#|'<>.^*()%!{}-]/g, " ");
-  cleanStr = cleanStr.replace(/[^A-Za-z0-9\u0590-\u05FF\u0600-\u06FF]/g, " "); // Without special characters
-  cleanStr = cleanStr.replace(/\r?\n|\r/g, " ");
-  cleanStr = cleanStr.trim().replace(/\s+/g, " ");
-  cleanStr = cleanStr.toLowerCase();
-  return cleanStr;
-}
-
-function getStringWithBold(str, query) {
-  if (!query || !str) {
-    return str;
-  }
-  const queryArray = query.split(" ");
-  str = str.replace(new RegExp("<b>", "g"), "");
-  str = str.replace(new RegExp("</b>", "g"), "");
-  queryArray.forEach((element) => {
-    str = str.replace(new RegExp(element, "g"), `<b>${element}</b>`);
-  });
-  return str;
-}
-
 async function indexesCollector(permissionArray) {
   let filesArray = [];
   let ownersArray = [];
@@ -152,21 +105,13 @@ async function indexesCollector(permissionArray) {
     })
   );
 
-  // if (filesArray.includes(null)) {
-  //   return [];
-  // }
-
   for (let file of filesArray) {
     if (file) {
       if (file.type.includes("folder")) {
         let desendantsArray = await getDesendantsById(file.id);
-        if (!desendantsArray) {
-          desendantsArray = [];
-        }
-        let ownersIds = desendantsArray.map((desendants) => {
-          return desendants.file.ownerID;
-        });
+        if (!desendantsArray) desendantsArray = [];
 
+        let ownersIds = desendantsArray.map((desendants) => desendants.file.ownerID);
         ownersIds.push(file.ownerID);
         ownersArray = ownersArray.concat(ownersIds);
       } else {
@@ -182,54 +127,6 @@ async function indexesCollector(permissionArray) {
   });
 
   return ownersArray;
-}
-
-function getUsersPermissions(userId) {
-  return new Promise((resolve, reject) => {
-    permissionClient.GetUserPermissions({ userID: userId }, function (err, response) {
-      if (err) {
-        logger.log({
-          level: "error",
-          message: `in GetUserPermissions request to Drive - ${err.details}`,
-          label: `userId: ${userId}`,
-        });
-        resolve(null);
-      }
-      resolve(response);
-    });
-  });
-}
-
-function getFileByID(fileId) {
-  return new Promise((resolve, reject) => {
-    fileClient.GetFileByID({ id: fileId }, function (err, response) {
-      if (err) {
-        logger.log({
-          level: "error",
-          message: `in GetFileByID request to Drive - ${err.details}`,
-          label: `userId: ${userId}`,
-        });
-        reject(err);
-      }
-      resolve(response);
-    });
-  });
-}
-
-function getDesendantsById(folderId) {
-  return new Promise((resolve, reject) => {
-    fileClient.GetDescendantsByID({ id: folderId }, function (err, response) {
-      if (err) {
-        logger.log({
-          level: "error",
-          message: `in GetDescendantsByID request to Drive - ${err.details}`,
-          label: `userId: ${userId}`,
-        });
-        resolve(null);
-      }
-      resolve(response.descendants);
-    });
-  });
 }
 
 function getQueryShould(fields, exactMatch) {
@@ -384,28 +281,21 @@ async function search(call, callback) {
     let indexesArray = [];
     const exactMatch = call.request.exactMatch;
     const fields = call.request.fields;
-    if (fields.content) {
-      fields.content = cleanString(fields.content);
-    }
-    if (fields.fileName) {
-      // fields.fileName = cleanString(fields.fileName);
-    }
     userId = call.request.userID;
+
+    if (fields.content) fields.content = cleanString(fields.content);
+    if (fields.fileName) fields.fileName = cleanString(fields.fileName);
 
     const must = getQueryMust(fields, userId);
     const should = getQueryShould(fields, exactMatch);
 
-    //TODO UNCOMMENT
     const usersPermissions = await getUsersPermissions(userId);
-
     if (usersPermissions.permissions.length) {
       const ownersArray = await indexesCollector(usersPermissions.permissions);
       ownersArray.unshift(userId);
       indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
     }
-    //TODO UNCOMMENT
 
-    // indexesArray = ["5e5688324203fc40043591aa"];
     const indices_boost = new Object();
     indices_boost[userId] = 2; //boost the files of the user who did the search to the top of the results.
 
@@ -434,10 +324,19 @@ async function search(call, callback) {
           //return uniqe file Ids-(one result from each file)
           field: "fileId.keyword",
         },
+        aggs: {
+          //return uniqe count of total results -(one result from each file)
+          fileId_count: {
+            cardinality: {
+              field: "fileId.keyword",
+            },
+          },
+        },
       },
     };
 
     const result = await clientES.search(elasticRequest);
+    const itemCount = JSON.stringify(result.body.aggregations.fileId_count.value);
 
     const results = await result.body.hits.hits.map((document) => {
       let highlightedContent = null,
@@ -454,16 +353,17 @@ async function search(call, callback) {
         highlightedContent: getStringWithBold(highlightedContent, fields.content),
         highlightedFileName: getStringWithBold(highlightedFileName, fields.fileName),
       };
+
       return fileResult;
     });
 
     logger.log({
       level: "info",
-      message: `Search completed successfully!`,
+      message: `Search completed successfully!, total hits: ${itemCount}`,
       label: `userId: ${userId}`,
     });
 
-    callback(null, { results: results });
+    callback(null, { results: results, itemCount });
   } catch (err) {
     logger.log({
       level: "error",

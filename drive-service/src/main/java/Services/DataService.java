@@ -66,11 +66,11 @@ public class DataService {
         }
     }
 
-    public static UsersOuterClass.User getUser (String userId) {
+    public static UsersOuterClass.User getUser (String userId, String dest) {
         try{
             UsersGrpc.UsersBlockingStub userStub = UsersGrpc.newBlockingStub(userChannel);
             UsersOuterClass.GetByIDRequest userByIDRequest = UsersOuterClass.GetByIDRequest.newBuilder()
-                    .setId(userId).build();
+                    .setId(userId).setDestination(dest).build();
             UsersOuterClass.GetUserResponse user = userStub.getUserByID(userByIDRequest);
             return user.getUser();
         }

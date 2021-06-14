@@ -20,46 +20,55 @@ public final class FileOuterClass {
 
     /**
      * <code>string bucket = 1;</code>
+     * @return The bucket.
      */
     java.lang.String getBucket();
     /**
      * <code>string bucket = 1;</code>
+     * @return The bytes for bucket.
      */
     com.google.protobuf.ByteString
         getBucketBytes();
 
     /**
      * <code>string name = 2;</code>
+     * @return The name.
      */
     java.lang.String getName();
     /**
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
      * <code>string ownerID = 3;</code>
+     * @return The ownerID.
      */
     java.lang.String getOwnerID();
     /**
      * <code>string ownerID = 3;</code>
+     * @return The bytes for ownerID.
      */
     com.google.protobuf.ByteString
         getOwnerIDBytes();
 
     /**
      * <code>string parent = 4;</code>
+     * @return The parent.
      */
     java.lang.String getParent();
     /**
      * <code>string parent = 4;</code>
+     * @return The bytes for parent.
      */
     com.google.protobuf.ByteString
         getParentBytes();
 
     /**
      * <code>int64 size = 5;</code>
+     * @return The size.
      */
     long getSize();
   }
@@ -70,7 +79,7 @@ public final class FileOuterClass {
    *
    * Protobuf type {@code file.CreateUploadRequest}
    */
-  public  static final class CreateUploadRequest extends
+  public static final class CreateUploadRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.CreateUploadRequest)
       CreateUploadRequestOrBuilder {
@@ -84,7 +93,13 @@ public final class FileOuterClass {
       name_ = "";
       ownerID_ = "";
       parent_ = "";
-      size_ = 0L;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CreateUploadRequest();
     }
 
     @java.lang.Override
@@ -100,7 +115,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -141,7 +155,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -176,7 +190,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object bucket_;
     /**
      * <code>string bucket = 1;</code>
+     * @return The bucket.
      */
+    @java.lang.Override
     public java.lang.String getBucket() {
       java.lang.Object ref = bucket_;
       if (ref instanceof java.lang.String) {
@@ -191,7 +207,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string bucket = 1;</code>
+     * @return The bytes for bucket.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBucketBytes() {
       java.lang.Object ref = bucket_;
@@ -210,7 +228,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object name_;
     /**
      * <code>string name = 2;</code>
+     * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -225,7 +245,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -244,7 +266,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object ownerID_;
     /**
      * <code>string ownerID = 3;</code>
+     * @return The ownerID.
      */
+    @java.lang.Override
     public java.lang.String getOwnerID() {
       java.lang.Object ref = ownerID_;
       if (ref instanceof java.lang.String) {
@@ -259,7 +283,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string ownerID = 3;</code>
+     * @return The bytes for ownerID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOwnerIDBytes() {
       java.lang.Object ref = ownerID_;
@@ -278,7 +304,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object parent_;
     /**
      * <code>string parent = 4;</code>
+     * @return The parent.
      */
+    @java.lang.Override
     public java.lang.String getParent() {
       java.lang.Object ref = parent_;
       if (ref instanceof java.lang.String) {
@@ -293,7 +321,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string parent = 4;</code>
+     * @return The bytes for parent.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getParentBytes() {
       java.lang.Object ref = parent_;
@@ -312,7 +342,9 @@ public final class FileOuterClass {
     private long size_;
     /**
      * <code>int64 size = 5;</code>
+     * @return The size.
      */
+    @java.lang.Override
     public long getSize() {
       return size_;
     }
@@ -386,19 +418,18 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.CreateUploadRequest other = (DriveStubs.grpc.FileOuterClass.CreateUploadRequest) obj;
 
-      boolean result = true;
-      result = result && getBucket()
-          .equals(other.getBucket());
-      result = result && getName()
-          .equals(other.getName());
-      result = result && getOwnerID()
-          .equals(other.getOwnerID());
-      result = result && getParent()
-          .equals(other.getParent());
-      result = result && (getSize()
-          == other.getSize());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getBucket()
+          .equals(other.getBucket())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getOwnerID()
+          .equals(other.getOwnerID())) return false;
+      if (!getParent()
+          .equals(other.getParent())) return false;
+      if (getSize()
+          != other.getSize()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -603,35 +634,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -696,6 +727,7 @@ public final class FileOuterClass {
       private java.lang.Object bucket_ = "";
       /**
        * <code>string bucket = 1;</code>
+       * @return The bucket.
        */
       public java.lang.String getBucket() {
         java.lang.Object ref = bucket_;
@@ -711,6 +743,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 1;</code>
+       * @return The bytes for bucket.
        */
       public com.google.protobuf.ByteString
           getBucketBytes() {
@@ -727,6 +760,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 1;</code>
+       * @param value The bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucket(
           java.lang.String value) {
@@ -740,6 +775,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBucket() {
         
@@ -749,6 +785,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 1;</code>
+       * @param value The bytes for bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucketBytes(
           com.google.protobuf.ByteString value) {
@@ -765,6 +803,7 @@ public final class FileOuterClass {
       private java.lang.Object name_ = "";
       /**
        * <code>string name = 2;</code>
+       * @return The name.
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -780,6 +819,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -796,6 +836,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
        */
       public Builder setName(
           java.lang.String value) {
@@ -809,6 +851,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearName() {
         
@@ -818,6 +861,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -834,6 +879,7 @@ public final class FileOuterClass {
       private java.lang.Object ownerID_ = "";
       /**
        * <code>string ownerID = 3;</code>
+       * @return The ownerID.
        */
       public java.lang.String getOwnerID() {
         java.lang.Object ref = ownerID_;
@@ -849,6 +895,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 3;</code>
+       * @return The bytes for ownerID.
        */
       public com.google.protobuf.ByteString
           getOwnerIDBytes() {
@@ -865,6 +912,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 3;</code>
+       * @param value The ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerID(
           java.lang.String value) {
@@ -878,6 +927,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOwnerID() {
         
@@ -887,6 +937,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 3;</code>
+       * @param value The bytes for ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerIDBytes(
           com.google.protobuf.ByteString value) {
@@ -903,6 +955,7 @@ public final class FileOuterClass {
       private java.lang.Object parent_ = "";
       /**
        * <code>string parent = 4;</code>
+       * @return The parent.
        */
       public java.lang.String getParent() {
         java.lang.Object ref = parent_;
@@ -918,6 +971,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 4;</code>
+       * @return The bytes for parent.
        */
       public com.google.protobuf.ByteString
           getParentBytes() {
@@ -934,6 +988,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 4;</code>
+       * @param value The parent to set.
+       * @return This builder for chaining.
        */
       public Builder setParent(
           java.lang.String value) {
@@ -947,6 +1003,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearParent() {
         
@@ -956,6 +1013,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 4;</code>
+       * @param value The bytes for parent to set.
+       * @return This builder for chaining.
        */
       public Builder setParentBytes(
           com.google.protobuf.ByteString value) {
@@ -972,12 +1031,16 @@ public final class FileOuterClass {
       private long size_ ;
       /**
        * <code>int64 size = 5;</code>
+       * @return The size.
        */
+      @java.lang.Override
       public long getSize() {
         return size_;
       }
       /**
        * <code>int64 size = 5;</code>
+       * @param value The size to set.
+       * @return This builder for chaining.
        */
       public Builder setSize(long value) {
         
@@ -987,6 +1050,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>int64 size = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSize() {
         
@@ -997,7 +1061,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1053,20 +1117,24 @@ public final class FileOuterClass {
 
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
 
     /**
      * <code>string bucket = 2;</code>
+     * @return The bucket.
      */
     java.lang.String getBucket();
     /**
      * <code>string bucket = 2;</code>
+     * @return The bytes for bucket.
      */
     com.google.protobuf.ByteString
         getBucketBytes();
@@ -1078,7 +1146,7 @@ public final class FileOuterClass {
    *
    * Protobuf type {@code file.CreateUploadResponse}
    */
-  public  static final class CreateUploadResponse extends
+  public static final class CreateUploadResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.CreateUploadResponse)
       CreateUploadResponseOrBuilder {
@@ -1090,6 +1158,13 @@ public final class FileOuterClass {
     private CreateUploadResponse() {
       key_ = "";
       bucket_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CreateUploadResponse();
     }
 
     @java.lang.Override
@@ -1105,7 +1180,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -1129,7 +1203,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1164,7 +1238,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -1179,7 +1255,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -1198,7 +1276,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object bucket_;
     /**
      * <code>string bucket = 2;</code>
+     * @return The bucket.
      */
+    @java.lang.Override
     public java.lang.String getBucket() {
       java.lang.Object ref = bucket_;
       if (ref instanceof java.lang.String) {
@@ -1213,7 +1293,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string bucket = 2;</code>
+     * @return The bytes for bucket.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBucketBytes() {
       java.lang.Object ref = bucket_;
@@ -1278,13 +1360,12 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.CreateUploadResponse other = (DriveStubs.grpc.FileOuterClass.CreateUploadResponse) obj;
 
-      boolean result = true;
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && getBucket()
-          .equals(other.getBucket());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getBucket()
+          .equals(other.getBucket())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1473,35 +1554,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1555,6 +1636,7 @@ public final class FileOuterClass {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 1;</code>
+       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -1570,6 +1652,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -1586,6 +1669,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -1599,6 +1684,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -1608,6 +1694,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -1624,6 +1712,7 @@ public final class FileOuterClass {
       private java.lang.Object bucket_ = "";
       /**
        * <code>string bucket = 2;</code>
+       * @return The bucket.
        */
       public java.lang.String getBucket() {
         java.lang.Object ref = bucket_;
@@ -1639,6 +1728,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @return The bytes for bucket.
        */
       public com.google.protobuf.ByteString
           getBucketBytes() {
@@ -1655,6 +1745,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @param value The bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucket(
           java.lang.String value) {
@@ -1668,6 +1760,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBucket() {
         
@@ -1677,6 +1770,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @param value The bytes for bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucketBytes(
           com.google.protobuf.ByteString value) {
@@ -1692,7 +1787,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1749,7 +1844,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GenerateKeyRequest}
    */
-  public  static final class GenerateKeyRequest extends
+  public static final class GenerateKeyRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GenerateKeyRequest)
       GenerateKeyRequestOrBuilder {
@@ -1759,6 +1854,13 @@ public final class FileOuterClass {
       super(builder);
     }
     private GenerateKeyRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GenerateKeyRequest();
     }
 
     @java.lang.Override
@@ -1785,7 +1887,7 @@ public final class FileOuterClass {
               done = true;
               break;
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1854,9 +1956,8 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GenerateKeyRequest other = (DriveStubs.grpc.FileOuterClass.GenerateKeyRequest) obj;
 
-      boolean result = true;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -2031,35 +2132,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2104,7 +2205,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -2160,10 +2261,12 @@ public final class FileOuterClass {
 
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
@@ -2171,7 +2274,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.KeyResponse}
    */
-  public  static final class KeyResponse extends
+  public static final class KeyResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.KeyResponse)
       KeyResponseOrBuilder {
@@ -2182,6 +2285,13 @@ public final class FileOuterClass {
     }
     private KeyResponse() {
       key_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new KeyResponse();
     }
 
     @java.lang.Override
@@ -2197,7 +2307,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2215,7 +2324,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2250,7 +2359,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -2265,7 +2376,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -2324,11 +2437,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.KeyResponse other = (DriveStubs.grpc.FileOuterClass.KeyResponse) obj;
 
-      boolean result = true;
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -2508,35 +2620,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2586,6 +2698,7 @@ public final class FileOuterClass {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 1;</code>
+       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -2601,6 +2714,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -2617,6 +2731,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -2630,6 +2746,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -2639,6 +2756,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -2654,7 +2773,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -2710,30 +2829,36 @@ public final class FileOuterClass {
 
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
 
     /**
      * <code>string uploadID = 2;</code>
+     * @return The uploadID.
      */
     java.lang.String getUploadID();
     /**
      * <code>string uploadID = 2;</code>
+     * @return The bytes for uploadID.
      */
     com.google.protobuf.ByteString
         getUploadIDBytes();
 
     /**
      * <code>string bucket = 3;</code>
+     * @return The bucket.
      */
     java.lang.String getBucket();
     /**
      * <code>string bucket = 3;</code>
+     * @return The bytes for bucket.
      */
     com.google.protobuf.ByteString
         getBucketBytes();
@@ -2741,7 +2866,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.UpdateUploadIDRequest}
    */
-  public  static final class UpdateUploadIDRequest extends
+  public static final class UpdateUploadIDRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.UpdateUploadIDRequest)
       UpdateUploadIDRequestOrBuilder {
@@ -2757,6 +2882,13 @@ public final class FileOuterClass {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new UpdateUploadIDRequest();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2769,7 +2901,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2799,7 +2930,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2834,7 +2965,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -2849,7 +2982,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -2868,7 +3003,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object uploadID_;
     /**
      * <code>string uploadID = 2;</code>
+     * @return The uploadID.
      */
+    @java.lang.Override
     public java.lang.String getUploadID() {
       java.lang.Object ref = uploadID_;
       if (ref instanceof java.lang.String) {
@@ -2883,7 +3020,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string uploadID = 2;</code>
+     * @return The bytes for uploadID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUploadIDBytes() {
       java.lang.Object ref = uploadID_;
@@ -2902,7 +3041,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object bucket_;
     /**
      * <code>string bucket = 3;</code>
+     * @return The bucket.
      */
+    @java.lang.Override
     public java.lang.String getBucket() {
       java.lang.Object ref = bucket_;
       if (ref instanceof java.lang.String) {
@@ -2917,7 +3058,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string bucket = 3;</code>
+     * @return The bytes for bucket.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBucketBytes() {
       java.lang.Object ref = bucket_;
@@ -2988,15 +3131,14 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.UpdateUploadIDRequest other = (DriveStubs.grpc.FileOuterClass.UpdateUploadIDRequest) obj;
 
-      boolean result = true;
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && getUploadID()
-          .equals(other.getUploadID());
-      result = result && getBucket()
-          .equals(other.getBucket());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getUploadID()
+          .equals(other.getUploadID())) return false;
+      if (!getBucket()
+          .equals(other.getBucket())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -3186,35 +3328,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3272,6 +3414,7 @@ public final class FileOuterClass {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 1;</code>
+       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -3287,6 +3430,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -3303,6 +3447,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -3316,6 +3462,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -3325,6 +3472,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -3341,6 +3490,7 @@ public final class FileOuterClass {
       private java.lang.Object uploadID_ = "";
       /**
        * <code>string uploadID = 2;</code>
+       * @return The uploadID.
        */
       public java.lang.String getUploadID() {
         java.lang.Object ref = uploadID_;
@@ -3356,6 +3506,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 2;</code>
+       * @return The bytes for uploadID.
        */
       public com.google.protobuf.ByteString
           getUploadIDBytes() {
@@ -3372,6 +3523,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 2;</code>
+       * @param value The uploadID to set.
+       * @return This builder for chaining.
        */
       public Builder setUploadID(
           java.lang.String value) {
@@ -3385,6 +3538,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUploadID() {
         
@@ -3394,6 +3548,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 2;</code>
+       * @param value The bytes for uploadID to set.
+       * @return This builder for chaining.
        */
       public Builder setUploadIDBytes(
           com.google.protobuf.ByteString value) {
@@ -3410,6 +3566,7 @@ public final class FileOuterClass {
       private java.lang.Object bucket_ = "";
       /**
        * <code>string bucket = 3;</code>
+       * @return The bucket.
        */
       public java.lang.String getBucket() {
         java.lang.Object ref = bucket_;
@@ -3425,6 +3582,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 3;</code>
+       * @return The bytes for bucket.
        */
       public com.google.protobuf.ByteString
           getBucketBytes() {
@@ -3441,6 +3599,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 3;</code>
+       * @param value The bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucket(
           java.lang.String value) {
@@ -3454,6 +3614,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBucket() {
         
@@ -3463,6 +3624,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 3;</code>
+       * @param value The bytes for bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucketBytes(
           com.google.protobuf.ByteString value) {
@@ -3478,7 +3641,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -3535,7 +3698,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.UpdateUploadIDResponse}
    */
-  public  static final class UpdateUploadIDResponse extends
+  public static final class UpdateUploadIDResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.UpdateUploadIDResponse)
       UpdateUploadIDResponseOrBuilder {
@@ -3545,6 +3708,13 @@ public final class FileOuterClass {
       super(builder);
     }
     private UpdateUploadIDResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new UpdateUploadIDResponse();
     }
 
     @java.lang.Override
@@ -3571,7 +3741,7 @@ public final class FileOuterClass {
               done = true;
               break;
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -3640,9 +3810,8 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.UpdateUploadIDResponse other = (DriveStubs.grpc.FileOuterClass.UpdateUploadIDResponse) obj;
 
-      boolean result = true;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -3817,35 +3986,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3890,7 +4059,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -3946,10 +4115,12 @@ public final class FileOuterClass {
 
     /**
      * <code>string uploadID = 1;</code>
+     * @return The uploadID.
      */
     java.lang.String getUploadID();
     /**
      * <code>string uploadID = 1;</code>
+     * @return The bytes for uploadID.
      */
     com.google.protobuf.ByteString
         getUploadIDBytes();
@@ -3957,7 +4128,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetUploadByIDRequest}
    */
-  public  static final class GetUploadByIDRequest extends
+  public static final class GetUploadByIDRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetUploadByIDRequest)
       GetUploadByIDRequestOrBuilder {
@@ -3968,6 +4139,13 @@ public final class FileOuterClass {
     }
     private GetUploadByIDRequest() {
       uploadID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetUploadByIDRequest();
     }
 
     @java.lang.Override
@@ -3983,7 +4161,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -4001,7 +4178,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -4036,7 +4213,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object uploadID_;
     /**
      * <code>string uploadID = 1;</code>
+     * @return The uploadID.
      */
+    @java.lang.Override
     public java.lang.String getUploadID() {
       java.lang.Object ref = uploadID_;
       if (ref instanceof java.lang.String) {
@@ -4051,7 +4230,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string uploadID = 1;</code>
+     * @return The bytes for uploadID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUploadIDBytes() {
       java.lang.Object ref = uploadID_;
@@ -4110,11 +4291,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetUploadByIDRequest other = (DriveStubs.grpc.FileOuterClass.GetUploadByIDRequest) obj;
 
-      boolean result = true;
-      result = result && getUploadID()
-          .equals(other.getUploadID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUploadID()
+          .equals(other.getUploadID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -4294,35 +4474,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -4372,6 +4552,7 @@ public final class FileOuterClass {
       private java.lang.Object uploadID_ = "";
       /**
        * <code>string uploadID = 1;</code>
+       * @return The uploadID.
        */
       public java.lang.String getUploadID() {
         java.lang.Object ref = uploadID_;
@@ -4387,6 +4568,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 1;</code>
+       * @return The bytes for uploadID.
        */
       public com.google.protobuf.ByteString
           getUploadIDBytes() {
@@ -4403,6 +4585,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 1;</code>
+       * @param value The uploadID to set.
+       * @return This builder for chaining.
        */
       public Builder setUploadID(
           java.lang.String value) {
@@ -4416,6 +4600,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUploadID() {
         
@@ -4425,6 +4610,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 1;</code>
+       * @param value The bytes for uploadID to set.
+       * @return This builder for chaining.
        */
       public Builder setUploadIDBytes(
           com.google.protobuf.ByteString value) {
@@ -4440,7 +4627,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -4496,55 +4683,66 @@ public final class FileOuterClass {
 
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
 
     /**
      * <code>string bucket = 2;</code>
+     * @return The bucket.
      */
     java.lang.String getBucket();
     /**
      * <code>string bucket = 2;</code>
+     * @return The bytes for bucket.
      */
     com.google.protobuf.ByteString
         getBucketBytes();
 
     /**
      * <code>string uploadID = 3;</code>
+     * @return The uploadID.
      */
     java.lang.String getUploadID();
     /**
      * <code>string uploadID = 3;</code>
+     * @return The bytes for uploadID.
      */
     com.google.protobuf.ByteString
         getUploadIDBytes();
 
     /**
      * <code>string name = 4;</code>
+     * @return The name.
      */
     java.lang.String getName();
     /**
      * <code>string name = 4;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
      * <code>bool isUpdate = 5;</code>
+     * @return The isUpdate.
      */
     boolean getIsUpdate();
 
     /**
      * <code>string fileID = 6;</code>
+     * @return The fileID.
      */
     java.lang.String getFileID();
     /**
      * <code>string fileID = 6;</code>
+     * @return The bytes for fileID.
      */
     com.google.protobuf.ByteString
         getFileIDBytes();
@@ -4552,7 +4750,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetUploadByIDResponse}
    */
-  public  static final class GetUploadByIDResponse extends
+  public static final class GetUploadByIDResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetUploadByIDResponse)
       GetUploadByIDResponseOrBuilder {
@@ -4566,8 +4764,14 @@ public final class FileOuterClass {
       bucket_ = "";
       uploadID_ = "";
       name_ = "";
-      isUpdate_ = false;
       fileID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetUploadByIDResponse();
     }
 
     @java.lang.Override
@@ -4583,7 +4787,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -4630,7 +4833,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -4665,7 +4868,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -4680,7 +4885,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -4699,7 +4906,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object bucket_;
     /**
      * <code>string bucket = 2;</code>
+     * @return The bucket.
      */
+    @java.lang.Override
     public java.lang.String getBucket() {
       java.lang.Object ref = bucket_;
       if (ref instanceof java.lang.String) {
@@ -4714,7 +4923,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string bucket = 2;</code>
+     * @return The bytes for bucket.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBucketBytes() {
       java.lang.Object ref = bucket_;
@@ -4733,7 +4944,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object uploadID_;
     /**
      * <code>string uploadID = 3;</code>
+     * @return The uploadID.
      */
+    @java.lang.Override
     public java.lang.String getUploadID() {
       java.lang.Object ref = uploadID_;
       if (ref instanceof java.lang.String) {
@@ -4748,7 +4961,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string uploadID = 3;</code>
+     * @return The bytes for uploadID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUploadIDBytes() {
       java.lang.Object ref = uploadID_;
@@ -4767,7 +4982,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object name_;
     /**
      * <code>string name = 4;</code>
+     * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -4782,7 +4999,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string name = 4;</code>
+     * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -4801,7 +5020,9 @@ public final class FileOuterClass {
     private boolean isUpdate_;
     /**
      * <code>bool isUpdate = 5;</code>
+     * @return The isUpdate.
      */
+    @java.lang.Override
     public boolean getIsUpdate() {
       return isUpdate_;
     }
@@ -4810,7 +5031,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object fileID_;
     /**
      * <code>string fileID = 6;</code>
+     * @return The fileID.
      */
+    @java.lang.Override
     public java.lang.String getFileID() {
       java.lang.Object ref = fileID_;
       if (ref instanceof java.lang.String) {
@@ -4825,7 +5048,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string fileID = 6;</code>
+     * @return The bytes for fileID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFileIDBytes() {
       java.lang.Object ref = fileID_;
@@ -4915,21 +5140,20 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetUploadByIDResponse other = (DriveStubs.grpc.FileOuterClass.GetUploadByIDResponse) obj;
 
-      boolean result = true;
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && getBucket()
-          .equals(other.getBucket());
-      result = result && getUploadID()
-          .equals(other.getUploadID());
-      result = result && getName()
-          .equals(other.getName());
-      result = result && (getIsUpdate()
-          == other.getIsUpdate());
-      result = result && getFileID()
-          .equals(other.getFileID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getBucket()
+          .equals(other.getBucket())) return false;
+      if (!getUploadID()
+          .equals(other.getUploadID())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (getIsUpdate()
+          != other.getIsUpdate()) return false;
+      if (!getFileID()
+          .equals(other.getFileID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -5135,35 +5359,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -5232,6 +5456,7 @@ public final class FileOuterClass {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 1;</code>
+       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -5247,6 +5472,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -5263,6 +5489,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -5276,6 +5504,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -5285,6 +5514,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -5301,6 +5532,7 @@ public final class FileOuterClass {
       private java.lang.Object bucket_ = "";
       /**
        * <code>string bucket = 2;</code>
+       * @return The bucket.
        */
       public java.lang.String getBucket() {
         java.lang.Object ref = bucket_;
@@ -5316,6 +5548,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @return The bytes for bucket.
        */
       public com.google.protobuf.ByteString
           getBucketBytes() {
@@ -5332,6 +5565,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @param value The bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucket(
           java.lang.String value) {
@@ -5345,6 +5580,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBucket() {
         
@@ -5354,6 +5590,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @param value The bytes for bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucketBytes(
           com.google.protobuf.ByteString value) {
@@ -5370,6 +5608,7 @@ public final class FileOuterClass {
       private java.lang.Object uploadID_ = "";
       /**
        * <code>string uploadID = 3;</code>
+       * @return The uploadID.
        */
       public java.lang.String getUploadID() {
         java.lang.Object ref = uploadID_;
@@ -5385,6 +5624,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 3;</code>
+       * @return The bytes for uploadID.
        */
       public com.google.protobuf.ByteString
           getUploadIDBytes() {
@@ -5401,6 +5641,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 3;</code>
+       * @param value The uploadID to set.
+       * @return This builder for chaining.
        */
       public Builder setUploadID(
           java.lang.String value) {
@@ -5414,6 +5656,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUploadID() {
         
@@ -5423,6 +5666,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 3;</code>
+       * @param value The bytes for uploadID to set.
+       * @return This builder for chaining.
        */
       public Builder setUploadIDBytes(
           com.google.protobuf.ByteString value) {
@@ -5439,6 +5684,7 @@ public final class FileOuterClass {
       private java.lang.Object name_ = "";
       /**
        * <code>string name = 4;</code>
+       * @return The name.
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -5454,6 +5700,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 4;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -5470,6 +5717,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 4;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
        */
       public Builder setName(
           java.lang.String value) {
@@ -5483,6 +5732,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearName() {
         
@@ -5492,6 +5742,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 4;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -5508,12 +5760,16 @@ public final class FileOuterClass {
       private boolean isUpdate_ ;
       /**
        * <code>bool isUpdate = 5;</code>
+       * @return The isUpdate.
        */
+      @java.lang.Override
       public boolean getIsUpdate() {
         return isUpdate_;
       }
       /**
        * <code>bool isUpdate = 5;</code>
+       * @param value The isUpdate to set.
+       * @return This builder for chaining.
        */
       public Builder setIsUpdate(boolean value) {
         
@@ -5523,6 +5779,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>bool isUpdate = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearIsUpdate() {
         
@@ -5534,6 +5791,7 @@ public final class FileOuterClass {
       private java.lang.Object fileID_ = "";
       /**
        * <code>string fileID = 6;</code>
+       * @return The fileID.
        */
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
@@ -5549,6 +5807,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string fileID = 6;</code>
+       * @return The bytes for fileID.
        */
       public com.google.protobuf.ByteString
           getFileIDBytes() {
@@ -5565,6 +5824,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string fileID = 6;</code>
+       * @param value The fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileID(
           java.lang.String value) {
@@ -5578,6 +5839,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string fileID = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFileID() {
         
@@ -5587,6 +5849,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string fileID = 6;</code>
+       * @param value The bytes for fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileIDBytes(
           com.google.protobuf.ByteString value) {
@@ -5602,7 +5866,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -5658,20 +5922,24 @@ public final class FileOuterClass {
 
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
 
     /**
      * <code>string bucket = 2;</code>
+     * @return The bucket.
      */
     java.lang.String getBucket();
     /**
      * <code>string bucket = 2;</code>
+     * @return The bytes for bucket.
      */
     com.google.protobuf.ByteString
         getBucketBytes();
@@ -5679,7 +5947,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.DeleteUploadByKeyRequest}
    */
-  public  static final class DeleteUploadByKeyRequest extends
+  public static final class DeleteUploadByKeyRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.DeleteUploadByKeyRequest)
       DeleteUploadByKeyRequestOrBuilder {
@@ -5691,6 +5959,13 @@ public final class FileOuterClass {
     private DeleteUploadByKeyRequest() {
       key_ = "";
       bucket_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteUploadByKeyRequest();
     }
 
     @java.lang.Override
@@ -5706,7 +5981,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -5730,7 +6004,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -5765,7 +6039,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -5780,7 +6056,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -5799,7 +6077,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object bucket_;
     /**
      * <code>string bucket = 2;</code>
+     * @return The bucket.
      */
+    @java.lang.Override
     public java.lang.String getBucket() {
       java.lang.Object ref = bucket_;
       if (ref instanceof java.lang.String) {
@@ -5814,7 +6094,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string bucket = 2;</code>
+     * @return The bytes for bucket.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBucketBytes() {
       java.lang.Object ref = bucket_;
@@ -5879,13 +6161,12 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.DeleteUploadByKeyRequest other = (DriveStubs.grpc.FileOuterClass.DeleteUploadByKeyRequest) obj;
 
-      boolean result = true;
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && getBucket()
-          .equals(other.getBucket());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getBucket()
+          .equals(other.getBucket())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -6070,35 +6351,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -6152,6 +6433,7 @@ public final class FileOuterClass {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 1;</code>
+       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -6167,6 +6449,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -6183,6 +6466,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -6196,6 +6481,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -6205,6 +6491,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -6221,6 +6509,7 @@ public final class FileOuterClass {
       private java.lang.Object bucket_ = "";
       /**
        * <code>string bucket = 2;</code>
+       * @return The bucket.
        */
       public java.lang.String getBucket() {
         java.lang.Object ref = bucket_;
@@ -6236,6 +6525,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @return The bytes for bucket.
        */
       public com.google.protobuf.ByteString
           getBucketBytes() {
@@ -6252,6 +6542,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @param value The bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucket(
           java.lang.String value) {
@@ -6265,6 +6557,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBucket() {
         
@@ -6274,6 +6567,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 2;</code>
+       * @param value The bytes for bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucketBytes(
           com.google.protobuf.ByteString value) {
@@ -6289,7 +6584,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -6346,7 +6641,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.DeleteUploadByKeyResponse}
    */
-  public  static final class DeleteUploadByKeyResponse extends
+  public static final class DeleteUploadByKeyResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.DeleteUploadByKeyResponse)
       DeleteUploadByKeyResponseOrBuilder {
@@ -6356,6 +6651,13 @@ public final class FileOuterClass {
       super(builder);
     }
     private DeleteUploadByKeyResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteUploadByKeyResponse();
     }
 
     @java.lang.Override
@@ -6382,7 +6684,7 @@ public final class FileOuterClass {
               done = true;
               break;
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -6451,9 +6753,8 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.DeleteUploadByKeyResponse other = (DriveStubs.grpc.FileOuterClass.DeleteUploadByKeyResponse) obj;
 
-      boolean result = true;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -6628,35 +6929,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -6701,7 +7002,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -6757,10 +7058,12 @@ public final class FileOuterClass {
 
     /**
      * <code>string uploadID = 1;</code>
+     * @return The uploadID.
      */
     java.lang.String getUploadID();
     /**
      * <code>string uploadID = 1;</code>
+     * @return The bytes for uploadID.
      */
     com.google.protobuf.ByteString
         getUploadIDBytes();
@@ -6768,7 +7071,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.DeleteUploadByIDRequest}
    */
-  public  static final class DeleteUploadByIDRequest extends
+  public static final class DeleteUploadByIDRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.DeleteUploadByIDRequest)
       DeleteUploadByIDRequestOrBuilder {
@@ -6779,6 +7082,13 @@ public final class FileOuterClass {
     }
     private DeleteUploadByIDRequest() {
       uploadID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteUploadByIDRequest();
     }
 
     @java.lang.Override
@@ -6794,7 +7104,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -6812,7 +7121,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -6847,7 +7156,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object uploadID_;
     /**
      * <code>string uploadID = 1;</code>
+     * @return The uploadID.
      */
+    @java.lang.Override
     public java.lang.String getUploadID() {
       java.lang.Object ref = uploadID_;
       if (ref instanceof java.lang.String) {
@@ -6862,7 +7173,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string uploadID = 1;</code>
+     * @return The bytes for uploadID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUploadIDBytes() {
       java.lang.Object ref = uploadID_;
@@ -6921,11 +7234,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.DeleteUploadByIDRequest other = (DriveStubs.grpc.FileOuterClass.DeleteUploadByIDRequest) obj;
 
-      boolean result = true;
-      result = result && getUploadID()
-          .equals(other.getUploadID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUploadID()
+          .equals(other.getUploadID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -7105,35 +7417,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -7183,6 +7495,7 @@ public final class FileOuterClass {
       private java.lang.Object uploadID_ = "";
       /**
        * <code>string uploadID = 1;</code>
+       * @return The uploadID.
        */
       public java.lang.String getUploadID() {
         java.lang.Object ref = uploadID_;
@@ -7198,6 +7511,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 1;</code>
+       * @return The bytes for uploadID.
        */
       public com.google.protobuf.ByteString
           getUploadIDBytes() {
@@ -7214,6 +7528,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 1;</code>
+       * @param value The uploadID to set.
+       * @return This builder for chaining.
        */
       public Builder setUploadID(
           java.lang.String value) {
@@ -7227,6 +7543,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUploadID() {
         
@@ -7236,6 +7553,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string uploadID = 1;</code>
+       * @param value The bytes for uploadID to set.
+       * @return This builder for chaining.
        */
       public Builder setUploadIDBytes(
           com.google.protobuf.ByteString value) {
@@ -7251,7 +7570,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -7308,7 +7627,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.DeleteUploadByIDResponse}
    */
-  public  static final class DeleteUploadByIDResponse extends
+  public static final class DeleteUploadByIDResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.DeleteUploadByIDResponse)
       DeleteUploadByIDResponseOrBuilder {
@@ -7318,6 +7637,13 @@ public final class FileOuterClass {
       super(builder);
     }
     private DeleteUploadByIDResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteUploadByIDResponse();
     }
 
     @java.lang.Override
@@ -7344,7 +7670,7 @@ public final class FileOuterClass {
               done = true;
               break;
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -7413,9 +7739,8 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.DeleteUploadByIDResponse other = (DriveStubs.grpc.FileOuterClass.DeleteUploadByIDResponse) obj;
 
-      boolean result = true;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -7590,35 +7915,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -7663,7 +7988,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -7719,10 +8044,12 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
@@ -7730,7 +8057,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetByFileByIDRequest}
    */
-  public  static final class GetByFileByIDRequest extends
+  public static final class GetByFileByIDRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetByFileByIDRequest)
       GetByFileByIDRequestOrBuilder {
@@ -7741,6 +8068,13 @@ public final class FileOuterClass {
     }
     private GetByFileByIDRequest() {
       id_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetByFileByIDRequest();
     }
 
     @java.lang.Override
@@ -7756,7 +8090,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -7774,7 +8107,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -7809,7 +8142,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -7824,7 +8159,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -7883,11 +8220,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetByFileByIDRequest other = (DriveStubs.grpc.FileOuterClass.GetByFileByIDRequest) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -8067,35 +8403,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8145,6 +8481,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -8160,6 +8497,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -8176,6 +8514,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -8189,6 +8529,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -8198,6 +8539,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -8213,7 +8556,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -8269,10 +8612,12 @@ public final class FileOuterClass {
 
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
@@ -8280,7 +8625,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetFileByKeyRequest}
    */
-  public  static final class GetFileByKeyRequest extends
+  public static final class GetFileByKeyRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetFileByKeyRequest)
       GetFileByKeyRequestOrBuilder {
@@ -8291,6 +8636,13 @@ public final class FileOuterClass {
     }
     private GetFileByKeyRequest() {
       key_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetFileByKeyRequest();
     }
 
     @java.lang.Override
@@ -8306,7 +8658,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -8324,7 +8675,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -8359,7 +8710,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -8374,7 +8727,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -8433,11 +8788,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetFileByKeyRequest other = (DriveStubs.grpc.FileOuterClass.GetFileByKeyRequest) obj;
 
-      boolean result = true;
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -8617,35 +8971,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8695,6 +9049,7 @@ public final class FileOuterClass {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 1;</code>
+       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -8710,6 +9065,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -8726,6 +9082,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -8739,6 +9097,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -8748,6 +9107,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -8763,7 +9124,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -8819,30 +9180,36 @@ public final class FileOuterClass {
 
     /**
      * <code>string folderID = 1;</code>
+     * @return The folderID.
      */
     java.lang.String getFolderID();
     /**
      * <code>string folderID = 1;</code>
+     * @return The bytes for folderID.
      */
     com.google.protobuf.ByteString
         getFolderIDBytes();
 
     /**
      * <code>string ownerID = 2;</code>
+     * @return The ownerID.
      */
     java.lang.String getOwnerID();
     /**
      * <code>string ownerID = 2;</code>
+     * @return The bytes for ownerID.
      */
     com.google.protobuf.ByteString
         getOwnerIDBytes();
 
     /**
      * <code>.file.File queryFile = 3;</code>
+     * @return Whether the queryFile field is set.
      */
     boolean hasQueryFile();
     /**
      * <code>.file.File queryFile = 3;</code>
+     * @return The queryFile.
      */
     DriveStubs.grpc.FileOuterClass.File getQueryFile();
     /**
@@ -8853,7 +9220,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetFilesByFolderRequest}
    */
-  public  static final class GetFilesByFolderRequest extends
+  public static final class GetFilesByFolderRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetFilesByFolderRequest)
       GetFilesByFolderRequestOrBuilder {
@@ -8865,6 +9232,13 @@ public final class FileOuterClass {
     private GetFilesByFolderRequest() {
       folderID_ = "";
       ownerID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetFilesByFolderRequest();
     }
 
     @java.lang.Override
@@ -8880,7 +9254,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -8917,7 +9290,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -8952,7 +9325,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object folderID_;
     /**
      * <code>string folderID = 1;</code>
+     * @return The folderID.
      */
+    @java.lang.Override
     public java.lang.String getFolderID() {
       java.lang.Object ref = folderID_;
       if (ref instanceof java.lang.String) {
@@ -8967,7 +9342,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string folderID = 1;</code>
+     * @return The bytes for folderID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFolderIDBytes() {
       java.lang.Object ref = folderID_;
@@ -8986,7 +9363,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object ownerID_;
     /**
      * <code>string ownerID = 2;</code>
+     * @return The ownerID.
      */
+    @java.lang.Override
     public java.lang.String getOwnerID() {
       java.lang.Object ref = ownerID_;
       if (ref instanceof java.lang.String) {
@@ -9001,7 +9380,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string ownerID = 2;</code>
+     * @return The bytes for ownerID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOwnerIDBytes() {
       java.lang.Object ref = ownerID_;
@@ -9020,19 +9401,24 @@ public final class FileOuterClass {
     private DriveStubs.grpc.FileOuterClass.File queryFile_;
     /**
      * <code>.file.File queryFile = 3;</code>
+     * @return Whether the queryFile field is set.
      */
+    @java.lang.Override
     public boolean hasQueryFile() {
       return queryFile_ != null;
     }
     /**
      * <code>.file.File queryFile = 3;</code>
+     * @return The queryFile.
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.File getQueryFile() {
       return queryFile_ == null ? DriveStubs.grpc.FileOuterClass.File.getDefaultInstance() : queryFile_;
     }
     /**
      * <code>.file.File queryFile = 3;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FileOrBuilder getQueryFileOrBuilder() {
       return getQueryFile();
     }
@@ -9094,18 +9480,17 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetFilesByFolderRequest other = (DriveStubs.grpc.FileOuterClass.GetFilesByFolderRequest) obj;
 
-      boolean result = true;
-      result = result && getFolderID()
-          .equals(other.getFolderID());
-      result = result && getOwnerID()
-          .equals(other.getOwnerID());
-      result = result && (hasQueryFile() == other.hasQueryFile());
+      if (!getFolderID()
+          .equals(other.getFolderID())) return false;
+      if (!getOwnerID()
+          .equals(other.getOwnerID())) return false;
+      if (hasQueryFile() != other.hasQueryFile()) return false;
       if (hasQueryFile()) {
-        result = result && getQueryFile()
-            .equals(other.getQueryFile());
+        if (!getQueryFile()
+            .equals(other.getQueryFile())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -9305,35 +9690,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -9390,6 +9775,7 @@ public final class FileOuterClass {
       private java.lang.Object folderID_ = "";
       /**
        * <code>string folderID = 1;</code>
+       * @return The folderID.
        */
       public java.lang.String getFolderID() {
         java.lang.Object ref = folderID_;
@@ -9405,6 +9791,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string folderID = 1;</code>
+       * @return The bytes for folderID.
        */
       public com.google.protobuf.ByteString
           getFolderIDBytes() {
@@ -9421,6 +9808,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string folderID = 1;</code>
+       * @param value The folderID to set.
+       * @return This builder for chaining.
        */
       public Builder setFolderID(
           java.lang.String value) {
@@ -9434,6 +9823,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string folderID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFolderID() {
         
@@ -9443,6 +9833,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string folderID = 1;</code>
+       * @param value The bytes for folderID to set.
+       * @return This builder for chaining.
        */
       public Builder setFolderIDBytes(
           com.google.protobuf.ByteString value) {
@@ -9459,6 +9851,7 @@ public final class FileOuterClass {
       private java.lang.Object ownerID_ = "";
       /**
        * <code>string ownerID = 2;</code>
+       * @return The ownerID.
        */
       public java.lang.String getOwnerID() {
         java.lang.Object ref = ownerID_;
@@ -9474,6 +9867,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 2;</code>
+       * @return The bytes for ownerID.
        */
       public com.google.protobuf.ByteString
           getOwnerIDBytes() {
@@ -9490,6 +9884,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 2;</code>
+       * @param value The ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerID(
           java.lang.String value) {
@@ -9503,6 +9899,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOwnerID() {
         
@@ -9512,6 +9909,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 2;</code>
+       * @param value The bytes for ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerIDBytes(
           com.google.protobuf.ByteString value) {
@@ -9525,17 +9924,19 @@ public final class FileOuterClass {
         return this;
       }
 
-      private DriveStubs.grpc.FileOuterClass.File queryFile_ = null;
+      private DriveStubs.grpc.FileOuterClass.File queryFile_;
       private com.google.protobuf.SingleFieldBuilderV3<
           DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder> queryFileBuilder_;
       /**
        * <code>.file.File queryFile = 3;</code>
+       * @return Whether the queryFile field is set.
        */
       public boolean hasQueryFile() {
         return queryFileBuilder_ != null || queryFile_ != null;
       }
       /**
        * <code>.file.File queryFile = 3;</code>
+       * @return The queryFile.
        */
       public DriveStubs.grpc.FileOuterClass.File getQueryFile() {
         if (queryFileBuilder_ == null) {
@@ -9644,7 +10045,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -9725,7 +10126,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetFilesByFolderResponse}
    */
-  public  static final class GetFilesByFolderResponse extends
+  public static final class GetFilesByFolderResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetFilesByFolderResponse)
       GetFilesByFolderResponseOrBuilder {
@@ -9736,6 +10137,13 @@ public final class FileOuterClass {
     }
     private GetFilesByFolderResponse() {
       files_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetFilesByFolderResponse();
     }
 
     @java.lang.Override
@@ -9763,7 +10171,7 @@ public final class FileOuterClass {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 files_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.File>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -9772,7 +10180,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -9786,7 +10194,7 @@ public final class FileOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           files_ = java.util.Collections.unmodifiableList(files_);
         }
         this.unknownFields = unknownFields.build();
@@ -9811,12 +10219,14 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.FileOuterClass.File> getFilesList() {
       return files_;
     }
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.FileOuterClass.FileOrBuilder> 
         getFilesOrBuilderList() {
       return files_;
@@ -9824,18 +10234,21 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public int getFilesCount() {
       return files_.size();
     }
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.File getFiles(int index) {
       return files_.get(index);
     }
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FileOrBuilder getFilesOrBuilder(
         int index) {
       return files_.get(index);
@@ -9886,11 +10299,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetFilesByFolderResponse other = (DriveStubs.grpc.FileOuterClass.GetFilesByFolderResponse) obj;
 
-      boolean result = true;
-      result = result && getFilesList()
-          .equals(other.getFilesList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFilesList()
+          .equals(other.getFilesList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -10072,7 +10484,7 @@ public final class FileOuterClass {
         DriveStubs.grpc.FileOuterClass.GetFilesByFolderResponse result = new DriveStubs.grpc.FileOuterClass.GetFilesByFolderResponse(this);
         int from_bitField0_ = bitField0_;
         if (filesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             files_ = java.util.Collections.unmodifiableList(files_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -10086,35 +10498,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -10187,7 +10599,7 @@ public final class FileOuterClass {
       private java.util.List<DriveStubs.grpc.FileOuterClass.File> files_ =
         java.util.Collections.emptyList();
       private void ensureFilesIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           files_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.File>(files_);
           bitField0_ |= 0x00000001;
          }
@@ -10416,7 +10828,7 @@ public final class FileOuterClass {
           filesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder>(
                   files_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           files_ = null;
@@ -10426,7 +10838,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -10482,30 +10894,36 @@ public final class FileOuterClass {
 
     /**
      * <code>string folderID = 1;</code>
+     * @return The folderID.
      */
     java.lang.String getFolderID();
     /**
      * <code>string folderID = 1;</code>
+     * @return The bytes for folderID.
      */
     com.google.protobuf.ByteString
         getFolderIDBytes();
 
     /**
      * <code>string ownerID = 2;</code>
+     * @return The ownerID.
      */
     java.lang.String getOwnerID();
     /**
      * <code>string ownerID = 2;</code>
+     * @return The bytes for ownerID.
      */
     com.google.protobuf.ByteString
         getOwnerIDBytes();
 
     /**
      * <code>.file.File queryFile = 3;</code>
+     * @return Whether the queryFile field is set.
      */
     boolean hasQueryFile();
     /**
      * <code>.file.File queryFile = 3;</code>
+     * @return The queryFile.
      */
     DriveStubs.grpc.FileOuterClass.File getQueryFile();
     /**
@@ -10516,7 +10934,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetDescendantsByFolderRequest}
    */
-  public  static final class GetDescendantsByFolderRequest extends
+  public static final class GetDescendantsByFolderRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetDescendantsByFolderRequest)
       GetDescendantsByFolderRequestOrBuilder {
@@ -10528,6 +10946,13 @@ public final class FileOuterClass {
     private GetDescendantsByFolderRequest() {
       folderID_ = "";
       ownerID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetDescendantsByFolderRequest();
     }
 
     @java.lang.Override
@@ -10543,7 +10968,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -10580,7 +11004,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -10615,7 +11039,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object folderID_;
     /**
      * <code>string folderID = 1;</code>
+     * @return The folderID.
      */
+    @java.lang.Override
     public java.lang.String getFolderID() {
       java.lang.Object ref = folderID_;
       if (ref instanceof java.lang.String) {
@@ -10630,7 +11056,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string folderID = 1;</code>
+     * @return The bytes for folderID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFolderIDBytes() {
       java.lang.Object ref = folderID_;
@@ -10649,7 +11077,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object ownerID_;
     /**
      * <code>string ownerID = 2;</code>
+     * @return The ownerID.
      */
+    @java.lang.Override
     public java.lang.String getOwnerID() {
       java.lang.Object ref = ownerID_;
       if (ref instanceof java.lang.String) {
@@ -10664,7 +11094,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string ownerID = 2;</code>
+     * @return The bytes for ownerID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOwnerIDBytes() {
       java.lang.Object ref = ownerID_;
@@ -10683,19 +11115,24 @@ public final class FileOuterClass {
     private DriveStubs.grpc.FileOuterClass.File queryFile_;
     /**
      * <code>.file.File queryFile = 3;</code>
+     * @return Whether the queryFile field is set.
      */
+    @java.lang.Override
     public boolean hasQueryFile() {
       return queryFile_ != null;
     }
     /**
      * <code>.file.File queryFile = 3;</code>
+     * @return The queryFile.
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.File getQueryFile() {
       return queryFile_ == null ? DriveStubs.grpc.FileOuterClass.File.getDefaultInstance() : queryFile_;
     }
     /**
      * <code>.file.File queryFile = 3;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FileOrBuilder getQueryFileOrBuilder() {
       return getQueryFile();
     }
@@ -10757,18 +11194,17 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetDescendantsByFolderRequest other = (DriveStubs.grpc.FileOuterClass.GetDescendantsByFolderRequest) obj;
 
-      boolean result = true;
-      result = result && getFolderID()
-          .equals(other.getFolderID());
-      result = result && getOwnerID()
-          .equals(other.getOwnerID());
-      result = result && (hasQueryFile() == other.hasQueryFile());
+      if (!getFolderID()
+          .equals(other.getFolderID())) return false;
+      if (!getOwnerID()
+          .equals(other.getOwnerID())) return false;
+      if (hasQueryFile() != other.hasQueryFile()) return false;
       if (hasQueryFile()) {
-        result = result && getQueryFile()
-            .equals(other.getQueryFile());
+        if (!getQueryFile()
+            .equals(other.getQueryFile())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -10968,35 +11404,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -11053,6 +11489,7 @@ public final class FileOuterClass {
       private java.lang.Object folderID_ = "";
       /**
        * <code>string folderID = 1;</code>
+       * @return The folderID.
        */
       public java.lang.String getFolderID() {
         java.lang.Object ref = folderID_;
@@ -11068,6 +11505,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string folderID = 1;</code>
+       * @return The bytes for folderID.
        */
       public com.google.protobuf.ByteString
           getFolderIDBytes() {
@@ -11084,6 +11522,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string folderID = 1;</code>
+       * @param value The folderID to set.
+       * @return This builder for chaining.
        */
       public Builder setFolderID(
           java.lang.String value) {
@@ -11097,6 +11537,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string folderID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFolderID() {
         
@@ -11106,6 +11547,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string folderID = 1;</code>
+       * @param value The bytes for folderID to set.
+       * @return This builder for chaining.
        */
       public Builder setFolderIDBytes(
           com.google.protobuf.ByteString value) {
@@ -11122,6 +11565,7 @@ public final class FileOuterClass {
       private java.lang.Object ownerID_ = "";
       /**
        * <code>string ownerID = 2;</code>
+       * @return The ownerID.
        */
       public java.lang.String getOwnerID() {
         java.lang.Object ref = ownerID_;
@@ -11137,6 +11581,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 2;</code>
+       * @return The bytes for ownerID.
        */
       public com.google.protobuf.ByteString
           getOwnerIDBytes() {
@@ -11153,6 +11598,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 2;</code>
+       * @param value The ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerID(
           java.lang.String value) {
@@ -11166,6 +11613,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOwnerID() {
         
@@ -11175,6 +11623,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 2;</code>
+       * @param value The bytes for ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerIDBytes(
           com.google.protobuf.ByteString value) {
@@ -11188,17 +11638,19 @@ public final class FileOuterClass {
         return this;
       }
 
-      private DriveStubs.grpc.FileOuterClass.File queryFile_ = null;
+      private DriveStubs.grpc.FileOuterClass.File queryFile_;
       private com.google.protobuf.SingleFieldBuilderV3<
           DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder> queryFileBuilder_;
       /**
        * <code>.file.File queryFile = 3;</code>
+       * @return Whether the queryFile field is set.
        */
       public boolean hasQueryFile() {
         return queryFileBuilder_ != null || queryFile_ != null;
       }
       /**
        * <code>.file.File queryFile = 3;</code>
+       * @return The queryFile.
        */
       public DriveStubs.grpc.FileOuterClass.File getQueryFile() {
         if (queryFileBuilder_ == null) {
@@ -11307,7 +11759,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -11388,7 +11840,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetDescendantsByFolderResponse}
    */
-  public  static final class GetDescendantsByFolderResponse extends
+  public static final class GetDescendantsByFolderResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetDescendantsByFolderResponse)
       GetDescendantsByFolderResponseOrBuilder {
@@ -11399,6 +11851,13 @@ public final class FileOuterClass {
     }
     private GetDescendantsByFolderResponse() {
       files_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetDescendantsByFolderResponse();
     }
 
     @java.lang.Override
@@ -11426,7 +11885,7 @@ public final class FileOuterClass {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 files_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.File>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -11435,7 +11894,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -11449,7 +11908,7 @@ public final class FileOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           files_ = java.util.Collections.unmodifiableList(files_);
         }
         this.unknownFields = unknownFields.build();
@@ -11474,12 +11933,14 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.FileOuterClass.File> getFilesList() {
       return files_;
     }
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.FileOuterClass.FileOrBuilder> 
         getFilesOrBuilderList() {
       return files_;
@@ -11487,18 +11948,21 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public int getFilesCount() {
       return files_.size();
     }
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.File getFiles(int index) {
       return files_.get(index);
     }
     /**
      * <code>repeated .file.File files = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FileOrBuilder getFilesOrBuilder(
         int index) {
       return files_.get(index);
@@ -11549,11 +12013,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetDescendantsByFolderResponse other = (DriveStubs.grpc.FileOuterClass.GetDescendantsByFolderResponse) obj;
 
-      boolean result = true;
-      result = result && getFilesList()
-          .equals(other.getFilesList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFilesList()
+          .equals(other.getFilesList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -11735,7 +12198,7 @@ public final class FileOuterClass {
         DriveStubs.grpc.FileOuterClass.GetDescendantsByFolderResponse result = new DriveStubs.grpc.FileOuterClass.GetDescendantsByFolderResponse(this);
         int from_bitField0_ = bitField0_;
         if (filesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             files_ = java.util.Collections.unmodifiableList(files_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -11749,35 +12212,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -11850,7 +12313,7 @@ public final class FileOuterClass {
       private java.util.List<DriveStubs.grpc.FileOuterClass.File> files_ =
         java.util.Collections.emptyList();
       private void ensureFilesIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           files_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.File>(files_);
           bitField0_ |= 0x00000001;
          }
@@ -12079,7 +12542,7 @@ public final class FileOuterClass {
           filesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder>(
                   files_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           files_ = null;
@@ -12089,7 +12552,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -12145,73 +12608,98 @@ public final class FileOuterClass {
 
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
 
     /**
      * <code>string name = 2;</code>
+     * @return The name.
      */
     java.lang.String getName();
     /**
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
      * <code>int64 size = 3;</code>
+     * @return The size.
      */
     long getSize();
 
     /**
      * <code>string type = 4;</code>
+     * @return The type.
      */
     java.lang.String getType();
     /**
      * <code>string type = 4;</code>
+     * @return The bytes for type.
      */
     com.google.protobuf.ByteString
         getTypeBytes();
 
     /**
      * <code>string ownerID = 5;</code>
+     * @return The ownerID.
      */
     java.lang.String getOwnerID();
     /**
      * <code>string ownerID = 5;</code>
+     * @return The bytes for ownerID.
      */
     com.google.protobuf.ByteString
         getOwnerIDBytes();
 
     /**
      * <code>string bucket = 6;</code>
+     * @return The bucket.
      */
     java.lang.String getBucket();
     /**
      * <code>string bucket = 6;</code>
+     * @return The bytes for bucket.
      */
     com.google.protobuf.ByteString
         getBucketBytes();
 
     /**
      * <code>string parent = 7;</code>
+     * @return The parent.
      */
     java.lang.String getParent();
     /**
      * <code>string parent = 7;</code>
+     * @return The bytes for parent.
      */
     com.google.protobuf.ByteString
         getParentBytes();
+
+    /**
+     * <code>string appID = 8;</code>
+     * @return The appID.
+     */
+    java.lang.String getAppID();
+    /**
+     * <code>string appID = 8;</code>
+     * @return The bytes for appID.
+     */
+    com.google.protobuf.ByteString
+        getAppIDBytes();
   }
   /**
    * Protobuf type {@code file.CreateFileRequest}
    */
-  public  static final class CreateFileRequest extends
+  public static final class CreateFileRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.CreateFileRequest)
       CreateFileRequestOrBuilder {
@@ -12223,11 +12711,18 @@ public final class FileOuterClass {
     private CreateFileRequest() {
       key_ = "";
       name_ = "";
-      size_ = 0L;
       type_ = "";
       ownerID_ = "";
       bucket_ = "";
       parent_ = "";
+      appID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CreateFileRequest();
     }
 
     @java.lang.Override
@@ -12243,7 +12738,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -12295,8 +12789,14 @@ public final class FileOuterClass {
               parent_ = s;
               break;
             }
+            case 66: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              appID_ = s;
+              break;
+            }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -12331,7 +12831,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 1;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -12346,7 +12848,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string key = 1;</code>
+     * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -12365,7 +12869,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object name_;
     /**
      * <code>string name = 2;</code>
+     * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -12380,7 +12886,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -12399,7 +12907,9 @@ public final class FileOuterClass {
     private long size_;
     /**
      * <code>int64 size = 3;</code>
+     * @return The size.
      */
+    @java.lang.Override
     public long getSize() {
       return size_;
     }
@@ -12408,7 +12918,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object type_;
     /**
      * <code>string type = 4;</code>
+     * @return The type.
      */
+    @java.lang.Override
     public java.lang.String getType() {
       java.lang.Object ref = type_;
       if (ref instanceof java.lang.String) {
@@ -12423,7 +12935,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string type = 4;</code>
+     * @return The bytes for type.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTypeBytes() {
       java.lang.Object ref = type_;
@@ -12442,7 +12956,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object ownerID_;
     /**
      * <code>string ownerID = 5;</code>
+     * @return The ownerID.
      */
+    @java.lang.Override
     public java.lang.String getOwnerID() {
       java.lang.Object ref = ownerID_;
       if (ref instanceof java.lang.String) {
@@ -12457,7 +12973,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string ownerID = 5;</code>
+     * @return The bytes for ownerID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOwnerIDBytes() {
       java.lang.Object ref = ownerID_;
@@ -12476,7 +12994,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object bucket_;
     /**
      * <code>string bucket = 6;</code>
+     * @return The bucket.
      */
+    @java.lang.Override
     public java.lang.String getBucket() {
       java.lang.Object ref = bucket_;
       if (ref instanceof java.lang.String) {
@@ -12491,7 +13011,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string bucket = 6;</code>
+     * @return The bytes for bucket.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBucketBytes() {
       java.lang.Object ref = bucket_;
@@ -12510,7 +13032,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object parent_;
     /**
      * <code>string parent = 7;</code>
+     * @return The parent.
      */
+    @java.lang.Override
     public java.lang.String getParent() {
       java.lang.Object ref = parent_;
       if (ref instanceof java.lang.String) {
@@ -12525,7 +13049,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string parent = 7;</code>
+     * @return The bytes for parent.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getParentBytes() {
       java.lang.Object ref = parent_;
@@ -12534,6 +13060,44 @@ public final class FileOuterClass {
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         parent_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int APPID_FIELD_NUMBER = 8;
+    private volatile java.lang.Object appID_;
+    /**
+     * <code>string appID = 8;</code>
+     * @return The appID.
+     */
+    @java.lang.Override
+    public java.lang.String getAppID() {
+      java.lang.Object ref = appID_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        appID_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string appID = 8;</code>
+     * @return The bytes for appID.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAppIDBytes() {
+      java.lang.Object ref = appID_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        appID_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -12575,6 +13139,9 @@ public final class FileOuterClass {
       if (!getParentBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, parent_);
       }
+      if (!getAppIDBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, appID_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -12606,6 +13173,9 @@ public final class FileOuterClass {
       if (!getParentBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, parent_);
       }
+      if (!getAppIDBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, appID_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -12621,23 +13191,24 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.CreateFileRequest other = (DriveStubs.grpc.FileOuterClass.CreateFileRequest) obj;
 
-      boolean result = true;
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && getName()
-          .equals(other.getName());
-      result = result && (getSize()
-          == other.getSize());
-      result = result && getType()
-          .equals(other.getType());
-      result = result && getOwnerID()
-          .equals(other.getOwnerID());
-      result = result && getBucket()
-          .equals(other.getBucket());
-      result = result && getParent()
-          .equals(other.getParent());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (getSize()
+          != other.getSize()) return false;
+      if (!getType()
+          .equals(other.getType())) return false;
+      if (!getOwnerID()
+          .equals(other.getOwnerID())) return false;
+      if (!getBucket()
+          .equals(other.getBucket())) return false;
+      if (!getParent()
+          .equals(other.getParent())) return false;
+      if (!getAppID()
+          .equals(other.getAppID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -12662,6 +13233,8 @@ public final class FileOuterClass {
       hash = (53 * hash) + getBucket().hashCode();
       hash = (37 * hash) + PARENT_FIELD_NUMBER;
       hash = (53 * hash) + getParent().hashCode();
+      hash = (37 * hash) + APPID_FIELD_NUMBER;
+      hash = (53 * hash) + getAppID().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -12809,6 +13382,8 @@ public final class FileOuterClass {
 
         parent_ = "";
 
+        appID_ = "";
+
         return this;
       }
 
@@ -12842,41 +13417,42 @@ public final class FileOuterClass {
         result.ownerID_ = ownerID_;
         result.bucket_ = bucket_;
         result.parent_ = parent_;
+        result.appID_ = appID_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -12917,6 +13493,10 @@ public final class FileOuterClass {
           parent_ = other.parent_;
           onChanged();
         }
+        if (!other.getAppID().isEmpty()) {
+          appID_ = other.appID_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -12949,6 +13529,7 @@ public final class FileOuterClass {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 1;</code>
+       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -12964,6 +13545,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -12980,6 +13562,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -12993,6 +13577,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -13002,6 +13587,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 1;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -13018,6 +13605,7 @@ public final class FileOuterClass {
       private java.lang.Object name_ = "";
       /**
        * <code>string name = 2;</code>
+       * @return The name.
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -13033,6 +13621,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -13049,6 +13638,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
        */
       public Builder setName(
           java.lang.String value) {
@@ -13062,6 +13653,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearName() {
         
@@ -13071,6 +13663,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -13087,12 +13681,16 @@ public final class FileOuterClass {
       private long size_ ;
       /**
        * <code>int64 size = 3;</code>
+       * @return The size.
        */
+      @java.lang.Override
       public long getSize() {
         return size_;
       }
       /**
        * <code>int64 size = 3;</code>
+       * @param value The size to set.
+       * @return This builder for chaining.
        */
       public Builder setSize(long value) {
         
@@ -13102,6 +13700,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>int64 size = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSize() {
         
@@ -13113,6 +13712,7 @@ public final class FileOuterClass {
       private java.lang.Object type_ = "";
       /**
        * <code>string type = 4;</code>
+       * @return The type.
        */
       public java.lang.String getType() {
         java.lang.Object ref = type_;
@@ -13128,6 +13728,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string type = 4;</code>
+       * @return The bytes for type.
        */
       public com.google.protobuf.ByteString
           getTypeBytes() {
@@ -13144,6 +13745,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string type = 4;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
        */
       public Builder setType(
           java.lang.String value) {
@@ -13157,6 +13760,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string type = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearType() {
         
@@ -13166,6 +13770,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string type = 4;</code>
+       * @param value The bytes for type to set.
+       * @return This builder for chaining.
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
@@ -13182,6 +13788,7 @@ public final class FileOuterClass {
       private java.lang.Object ownerID_ = "";
       /**
        * <code>string ownerID = 5;</code>
+       * @return The ownerID.
        */
       public java.lang.String getOwnerID() {
         java.lang.Object ref = ownerID_;
@@ -13197,6 +13804,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 5;</code>
+       * @return The bytes for ownerID.
        */
       public com.google.protobuf.ByteString
           getOwnerIDBytes() {
@@ -13213,6 +13821,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 5;</code>
+       * @param value The ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerID(
           java.lang.String value) {
@@ -13226,6 +13836,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOwnerID() {
         
@@ -13235,6 +13846,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 5;</code>
+       * @param value The bytes for ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerIDBytes(
           com.google.protobuf.ByteString value) {
@@ -13251,6 +13864,7 @@ public final class FileOuterClass {
       private java.lang.Object bucket_ = "";
       /**
        * <code>string bucket = 6;</code>
+       * @return The bucket.
        */
       public java.lang.String getBucket() {
         java.lang.Object ref = bucket_;
@@ -13266,6 +13880,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 6;</code>
+       * @return The bytes for bucket.
        */
       public com.google.protobuf.ByteString
           getBucketBytes() {
@@ -13282,6 +13897,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 6;</code>
+       * @param value The bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucket(
           java.lang.String value) {
@@ -13295,6 +13912,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBucket() {
         
@@ -13304,6 +13922,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 6;</code>
+       * @param value The bytes for bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucketBytes(
           com.google.protobuf.ByteString value) {
@@ -13320,6 +13940,7 @@ public final class FileOuterClass {
       private java.lang.Object parent_ = "";
       /**
        * <code>string parent = 7;</code>
+       * @return The parent.
        */
       public java.lang.String getParent() {
         java.lang.Object ref = parent_;
@@ -13335,6 +13956,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 7;</code>
+       * @return The bytes for parent.
        */
       public com.google.protobuf.ByteString
           getParentBytes() {
@@ -13351,6 +13973,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 7;</code>
+       * @param value The parent to set.
+       * @return This builder for chaining.
        */
       public Builder setParent(
           java.lang.String value) {
@@ -13364,6 +13988,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearParent() {
         
@@ -13373,6 +13998,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 7;</code>
+       * @param value The bytes for parent to set.
+       * @return This builder for chaining.
        */
       public Builder setParentBytes(
           com.google.protobuf.ByteString value) {
@@ -13385,10 +14012,86 @@ public final class FileOuterClass {
         onChanged();
         return this;
       }
+
+      private java.lang.Object appID_ = "";
+      /**
+       * <code>string appID = 8;</code>
+       * @return The appID.
+       */
+      public java.lang.String getAppID() {
+        java.lang.Object ref = appID_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          appID_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string appID = 8;</code>
+       * @return The bytes for appID.
+       */
+      public com.google.protobuf.ByteString
+          getAppIDBytes() {
+        java.lang.Object ref = appID_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          appID_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string appID = 8;</code>
+       * @param value The appID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAppID(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        appID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string appID = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAppID() {
+        
+        appID_ = getDefaultInstance().getAppID();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string appID = 8;</code>
+       * @param value The bytes for appID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAppIDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        appID_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -13444,10 +14147,12 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
@@ -13455,7 +14160,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.DeleteFileRequest}
    */
-  public  static final class DeleteFileRequest extends
+  public static final class DeleteFileRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.DeleteFileRequest)
       DeleteFileRequestOrBuilder {
@@ -13466,6 +14171,13 @@ public final class FileOuterClass {
     }
     private DeleteFileRequest() {
       id_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteFileRequest();
     }
 
     @java.lang.Override
@@ -13481,7 +14193,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -13499,7 +14210,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -13534,7 +14245,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -13549,7 +14262,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -13608,11 +14323,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.DeleteFileRequest other = (DriveStubs.grpc.FileOuterClass.DeleteFileRequest) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -13792,35 +14506,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -13870,6 +14584,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -13885,6 +14600,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -13901,6 +14617,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -13914,6 +14632,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -13923,6 +14642,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -13938,7 +14659,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -13994,30 +14715,36 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
 
     /**
      * <code>string key = 2;</code>
+     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 2;</code>
+     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
 
     /**
      * <code>string bucket = 3;</code>
+     * @return The bucket.
      */
     java.lang.String getBucket();
     /**
      * <code>string bucket = 3;</code>
+     * @return The bytes for bucket.
      */
     com.google.protobuf.ByteString
         getBucketBytes();
@@ -14025,7 +14752,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.DeletedFileObject}
    */
-  public  static final class DeletedFileObject extends
+  public static final class DeletedFileObject extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.DeletedFileObject)
       DeletedFileObjectOrBuilder {
@@ -14041,6 +14768,13 @@ public final class FileOuterClass {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeletedFileObject();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -14053,7 +14787,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -14083,7 +14816,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -14118,7 +14851,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -14133,7 +14868,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -14152,7 +14889,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 2;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -14167,7 +14906,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string key = 2;</code>
+     * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -14186,7 +14927,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object bucket_;
     /**
      * <code>string bucket = 3;</code>
+     * @return The bucket.
      */
+    @java.lang.Override
     public java.lang.String getBucket() {
       java.lang.Object ref = bucket_;
       if (ref instanceof java.lang.String) {
@@ -14201,7 +14944,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string bucket = 3;</code>
+     * @return The bytes for bucket.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBucketBytes() {
       java.lang.Object ref = bucket_;
@@ -14272,15 +15017,14 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.DeletedFileObject other = (DriveStubs.grpc.FileOuterClass.DeletedFileObject) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && getBucket()
-          .equals(other.getBucket());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getBucket()
+          .equals(other.getBucket())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -14470,35 +15214,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -14556,6 +15300,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -14571,6 +15316,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -14587,6 +15333,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -14600,6 +15348,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -14609,6 +15358,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -14625,6 +15376,7 @@ public final class FileOuterClass {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 2;</code>
+       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -14640,6 +15392,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 2;</code>
+       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -14656,6 +15409,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 2;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -14669,6 +15424,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -14678,6 +15434,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 2;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -14694,6 +15452,7 @@ public final class FileOuterClass {
       private java.lang.Object bucket_ = "";
       /**
        * <code>string bucket = 3;</code>
+       * @return The bucket.
        */
       public java.lang.String getBucket() {
         java.lang.Object ref = bucket_;
@@ -14709,6 +15468,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 3;</code>
+       * @return The bytes for bucket.
        */
       public com.google.protobuf.ByteString
           getBucketBytes() {
@@ -14725,6 +15485,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 3;</code>
+       * @param value The bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucket(
           java.lang.String value) {
@@ -14738,6 +15500,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBucket() {
         
@@ -14747,6 +15510,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 3;</code>
+       * @param value The bytes for bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucketBytes(
           com.google.protobuf.ByteString value) {
@@ -14762,7 +15527,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -14843,7 +15608,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.DeleteFileResponse}
    */
-  public  static final class DeleteFileResponse extends
+  public static final class DeleteFileResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.DeleteFileResponse)
       DeleteFileResponseOrBuilder {
@@ -14854,6 +15619,13 @@ public final class FileOuterClass {
     }
     private DeleteFileResponse() {
       files_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteFileResponse();
     }
 
     @java.lang.Override
@@ -14881,7 +15653,7 @@ public final class FileOuterClass {
               done = true;
               break;
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 files_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.DeletedFileObject>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -14890,7 +15662,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -14904,7 +15676,7 @@ public final class FileOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           files_ = java.util.Collections.unmodifiableList(files_);
         }
         this.unknownFields = unknownFields.build();
@@ -14929,12 +15701,14 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.DeletedFileObject files = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.FileOuterClass.DeletedFileObject> getFilesList() {
       return files_;
     }
     /**
      * <code>repeated .file.DeletedFileObject files = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.FileOuterClass.DeletedFileObjectOrBuilder> 
         getFilesOrBuilderList() {
       return files_;
@@ -14942,18 +15716,21 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.DeletedFileObject files = 2;</code>
      */
+    @java.lang.Override
     public int getFilesCount() {
       return files_.size();
     }
     /**
      * <code>repeated .file.DeletedFileObject files = 2;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.DeletedFileObject getFiles(int index) {
       return files_.get(index);
     }
     /**
      * <code>repeated .file.DeletedFileObject files = 2;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.DeletedFileObjectOrBuilder getFilesOrBuilder(
         int index) {
       return files_.get(index);
@@ -15004,11 +15781,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.DeleteFileResponse other = (DriveStubs.grpc.FileOuterClass.DeleteFileResponse) obj;
 
-      boolean result = true;
-      result = result && getFilesList()
-          .equals(other.getFilesList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFilesList()
+          .equals(other.getFilesList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -15190,7 +15966,7 @@ public final class FileOuterClass {
         DriveStubs.grpc.FileOuterClass.DeleteFileResponse result = new DriveStubs.grpc.FileOuterClass.DeleteFileResponse(this);
         int from_bitField0_ = bitField0_;
         if (filesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             files_ = java.util.Collections.unmodifiableList(files_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -15204,35 +15980,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -15305,7 +16081,7 @@ public final class FileOuterClass {
       private java.util.List<DriveStubs.grpc.FileOuterClass.DeletedFileObject> files_ =
         java.util.Collections.emptyList();
       private void ensureFilesIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           files_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.DeletedFileObject>(files_);
           bitField0_ |= 0x00000001;
          }
@@ -15534,7 +16310,7 @@ public final class FileOuterClass {
           filesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.FileOuterClass.DeletedFileObject, DriveStubs.grpc.FileOuterClass.DeletedFileObject.Builder, DriveStubs.grpc.FileOuterClass.DeletedFileObjectOrBuilder>(
                   files_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           files_ = null;
@@ -15544,7 +16320,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -15600,20 +16376,24 @@ public final class FileOuterClass {
 
     /**
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
     java.lang.String getFileID();
     /**
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
     com.google.protobuf.ByteString
         getFileIDBytes();
 
     /**
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
     java.lang.String getUserID();
     /**
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
     com.google.protobuf.ByteString
         getUserIDBytes();
@@ -15621,7 +16401,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.IsAllowedRequest}
    */
-  public  static final class IsAllowedRequest extends
+  public static final class IsAllowedRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.IsAllowedRequest)
       IsAllowedRequestOrBuilder {
@@ -15633,6 +16413,13 @@ public final class FileOuterClass {
     private IsAllowedRequest() {
       fileID_ = "";
       userID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new IsAllowedRequest();
     }
 
     @java.lang.Override
@@ -15648,7 +16435,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -15672,7 +16458,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -15707,7 +16493,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object fileID_;
     /**
      * <code>string fileID = 1;</code>
+     * @return The fileID.
      */
+    @java.lang.Override
     public java.lang.String getFileID() {
       java.lang.Object ref = fileID_;
       if (ref instanceof java.lang.String) {
@@ -15722,7 +16510,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string fileID = 1;</code>
+     * @return The bytes for fileID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFileIDBytes() {
       java.lang.Object ref = fileID_;
@@ -15741,7 +16531,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object userID_;
     /**
      * <code>string userID = 2;</code>
+     * @return The userID.
      */
+    @java.lang.Override
     public java.lang.String getUserID() {
       java.lang.Object ref = userID_;
       if (ref instanceof java.lang.String) {
@@ -15756,7 +16548,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string userID = 2;</code>
+     * @return The bytes for userID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUserIDBytes() {
       java.lang.Object ref = userID_;
@@ -15821,13 +16615,12 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.IsAllowedRequest other = (DriveStubs.grpc.FileOuterClass.IsAllowedRequest) obj;
 
-      boolean result = true;
-      result = result && getFileID()
-          .equals(other.getFileID());
-      result = result && getUserID()
-          .equals(other.getUserID());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFileID()
+          .equals(other.getFileID())) return false;
+      if (!getUserID()
+          .equals(other.getUserID())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -16012,35 +16805,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -16094,6 +16887,7 @@ public final class FileOuterClass {
       private java.lang.Object fileID_ = "";
       /**
        * <code>string fileID = 1;</code>
+       * @return The fileID.
        */
       public java.lang.String getFileID() {
         java.lang.Object ref = fileID_;
@@ -16109,6 +16903,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @return The bytes for fileID.
        */
       public com.google.protobuf.ByteString
           getFileIDBytes() {
@@ -16125,6 +16920,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @param value The fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileID(
           java.lang.String value) {
@@ -16138,6 +16935,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFileID() {
         
@@ -16147,6 +16945,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string fileID = 1;</code>
+       * @param value The bytes for fileID to set.
+       * @return This builder for chaining.
        */
       public Builder setFileIDBytes(
           com.google.protobuf.ByteString value) {
@@ -16163,6 +16963,7 @@ public final class FileOuterClass {
       private java.lang.Object userID_ = "";
       /**
        * <code>string userID = 2;</code>
+       * @return The userID.
        */
       public java.lang.String getUserID() {
         java.lang.Object ref = userID_;
@@ -16178,6 +16979,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string userID = 2;</code>
+       * @return The bytes for userID.
        */
       public com.google.protobuf.ByteString
           getUserIDBytes() {
@@ -16194,6 +16996,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string userID = 2;</code>
+       * @param value The userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserID(
           java.lang.String value) {
@@ -16207,6 +17011,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string userID = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUserID() {
         
@@ -16216,6 +17021,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string userID = 2;</code>
+       * @param value The bytes for userID to set.
+       * @return This builder for chaining.
        */
       public Builder setUserIDBytes(
           com.google.protobuf.ByteString value) {
@@ -16231,7 +17038,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -16287,13 +17094,14 @@ public final class FileOuterClass {
 
     /**
      * <code>bool allowed = 1;</code>
+     * @return The allowed.
      */
     boolean getAllowed();
   }
   /**
    * Protobuf type {@code file.IsAllowedResponse}
    */
-  public  static final class IsAllowedResponse extends
+  public static final class IsAllowedResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.IsAllowedResponse)
       IsAllowedResponseOrBuilder {
@@ -16303,7 +17111,13 @@ public final class FileOuterClass {
       super(builder);
     }
     private IsAllowedResponse() {
-      allowed_ = false;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new IsAllowedResponse();
     }
 
     @java.lang.Override
@@ -16319,7 +17133,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -16336,7 +17149,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -16371,7 +17184,9 @@ public final class FileOuterClass {
     private boolean allowed_;
     /**
      * <code>bool allowed = 1;</code>
+     * @return The allowed.
      */
+    @java.lang.Override
     public boolean getAllowed() {
       return allowed_;
     }
@@ -16421,11 +17236,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.IsAllowedResponse other = (DriveStubs.grpc.FileOuterClass.IsAllowedResponse) obj;
 
-      boolean result = true;
-      result = result && (getAllowed()
-          == other.getAllowed());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (getAllowed()
+          != other.getAllowed()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -16606,35 +17420,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -16683,12 +17497,16 @@ public final class FileOuterClass {
       private boolean allowed_ ;
       /**
        * <code>bool allowed = 1;</code>
+       * @return The allowed.
        */
+      @java.lang.Override
       public boolean getAllowed() {
         return allowed_;
       }
       /**
        * <code>bool allowed = 1;</code>
+       * @param value The allowed to set.
+       * @return This builder for chaining.
        */
       public Builder setAllowed(boolean value) {
         
@@ -16698,6 +17516,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>bool allowed = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAllowed() {
         
@@ -16708,7 +17527,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -16764,40 +17583,48 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
 
     /**
      * <code>string firstName = 2;</code>
+     * @return The firstName.
      */
     java.lang.String getFirstName();
     /**
      * <code>string firstName = 2;</code>
+     * @return The bytes for firstName.
      */
     com.google.protobuf.ByteString
         getFirstNameBytes();
 
     /**
      * <code>string lastName = 3;</code>
+     * @return The lastName.
      */
     java.lang.String getLastName();
     /**
      * <code>string lastName = 3;</code>
+     * @return The bytes for lastName.
      */
     com.google.protobuf.ByteString
         getLastNameBytes();
 
     /**
      * <code>string mail = 4;</code>
+     * @return The mail.
      */
     java.lang.String getMail();
     /**
      * <code>string mail = 4;</code>
+     * @return The bytes for mail.
      */
     com.google.protobuf.ByteString
         getMailBytes();
@@ -16805,7 +17632,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.User}
    */
-  public  static final class User extends
+  public static final class User extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.User)
       UserOrBuilder {
@@ -16822,6 +17649,13 @@ public final class FileOuterClass {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new User();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -16834,7 +17668,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -16870,7 +17703,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -16905,7 +17738,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -16920,7 +17755,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -16939,7 +17776,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object firstName_;
     /**
      * <code>string firstName = 2;</code>
+     * @return The firstName.
      */
+    @java.lang.Override
     public java.lang.String getFirstName() {
       java.lang.Object ref = firstName_;
       if (ref instanceof java.lang.String) {
@@ -16954,7 +17793,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string firstName = 2;</code>
+     * @return The bytes for firstName.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFirstNameBytes() {
       java.lang.Object ref = firstName_;
@@ -16973,7 +17814,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object lastName_;
     /**
      * <code>string lastName = 3;</code>
+     * @return The lastName.
      */
+    @java.lang.Override
     public java.lang.String getLastName() {
       java.lang.Object ref = lastName_;
       if (ref instanceof java.lang.String) {
@@ -16988,7 +17831,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string lastName = 3;</code>
+     * @return The bytes for lastName.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLastNameBytes() {
       java.lang.Object ref = lastName_;
@@ -17007,7 +17852,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object mail_;
     /**
      * <code>string mail = 4;</code>
+     * @return The mail.
      */
+    @java.lang.Override
     public java.lang.String getMail() {
       java.lang.Object ref = mail_;
       if (ref instanceof java.lang.String) {
@@ -17022,7 +17869,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string mail = 4;</code>
+     * @return The bytes for mail.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getMailBytes() {
       java.lang.Object ref = mail_;
@@ -17099,17 +17948,16 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.User other = (DriveStubs.grpc.FileOuterClass.User) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && getFirstName()
-          .equals(other.getFirstName());
-      result = result && getLastName()
-          .equals(other.getLastName());
-      result = result && getMail()
-          .equals(other.getMail());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getFirstName()
+          .equals(other.getFirstName())) return false;
+      if (!getLastName()
+          .equals(other.getLastName())) return false;
+      if (!getMail()
+          .equals(other.getMail())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -17304,35 +18152,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -17394,6 +18242,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -17409,6 +18258,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -17425,6 +18275,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -17438,6 +18290,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -17447,6 +18300,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -17463,6 +18318,7 @@ public final class FileOuterClass {
       private java.lang.Object firstName_ = "";
       /**
        * <code>string firstName = 2;</code>
+       * @return The firstName.
        */
       public java.lang.String getFirstName() {
         java.lang.Object ref = firstName_;
@@ -17478,6 +18334,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string firstName = 2;</code>
+       * @return The bytes for firstName.
        */
       public com.google.protobuf.ByteString
           getFirstNameBytes() {
@@ -17494,6 +18351,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string firstName = 2;</code>
+       * @param value The firstName to set.
+       * @return This builder for chaining.
        */
       public Builder setFirstName(
           java.lang.String value) {
@@ -17507,6 +18366,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string firstName = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFirstName() {
         
@@ -17516,6 +18376,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string firstName = 2;</code>
+       * @param value The bytes for firstName to set.
+       * @return This builder for chaining.
        */
       public Builder setFirstNameBytes(
           com.google.protobuf.ByteString value) {
@@ -17532,6 +18394,7 @@ public final class FileOuterClass {
       private java.lang.Object lastName_ = "";
       /**
        * <code>string lastName = 3;</code>
+       * @return The lastName.
        */
       public java.lang.String getLastName() {
         java.lang.Object ref = lastName_;
@@ -17547,6 +18410,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string lastName = 3;</code>
+       * @return The bytes for lastName.
        */
       public com.google.protobuf.ByteString
           getLastNameBytes() {
@@ -17563,6 +18427,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string lastName = 3;</code>
+       * @param value The lastName to set.
+       * @return This builder for chaining.
        */
       public Builder setLastName(
           java.lang.String value) {
@@ -17576,6 +18442,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string lastName = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLastName() {
         
@@ -17585,6 +18452,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string lastName = 3;</code>
+       * @param value The bytes for lastName to set.
+       * @return This builder for chaining.
        */
       public Builder setLastNameBytes(
           com.google.protobuf.ByteString value) {
@@ -17601,6 +18470,7 @@ public final class FileOuterClass {
       private java.lang.Object mail_ = "";
       /**
        * <code>string mail = 4;</code>
+       * @return The mail.
        */
       public java.lang.String getMail() {
         java.lang.Object ref = mail_;
@@ -17616,6 +18486,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string mail = 4;</code>
+       * @return The bytes for mail.
        */
       public com.google.protobuf.ByteString
           getMailBytes() {
@@ -17632,6 +18503,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string mail = 4;</code>
+       * @param value The mail to set.
+       * @return This builder for chaining.
        */
       public Builder setMail(
           java.lang.String value) {
@@ -17645,6 +18518,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string mail = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMail() {
         
@@ -17654,6 +18528,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string mail = 4;</code>
+       * @param value The bytes for mail to set.
+       * @return This builder for chaining.
        */
       public Builder setMailBytes(
           com.google.protobuf.ByteString value) {
@@ -17669,7 +18545,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -17725,20 +18601,24 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
 
     /**
      * <code>string name = 2;</code>
+     * @return The name.
      */
     java.lang.String getName();
     /**
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
@@ -17746,7 +18626,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.App}
    */
-  public  static final class App extends
+  public static final class App extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.App)
       AppOrBuilder {
@@ -17758,6 +18638,13 @@ public final class FileOuterClass {
     private App() {
       id_ = "";
       name_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new App();
     }
 
     @java.lang.Override
@@ -17773,7 +18660,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -17797,7 +18683,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -17832,7 +18718,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -17847,7 +18735,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -17866,7 +18756,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object name_;
     /**
      * <code>string name = 2;</code>
+     * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -17881,7 +18773,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -17946,13 +18840,12 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.App other = (DriveStubs.grpc.FileOuterClass.App) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && getName()
-          .equals(other.getName());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -18137,35 +19030,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -18219,6 +19112,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -18234,6 +19128,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -18250,6 +19145,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -18263,6 +19160,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -18272,6 +19170,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -18288,6 +19188,7 @@ public final class FileOuterClass {
       private java.lang.Object name_ = "";
       /**
        * <code>string name = 2;</code>
+       * @return The name.
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -18303,6 +19204,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -18319,6 +19221,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
        */
       public Builder setName(
           java.lang.String value) {
@@ -18332,6 +19236,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearName() {
         
@@ -18341,6 +19246,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -18356,7 +19263,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -18412,85 +19319,107 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
 
     /**
      * <code>string key = 2;</code>
+     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 2;</code>
+     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
 
     /**
      * <code>string name = 3;</code>
+     * @return The name.
      */
     java.lang.String getName();
     /**
      * <code>string name = 3;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
      * <code>string type = 4;</code>
+     * @return The type.
      */
     java.lang.String getType();
     /**
      * <code>string type = 4;</code>
+     * @return The bytes for type.
      */
     com.google.protobuf.ByteString
         getTypeBytes();
 
     /**
      * <code>string description = 5;</code>
+     * @return The description.
      */
     java.lang.String getDescription();
     /**
      * <code>string description = 5;</code>
+     * @return The bytes for description.
      */
     com.google.protobuf.ByteString
         getDescriptionBytes();
 
     /**
      * <code>string ownerID = 6;</code>
+     * @return The ownerID.
      */
     java.lang.String getOwnerID();
     /**
      * <code>string ownerID = 6;</code>
+     * @return The bytes for ownerID.
      */
     com.google.protobuf.ByteString
         getOwnerIDBytes();
 
     /**
      * <code>int64 size = 7;</code>
+     * @return The size.
      */
     long getSize();
 
     /**
      * <code>string parent = 8;</code>
+     * @return Whether the parent field is set.
+     */
+    boolean hasParent();
+    /**
+     * <code>string parent = 8;</code>
+     * @return The parent.
      */
     java.lang.String getParent();
     /**
      * <code>string parent = 8;</code>
+     * @return The bytes for parent.
      */
     com.google.protobuf.ByteString
         getParentBytes();
 
     /**
      * <code>.file.File parentObject = 9;</code>
+     * @return Whether the parentObject field is set.
      */
     boolean hasParentObject();
     /**
      * <code>.file.File parentObject = 9;</code>
+     * @return The parentObject.
      */
     DriveStubs.grpc.FileOuterClass.File getParentObject();
     /**
@@ -18500,21 +19429,25 @@ public final class FileOuterClass {
 
     /**
      * <code>string bucket = 10;</code>
+     * @return The bucket.
      */
     java.lang.String getBucket();
     /**
      * <code>string bucket = 10;</code>
+     * @return The bytes for bucket.
      */
     com.google.protobuf.ByteString
         getBucketBytes();
 
     /**
      * <code>int64 createdAt = 11;</code>
+     * @return The createdAt.
      */
     long getCreatedAt();
 
     /**
      * <code>int64 updatedAt = 12;</code>
+     * @return The updatedAt.
      */
     long getUpdatedAt();
 
@@ -18544,15 +19477,28 @@ public final class FileOuterClass {
 
     /**
      * <code>bool float = 14;</code>
+     * @return The float.
      */
     boolean getFloat();
+
+    /**
+     * <code>string appID = 15;</code>
+     * @return The appID.
+     */
+    java.lang.String getAppID();
+    /**
+     * <code>string appID = 15;</code>
+     * @return The bytes for appID.
+     */
+    com.google.protobuf.ByteString
+        getAppIDBytes();
 
     public DriveStubs.grpc.FileOuterClass.File.FileOrIdCase getFileOrIdCase();
   }
   /**
    * Protobuf type {@code file.File}
    */
-  public  static final class File extends
+  public static final class File extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.File)
       FileOrBuilder {
@@ -18568,12 +19514,16 @@ public final class FileOuterClass {
       type_ = "";
       description_ = "";
       ownerID_ = "";
-      size_ = 0L;
       bucket_ = "";
-      createdAt_ = 0L;
-      updatedAt_ = 0L;
       children_ = java.util.Collections.emptyList();
-      float_ = false;
+      appID_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new File();
     }
 
     @java.lang.Override
@@ -18678,9 +19628,9 @@ public final class FileOuterClass {
               break;
             }
             case 106: {
-              if (!((mutable_bitField0_ & 0x00001000) == 0x00001000)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 children_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.File>();
-                mutable_bitField0_ |= 0x00001000;
+                mutable_bitField0_ |= 0x00000001;
               }
               children_.add(
                   input.readMessage(DriveStubs.grpc.FileOuterClass.File.parser(), extensionRegistry));
@@ -18691,8 +19641,14 @@ public final class FileOuterClass {
               float_ = input.readBool();
               break;
             }
+            case 122: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              appID_ = s;
+              break;
+            }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -18706,7 +19662,7 @@ public final class FileOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00001000) == 0x00001000)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           children_ = java.util.Collections.unmodifiableList(children_);
         }
         this.unknownFields = unknownFields.build();
@@ -18726,11 +19682,11 @@ public final class FileOuterClass {
               DriveStubs.grpc.FileOuterClass.File.class, DriveStubs.grpc.FileOuterClass.File.Builder.class);
     }
 
-    private int bitField0_;
     private int fileOrIdCase_ = 0;
     private java.lang.Object fileOrId_;
     public enum FileOrIdCase
-        implements com.google.protobuf.Internal.EnumLite {
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
       PARENT(8),
       PARENTOBJECT(9),
       FILEORID_NOT_SET(0);
@@ -18739,6 +19695,8 @@ public final class FileOuterClass {
         this.value = value;
       }
       /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
        * @deprecated Use {@link #forNumber(int)} instead.
        */
       @java.lang.Deprecated
@@ -18769,7 +19727,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -18784,7 +19744,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -18803,7 +19765,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 2;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -18818,7 +19782,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string key = 2;</code>
+     * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -18837,7 +19803,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object name_;
     /**
      * <code>string name = 3;</code>
+     * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -18852,7 +19820,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string name = 3;</code>
+     * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -18871,7 +19841,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object type_;
     /**
      * <code>string type = 4;</code>
+     * @return The type.
      */
+    @java.lang.Override
     public java.lang.String getType() {
       java.lang.Object ref = type_;
       if (ref instanceof java.lang.String) {
@@ -18886,7 +19858,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string type = 4;</code>
+     * @return The bytes for type.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTypeBytes() {
       java.lang.Object ref = type_;
@@ -18905,7 +19879,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object description_;
     /**
      * <code>string description = 5;</code>
+     * @return The description.
      */
+    @java.lang.Override
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
       if (ref instanceof java.lang.String) {
@@ -18920,7 +19896,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string description = 5;</code>
+     * @return The bytes for description.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
       java.lang.Object ref = description_;
@@ -18939,7 +19917,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object ownerID_;
     /**
      * <code>string ownerID = 6;</code>
+     * @return The ownerID.
      */
+    @java.lang.Override
     public java.lang.String getOwnerID() {
       java.lang.Object ref = ownerID_;
       if (ref instanceof java.lang.String) {
@@ -18954,7 +19934,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string ownerID = 6;</code>
+     * @return The bytes for ownerID.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOwnerIDBytes() {
       java.lang.Object ref = ownerID_;
@@ -18973,7 +19955,9 @@ public final class FileOuterClass {
     private long size_;
     /**
      * <code>int64 size = 7;</code>
+     * @return The size.
      */
+    @java.lang.Override
     public long getSize() {
       return size_;
     }
@@ -18981,6 +19965,14 @@ public final class FileOuterClass {
     public static final int PARENT_FIELD_NUMBER = 8;
     /**
      * <code>string parent = 8;</code>
+     * @return Whether the parent field is set.
+     */
+    public boolean hasParent() {
+      return fileOrIdCase_ == 8;
+    }
+    /**
+     * <code>string parent = 8;</code>
+     * @return The parent.
      */
     public java.lang.String getParent() {
       java.lang.Object ref = "";
@@ -19001,6 +19993,7 @@ public final class FileOuterClass {
     }
     /**
      * <code>string parent = 8;</code>
+     * @return The bytes for parent.
      */
     public com.google.protobuf.ByteString
         getParentBytes() {
@@ -19024,13 +20017,17 @@ public final class FileOuterClass {
     public static final int PARENTOBJECT_FIELD_NUMBER = 9;
     /**
      * <code>.file.File parentObject = 9;</code>
+     * @return Whether the parentObject field is set.
      */
+    @java.lang.Override
     public boolean hasParentObject() {
       return fileOrIdCase_ == 9;
     }
     /**
      * <code>.file.File parentObject = 9;</code>
+     * @return The parentObject.
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.File getParentObject() {
       if (fileOrIdCase_ == 9) {
          return (DriveStubs.grpc.FileOuterClass.File) fileOrId_;
@@ -19040,6 +20037,7 @@ public final class FileOuterClass {
     /**
      * <code>.file.File parentObject = 9;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FileOrBuilder getParentObjectOrBuilder() {
       if (fileOrIdCase_ == 9) {
          return (DriveStubs.grpc.FileOuterClass.File) fileOrId_;
@@ -19051,7 +20049,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object bucket_;
     /**
      * <code>string bucket = 10;</code>
+     * @return The bucket.
      */
+    @java.lang.Override
     public java.lang.String getBucket() {
       java.lang.Object ref = bucket_;
       if (ref instanceof java.lang.String) {
@@ -19066,7 +20066,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string bucket = 10;</code>
+     * @return The bytes for bucket.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBucketBytes() {
       java.lang.Object ref = bucket_;
@@ -19085,7 +20087,9 @@ public final class FileOuterClass {
     private long createdAt_;
     /**
      * <code>int64 createdAt = 11;</code>
+     * @return The createdAt.
      */
+    @java.lang.Override
     public long getCreatedAt() {
       return createdAt_;
     }
@@ -19094,7 +20098,9 @@ public final class FileOuterClass {
     private long updatedAt_;
     /**
      * <code>int64 updatedAt = 12;</code>
+     * @return The updatedAt.
      */
+    @java.lang.Override
     public long getUpdatedAt() {
       return updatedAt_;
     }
@@ -19104,12 +20110,14 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.File children = 13;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.FileOuterClass.File> getChildrenList() {
       return children_;
     }
     /**
      * <code>repeated .file.File children = 13;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.FileOuterClass.FileOrBuilder> 
         getChildrenOrBuilderList() {
       return children_;
@@ -19117,18 +20125,21 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.File children = 13;</code>
      */
+    @java.lang.Override
     public int getChildrenCount() {
       return children_.size();
     }
     /**
      * <code>repeated .file.File children = 13;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.File getChildren(int index) {
       return children_.get(index);
     }
     /**
      * <code>repeated .file.File children = 13;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FileOrBuilder getChildrenOrBuilder(
         int index) {
       return children_.get(index);
@@ -19138,9 +20149,49 @@ public final class FileOuterClass {
     private boolean float_;
     /**
      * <code>bool float = 14;</code>
+     * @return The float.
      */
+    @java.lang.Override
     public boolean getFloat() {
       return float_;
+    }
+
+    public static final int APPID_FIELD_NUMBER = 15;
+    private volatile java.lang.Object appID_;
+    /**
+     * <code>string appID = 15;</code>
+     * @return The appID.
+     */
+    @java.lang.Override
+    public java.lang.String getAppID() {
+      java.lang.Object ref = appID_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        appID_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string appID = 15;</code>
+     * @return The bytes for appID.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAppIDBytes() {
+      java.lang.Object ref = appID_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        appID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -19199,6 +20250,9 @@ public final class FileOuterClass {
       if (float_ != false) {
         output.writeBool(14, float_);
       }
+      if (!getAppIDBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 15, appID_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -19256,6 +20310,9 @@ public final class FileOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(14, float_);
       }
+      if (!getAppIDBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(15, appID_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -19271,48 +20328,47 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.File other = (DriveStubs.grpc.FileOuterClass.File) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && getName()
-          .equals(other.getName());
-      result = result && getType()
-          .equals(other.getType());
-      result = result && getDescription()
-          .equals(other.getDescription());
-      result = result && getOwnerID()
-          .equals(other.getOwnerID());
-      result = result && (getSize()
-          == other.getSize());
-      result = result && getBucket()
-          .equals(other.getBucket());
-      result = result && (getCreatedAt()
-          == other.getCreatedAt());
-      result = result && (getUpdatedAt()
-          == other.getUpdatedAt());
-      result = result && getChildrenList()
-          .equals(other.getChildrenList());
-      result = result && (getFloat()
-          == other.getFloat());
-      result = result && getFileOrIdCase().equals(
-          other.getFileOrIdCase());
-      if (!result) return false;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getType()
+          .equals(other.getType())) return false;
+      if (!getDescription()
+          .equals(other.getDescription())) return false;
+      if (!getOwnerID()
+          .equals(other.getOwnerID())) return false;
+      if (getSize()
+          != other.getSize()) return false;
+      if (!getBucket()
+          .equals(other.getBucket())) return false;
+      if (getCreatedAt()
+          != other.getCreatedAt()) return false;
+      if (getUpdatedAt()
+          != other.getUpdatedAt()) return false;
+      if (!getChildrenList()
+          .equals(other.getChildrenList())) return false;
+      if (getFloat()
+          != other.getFloat()) return false;
+      if (!getAppID()
+          .equals(other.getAppID())) return false;
+      if (!getFileOrIdCase().equals(other.getFileOrIdCase())) return false;
       switch (fileOrIdCase_) {
         case 8:
-          result = result && getParent()
-              .equals(other.getParent());
+          if (!getParent()
+              .equals(other.getParent())) return false;
           break;
         case 9:
-          result = result && getParentObject()
-              .equals(other.getParentObject());
+          if (!getParentObject()
+              .equals(other.getParentObject())) return false;
           break;
         case 0:
         default:
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -19352,6 +20408,8 @@ public final class FileOuterClass {
       hash = (37 * hash) + FLOAT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getFloat());
+      hash = (37 * hash) + APPID_FIELD_NUMBER;
+      hash = (53 * hash) + getAppID().hashCode();
       switch (fileOrIdCase_) {
         case 8:
           hash = (37 * hash) + PARENT_FIELD_NUMBER;
@@ -19520,11 +20578,13 @@ public final class FileOuterClass {
 
         if (childrenBuilder_ == null) {
           children_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00001000);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           childrenBuilder_.clear();
         }
         float_ = false;
+
+        appID_ = "";
 
         fileOrIdCase_ = 0;
         fileOrId_ = null;
@@ -19555,7 +20615,6 @@ public final class FileOuterClass {
       public DriveStubs.grpc.FileOuterClass.File buildPartial() {
         DriveStubs.grpc.FileOuterClass.File result = new DriveStubs.grpc.FileOuterClass.File(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         result.id_ = id_;
         result.key_ = key_;
         result.name_ = name_;
@@ -19577,16 +20636,16 @@ public final class FileOuterClass {
         result.createdAt_ = createdAt_;
         result.updatedAt_ = updatedAt_;
         if (childrenBuilder_ == null) {
-          if (((bitField0_ & 0x00001000) == 0x00001000)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             children_ = java.util.Collections.unmodifiableList(children_);
-            bitField0_ = (bitField0_ & ~0x00001000);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.children_ = children_;
         } else {
           result.children_ = childrenBuilder_.build();
         }
         result.float_ = float_;
-        result.bitField0_ = to_bitField0_;
+        result.appID_ = appID_;
         result.fileOrIdCase_ = fileOrIdCase_;
         onBuilt();
         return result;
@@ -19594,35 +20653,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -19677,7 +20736,7 @@ public final class FileOuterClass {
           if (!other.children_.isEmpty()) {
             if (children_.isEmpty()) {
               children_ = other.children_;
-              bitField0_ = (bitField0_ & ~0x00001000);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureChildrenIsMutable();
               children_.addAll(other.children_);
@@ -19690,7 +20749,7 @@ public final class FileOuterClass {
               childrenBuilder_.dispose();
               childrenBuilder_ = null;
               children_ = other.children_;
-              bitField0_ = (bitField0_ & ~0x00001000);
+              bitField0_ = (bitField0_ & ~0x00000001);
               childrenBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getChildrenFieldBuilder() : null;
@@ -19701,6 +20760,10 @@ public final class FileOuterClass {
         }
         if (other.getFloat() != false) {
           setFloat(other.getFloat());
+        }
+        if (!other.getAppID().isEmpty()) {
+          appID_ = other.appID_;
+          onChanged();
         }
         switch (other.getFileOrIdCase()) {
           case PARENT: {
@@ -19765,6 +20828,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -19780,6 +20844,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -19796,6 +20861,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -19809,6 +20876,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -19818,6 +20886,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -19834,6 +20904,7 @@ public final class FileOuterClass {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 2;</code>
+       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -19849,6 +20920,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 2;</code>
+       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -19865,6 +20937,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 2;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -19878,6 +20952,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -19887,6 +20962,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string key = 2;</code>
+       * @param value The bytes for key to set.
+       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -19903,6 +20980,7 @@ public final class FileOuterClass {
       private java.lang.Object name_ = "";
       /**
        * <code>string name = 3;</code>
+       * @return The name.
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -19918,6 +20996,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 3;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -19934,6 +21013,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 3;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
        */
       public Builder setName(
           java.lang.String value) {
@@ -19947,6 +21028,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearName() {
         
@@ -19956,6 +21038,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string name = 3;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -19972,6 +21056,7 @@ public final class FileOuterClass {
       private java.lang.Object type_ = "";
       /**
        * <code>string type = 4;</code>
+       * @return The type.
        */
       public java.lang.String getType() {
         java.lang.Object ref = type_;
@@ -19987,6 +21072,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string type = 4;</code>
+       * @return The bytes for type.
        */
       public com.google.protobuf.ByteString
           getTypeBytes() {
@@ -20003,6 +21089,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string type = 4;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
        */
       public Builder setType(
           java.lang.String value) {
@@ -20016,6 +21104,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string type = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearType() {
         
@@ -20025,6 +21114,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string type = 4;</code>
+       * @param value The bytes for type to set.
+       * @return This builder for chaining.
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
@@ -20041,6 +21132,7 @@ public final class FileOuterClass {
       private java.lang.Object description_ = "";
       /**
        * <code>string description = 5;</code>
+       * @return The description.
        */
       public java.lang.String getDescription() {
         java.lang.Object ref = description_;
@@ -20056,6 +21148,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string description = 5;</code>
+       * @return The bytes for description.
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
@@ -20072,6 +21165,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string description = 5;</code>
+       * @param value The description to set.
+       * @return This builder for chaining.
        */
       public Builder setDescription(
           java.lang.String value) {
@@ -20085,6 +21180,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string description = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearDescription() {
         
@@ -20094,6 +21190,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string description = 5;</code>
+       * @param value The bytes for description to set.
+       * @return This builder for chaining.
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
@@ -20110,6 +21208,7 @@ public final class FileOuterClass {
       private java.lang.Object ownerID_ = "";
       /**
        * <code>string ownerID = 6;</code>
+       * @return The ownerID.
        */
       public java.lang.String getOwnerID() {
         java.lang.Object ref = ownerID_;
@@ -20125,6 +21224,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 6;</code>
+       * @return The bytes for ownerID.
        */
       public com.google.protobuf.ByteString
           getOwnerIDBytes() {
@@ -20141,6 +21241,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 6;</code>
+       * @param value The ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerID(
           java.lang.String value) {
@@ -20154,6 +21256,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOwnerID() {
         
@@ -20163,6 +21266,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string ownerID = 6;</code>
+       * @param value The bytes for ownerID to set.
+       * @return This builder for chaining.
        */
       public Builder setOwnerIDBytes(
           com.google.protobuf.ByteString value) {
@@ -20179,12 +21284,16 @@ public final class FileOuterClass {
       private long size_ ;
       /**
        * <code>int64 size = 7;</code>
+       * @return The size.
        */
+      @java.lang.Override
       public long getSize() {
         return size_;
       }
       /**
        * <code>int64 size = 7;</code>
+       * @param value The size to set.
+       * @return This builder for chaining.
        */
       public Builder setSize(long value) {
         
@@ -20194,6 +21303,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>int64 size = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSize() {
         
@@ -20204,7 +21314,17 @@ public final class FileOuterClass {
 
       /**
        * <code>string parent = 8;</code>
+       * @return Whether the parent field is set.
        */
+      @java.lang.Override
+      public boolean hasParent() {
+        return fileOrIdCase_ == 8;
+      }
+      /**
+       * <code>string parent = 8;</code>
+       * @return The parent.
+       */
+      @java.lang.Override
       public java.lang.String getParent() {
         java.lang.Object ref = "";
         if (fileOrIdCase_ == 8) {
@@ -20224,7 +21344,9 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 8;</code>
+       * @return The bytes for parent.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getParentBytes() {
         java.lang.Object ref = "";
@@ -20245,6 +21367,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 8;</code>
+       * @param value The parent to set.
+       * @return This builder for chaining.
        */
       public Builder setParent(
           java.lang.String value) {
@@ -20258,6 +21382,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearParent() {
         if (fileOrIdCase_ == 8) {
@@ -20269,6 +21394,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string parent = 8;</code>
+       * @param value The bytes for parent to set.
+       * @return This builder for chaining.
        */
       public Builder setParentBytes(
           com.google.protobuf.ByteString value) {
@@ -20286,13 +21413,17 @@ public final class FileOuterClass {
           DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder> parentObjectBuilder_;
       /**
        * <code>.file.File parentObject = 9;</code>
+       * @return Whether the parentObject field is set.
        */
+      @java.lang.Override
       public boolean hasParentObject() {
         return fileOrIdCase_ == 9;
       }
       /**
        * <code>.file.File parentObject = 9;</code>
+       * @return The parentObject.
        */
+      @java.lang.Override
       public DriveStubs.grpc.FileOuterClass.File getParentObject() {
         if (parentObjectBuilder_ == null) {
           if (fileOrIdCase_ == 9) {
@@ -20386,6 +21517,7 @@ public final class FileOuterClass {
       /**
        * <code>.file.File parentObject = 9;</code>
        */
+      @java.lang.Override
       public DriveStubs.grpc.FileOuterClass.FileOrBuilder getParentObjectOrBuilder() {
         if ((fileOrIdCase_ == 9) && (parentObjectBuilder_ != null)) {
           return parentObjectBuilder_.getMessageOrBuilder();
@@ -20421,6 +21553,7 @@ public final class FileOuterClass {
       private java.lang.Object bucket_ = "";
       /**
        * <code>string bucket = 10;</code>
+       * @return The bucket.
        */
       public java.lang.String getBucket() {
         java.lang.Object ref = bucket_;
@@ -20436,6 +21569,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 10;</code>
+       * @return The bytes for bucket.
        */
       public com.google.protobuf.ByteString
           getBucketBytes() {
@@ -20452,6 +21586,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 10;</code>
+       * @param value The bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucket(
           java.lang.String value) {
@@ -20465,6 +21601,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBucket() {
         
@@ -20474,6 +21611,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string bucket = 10;</code>
+       * @param value The bytes for bucket to set.
+       * @return This builder for chaining.
        */
       public Builder setBucketBytes(
           com.google.protobuf.ByteString value) {
@@ -20490,12 +21629,16 @@ public final class FileOuterClass {
       private long createdAt_ ;
       /**
        * <code>int64 createdAt = 11;</code>
+       * @return The createdAt.
        */
+      @java.lang.Override
       public long getCreatedAt() {
         return createdAt_;
       }
       /**
        * <code>int64 createdAt = 11;</code>
+       * @param value The createdAt to set.
+       * @return This builder for chaining.
        */
       public Builder setCreatedAt(long value) {
         
@@ -20505,6 +21648,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>int64 createdAt = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCreatedAt() {
         
@@ -20516,12 +21660,16 @@ public final class FileOuterClass {
       private long updatedAt_ ;
       /**
        * <code>int64 updatedAt = 12;</code>
+       * @return The updatedAt.
        */
+      @java.lang.Override
       public long getUpdatedAt() {
         return updatedAt_;
       }
       /**
        * <code>int64 updatedAt = 12;</code>
+       * @param value The updatedAt to set.
+       * @return This builder for chaining.
        */
       public Builder setUpdatedAt(long value) {
         
@@ -20531,6 +21679,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>int64 updatedAt = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUpdatedAt() {
         
@@ -20542,9 +21691,9 @@ public final class FileOuterClass {
       private java.util.List<DriveStubs.grpc.FileOuterClass.File> children_ =
         java.util.Collections.emptyList();
       private void ensureChildrenIsMutable() {
-        if (!((bitField0_ & 0x00001000) == 0x00001000)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           children_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.File>(children_);
-          bitField0_ |= 0x00001000;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -20694,7 +21843,7 @@ public final class FileOuterClass {
       public Builder clearChildren() {
         if (childrenBuilder_ == null) {
           children_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00001000);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           childrenBuilder_.clear();
@@ -20771,7 +21920,7 @@ public final class FileOuterClass {
           childrenBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder>(
                   children_,
-                  ((bitField0_ & 0x00001000) == 0x00001000),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           children_ = null;
@@ -20782,12 +21931,16 @@ public final class FileOuterClass {
       private boolean float_ ;
       /**
        * <code>bool float = 14;</code>
+       * @return The float.
        */
+      @java.lang.Override
       public boolean getFloat() {
         return float_;
       }
       /**
        * <code>bool float = 14;</code>
+       * @param value The float to set.
+       * @return This builder for chaining.
        */
       public Builder setFloat(boolean value) {
         
@@ -20797,6 +21950,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>bool float = 14;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFloat() {
         
@@ -20804,10 +21958,86 @@ public final class FileOuterClass {
         onChanged();
         return this;
       }
+
+      private java.lang.Object appID_ = "";
+      /**
+       * <code>string appID = 15;</code>
+       * @return The appID.
+       */
+      public java.lang.String getAppID() {
+        java.lang.Object ref = appID_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          appID_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string appID = 15;</code>
+       * @return The bytes for appID.
+       */
+      public com.google.protobuf.ByteString
+          getAppIDBytes() {
+        java.lang.Object ref = appID_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          appID_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string appID = 15;</code>
+       * @param value The appID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAppID(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        appID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string appID = 15;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAppID() {
+        
+        appID_ = getDefaultInstance().getAppID();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string appID = 15;</code>
+       * @param value The bytes for appID to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAppIDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        appID_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -20863,29 +22093,37 @@ public final class FileOuterClass {
 
     /**
      * <code>repeated string idList = 1;</code>
+     * @return A list containing the idList.
      */
     java.util.List<java.lang.String>
         getIdListList();
     /**
      * <code>repeated string idList = 1;</code>
+     * @return The count of idList.
      */
     int getIdListCount();
     /**
      * <code>repeated string idList = 1;</code>
+     * @param index The index of the element to return.
+     * @return The idList at the given index.
      */
     java.lang.String getIdList(int index);
     /**
      * <code>repeated string idList = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the idList at the given index.
      */
     com.google.protobuf.ByteString
         getIdListBytes(int index);
 
     /**
      * <code>.file.File partialFile = 2;</code>
+     * @return Whether the partialFile field is set.
      */
     boolean hasPartialFile();
     /**
      * <code>.file.File partialFile = 2;</code>
+     * @return The partialFile.
      */
     DriveStubs.grpc.FileOuterClass.File getPartialFile();
     /**
@@ -20896,7 +22134,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.UpdateFilesRequest}
    */
-  public  static final class UpdateFilesRequest extends
+  public static final class UpdateFilesRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.UpdateFilesRequest)
       UpdateFilesRequestOrBuilder {
@@ -20907,6 +22145,13 @@ public final class FileOuterClass {
     }
     private UpdateFilesRequest() {
       idList_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new UpdateFilesRequest();
     }
 
     @java.lang.Override
@@ -20935,7 +22180,7 @@ public final class FileOuterClass {
               break;
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 idList_ = new com.google.protobuf.LazyStringArrayList();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -20956,7 +22201,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -20970,7 +22215,7 @@ public final class FileOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           idList_ = idList_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
@@ -20990,11 +22235,11 @@ public final class FileOuterClass {
               DriveStubs.grpc.FileOuterClass.UpdateFilesRequest.class, DriveStubs.grpc.FileOuterClass.UpdateFilesRequest.Builder.class);
     }
 
-    private int bitField0_;
     public static final int IDLIST_FIELD_NUMBER = 1;
     private com.google.protobuf.LazyStringList idList_;
     /**
      * <code>repeated string idList = 1;</code>
+     * @return A list containing the idList.
      */
     public com.google.protobuf.ProtocolStringList
         getIdListList() {
@@ -21002,18 +22247,23 @@ public final class FileOuterClass {
     }
     /**
      * <code>repeated string idList = 1;</code>
+     * @return The count of idList.
      */
     public int getIdListCount() {
       return idList_.size();
     }
     /**
      * <code>repeated string idList = 1;</code>
+     * @param index The index of the element to return.
+     * @return The idList at the given index.
      */
     public java.lang.String getIdList(int index) {
       return idList_.get(index);
     }
     /**
      * <code>repeated string idList = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the idList at the given index.
      */
     public com.google.protobuf.ByteString
         getIdListBytes(int index) {
@@ -21024,19 +22274,24 @@ public final class FileOuterClass {
     private DriveStubs.grpc.FileOuterClass.File partialFile_;
     /**
      * <code>.file.File partialFile = 2;</code>
+     * @return Whether the partialFile field is set.
      */
+    @java.lang.Override
     public boolean hasPartialFile() {
       return partialFile_ != null;
     }
     /**
      * <code>.file.File partialFile = 2;</code>
+     * @return The partialFile.
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.File getPartialFile() {
       return partialFile_ == null ? DriveStubs.grpc.FileOuterClass.File.getDefaultInstance() : partialFile_;
     }
     /**
      * <code>.file.File partialFile = 2;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FileOrBuilder getPartialFileOrBuilder() {
       return getPartialFile();
     }
@@ -21097,16 +22352,15 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.UpdateFilesRequest other = (DriveStubs.grpc.FileOuterClass.UpdateFilesRequest) obj;
 
-      boolean result = true;
-      result = result && getIdListList()
-          .equals(other.getIdListList());
-      result = result && (hasPartialFile() == other.hasPartialFile());
+      if (!getIdListList()
+          .equals(other.getIdListList())) return false;
+      if (hasPartialFile() != other.hasPartialFile()) return false;
       if (hasPartialFile()) {
-        result = result && getPartialFile()
-            .equals(other.getPartialFile());
+        if (!getPartialFile()
+            .equals(other.getPartialFile())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -21292,8 +22546,7 @@ public final class FileOuterClass {
       public DriveStubs.grpc.FileOuterClass.UpdateFilesRequest buildPartial() {
         DriveStubs.grpc.FileOuterClass.UpdateFilesRequest result = new DriveStubs.grpc.FileOuterClass.UpdateFilesRequest(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((bitField0_ & 0x00000001) != 0)) {
           idList_ = idList_.getUnmodifiableView();
           bitField0_ = (bitField0_ & ~0x00000001);
         }
@@ -21303,42 +22556,41 @@ public final class FileOuterClass {
         } else {
           result.partialFile_ = partialFileBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -21397,13 +22649,14 @@ public final class FileOuterClass {
 
       private com.google.protobuf.LazyStringList idList_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureIdListIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           idList_ = new com.google.protobuf.LazyStringArrayList(idList_);
           bitField0_ |= 0x00000001;
          }
       }
       /**
        * <code>repeated string idList = 1;</code>
+       * @return A list containing the idList.
        */
       public com.google.protobuf.ProtocolStringList
           getIdListList() {
@@ -21411,18 +22664,23 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string idList = 1;</code>
+       * @return The count of idList.
        */
       public int getIdListCount() {
         return idList_.size();
       }
       /**
        * <code>repeated string idList = 1;</code>
+       * @param index The index of the element to return.
+       * @return The idList at the given index.
        */
       public java.lang.String getIdList(int index) {
         return idList_.get(index);
       }
       /**
        * <code>repeated string idList = 1;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the idList at the given index.
        */
       public com.google.protobuf.ByteString
           getIdListBytes(int index) {
@@ -21430,6 +22688,9 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string idList = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The idList to set.
+       * @return This builder for chaining.
        */
       public Builder setIdList(
           int index, java.lang.String value) {
@@ -21443,6 +22704,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string idList = 1;</code>
+       * @param value The idList to add.
+       * @return This builder for chaining.
        */
       public Builder addIdList(
           java.lang.String value) {
@@ -21456,6 +22719,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string idList = 1;</code>
+       * @param values The idList to add.
+       * @return This builder for chaining.
        */
       public Builder addAllIdList(
           java.lang.Iterable<java.lang.String> values) {
@@ -21467,6 +22732,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string idList = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearIdList() {
         idList_ = com.google.protobuf.LazyStringArrayList.EMPTY;
@@ -21476,6 +22742,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string idList = 1;</code>
+       * @param value The bytes of the idList to add.
+       * @return This builder for chaining.
        */
       public Builder addIdListBytes(
           com.google.protobuf.ByteString value) {
@@ -21489,17 +22757,19 @@ public final class FileOuterClass {
         return this;
       }
 
-      private DriveStubs.grpc.FileOuterClass.File partialFile_ = null;
+      private DriveStubs.grpc.FileOuterClass.File partialFile_;
       private com.google.protobuf.SingleFieldBuilderV3<
           DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder> partialFileBuilder_;
       /**
        * <code>.file.File partialFile = 2;</code>
+       * @return Whether the partialFile field is set.
        */
       public boolean hasPartialFile() {
         return partialFileBuilder_ != null || partialFile_ != null;
       }
       /**
        * <code>.file.File partialFile = 2;</code>
+       * @return The partialFile.
        */
       public DriveStubs.grpc.FileOuterClass.File getPartialFile() {
         if (partialFileBuilder_ == null) {
@@ -21608,7 +22878,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -21689,7 +22959,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.UpdateFilesResponse}
    */
-  public  static final class UpdateFilesResponse extends
+  public static final class UpdateFilesResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.UpdateFilesResponse)
       UpdateFilesResponseOrBuilder {
@@ -21700,6 +22970,13 @@ public final class FileOuterClass {
     }
     private UpdateFilesResponse() {
       failedFiles_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new UpdateFilesResponse();
     }
 
     @java.lang.Override
@@ -21727,7 +23004,7 @@ public final class FileOuterClass {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 failedFiles_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.FailedFile>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -21736,7 +23013,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -21750,7 +23027,7 @@ public final class FileOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           failedFiles_ = java.util.Collections.unmodifiableList(failedFiles_);
         }
         this.unknownFields = unknownFields.build();
@@ -21775,12 +23052,14 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.FailedFile failedFiles = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.FileOuterClass.FailedFile> getFailedFilesList() {
       return failedFiles_;
     }
     /**
      * <code>repeated .file.FailedFile failedFiles = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.FileOuterClass.FailedFileOrBuilder> 
         getFailedFilesOrBuilderList() {
       return failedFiles_;
@@ -21788,18 +23067,21 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.FailedFile failedFiles = 1;</code>
      */
+    @java.lang.Override
     public int getFailedFilesCount() {
       return failedFiles_.size();
     }
     /**
      * <code>repeated .file.FailedFile failedFiles = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FailedFile getFailedFiles(int index) {
       return failedFiles_.get(index);
     }
     /**
      * <code>repeated .file.FailedFile failedFiles = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FailedFileOrBuilder getFailedFilesOrBuilder(
         int index) {
       return failedFiles_.get(index);
@@ -21850,11 +23132,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.UpdateFilesResponse other = (DriveStubs.grpc.FileOuterClass.UpdateFilesResponse) obj;
 
-      boolean result = true;
-      result = result && getFailedFilesList()
-          .equals(other.getFailedFilesList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFailedFilesList()
+          .equals(other.getFailedFilesList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -22036,7 +23317,7 @@ public final class FileOuterClass {
         DriveStubs.grpc.FileOuterClass.UpdateFilesResponse result = new DriveStubs.grpc.FileOuterClass.UpdateFilesResponse(this);
         int from_bitField0_ = bitField0_;
         if (failedFilesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             failedFiles_ = java.util.Collections.unmodifiableList(failedFiles_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -22050,35 +23331,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -22151,7 +23432,7 @@ public final class FileOuterClass {
       private java.util.List<DriveStubs.grpc.FileOuterClass.FailedFile> failedFiles_ =
         java.util.Collections.emptyList();
       private void ensureFailedFilesIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           failedFiles_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.FailedFile>(failedFiles_);
           bitField0_ |= 0x00000001;
          }
@@ -22380,7 +23661,7 @@ public final class FileOuterClass {
           failedFilesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.FileOuterClass.FailedFile, DriveStubs.grpc.FileOuterClass.FailedFile.Builder, DriveStubs.grpc.FileOuterClass.FailedFileOrBuilder>(
                   failedFiles_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           failedFiles_ = null;
@@ -22390,7 +23671,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -22446,20 +23727,24 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
 
     /**
      * <code>string error = 2;</code>
+     * @return The error.
      */
     java.lang.String getError();
     /**
      * <code>string error = 2;</code>
+     * @return The bytes for error.
      */
     com.google.protobuf.ByteString
         getErrorBytes();
@@ -22467,7 +23752,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.FailedFile}
    */
-  public  static final class FailedFile extends
+  public static final class FailedFile extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.FailedFile)
       FailedFileOrBuilder {
@@ -22479,6 +23764,13 @@ public final class FileOuterClass {
     private FailedFile() {
       id_ = "";
       error_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new FailedFile();
     }
 
     @java.lang.Override
@@ -22494,7 +23786,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -22518,7 +23809,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -22553,7 +23844,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -22568,7 +23861,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -22587,7 +23882,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object error_;
     /**
      * <code>string error = 2;</code>
+     * @return The error.
      */
+    @java.lang.Override
     public java.lang.String getError() {
       java.lang.Object ref = error_;
       if (ref instanceof java.lang.String) {
@@ -22602,7 +23899,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string error = 2;</code>
+     * @return The bytes for error.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getErrorBytes() {
       java.lang.Object ref = error_;
@@ -22667,13 +23966,12 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.FailedFile other = (DriveStubs.grpc.FileOuterClass.FailedFile) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && getError()
-          .equals(other.getError());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getError()
+          .equals(other.getError())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -22858,35 +24156,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -22940,6 +24238,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -22955,6 +24254,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -22971,6 +24271,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -22984,6 +24286,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -22993,6 +24296,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -23009,6 +24314,7 @@ public final class FileOuterClass {
       private java.lang.Object error_ = "";
       /**
        * <code>string error = 2;</code>
+       * @return The error.
        */
       public java.lang.String getError() {
         java.lang.Object ref = error_;
@@ -23024,6 +24330,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string error = 2;</code>
+       * @return The bytes for error.
        */
       public com.google.protobuf.ByteString
           getErrorBytes() {
@@ -23040,6 +24347,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string error = 2;</code>
+       * @param value The error to set.
+       * @return This builder for chaining.
        */
       public Builder setError(
           java.lang.String value) {
@@ -23053,6 +24362,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string error = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearError() {
         
@@ -23062,6 +24372,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string error = 2;</code>
+       * @param value The bytes for error to set.
+       * @return This builder for chaining.
        */
       public Builder setErrorBytes(
           com.google.protobuf.ByteString value) {
@@ -23077,7 +24389,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -23133,10 +24445,12 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
@@ -23144,7 +24458,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetAncestorsRequest}
    */
-  public  static final class GetAncestorsRequest extends
+  public static final class GetAncestorsRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetAncestorsRequest)
       GetAncestorsRequestOrBuilder {
@@ -23155,6 +24469,13 @@ public final class FileOuterClass {
     }
     private GetAncestorsRequest() {
       id_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetAncestorsRequest();
     }
 
     @java.lang.Override
@@ -23170,7 +24491,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -23188,7 +24508,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -23223,7 +24543,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -23238,7 +24560,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -23297,11 +24621,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetAncestorsRequest other = (DriveStubs.grpc.FileOuterClass.GetAncestorsRequest) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -23481,35 +24804,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -23559,6 +24882,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -23574,6 +24898,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -23590,6 +24915,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -23603,6 +24930,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -23612,6 +24940,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -23627,7 +24957,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -23683,19 +25013,25 @@ public final class FileOuterClass {
 
     /**
      * <code>repeated string ancestors = 1;</code>
+     * @return A list containing the ancestors.
      */
     java.util.List<java.lang.String>
         getAncestorsList();
     /**
      * <code>repeated string ancestors = 1;</code>
+     * @return The count of ancestors.
      */
     int getAncestorsCount();
     /**
      * <code>repeated string ancestors = 1;</code>
+     * @param index The index of the element to return.
+     * @return The ancestors at the given index.
      */
     java.lang.String getAncestors(int index);
     /**
      * <code>repeated string ancestors = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the ancestors at the given index.
      */
     com.google.protobuf.ByteString
         getAncestorsBytes(int index);
@@ -23703,7 +25039,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetAncestorsResponse}
    */
-  public  static final class GetAncestorsResponse extends
+  public static final class GetAncestorsResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetAncestorsResponse)
       GetAncestorsResponseOrBuilder {
@@ -23714,6 +25050,13 @@ public final class FileOuterClass {
     }
     private GetAncestorsResponse() {
       ancestors_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetAncestorsResponse();
     }
 
     @java.lang.Override
@@ -23742,7 +25085,7 @@ public final class FileOuterClass {
               break;
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 ancestors_ = new com.google.protobuf.LazyStringArrayList();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -23750,7 +25093,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -23764,7 +25107,7 @@ public final class FileOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           ancestors_ = ancestors_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
@@ -23788,6 +25131,7 @@ public final class FileOuterClass {
     private com.google.protobuf.LazyStringList ancestors_;
     /**
      * <code>repeated string ancestors = 1;</code>
+     * @return A list containing the ancestors.
      */
     public com.google.protobuf.ProtocolStringList
         getAncestorsList() {
@@ -23795,18 +25139,23 @@ public final class FileOuterClass {
     }
     /**
      * <code>repeated string ancestors = 1;</code>
+     * @return The count of ancestors.
      */
     public int getAncestorsCount() {
       return ancestors_.size();
     }
     /**
      * <code>repeated string ancestors = 1;</code>
+     * @param index The index of the element to return.
+     * @return The ancestors at the given index.
      */
     public java.lang.String getAncestors(int index) {
       return ancestors_.get(index);
     }
     /**
      * <code>repeated string ancestors = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the ancestors at the given index.
      */
     public com.google.protobuf.ByteString
         getAncestorsBytes(int index) {
@@ -23862,11 +25211,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetAncestorsResponse other = (DriveStubs.grpc.FileOuterClass.GetAncestorsResponse) obj;
 
-      boolean result = true;
-      result = result && getAncestorsList()
-          .equals(other.getAncestorsList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAncestorsList()
+          .equals(other.getAncestorsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -24042,7 +25390,7 @@ public final class FileOuterClass {
       public DriveStubs.grpc.FileOuterClass.GetAncestorsResponse buildPartial() {
         DriveStubs.grpc.FileOuterClass.GetAncestorsResponse result = new DriveStubs.grpc.FileOuterClass.GetAncestorsResponse(this);
         int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((bitField0_ & 0x00000001) != 0)) {
           ancestors_ = ancestors_.getUnmodifiableView();
           bitField0_ = (bitField0_ & ~0x00000001);
         }
@@ -24053,35 +25401,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -24137,13 +25485,14 @@ public final class FileOuterClass {
 
       private com.google.protobuf.LazyStringList ancestors_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureAncestorsIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           ancestors_ = new com.google.protobuf.LazyStringArrayList(ancestors_);
           bitField0_ |= 0x00000001;
          }
       }
       /**
        * <code>repeated string ancestors = 1;</code>
+       * @return A list containing the ancestors.
        */
       public com.google.protobuf.ProtocolStringList
           getAncestorsList() {
@@ -24151,18 +25500,23 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string ancestors = 1;</code>
+       * @return The count of ancestors.
        */
       public int getAncestorsCount() {
         return ancestors_.size();
       }
       /**
        * <code>repeated string ancestors = 1;</code>
+       * @param index The index of the element to return.
+       * @return The ancestors at the given index.
        */
       public java.lang.String getAncestors(int index) {
         return ancestors_.get(index);
       }
       /**
        * <code>repeated string ancestors = 1;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the ancestors at the given index.
        */
       public com.google.protobuf.ByteString
           getAncestorsBytes(int index) {
@@ -24170,6 +25524,9 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string ancestors = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The ancestors to set.
+       * @return This builder for chaining.
        */
       public Builder setAncestors(
           int index, java.lang.String value) {
@@ -24183,6 +25540,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string ancestors = 1;</code>
+       * @param value The ancestors to add.
+       * @return This builder for chaining.
        */
       public Builder addAncestors(
           java.lang.String value) {
@@ -24196,6 +25555,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string ancestors = 1;</code>
+       * @param values The ancestors to add.
+       * @return This builder for chaining.
        */
       public Builder addAllAncestors(
           java.lang.Iterable<java.lang.String> values) {
@@ -24207,6 +25568,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string ancestors = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAncestors() {
         ancestors_ = com.google.protobuf.LazyStringArrayList.EMPTY;
@@ -24216,6 +25578,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>repeated string ancestors = 1;</code>
+       * @param value The bytes of the ancestors to add.
+       * @return This builder for chaining.
        */
       public Builder addAncestorsBytes(
           com.google.protobuf.ByteString value) {
@@ -24231,7 +25595,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -24287,10 +25651,12 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
@@ -24298,7 +25664,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetDescendantsByIDRequest}
    */
-  public  static final class GetDescendantsByIDRequest extends
+  public static final class GetDescendantsByIDRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetDescendantsByIDRequest)
       GetDescendantsByIDRequestOrBuilder {
@@ -24309,6 +25675,13 @@ public final class FileOuterClass {
     }
     private GetDescendantsByIDRequest() {
       id_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetDescendantsByIDRequest();
     }
 
     @java.lang.Override
@@ -24324,7 +25697,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -24342,7 +25714,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -24377,7 +25749,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -24392,7 +25766,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -24451,11 +25827,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetDescendantsByIDRequest other = (DriveStubs.grpc.FileOuterClass.GetDescendantsByIDRequest) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -24635,35 +26010,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -24713,6 +26088,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -24728,6 +26104,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -24744,6 +26121,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -24757,6 +26136,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -24766,6 +26146,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -24781,7 +26163,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -24862,7 +26244,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.GetDescendantsByIDResponse}
    */
-  public  static final class GetDescendantsByIDResponse extends
+  public static final class GetDescendantsByIDResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.GetDescendantsByIDResponse)
       GetDescendantsByIDResponseOrBuilder {
@@ -24873,6 +26255,13 @@ public final class FileOuterClass {
     }
     private GetDescendantsByIDResponse() {
       descendants_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetDescendantsByIDResponse();
     }
 
     @java.lang.Override
@@ -24900,7 +26289,7 @@ public final class FileOuterClass {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 descendants_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.Descendant>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -24909,7 +26298,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -24923,7 +26312,7 @@ public final class FileOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           descendants_ = java.util.Collections.unmodifiableList(descendants_);
         }
         this.unknownFields = unknownFields.build();
@@ -24949,10 +26338,12 @@ public final class FileOuterClass {
 
       /**
        * <code>.file.File file = 1;</code>
+       * @return Whether the file field is set.
        */
       boolean hasFile();
       /**
        * <code>.file.File file = 1;</code>
+       * @return The file.
        */
       DriveStubs.grpc.FileOuterClass.File getFile();
       /**
@@ -24962,10 +26353,12 @@ public final class FileOuterClass {
 
       /**
        * <code>.file.File parent = 2;</code>
+       * @return Whether the parent field is set.
        */
       boolean hasParent();
       /**
        * <code>.file.File parent = 2;</code>
+       * @return The parent.
        */
       DriveStubs.grpc.FileOuterClass.File getParent();
       /**
@@ -24976,7 +26369,7 @@ public final class FileOuterClass {
     /**
      * Protobuf type {@code file.GetDescendantsByIDResponse.Descendant}
      */
-    public  static final class Descendant extends
+    public static final class Descendant extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:file.GetDescendantsByIDResponse.Descendant)
         DescendantOrBuilder {
@@ -24986,6 +26379,13 @@ public final class FileOuterClass {
         super(builder);
       }
       private Descendant() {
+      }
+
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new Descendant();
       }
 
       @java.lang.Override
@@ -25001,7 +26401,6 @@ public final class FileOuterClass {
         if (extensionRegistry == null) {
           throw new java.lang.NullPointerException();
         }
-        int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
@@ -25039,7 +26438,7 @@ public final class FileOuterClass {
                 break;
               }
               default: {
-                if (!parseUnknownFieldProto3(
+                if (!parseUnknownField(
                     input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
@@ -25074,19 +26473,24 @@ public final class FileOuterClass {
       private DriveStubs.grpc.FileOuterClass.File file_;
       /**
        * <code>.file.File file = 1;</code>
+       * @return Whether the file field is set.
        */
+      @java.lang.Override
       public boolean hasFile() {
         return file_ != null;
       }
       /**
        * <code>.file.File file = 1;</code>
+       * @return The file.
        */
+      @java.lang.Override
       public DriveStubs.grpc.FileOuterClass.File getFile() {
         return file_ == null ? DriveStubs.grpc.FileOuterClass.File.getDefaultInstance() : file_;
       }
       /**
        * <code>.file.File file = 1;</code>
        */
+      @java.lang.Override
       public DriveStubs.grpc.FileOuterClass.FileOrBuilder getFileOrBuilder() {
         return getFile();
       }
@@ -25095,19 +26499,24 @@ public final class FileOuterClass {
       private DriveStubs.grpc.FileOuterClass.File parent_;
       /**
        * <code>.file.File parent = 2;</code>
+       * @return Whether the parent field is set.
        */
+      @java.lang.Override
       public boolean hasParent() {
         return parent_ != null;
       }
       /**
        * <code>.file.File parent = 2;</code>
+       * @return The parent.
        */
+      @java.lang.Override
       public DriveStubs.grpc.FileOuterClass.File getParent() {
         return parent_ == null ? DriveStubs.grpc.FileOuterClass.File.getDefaultInstance() : parent_;
       }
       /**
        * <code>.file.File parent = 2;</code>
        */
+      @java.lang.Override
       public DriveStubs.grpc.FileOuterClass.FileOrBuilder getParentOrBuilder() {
         return getParent();
       }
@@ -25164,19 +26573,18 @@ public final class FileOuterClass {
         }
         DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.Descendant other = (DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.Descendant) obj;
 
-        boolean result = true;
-        result = result && (hasFile() == other.hasFile());
+        if (hasFile() != other.hasFile()) return false;
         if (hasFile()) {
-          result = result && getFile()
-              .equals(other.getFile());
+          if (!getFile()
+              .equals(other.getFile())) return false;
         }
-        result = result && (hasParent() == other.hasParent());
+        if (hasParent() != other.hasParent()) return false;
         if (hasParent()) {
-          result = result && getParent()
-              .equals(other.getParent());
+          if (!getParent()
+              .equals(other.getParent())) return false;
         }
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
       }
 
       @java.lang.Override
@@ -25381,35 +26789,35 @@ public final class FileOuterClass {
 
         @java.lang.Override
         public Builder clone() {
-          return (Builder) super.clone();
+          return super.clone();
         }
         @java.lang.Override
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.setField(field, value);
+          return super.setField(field, value);
         }
         @java.lang.Override
         public Builder clearField(
             com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
+          return super.clearField(field);
         }
         @java.lang.Override
         public Builder clearOneof(
             com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
+          return super.clearOneof(oneof);
         }
         @java.lang.Override
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             int index, java.lang.Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
+          return super.setRepeatedField(field, index, value);
         }
         @java.lang.Override
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.addRepeatedField(field, value);
+          return super.addRepeatedField(field, value);
         }
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -25458,17 +26866,19 @@ public final class FileOuterClass {
           return this;
         }
 
-        private DriveStubs.grpc.FileOuterClass.File file_ = null;
+        private DriveStubs.grpc.FileOuterClass.File file_;
         private com.google.protobuf.SingleFieldBuilderV3<
             DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder> fileBuilder_;
         /**
          * <code>.file.File file = 1;</code>
+         * @return Whether the file field is set.
          */
         public boolean hasFile() {
           return fileBuilder_ != null || file_ != null;
         }
         /**
          * <code>.file.File file = 1;</code>
+         * @return The file.
          */
         public DriveStubs.grpc.FileOuterClass.File getFile() {
           if (fileBuilder_ == null) {
@@ -25575,17 +26985,19 @@ public final class FileOuterClass {
           return fileBuilder_;
         }
 
-        private DriveStubs.grpc.FileOuterClass.File parent_ = null;
+        private DriveStubs.grpc.FileOuterClass.File parent_;
         private com.google.protobuf.SingleFieldBuilderV3<
             DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder> parentBuilder_;
         /**
          * <code>.file.File parent = 2;</code>
+         * @return Whether the parent field is set.
          */
         public boolean hasParent() {
           return parentBuilder_ != null || parent_ != null;
         }
         /**
          * <code>.file.File parent = 2;</code>
+         * @return The parent.
          */
         public DriveStubs.grpc.FileOuterClass.File getParent() {
           if (parentBuilder_ == null) {
@@ -25694,7 +27106,7 @@ public final class FileOuterClass {
         @java.lang.Override
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFieldsProto3(unknownFields);
+          return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
@@ -25749,12 +27161,14 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.GetDescendantsByIDResponse.Descendant descendants = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.Descendant> getDescendantsList() {
       return descendants_;
     }
     /**
      * <code>repeated .file.GetDescendantsByIDResponse.Descendant descendants = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.DescendantOrBuilder> 
         getDescendantsOrBuilderList() {
       return descendants_;
@@ -25762,18 +27176,21 @@ public final class FileOuterClass {
     /**
      * <code>repeated .file.GetDescendantsByIDResponse.Descendant descendants = 1;</code>
      */
+    @java.lang.Override
     public int getDescendantsCount() {
       return descendants_.size();
     }
     /**
      * <code>repeated .file.GetDescendantsByIDResponse.Descendant descendants = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.Descendant getDescendants(int index) {
       return descendants_.get(index);
     }
     /**
      * <code>repeated .file.GetDescendantsByIDResponse.Descendant descendants = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.DescendantOrBuilder getDescendantsOrBuilder(
         int index) {
       return descendants_.get(index);
@@ -25824,11 +27241,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse other = (DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse) obj;
 
-      boolean result = true;
-      result = result && getDescendantsList()
-          .equals(other.getDescendantsList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getDescendantsList()
+          .equals(other.getDescendantsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -26010,7 +27426,7 @@ public final class FileOuterClass {
         DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse result = new DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse(this);
         int from_bitField0_ = bitField0_;
         if (descendantsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             descendants_ = java.util.Collections.unmodifiableList(descendants_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -26024,35 +27440,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -26125,7 +27541,7 @@ public final class FileOuterClass {
       private java.util.List<DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.Descendant> descendants_ =
         java.util.Collections.emptyList();
       private void ensureDescendantsIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           descendants_ = new java.util.ArrayList<DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.Descendant>(descendants_);
           bitField0_ |= 0x00000001;
          }
@@ -26354,7 +27770,7 @@ public final class FileOuterClass {
           descendantsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.Descendant, DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.Descendant.Builder, DriveStubs.grpc.FileOuterClass.GetDescendantsByIDResponse.DescendantOrBuilder>(
                   descendants_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           descendants_ = null;
@@ -26364,7 +27780,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -26420,10 +27836,12 @@ public final class FileOuterClass {
 
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
     java.lang.String getId();
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
@@ -26431,7 +27849,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.DeleteFileByIDRequest}
    */
-  public  static final class DeleteFileByIDRequest extends
+  public static final class DeleteFileByIDRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.DeleteFileByIDRequest)
       DeleteFileByIDRequestOrBuilder {
@@ -26442,6 +27860,13 @@ public final class FileOuterClass {
     }
     private DeleteFileByIDRequest() {
       id_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteFileByIDRequest();
     }
 
     @java.lang.Override
@@ -26457,7 +27882,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -26475,7 +27899,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -26510,7 +27934,9 @@ public final class FileOuterClass {
     private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
+     * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -26525,7 +27951,9 @@ public final class FileOuterClass {
     }
     /**
      * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -26584,11 +28012,10 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.DeleteFileByIDRequest other = (DriveStubs.grpc.FileOuterClass.DeleteFileByIDRequest) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -26768,35 +28195,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -26846,6 +28273,7 @@ public final class FileOuterClass {
       private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
+       * @return The id.
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -26861,6 +28289,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -26877,6 +28306,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           java.lang.String value) {
@@ -26890,6 +28321,7 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -26899,6 +28331,8 @@ public final class FileOuterClass {
       }
       /**
        * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -26914,7 +28348,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -26970,10 +28404,12 @@ public final class FileOuterClass {
 
     /**
      * <code>.file.File file = 1;</code>
+     * @return Whether the file field is set.
      */
     boolean hasFile();
     /**
      * <code>.file.File file = 1;</code>
+     * @return The file.
      */
     DriveStubs.grpc.FileOuterClass.File getFile();
     /**
@@ -26984,7 +28420,7 @@ public final class FileOuterClass {
   /**
    * Protobuf type {@code file.DeleteFileByIDResponse}
    */
-  public  static final class DeleteFileByIDResponse extends
+  public static final class DeleteFileByIDResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:file.DeleteFileByIDResponse)
       DeleteFileByIDResponseOrBuilder {
@@ -26994,6 +28430,13 @@ public final class FileOuterClass {
       super(builder);
     }
     private DeleteFileByIDResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DeleteFileByIDResponse();
     }
 
     @java.lang.Override
@@ -27009,7 +28452,6 @@ public final class FileOuterClass {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -27034,7 +28476,7 @@ public final class FileOuterClass {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -27069,19 +28511,24 @@ public final class FileOuterClass {
     private DriveStubs.grpc.FileOuterClass.File file_;
     /**
      * <code>.file.File file = 1;</code>
+     * @return Whether the file field is set.
      */
+    @java.lang.Override
     public boolean hasFile() {
       return file_ != null;
     }
     /**
      * <code>.file.File file = 1;</code>
+     * @return The file.
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.File getFile() {
       return file_ == null ? DriveStubs.grpc.FileOuterClass.File.getDefaultInstance() : file_;
     }
     /**
      * <code>.file.File file = 1;</code>
      */
+    @java.lang.Override
     public DriveStubs.grpc.FileOuterClass.FileOrBuilder getFileOrBuilder() {
       return getFile();
     }
@@ -27131,14 +28578,13 @@ public final class FileOuterClass {
       }
       DriveStubs.grpc.FileOuterClass.DeleteFileByIDResponse other = (DriveStubs.grpc.FileOuterClass.DeleteFileByIDResponse) obj;
 
-      boolean result = true;
-      result = result && (hasFile() == other.hasFile());
+      if (hasFile() != other.hasFile()) return false;
       if (hasFile()) {
-        result = result && getFile()
-            .equals(other.getFile());
+        if (!getFile()
+            .equals(other.getFile())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -27328,35 +28774,35 @@ public final class FileOuterClass {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -27402,17 +28848,19 @@ public final class FileOuterClass {
         return this;
       }
 
-      private DriveStubs.grpc.FileOuterClass.File file_ = null;
+      private DriveStubs.grpc.FileOuterClass.File file_;
       private com.google.protobuf.SingleFieldBuilderV3<
           DriveStubs.grpc.FileOuterClass.File, DriveStubs.grpc.FileOuterClass.File.Builder, DriveStubs.grpc.FileOuterClass.FileOrBuilder> fileBuilder_;
       /**
        * <code>.file.File file = 1;</code>
+       * @return Whether the file field is set.
        */
       public boolean hasFile() {
         return fileBuilder_ != null || file_ != null;
       }
       /**
        * <code>.file.File file = 1;</code>
+       * @return The file.
        */
       public DriveStubs.grpc.FileOuterClass.File getFile() {
         if (fileBuilder_ == null) {
@@ -27521,7 +28969,7 @@ public final class FileOuterClass {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -27790,87 +29238,80 @@ public final class FileOuterClass {
       "FolderRequest\022\020\n\010folderID\030\001 \001(\t\022\017\n\007owner" +
       "ID\030\002 \001(\t\022\035\n\tqueryFile\030\003 \001(\0132\n.file.File\"" +
       ";\n\036GetDescendantsByFolderResponse\022\031\n\005fil" +
-      "es\030\001 \003(\0132\n.file.File\"{\n\021CreateFileReques" +
-      "t\022\013\n\003key\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\014\n\004size\030\003 \001" +
-      "(\003\022\014\n\004type\030\004 \001(\t\022\017\n\007ownerID\030\005 \001(\t\022\016\n\006buc" +
-      "ket\030\006 \001(\t\022\016\n\006parent\030\007 \001(\t\"\037\n\021DeleteFileR" +
-      "equest\022\n\n\002id\030\001 \001(\t\"<\n\021DeletedFileObject\022" +
-      "\n\n\002id\030\001 \001(\t\022\013\n\003key\030\002 \001(\t\022\016\n\006bucket\030\003 \001(\t" +
-      "\"B\n\022DeleteFileResponse\022&\n\005files\030\002 \003(\0132\027." +
-      "file.DeletedFileObjectJ\004\010\001\020\002\"2\n\020IsAllowe" +
-      "dRequest\022\016\n\006fileID\030\001 \001(\t\022\016\n\006userID\030\002 \001(\t" +
-      "\"$\n\021IsAllowedResponse\022\017\n\007allowed\030\001 \001(\010\"E" +
-      "\n\004User\022\n\n\002id\030\001 \001(\t\022\021\n\tfirstName\030\002 \001(\t\022\020\n" +
-      "\010lastName\030\003 \001(\t\022\014\n\004mail\030\004 \001(\t\"\037\n\003App\022\n\n\002" +
-      "id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\"\224\002\n\004File\022\n\n\002id\030\001 " +
-      "\001(\t\022\013\n\003key\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\014\n\004type\030\004" +
-      " \001(\t\022\023\n\013description\030\005 \001(\t\022\017\n\007ownerID\030\006 \001" +
-      "(\t\022\014\n\004size\030\007 \001(\003\022\020\n\006parent\030\010 \001(\tH\000\022\"\n\014pa" +
-      "rentObject\030\t \001(\0132\n.file.FileH\000\022\016\n\006bucket" +
-      "\030\n \001(\t\022\021\n\tcreatedAt\030\013 \001(\003\022\021\n\tupdatedAt\030\014" +
-      " \001(\003\022\034\n\010children\030\r \003(\0132\n.file.File\022\r\n\005fl" +
-      "oat\030\016 \001(\010B\n\n\010fileOrId\"E\n\022UpdateFilesRequ" +
-      "est\022\016\n\006idList\030\001 \003(\t\022\037\n\013partialFile\030\002 \001(\013" +
-      "2\n.file.File\"<\n\023UpdateFilesResponse\022%\n\013f" +
-      "ailedFiles\030\001 \003(\0132\020.file.FailedFile\"\'\n\nFa" +
-      "iledFile\022\n\n\002id\030\001 \001(\t\022\r\n\005error\030\002 \001(\t\"!\n\023G" +
-      "etAncestorsRequest\022\n\n\002id\030\001 \001(\t\")\n\024GetAnc" +
-      "estorsResponse\022\021\n\tancestors\030\001 \003(\t\"\'\n\031Get" +
-      "DescendantsByIDRequest\022\n\n\002id\030\001 \001(\t\"\242\001\n\032G" +
-      "etDescendantsByIDResponse\022@\n\013descendants" +
-      "\030\001 \003(\0132+.file.GetDescendantsByIDResponse" +
-      ".Descendant\032B\n\nDescendant\022\030\n\004file\030\001 \001(\0132" +
-      "\n.file.File\022\032\n\006parent\030\002 \001(\0132\n.file.File\"" +
-      "#\n\025DeleteFileByIDRequest\022\n\n\002id\030\001 \001(\t\"2\n\026" +
-      "DeleteFileByIDResponse\022\030\n\004file\030\001 \001(\0132\n.f" +
-      "ile.File2\304\n\n\013FileService\022<\n\013GenerateKey\022" +
-      "\030.file.GenerateKeyRequest\032\021.file.KeyResp" +
-      "onse\"\000\022G\n\014CreateUpload\022\031.file.CreateUplo" +
-      "adRequest\032\032.file.CreateUploadResponse\"\000\022" +
-      "G\n\014CreateUpdate\022\031.file.CreateUploadReque" +
-      "st\032\032.file.CreateUploadResponse\"\000\022M\n\016Upda" +
-      "teUploadID\022\033.file.UpdateUploadIDRequest\032" +
-      "\034.file.UpdateUploadIDResponse\"\000\022J\n\rGetUp" +
-      "loadByID\022\032.file.GetUploadByIDRequest\032\033.f" +
-      "ile.GetUploadByIDResponse\"\000\022V\n\021DeleteUpl" +
-      "oadByKey\022\036.file.DeleteUploadByKeyRequest" +
-      "\032\037.file.DeleteUploadByKeyResponse\"\000\022S\n\020D" +
-      "eleteUploadByID\022\035.file.DeleteUploadByIDR" +
-      "equest\032\036.file.DeleteUploadByIDResponse\"\000" +
-      "\0227\n\013GetFileByID\022\032.file.GetByFileByIDRequ" +
-      "est\032\n.file.File\"\000\0227\n\014GetFileByKey\022\031.file" +
-      ".GetFileByKeyRequest\032\n.file.File\"\000\022S\n\020Ge" +
-      "tFilesByFolder\022\035.file.GetFilesByFolderRe" +
-      "quest\032\036.file.GetFilesByFolderResponse\"\000\022" +
-      "e\n\026GetDescendantsByFolder\022#.file.GetDesc" +
-      "endantsByFolderRequest\032$.file.GetDescend" +
-      "antsByFolderResponse\"\000\0223\n\nCreateFile\022\027.f" +
-      "ile.CreateFileRequest\032\n.file.File\"\000\022A\n\nD" +
-      "eleteFile\022\027.file.DeleteFileRequest\032\030.fil" +
-      "e.DeleteFileResponse\"\000\022>\n\tIsAllowed\022\026.fi" +
-      "le.IsAllowedRequest\032\027.file.IsAllowedResp" +
-      "onse\"\000\022D\n\013UpdateFiles\022\030.file.UpdateFiles" +
-      "Request\032\031.file.UpdateFilesResponse\"\000\022G\n\014" +
-      "GetAncestors\022\031.file.GetAncestorsRequest\032" +
-      "\032.file.GetAncestorsResponse\"\000\022Y\n\022GetDesc" +
-      "endantsByID\022\037.file.GetDescendantsByIDReq" +
-      "uest\032 .file.GetDescendantsByIDResponse\"\000" +
-      "\022M\n\016DeleteFileByID\022\033.file.DeleteFileByID" +
-      "Request\032\034.file.DeleteFileByIDResponse\"\000B" +
-      "\021\n\017DriveStubs.grpcb\006proto3"
+      "es\030\001 \003(\0132\n.file.File\"\212\001\n\021CreateFileReque" +
+      "st\022\013\n\003key\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\014\n\004size\030\003 " +
+      "\001(\003\022\014\n\004type\030\004 \001(\t\022\017\n\007ownerID\030\005 \001(\t\022\016\n\006bu" +
+      "cket\030\006 \001(\t\022\016\n\006parent\030\007 \001(\t\022\r\n\005appID\030\010 \001(" +
+      "\t\"\037\n\021DeleteFileRequest\022\n\n\002id\030\001 \001(\t\"<\n\021De" +
+      "letedFileObject\022\n\n\002id\030\001 \001(\t\022\013\n\003key\030\002 \001(\t" +
+      "\022\016\n\006bucket\030\003 \001(\t\"B\n\022DeleteFileResponse\022&" +
+      "\n\005files\030\002 \003(\0132\027.file.DeletedFileObjectJ\004" +
+      "\010\001\020\002\"2\n\020IsAllowedRequest\022\016\n\006fileID\030\001 \001(\t" +
+      "\022\016\n\006userID\030\002 \001(\t\"$\n\021IsAllowedResponse\022\017\n" +
+      "\007allowed\030\001 \001(\010\"E\n\004User\022\n\n\002id\030\001 \001(\t\022\021\n\tfi" +
+      "rstName\030\002 \001(\t\022\020\n\010lastName\030\003 \001(\t\022\014\n\004mail\030" +
+      "\004 \001(\t\"\037\n\003App\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\"\243" +
+      "\002\n\004File\022\n\n\002id\030\001 \001(\t\022\013\n\003key\030\002 \001(\t\022\014\n\004name" +
+      "\030\003 \001(\t\022\014\n\004type\030\004 \001(\t\022\023\n\013description\030\005 \001(" +
+      "\t\022\017\n\007ownerID\030\006 \001(\t\022\014\n\004size\030\007 \001(\003\022\020\n\006pare" +
+      "nt\030\010 \001(\tH\000\022\"\n\014parentObject\030\t \001(\0132\n.file." +
+      "FileH\000\022\016\n\006bucket\030\n \001(\t\022\021\n\tcreatedAt\030\013 \001(" +
+      "\003\022\021\n\tupdatedAt\030\014 \001(\003\022\034\n\010children\030\r \003(\0132\n" +
+      ".file.File\022\r\n\005float\030\016 \001(\010\022\r\n\005appID\030\017 \001(\t" +
+      "B\n\n\010fileOrId\"E\n\022UpdateFilesRequest\022\016\n\006id" +
+      "List\030\001 \003(\t\022\037\n\013partialFile\030\002 \001(\0132\n.file.F" +
+      "ile\"<\n\023UpdateFilesResponse\022%\n\013failedFile" +
+      "s\030\001 \003(\0132\020.file.FailedFile\"\'\n\nFailedFile\022" +
+      "\n\n\002id\030\001 \001(\t\022\r\n\005error\030\002 \001(\t\"!\n\023GetAncesto" +
+      "rsRequest\022\n\n\002id\030\001 \001(\t\")\n\024GetAncestorsRes" +
+      "ponse\022\021\n\tancestors\030\001 \003(\t\"\'\n\031GetDescendan" +
+      "tsByIDRequest\022\n\n\002id\030\001 \001(\t\"\242\001\n\032GetDescend" +
+      "antsByIDResponse\022@\n\013descendants\030\001 \003(\0132+." +
+      "file.GetDescendantsByIDResponse.Descenda" +
+      "nt\032B\n\nDescendant\022\030\n\004file\030\001 \001(\0132\n.file.Fi" +
+      "le\022\032\n\006parent\030\002 \001(\0132\n.file.File\"#\n\025Delete" +
+      "FileByIDRequest\022\n\n\002id\030\001 \001(\t\"2\n\026DeleteFil" +
+      "eByIDResponse\022\030\n\004file\030\001 \001(\0132\n.file.File2" +
+      "\304\n\n\013FileService\022<\n\013GenerateKey\022\030.file.Ge" +
+      "nerateKeyRequest\032\021.file.KeyResponse\"\000\022G\n" +
+      "\014CreateUpload\022\031.file.CreateUploadRequest" +
+      "\032\032.file.CreateUploadResponse\"\000\022G\n\014Create" +
+      "Update\022\031.file.CreateUploadRequest\032\032.file" +
+      ".CreateUploadResponse\"\000\022M\n\016UpdateUploadI" +
+      "D\022\033.file.UpdateUploadIDRequest\032\034.file.Up" +
+      "dateUploadIDResponse\"\000\022J\n\rGetUploadByID\022" +
+      "\032.file.GetUploadByIDRequest\032\033.file.GetUp" +
+      "loadByIDResponse\"\000\022V\n\021DeleteUploadByKey\022" +
+      "\036.file.DeleteUploadByKeyRequest\032\037.file.D" +
+      "eleteUploadByKeyResponse\"\000\022S\n\020DeleteUplo" +
+      "adByID\022\035.file.DeleteUploadByIDRequest\032\036." +
+      "file.DeleteUploadByIDResponse\"\000\0227\n\013GetFi" +
+      "leByID\022\032.file.GetByFileByIDRequest\032\n.fil" +
+      "e.File\"\000\0227\n\014GetFileByKey\022\031.file.GetFileB" +
+      "yKeyRequest\032\n.file.File\"\000\022S\n\020GetFilesByF" +
+      "older\022\035.file.GetFilesByFolderRequest\032\036.f" +
+      "ile.GetFilesByFolderResponse\"\000\022e\n\026GetDes" +
+      "cendantsByFolder\022#.file.GetDescendantsBy" +
+      "FolderRequest\032$.file.GetDescendantsByFol" +
+      "derResponse\"\000\0223\n\nCreateFile\022\027.file.Creat" +
+      "eFileRequest\032\n.file.File\"\000\022A\n\nDeleteFile" +
+      "\022\027.file.DeleteFileRequest\032\030.file.DeleteF" +
+      "ileResponse\"\000\022>\n\tIsAllowed\022\026.file.IsAllo" +
+      "wedRequest\032\027.file.IsAllowedResponse\"\000\022D\n" +
+      "\013UpdateFiles\022\030.file.UpdateFilesRequest\032\031" +
+      ".file.UpdateFilesResponse\"\000\022G\n\014GetAncest" +
+      "ors\022\031.file.GetAncestorsRequest\032\032.file.Ge" +
+      "tAncestorsResponse\"\000\022Y\n\022GetDescendantsBy" +
+      "ID\022\037.file.GetDescendantsByIDRequest\032 .fi" +
+      "le.GetDescendantsByIDResponse\"\000\022M\n\016Delet" +
+      "eFileByID\022\033.file.DeleteFileByIDRequest\032\034" +
+      ".file.DeleteFileByIDResponse\"\000B\021\n\017DriveS" +
+      "tubs.grpcb\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
+        });
     internal_static_file_CreateUploadRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_file_CreateUploadRequest_fieldAccessorTable = new
@@ -27984,7 +29425,7 @@ public final class FileOuterClass {
     internal_static_file_CreateFileRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_file_CreateFileRequest_descriptor,
-        new java.lang.String[] { "Key", "Name", "Size", "Type", "OwnerID", "Bucket", "Parent", });
+        new java.lang.String[] { "Key", "Name", "Size", "Type", "OwnerID", "Bucket", "Parent", "AppID", });
     internal_static_file_DeleteFileRequest_descriptor =
       getDescriptor().getMessageTypes().get(19);
     internal_static_file_DeleteFileRequest_fieldAccessorTable = new
@@ -28032,7 +29473,7 @@ public final class FileOuterClass {
     internal_static_file_File_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_file_File_descriptor,
-        new java.lang.String[] { "Id", "Key", "Name", "Type", "Description", "OwnerID", "Size", "Parent", "ParentObject", "Bucket", "CreatedAt", "UpdatedAt", "Children", "Float", "FileOrId", });
+        new java.lang.String[] { "Id", "Key", "Name", "Type", "Description", "OwnerID", "Size", "Parent", "ParentObject", "Bucket", "CreatedAt", "UpdatedAt", "Children", "Float", "AppID", "FileOrId", });
     internal_static_file_UpdateFilesRequest_descriptor =
       getDescriptor().getMessageTypes().get(27);
     internal_static_file_UpdateFilesRequest_fieldAccessorTable = new
