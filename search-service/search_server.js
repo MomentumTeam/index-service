@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const logger = require("./logger");
 const { Client } = require("@elastic/elasticsearch");
 const { getFileByID, getDesendantsById, getUsersPermissions, conditions } = require("./drive_utils");
+const { cleanString, getStringWithBold } = require("./str_utils");
 
 dotenv.config({ path: "../.env" });
 
@@ -84,32 +85,6 @@ function main() {
 main();
 let userId;
 
-function cleanString(str) {
-  cleanStr = str.replace(/[$&+,:;=?@#|'<>.^*()%!{}-]/g, " ");
-  cleanStr = cleanStr.replace(/[^A-Za-z0-9\u0590-\u05FF\u0600-\u06FF]/g, " "); // Without special characters
-  cleanStr = cleanStr.replace(/\r?\n|\r/g, " ");
-  cleanStr = cleanStr.trim().replace(/\s+/g, " ");
-  cleanStr = cleanStr.toLowerCase();
-  return cleanStr;
-}
-
-function getStringWithBold(str, query) {
-  if (!query || !str) {
-    return str;
-  }
-  const queryArray = query.split(" ");
-  str = str.replace(new RegExp("<b>", "g"), "");
-  str = str.replace(new RegExp("</b>", "g"), "");
-  resultstr = str;
-  queryArray.forEach((element) => {
-    // str.match(new RegExp(element, "ig")).forEach((matchString) => {
-    //   resultstr = resultstr.replace(new RegExp(matchString, "g"), `<b>${matchString}</b>`);
-    // });
-    str = str.replace(new RegExp(element, "ig"), `<b>${element}</b>`);
-  });
-  return str;
-}
-
 async function indexesCollector(permissionArray) {
   let filesArray = [];
   let ownersArray = [];
@@ -130,21 +105,13 @@ async function indexesCollector(permissionArray) {
     })
   );
 
-  // if (filesArray.includes(null)) {
-  //   return [];
-  // }
-
   for (let file of filesArray) {
     if (file) {
       if (file.type.includes("folder")) {
         let desendantsArray = await getDesendantsById(file.id);
-        if (!desendantsArray) {
-          desendantsArray = [];
-        }
-        let ownersIds = desendantsArray.map((desendants) => {
-          return desendants.file.ownerID;
-        });
+        if (!desendantsArray) desendantsArray = [];
 
+        let ownersIds = desendantsArray.map((desendants) => desendants.file.ownerID);
         ownersIds.push(file.ownerID);
         ownersArray = ownersArray.concat(ownersIds);
       } else {
@@ -314,28 +281,21 @@ async function search(call, callback) {
     let indexesArray = [];
     const exactMatch = call.request.exactMatch;
     const fields = call.request.fields;
-    if (fields.content) {
-      fields.content = cleanString(fields.content);
-    }
-    if (fields.fileName) {
-      // fields.fileName = cleanString(fields.fileName);
-    }
     userId = call.request.userID;
+
+    if (fields.content) fields.content = cleanString(fields.content);
+    if (fields.fileName) fields.fileName = cleanString(fields.fileName);
 
     const must = getQueryMust(fields, userId);
     const should = getQueryShould(fields, exactMatch);
 
-    //TODO UNCOMMENT
     const usersPermissions = await getUsersPermissions(userId);
-
     if (usersPermissions.permissions.length) {
       const ownersArray = await indexesCollector(usersPermissions.permissions);
       ownersArray.unshift(userId);
       indexesArray = [...new Set(ownersArray)]; //returns an Array of ownerIDs of files that were shared with the user.
     }
-    //TODO UNCOMMENT
 
-    // indexesArray = ["5e5688324203fc40043591aa"];
     const indices_boost = new Object();
     indices_boost[userId] = 2; //boost the files of the user who did the search to the top of the results.
 
@@ -364,11 +324,20 @@ async function search(call, callback) {
           //return uniqe file Ids-(one result from each file)
           field: "fileId.keyword",
         },
+        aggs: {
+          //return uniqe count of total results -(one result from each file)
+          fileId_count: {
+            cardinality: {
+              field: "fileId.keyword",
+            },
+          },
+        },
       },
     };
 
     const result = await clientES.search(elasticRequest);
-    const itemCount = JSON.stringify(result.body.hits.total.value);
+    const itemCount = JSON.stringify(result.body.aggregations.fileId_count.value);
+
     const results = await result.body.hits.hits.map((document) => {
       let highlightedContent = null,
         highlightedFileName = null;
@@ -384,12 +353,13 @@ async function search(call, callback) {
         highlightedContent: getStringWithBold(highlightedContent, fields.content),
         highlightedFileName: getStringWithBold(highlightedFileName, fields.fileName),
       };
+
       return fileResult;
     });
 
     logger.log({
       level: "info",
-      message: `Search completed successfully!`,
+      message: `Search completed successfully!, total hits: ${itemCount}`,
       label: `userId: ${userId}`,
     });
 
