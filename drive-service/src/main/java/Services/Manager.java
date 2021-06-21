@@ -30,32 +30,38 @@ public class Manager {
     }
 
     public static void processData (DriveRequest message) {
-        String fileId = message.getFileId();
-        ElasticOperation elasticOperation = message.elasticOperation;
-        DriveField[] driveFields = message.getDriveFields();
-
-        State state = new State(fileId, elasticOperation);
-        state.receiveMetadata();
-        if(!state.fileExists){
-            state.pushDeleteError();
-        }
-        else{
-            for (DriveField field: driveFields) {
-                switch (field) {
-                    case METADATA:
-                        state.processMetadata();
-                        break;
-                    case PERMISSIONS:
-                        state.processPermissions();
-                        break;
-                    case DOWNLOAD:
-                        state.processDownload();
+        try {
+            String fileId = message.getFileId();
+            ElasticOperation elasticOperation = message.elasticOperation;
+            DriveField[] driveFields = message.getDriveFields();
+            
+            
+            State state = new State(fileId, elasticOperation);
+            state.receiveMetadata();
+            if(!state.fileExists){
+                state.pushDeleteError();
+            }
+            else{
+                for (DriveField field: driveFields) {
+                    switch (field) {
+                        case METADATA:
+                            state.processMetadata();
+                            break;
+                        case PERMISSIONS:
+                            state.processPermissions();
+                            break;
+                        case DOWNLOAD:
+                            state.processDownload();
+                    }
                 }
+                if(state.canPushToQueue()){
+                    state.pushToQueue();
+                }
+                state.pushToErrorQueue();
             }
-            if(state.canPushToQueue()){
-                state.pushToQueue();
-            }
-            state.pushToErrorQueue();
+            
+        } catch (Exception e) {
+            LOGGER.error(String.format("Error in processData", e.getMessage()));
         }
     }
 

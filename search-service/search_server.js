@@ -301,6 +301,7 @@ async function search(call, callback) {
 
     const elasticRequest = {
       index: indexesArray,
+      ignore_unavailable: true,
       body: {
         indices_boost: [indices_boost],
         from: call.request.resultsAmount.from,
