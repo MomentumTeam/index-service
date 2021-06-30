@@ -1,5 +1,6 @@
 package Models;
 
+import Enums.ConvertUserDest;
 import Enums.ElasticOperation;
 import Enums.ErrorOperation;
 import Exceptions.MultipleExceptions;
@@ -153,8 +154,10 @@ public class State {
 
     public void receiveAllPermissions() {
         Permission[] permissions;
+        String userDest = ConvertUserDest.get(this.metadata.getAppId());
+
         try {
-            permissions = Permission.getAllPermissions(this.fileId);
+            permissions = Permission.getAllPermissions(this.fileId, userDest);
         }
         catch(Exception e) {
             permissions = null;
@@ -170,10 +173,10 @@ public class State {
         return this.elasticOperation == ElasticOperation.PERMISSIONS_UPDATE && this.isFolder();
     }
 
-    public Permission[] getSpecificPermissions(String id){
+    public Permission[] getSpecificPermissions(String id, String destUser){
         Permission[] permissions;
         try{
-            permissions = Permission.getSpecificPermissions(id);
+            permissions = Permission.getSpecificPermissions(id, destUser);
         }
         catch(Exception e){
             permissions = null;
@@ -183,10 +186,10 @@ public class State {
         return permissions;
     }
 
-    public Permission[] getAllPermissions(String id){
+    public Permission[] getAllPermissions(String id, String destUser){
         Permission[] permissions;
         try{
-            permissions = Permission.getAllPermissions(id);
+            permissions = Permission.getAllPermissions(id, destUser);
         }
         catch(Exception e){
             permissions = null;
@@ -219,14 +222,17 @@ public class State {
 
     public void processPermissions(){
         Permission[] permissions;
+
+        String userDest = ConvertUserDest.get(this.metadata.getAppId());
+
         if(this.elasticOperation == ElasticOperation.PERMISSIONS_UPDATE) {
-            permissions = this.getSpecificPermissions(this.fileId);
+            permissions = this.getSpecificPermissions(this.fileId, userDest);
             if (this.folderPermissionChange()){ // Permissions changed on folder
                 this.processPermissionChangeOnFolder(permissions);
             }
         }
         else{ //CREATE
-            permissions = this.getAllPermissions(fileId);
+            permissions = this.getAllPermissions(fileId, userDest);
         }
         setPermissions(permissions);
         LOGGER.info(String.format("Permissions of '%s' added successfully to documents",fileId));
